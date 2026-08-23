@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CHAMPIONS / PARTY LAB</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    :root {
+      --ink: #15232b;
+      --muted: #66777b;
+      --paper: #f5f2e9;
+      --panel: #fffdf7;
+      --line: #d9ddd3;
+      --lime: #c9f45b;
+      --coral: #ff715b;
+      --blue: #62b8d5;
+      --shadow: 0 5px 18px rgba(36, 54, 44, .06);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #f7f7f4; font-family: 'Space Grotesk', sans-serif; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .app { max-width: 100%; margin: auto; padding: 6px 4px 10px; }
+    /* ---- header ---- */
+    .topbar { display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:10px; }
+    .brand { display:flex; gap:9px; align-items:center; font-weight:700; letter-spacing:.07em; }
+    .brand-mark { display:grid; place-items:center; width:30px; height:30px; background:var(--coral); border-radius:50%; color:white; font-size:17px; transform:rotate(-12deg); }
+    .brand small, .eyebrow, .mono { font-family:'DM Mono', monospace; }
+    .brand small { display:block; font-size:8px; color:var(--muted); letter-spacing:.13em; margin-top:1px; }
+    .top-actions { display:flex; gap:8px; }
+    .text-btn, .primary-btn, .ghost-btn { border:0; border-radius:5px; padding:9px 13px; font-weight:600; }
+    .text-btn { background:transparent; color:var(--muted); }
+    .primary-btn { background:var(--ink); color:white; box-shadow:3px 3px 0 var(--lime); }
+    .ghost-btn { color:var(--ink); background:transparent; border:1px solid var(--line); }
+    /* ---- hero (compact) ---- */
+    .hero { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 0 12px; }
+    h1 { font-size:clamp(25px, 3.4vw, 38px); line-height:1.02; letter-spacing:-.04em; margin:3px 0 6px; }
+    h1 em { color:var(--coral); font-style:normal; }
+    .hero p { color:var(--muted); line-height:1.55; font-size:12.5px; margin:0; }
+    .hero-stamp { width:96px; height:96px; min-width:96px; border:1px solid var(--ink); border-radius:50%; display:grid; place-items:center; text-align:center; transform:rotate(8deg); font-family:'DM Mono',monospace; font-size:9px; line-height:1.45; }
+    .hero-stamp strong { display:block; color:var(--coral); font-size:23px; font-family:'Space Grotesk',sans-serif; }
+    /* ---- workspace ---- */
+     .workspace { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; align-items:start; }
+    .panel { background:var(--panel); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:8px; max-width:100%; }
+    .panel-head { display:flex; justify-content:space-between; align-items:start; padding:10px 8px; border-bottom:1px solid var(--line); }
+    .panel-head h2 { margin:0; font-size:16px; letter-spacing:-.03em; }
+    .panel-head p { margin:3px 0 0; color:var(--muted); font-size:11px; }
+    .eyebrow { color:var(--coral); font-size:9px; letter-spacing:.13em; font-weight:500; }
+    .content { padding:8px; }
+    /* ---- party slots ---- */
+    .party-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .slot { min-height:160px; border:1px dashed #b9c4b8; background:#faf9f2; position:relative; padding:11px 12px; display:flex; flex-direction:column; justify-content:space-between; transition:.15s ease; border-radius:6px; }
+    .slot:hover { border-color:var(--coral); }
+    .slot.filled { border-style:solid; background:var(--slot-bg, #eef5db); }
+    .slot-number { font:9px 'DM Mono',monospace; color:var(--muted); }
+    .slot-icon { font-size:34px; line-height:1; filter:saturate(.9); }
+    .slot-icon img { width:46px; height:46px; object-fit:contain; }
+    .slot-name { font-weight:700; font-size:15px; }
+    .slot-meta { font-size:10.5px; color:var(--muted); margin-top:2px; }
+    .role-badge { display:inline-block; background:var(--ink); color:white; font:9px 'DM Mono',monospace; padding:2px 6px; border-radius:3px; margin-top:2px; letter-spacing:.05em; }
+    .slot-stats { font-size:10px; color:var(--muted); margin-top:3px; }
+    .slot-moves { display:flex; flex-wrap:wrap; gap:3px; margin-top:5px; }
+    .remove { position:absolute; right:8px; top:5px; border:0; background:none; color:var(--muted); font-size:16px; }
+    .form-btn { position:absolute; right:28px; top:5px; border:0; background:none; color:var(--coral); font-size:14px; cursor:pointer; padding:2px 4px; border-radius:3px; opacity:0.8; }
+    .form-btn:hover { opacity:1; background:rgba(255,113,91,.1); }
+    .ability-toggle { border:0; background:none; color:var(--ink); font:inherit; padding:0; cursor:pointer; font-size:10.5px; }
+    .ability-toggle:hover { color:var(--coral); text-decoration:underline; }
+    .add { align-self:flex-start; border:1px solid var(--ink); background:white; padding:5px 8px; border-radius:3px; font-size:10.5px; }
+    .edit-button { border:1px solid var(--line); background:white; color:var(--muted); padding:4px 7px; border-radius:4px; font-size:9.5px; margin-top:7px; }
+    .edit-button:hover { border-color:var(--coral); color:var(--ink); }
+    /* ---- search / picker ---- */
+    .section-label { display:flex; justify-content:space-between; align-items:center; margin:14px 0 7px; font-size:11.5px; font-weight:700; }
+    .section-label span { color:var(--muted); font-weight:400; }
+    .search-row { display:flex; gap:7px; }
+    input, select, textarea { width:100%; border:1px solid var(--line); background:white; padding:9px 11px; color:var(--ink); outline:none; border-radius:6px; }
+    input:focus, select:focus, textarea:focus { border-color:var(--coral); box-shadow:0 0 0 3px rgba(255,113,91,.12); }
+    .suggestions { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .suggestion { padding:6px 9px; border:1px solid var(--line); background:white; border-radius:6px; display:flex; align-items:center; gap:6px; font-size:11.5px; }
+    .suggestion:hover { border-color:var(--coral); }
+    .suggestion img { width:24px; height:24px; object-fit:contain; }
+    .ability-picker { margin-top:10px; padding:10px 12px; border:1px solid var(--coral); background:#fff6ef; border-radius:6px; }
+    .ability-picker strong { display:block; font-size:11.5px; margin-bottom:7px; }
+    .ability-options { display:flex; flex-wrap:wrap; gap:6px; }
+    .ability-option { border:1px solid var(--line); background:white; padding:6px 9px; font-size:10.5px; border-radius:6px; }
+    .ability-option:hover { border-color:var(--coral); }
+    /* ---- save tools ---- */
+    .save-tools { display:grid; grid-template-columns:minmax(100px,1fr) repeat(5,auto); gap:3px; align-items:center; padding:6px 8px; border-bottom:1px solid var(--line); background:#fafaf6; }
+    .save-tools input, .save-tools select { min-width:0; padding:6px 8px; font-size:11px; }
+    .saved-list { display:contents; }
+    .saved-party { min-width:100px; border:1px solid var(--line); background:white; padding:6px 8px; border-radius:6px; font-size:11px; }
+    .delete-saved { border:1px solid var(--line); background:white; color:var(--ink); padding:6px 8px; border-radius:6px; font-size:11px; }
+    .delete-saved:hover { border-color:var(--coral); color:var(--coral); }
+    .save-tools .ghost-btn { white-space:nowrap; padding:6px 8px; font-size:11px; }
+    /* ---- editor ---- */
+    .editor { position:fixed; inset:0; z-index:10; display:grid; place-items:center; padding:16px; background:rgba(21,35,43,.35); }
+    .editor-card { width:min(760px,100%); max-height:92vh; overflow:auto; background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 20px 60px rgba(21,35,43,.2); }
+    .editor-head { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--panel); z-index:1; }
+    .editor-head h2 { margin:0; font-size:15px; }
+    .editor-body { padding:14px 16px; display:grid; gap:11px; }
+    .field { display:grid; gap:5px; font-size:11px; font-weight:600; }
+    .field .hint { font-weight:400; color:var(--muted); font-size:10px; }
+    .item-preview { display:flex; gap:8px; align-items:center; padding:7px 9px; background:#f3f4ea; font-size:10.5px; font-weight:400; border-radius:6px; }
+    .item-icon { width:26px; height:26px; display:grid; place-items:center; font-size:17px; background:white; border-radius:5px; }
+    .item-icon img { width:20px; height:20px; object-fit:contain; }
+    .editor-actions { display:flex; justify-content:flex-end; gap:7px; padding:11px 16px; border-top:1px solid var(--line); background:var(--panel); }
+    /* ---- move picker ---- */
+    .move-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .move-cell { display:grid; gap:5px; align-content:start; }
+    .move-select { font-size:12px; padding:7px 9px; }
+    .move-info { background:#f4f5ec; border:1px solid var(--line); border-left:3px solid var(--tc, var(--line)); border-radius:5px; padding:7px 9px; font-size:10.5px; min-height:52px; }
+    .move-info p { margin:5px 0 0; line-height:1.45; color:#3c4a50; font-weight:400; }
+    .mi-head { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+    .mi-head b { font-size:11px; }
+    .mi-stats { color:var(--muted); font-size:9.5px; }
+    .type-chip { display:inline-block; padding:1px 7px; border-radius:99px; font-size:9.5px; font-weight:700; background:var(--tc,#999); color:var(--tx,#fff); letter-spacing:.02em; }
+    .cat { display:inline-block; padding:1px 6px; border-radius:4px; font-size:9.5px; font-weight:700; border:1px solid var(--line); background:white; color:var(--muted); }
+    .cat.物理 { border-color:#e08a7a; color:#c2503c; }
+    .cat.特殊 { border-color:#7aa8e0; color:#3c6cc2; }
+    .cat.変化 { border-color:#b3bfae; color:#68766a; }
+    .move-chip { display:inline-block; padding:1px 6px; border-radius:99px; font-size:9px; font-weight:600; background:var(--tc,#ccc); color:var(--tx,#fff); }
+    /* ---- steps / status ---- */
+    .steps { display:grid; gap:0; }
+    .step { display:grid; grid-template-columns:32px 1fr; gap:11px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .step:last-child { border:0; }
+    .step-num { width:27px; height:27px; display:grid; place-items:center; background:var(--lime); border-radius:6px; font:11px 'DM Mono',monospace; }
+    .step h3 { margin:0 0 3px; font-size:12.5px; }
+    .step p { margin:0; color:var(--muted); font-size:11px; line-height:1.5; }
+    .status { display:flex; align-items:center; gap:8px; margin-top:12px; padding:9px 11px; background:#f0f2e8; font-size:11px; border-radius:6px; }
+    .status-dot { width:7px; height:7px; background:var(--coral); border-radius:50%; }
+    .status.ready .status-dot { background:#57a66c; }
+    /* ---- diagnosis ---- */
+    .split { display:grid; grid-template-columns:1fr 1fr; gap: 6px; }
+    .builder, .diagnosis { border-radius: 10px; }
+    .party-memo { padding: 0 6px 6px; }
+    .party-memo textarea { width: 100%; border: 1px solid var(--line); background: white; padding: 6px 8px; color: var(--ink); outline: none; border-radius: 6px; font-size: 11px; resize: vertical; min-height: 36px; }
+    .party-memo textarea:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,113,91,.12); }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+    .diagnosis { display:block; }
+    .diagnosis.visible { animation:rise .3s ease both; }
+    .diagnosis-intro { padding:8px; display:flex; justify-content:space-between; gap:8px; align-items:end; border-bottom:1px solid var(--line); }
+    .score { font-size:40px; line-height:.85; font-weight:700; letter-spacing:-.07em; }
+    .score small { font:10px 'DM Mono',monospace; color:var(--muted); letter-spacing:0; }
+    .score-copy { max-width:240px; color:var(--muted); font-size:11px; line-height:1.5; }
+    .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:8px; }
+    .party-stats { padding:8px; border-top:1px solid var(--line); }
+    .party-stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+    .party-stat { background:#f3f4ea; border-radius:6px; padding:8px 10px; }
+    .party-stat strong { display:block; font-size:18px; margin-top:3px; }
+    .party-stat small { color:var(--muted); font-size:10px; }
+    .metric { padding:8px 10px; background:#f3f4ea; border-radius:6px; }
+    .metric strong { display:block; font-size:18px; margin-top:3px; }
+    .metric-bar { height:4px; background:#dce2d5; margin-top:6px; border-radius:2px; }
+    .metric-bar i { display:block; height:100%; background:var(--coral); border-radius:2px; }
+    .weakness-list { display:grid; grid-template-columns:repeat(2,1fr); gap:5px; }
+    .weakness { display:flex; justify-content:space-between; padding:6px 8px; border:1px solid var(--line); font-size:11px; border-radius:6px; }
+    .weakness b { color:var(--coral); }
+    .alert { background:#fff0e9; padding:8px 10px; border-left:4px solid var(--coral); line-height:1.55; font-size:11px; border-radius:0 6px 6px 0; }
+    .candidate { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--line); }
+    .candidate:last-child { border:0; }
+    .candidate small { display:block; color:var(--muted); margin-top:1px; }
+    .candidate b { color:#4b9c6a; }
+    .candidate img { width:28px; height:28px; object-fit:contain; vertical-align:middle; }
+    footer { display:flex; justify-content:space-between; margin-top:16px; border-top:1px solid var(--line); padding-top:8px; color:var(--muted); font:9.5px 'DM Mono',monospace; }
+    .hidden { display:none !important; }
+    @keyframes rise { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    @media (max-width: 900px) { .app { padding:10px 14px 20px; } .workspace { grid-template-columns:1fr; } .hero-stamp { display:none; } }
+    @media (max-width: 700px) { .save-tools { grid-template-columns:1fr 1fr; } .save-tools input, .save-tools .saved-list { grid-column:1 / -1; } .save-tools .saved-party, .save-tools .delete-saved { width:100%; } }
+    @media (max-width: 560px) { .top-actions .text-btn { display:none; } .hero { display:block; } .party-grid { grid-template-columns:repeat(2,1fr); } .metrics { grid-template-columns:1fr; } .diagnosis-intro { display:block; } .score-copy { margin-top:10px; } footer { display:block; line-height:1.8; } .move-grid { grid-template-columns:1fr; } }
+    .chat-fab { position:fixed; right:18px; bottom:18px; width:52px; height:52px; border-radius:50%; background:var(--ink); color:white; border:0; box-shadow:0 4px 14px rgba(0,0,0,.18); font-size:20px; cursor:pointer; z-index:5; }
+    .chat-fab:hover { background:var(--coral); }
+    .chat-modal { position:fixed; inset:0; z-index:20; display:grid; place-items:end; padding:16px; pointer-events:none; }
+    .chat-modal.visible { pointer-events:auto; }
+    .chat-card { width:min(380px,100%); max-height:70vh; background:var(--panel); border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.12); display:flex; flex-direction:column; overflow:hidden; }
+    .chat-head { display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border-bottom:1px solid var(--line); }
+    .chat-head h3 { margin:0; font-size:13px; }
+    .chat-messages { flex:1; overflow:auto; padding:10px; display:flex; flex-direction:column; gap:8px; max-height:50vh; }
+    .chat-message { display:flex; }
+    .chat-message.user { justify-content:flex-end; }
+    .chat-message.assistant { justify-content:flex-start; }
+    .chat-content { max-width:78%; padding:8px 10px; border-radius:10px; font-size:11.5px; line-height:1.55; white-space:pre-wrap; word-break:break-word; }
+    .chat-message.user .chat-content { background:var(--ink); color:white; border-bottom-right-radius:2px; }
+    .chat-message.assistant .chat-content { background:#f3f4ea; color:var(--ink); border:1px solid var(--line); border-bottom-left-radius:2px; }
+    .chat-input-row { display:flex; gap:6px; padding:10px; border-top:1px solid var(--line); }
+    .chat-input-row input { flex:1; padding:8px 10px; border:1px solid var(--line); border-radius:8px; font-size:12px; outline:none; }
+    .chat-input-row input:focus { border-color:var(--coral); }
+    .chat-input-row button { padding:8px 12px; border:0; background:var(--ink); color:white; border-radius:8px; font-size:12px; cursor:pointer; }
+    .chat-input-row button:hover { background:var(--coral); }
+    @media (max-width: 560px) { .chat-card { width:100%; max-height:80vh; } }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / OFFLINE TOOL</small></div></div>
+      <div class="top-actions"><button class="text-btn" id="loadDemo">サンプルを読み込む</button></div>
+    </header>
+    <section class="hero">
+      <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
+      <div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div>
+    </section>
+    <section class="workspace">
+      <div class="panel">
+        <div class="panel-head"><div><div class="eyebrow">パーティ</div><h2>6体を選ぶ</h2><p>候補を検索して追加してください。</p></div><span class="mono" id="countLabel">0 / 6</span></div>
+        <div class="split">          <div class="builder content" id="builderView">
+          <div class="save-tools"><input id="partyName" placeholder="パーティ名（例：雨パーティ）"><button class="ghost-btn" id="savePartySlot">このパーティを保存</button><button class="ghost-btn" id="exportParties">書き出す</button><button class="ghost-btn" id="importParties">読み込む</button><input class="hidden" id="importFile" type="file" accept="application/json,.json"><div class="saved-list"><select class="saved-party" id="savedSelect"><option value="">保存したパーティを選択</option></select></div><button class="delete-saved" id="deleteSaved" disabled>選択を削除</button></div><div class="party-memo"><textarea id="partyMemo" rows="3" placeholder="パーティ全体のメモ（選出順、立ち回りなど）"></textarea></div>
+          <div class="party-grid" id="partyGrid"></div>
+          <div class="section-label">ポケモンを追加 <span>名前やタイプで検索</span></div>
+          <div class="search-row"><input id="search" placeholder="例：ドラゴン / ミミッキュ" autocomplete="off"></div>
+          <div class="suggestions" id="suggestions"></div>
+          <div class="ability-picker hidden" id="abilityPicker"><strong id="abilityPickerTitle">特性を選択</strong><div class="ability-options" id="abilityOptions"></div></div>
+          <div class="status" id="status"><i class="status-dot"></i><span>まずはパーティの軸になる1体を選びましょう。</span></div>
+        </div>
+        <div class="diagnosis" id="diagnosisView">
+          <div class="diagnosis-intro"><div><div class="eyebrow">PARTY REPORT / LOCAL ANALYSIS</div><h2 style="margin:6px 0 0">診断レポート</h2></div><div class="score" id="score">--<small>/100</small></div><div class="score-copy" id="scoreCopy">6体そろうと、タイプ防御と役割バランスを自動で分析します。</div></div>
+          <div class="metrics" id="metrics"></div>
+          <div class="party-stats" id="partyStats"></div>
+          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span></div><div id="candidates"></div></div>
+        </div>
+      </div>
+
+    </section>
+    <footer><span>PARTY LAB / LOCAL-FIRST TOOL</span><span>非公式ファンツール。ゲーム内の正式仕様は公式情報をご確認ください。</span></footer>
+  </main>
+  <button class="chat-fab" id="chatFab" title="チャット">💬</button>
+  <div class="chat-modal hidden" id="chatModal"><div class="chat-card"><div class="chat-head"><h3>パーティチャット</h3><button class="remove" id="closeChat" aria-label="閉じる">×</button></div><div class="chat-messages" id="chatMessages"></div><div class="chat-input-row"><input id="chatInput" placeholder="質問を入力..." autocomplete="off"><button id="sendChat">送信</button></div></div></div>
+  <div class="editor hidden" id="editor"><div class="editor-card"><div class="editor-head"><h2 id="editorTitle">ポケモンを編集</h2><button class="remove" id="closeEditor" aria-label="編集を閉じる">×</button></div><div class="editor-body"><label class="field">特性<select id="editAbility"></select></label><label class="field">性格<select id="editNature"></select></label><div class="field">持ち物<select id="editItem"></select><div class="item-preview"><span class="item-icon" id="itemIcon">・</span><span id="itemDescription">持ち物を選択してください</span></div></div><div class="field">採用する技 <span class="hint">このポケモンが覚える技のみ選択できます（最大4つ）</span><div class="move-grid"><div class="move-cell"><select class="move-select" data-move="0"></select><div class="move-info" data-move-info="0"></div></div><div class="move-cell"><select class="move-select" data-move="1"></select><div class="move-info" data-move-info="1"></div></div><div class="move-cell"><select class="move-select" data-move="2"></select><div class="move-info" data-move-info="2"></div></div><div class="move-cell"><select class="move-select" data-move="3"></select><div class="move-info" data-move-info="3"></div></div></div></div><div class="field">努力値（H / A / B / C / D / S）<div class="ev-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div class="ev-cell"><label>HP</label><input data-ev="hp" type="number" min="0" max="32" placeholder="H"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="hp" data-value="0">0</button><button class="ev-quick-btn" data-ev="hp" data-value="2">2</button><button class="ev-quick-btn" data-ev="hp" data-value="32">32</button></div></div><div class="ev-cell"><label>攻撃</label><input data-ev="attack" type="number" min="0" max="32" placeholder="A"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="attack" data-value="0">0</button><button class="ev-quick-btn" data-ev="attack" data-value="2">2</button><button class="ev-quick-btn" data-ev="attack" data-value="32">32</button></div></div><div class="ev-cell"><label>防御</label><input data-ev="defense" type="number" min="0" max="32" placeholder="B"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="defense" data-value="0">0</button><button class="ev-quick-btn" data-ev="defense" data-value="2">2</button><button class="ev-quick-btn" data-ev="defense" data-value="32">32</button></div></div><div class="ev-cell"><label>特攻</label><input data-ev="specialAttack" type="number" min="0" max="32" placeholder="C"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialAttack" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="32">32</button></div></div><div class="ev-cell"><label>特防</label><input data-ev="specialDefense" type="number" min="0" max="32" placeholder="D"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialDefense" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="32">32</button></div></div><div class="ev-cell"><label>素早</label><input data-ev="speed" type="number" min="0" max="32" placeholder="S"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="speed" data-value="0">0</button><button class="ev-quick-btn" data-ev="speed" data-value="2">2</button><button class="ev-quick-btn" data-ev="speed" data-value="32">32</button></div></div></div></div><div class="field">実数値（Lv.50）<div id="actualStatsPreview" style="font-size:11px;color:var(--muted);padding:6px 0;font-weight:400">努力値と性格を設定すると計算されます</div><div id="partyStatsPreview" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"></div></div><label class="field">ポケモンのメモ<textarea id="editMemo" rows="3" placeholder="選出、立ち回りなど"></textarea></label></div><div class="editor-actions"><button class="ghost-btn" id="cancelEditor">キャンセル</button><button class="primary-btn" id="saveEditor">保存する</button></div></div></div>
+  <script src="data/moves-champions.js"></script>
+  <script src="data/pokemon-champions.js"></script>
+  <script src="data/items-champions.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOMContentLoaded fired');
+      console.log('search element:', document.getElementById('search'));
+      console.log('editItem element:', document.getElementById('editItem'));
+      console.log('savedSelect element:', document.getElementById('savedSelect'));
+    if (typeof localStorage === 'undefined') {
+      const el = document.getElementById('errorDisplay');
+      if (el) { el.textContent = 'このブラウザはlocalStorageをサポートしていません。別のブラウザをお試しください。'; el.classList.remove('hidden'); }
+    }
+    const fallbackPokemon = [
+      { name:'メガリザードンY', icon:'🔥', types:['ほのお','ひこう'], role:'特殊AT', color:'#ffe2b8' }, { name:'メガゲンガー', icon:'👻', types:['ゴースト','どく'], role:'特殊AT', color:'#e7d9ef' },
+      { name:'アシレーヌ', icon:'🫧', types:['みず','フェアリー'], role:'特殊AT', color:'#d9eff3' }, { name:'ドドゲザン', icon:'⚔️', types:['あく','はがね'], role:'物理AT', color:'#e1e4e2' },
+      { name:'ミミッキュ', icon:'🎭', types:['ゴースト','フェアリー'], role:'サポート', color:'#f0e3cf' }, { name:'ウォッシュロトム', icon:'⚡', types:['でんき','みず'], role:'受け', color:'#d9e9f3' },
+      { name:'ガブリアス', icon:'🦈', types:['ドラゴン','じめん'], role:'物理AT', color:'#efe0c0' }, { name:'ハッサム', icon:'🦾', types:['むし','はがね'], role:'物理AT', color:'#e9d8d2' },
+      { name:'サーフゴー', icon:'🪙', types:['はがね','ゴースト'], role:'特殊AT', color:'#f9edb9' }, { name:'キノガッサ', icon:'🍄', types:['くさ','かくとう'], role:'サポート', color:'#dce8c6' },
+      { name:'カイリュー', icon:'🐉', types:['ドラゴン','ひこう'], role:'物理AT', color:'#dbe8f4' }, { name:'ヘイラッシャ', icon:'🌊', types:['みず'], role:'受け', color:'#d7edf1' }
+    ];
+    const pokemon = (window.POKEMON_DATA?.pokemon?.length ? window.POKEMON_DATA.pokemon : fallbackPokemon).map(p => ({ ...p, types:(p.types||[]).map(type => type.replace('タイプ','')), abilities:[...new Set((p.abilities||[]).map(ability => ability.replace(/^\*/,'')))], color:p.color || '#e7eee0', icon:p.icon || p.iconUrl, role:p.role || getRoleFromStats(p) }));
+    function getRoleFromStats(p) { if(!p||!p.baseStats) return ''; const bs=p.baseStats; const atk=bs.attack||0; const spa=bs.specialAttack||0; const def=bs.defense||0; const spd=bs.specialDefense||0; const spe=bs.speed||0; const hp=bs.hp||0; if(spd>=100&&spd>def) return '特殊受け'; if(def>=100&&def>spd) return '物理受け'; if(def>=100&&spd>=100) { if(spa>=atk) return '特殊受け'; return '物理受け'; } if(atk>spa+20) return '物理AT'; if(spa>atk+20) return '特殊AT'; if(Math.abs(atk-spa)<=20&&Math.max(atk,spa)>=80) return '両刀'; if(spe>=110&&(atk>=80||spa>=80)) return '速攻'; if(hp>=70&&def>=70&&spd>=70) return 'サポート'; if(def>=80&&spd>=80) return '受け'; return 'バランス'; }
+    const MOVE_DB = window.MOVE_DATA || {};
+    const TYPE_COLORS = { 'ノーマル':'#A8A77A','ほのお':'#EE8130','みず':'#6390F0','でんき':'#F7D02C','くさ':'#7AC74C','こおり':'#96D9D6','かくとう':'#C22E28','どく':'#A33EA1','じめん':'#E2BF65','ひこう':'#A98FF3','エスパー':'#F95587','むし':'#A6B91A','いわ':'#B6A136','ゴースト':'#735797','ドラゴン':'#6F35FC','あく':'#705746','はがね':'#B7B7CE','フェアリー':'#D685AD' };
+    const typeWeakness = { 'ほのお':['みず','じめん','いわ'], 'みず':['でんき','くさ'], 'でんき':['じめん'], 'くさ':['ほのお','こおり','どく','ひこう','むし'], 'こおり':['ほのお','かくとう','いわ','はがね'], 'かくとう':['ひこう','エスパー','フェアリー'], 'どく':['じめん','エスパー'], 'じめん':['みず','くさ','こおり'], 'ひこう':['でんき','こおり','いわ'], 'エスパー':['むし','ゴースト','あく'], 'むし':['ほのお','ひこう','いわ'], 'いわ':['みず','くさ','かくとう','じめん','はがね'], 'ゴースト':['ゴースト','あく'], 'ドラゴン':['こおり','ドラゴン','フェアリー'], 'あく':['かくとう','むし','フェアリー'], 'はがね':['ほのお','かくとう','じめん'], 'フェアリー':['どく','はがね'], 'ノーマル':['かくとう'] };
+    const typeResist = { 'ノーマル':['ゴースト'], 'ほのお':['ほのお','くさ','こおり','むし','はがね','フェアリー'], 'みず':['ほのお','みず','こおり','はがね'], 'でんき':['でんき','ひこう','はがね'], 'くさ':['みず','でんき','くさ','じめん','フェアリー'], 'こおり':['こおり'], 'かくとう':['むし','いわ','ゴースト','あく'], 'どく':['くさ','かくとう','どく','むし','フェアリー'], 'じめん':['どく','いわ','でんき'], 'ひこう':['くさ','かくとう','むし','じめん'], 'エスパー':['かくとう','エスパー'], 'むし':['くさ','かくとう','じめん'], 'いわ':['ノーマル','ひこう','どく','ほのお'], 'ゴースト':['ノーマル','かくとう','むし','どく'], 'ドラゴン':['ほのお','みず','でんき','くさ'], 'あく':['ゴースト','あく'], 'はがね':['ノーマル','くさ','こおり','ひこう','エスパー','ドラゴン','はがね','フェアリー','いわ'], 'フェアリー':['かくとう','むし','ドラゴン','あく'] };
+    const abilityEffects = { 'ふゆう':{immune:['じめん']}, 'ちくでん':{immune:['でんき']}, 'ひらいしん':{immune:['でんき']}, 'でんきエンジン':{immune:['でんき']}, 'もらいび':{immune:['ほのお']}, 'よびみず':{immune:['みず']}, 'ちょすい':{immune:['みず']}, 'そうしょく':{immune:['くさ']}, 'こんがりボディ':{immune:['ほのお']}, 'どしょく':{immune:['じめん']}, 'うなぎのぼり':{immune:['じめん']}, 'ぼうおん':{immune:['音']}, 'ぼうだん':{immune:['弾・爆弾']}, 'たいねつ':{resist:['ほのお']}, 'あついしぼう':{resist:['ほのお','こおり']}, 'すいほう':{resist:['ほのお']}, 'きよめのしお':{resist:['ゴースト']}, 'こおりのりんぷん':{resist:['ほのお','こおり']}, 'ハードロック':{resist:['ほのお','こおり','かくとう'],multiplier:0.75}, 'フィルター':{resist:['ほのお','こおり','かくとう'],multiplier:0.75}, 'プリズムアーマー':{resist:['ほのお','こおり','かくとう'],multiplier:0.75}, 'マルチスケール':{resist:['ほのお','みず','でんき','くさ','こおり','かくとう','むし'],multiplier:0.5,condition:'hp-max'}, 'ファントムガード':{resist:['ほのお','みず','でんき','くさ','こおり','かくとう','むし'],multiplier:0.5,condition:'hp-max'}, 'もふもふ':{resist:['直接攻撃'],multiplier:0.5,weakness:['ほのお'],weaknessMultiplier:2.0}, 'ファーコート':{resist:['物理'],multiplier:0.5}, 'かんそうはだ':{multiply:['ほのお'],multiplier:1.25}, 'ねんちゃく':{resist:[]} };
+        const megaMap = {
+  'メガフシギバナ': 'フシギバナ',
+  'メガリザードンX': 'リザードン',
+  'メガリザードンY': 'リザードン',
+  'メガカメックス': 'カメックス',
+  'メガスピアー': 'スピアー',
+  'メガピジョット': 'ピジョット',
+  'メガライチュウX': 'ライチュウ',
+  'メガライチュウY': 'ライチュウ',
+  'メガピクシー': 'ピクシー',
+  'メガフーディン': 'フーディン',
+  'メガウツボット': 'ウツボット',
+  'メガヤドラン': 'ヤドラン',
+  'メガゲンガー': 'ゲンガー',
+  'メガガルーラ': 'ガルーラ',
+  'メガスターミー': 'スターミー',
+  'メガカイロス': 'カイロス',
+  'メガギャラドス': 'ギャラドス',
+  'メガプテラ': 'プテラ',
+  'メガカイリュー': 'カイリュー',
+  'メガニウム': 'ベイリフィス',
+  'メガメガニウム': 'メガニウム',
+  'メガオーダイル': 'オーダイル',
+  'メガデンリュウ': 'デンリュウ',
+  'メガハガネール': 'ハガネール',
+  'メガハッサム': 'ハッサム',
+  'メガヘラクロス': 'ヘラクロス',
+  'メガエアームド': 'エアームド',
+  'メガヘルガー': 'ヘルガー',
+  'メガバンギラス': 'バンギラス',
+  'メガジュカイン': 'ジュカイン',
+  'メガバシャーモ': 'バシャーモ',
+  'メガラグラージ': 'ラグラージ',
+  'メガサーナイト': 'サーナイト',
+  'メガヤミラミ': 'ヤミラミ',
+  'メガクチート': 'クチート',
+  'メガボスゴドラ': 'ボスゴドラ',
+  'メガチャーレム': 'チャーレム',
+  'メガライボルト': 'ライボルト',
+  'メガサメハダー': 'サメハダー',
+  'メガバクーダ': 'バクーダ',
+  'メガチルタリス': 'チルタリス',
+  'メガジュペッタ': 'ジュペッタ',
+  'メガチリーン': 'チリーン',
+  'メガアブソル': 'アブソル',
+  'メガオニゴーリ': 'オニゴーリ',
+  'メガメタグロス': 'メタグロス',
+  'メガムクホーク': 'ムクホーク',
+  'メガミミロップ': 'ミミロップ',
+  'メガガブリアス': 'ガブリアス',
+  'メガルカリオ': 'ルカリオ',
+  'メガユキノオー': 'ユキノオー',
+  'メガエルレイド': 'エルレイド',
+  'メガユキメノコ': 'ユキメノコ',
+  'メガエンブオー': 'エンブオー',
+  'メガドリュウズ': 'ドリュウズ',
+  'メガタブンネ': 'タブンネ',
+  'メガペンドラー': 'ペンドラー',
+  'メガズルズキン': 'ズルズキン',
+  'メガシビルドン': 'シビルドン',
+  'メガシャンデラ': 'シャンデラ',
+  'メガゴルーグ': 'ゴルーグ',
+  'メガブリガロン': 'ブリガロン',
+  'メガマフォクシー': 'マフォクシー',
+  'メガゲッコウガ': 'ゲッコウガ',
+  'メガカエンジシ': 'カエンジシ',
+  'メガフラエッテ': 'フラエッテ',
+  'メガニャオニクス♂': 'ニャオニクス♂',
+  'メガニャオニクス♀': 'ニャオニクス♀',
+  'メガカラマネロ': 'カラマネロ',
+  'メガガメノデス': 'ガメノデス',
+  'メガドラミドロ': 'ドラミドロ',
+  'メガルチャブル': 'ルチャブル',
+  'メガケケンカニ': 'ケケンカニ',
+  'メガジジーロン': 'ジジーロン',
+  'メガタイレーツ': 'タイレーツ',
+  'メガスコヴィラン': 'スコヴィラン',
+  'メガキラフロル': 'キラフロル'
+};
+
+function getBaseForm(name) {
+  return megaMap[name] || name;
+}
+
+function getMegaForms(baseName) {
+  return Object.entries(megaMap)
+    .filter(([mega, base]) => base === baseName)
+    .map(([mega]) => mega);
+}
+
+    
+    const NATURE_MAP = [{"name":"まじめ","bonus":null,"penalty":null},{"name":"さみしがり","bonus":"attack","penalty":"defense"},{"name":"いじっぱり","bonus":"attack","penalty":"specialAttack"},{"name":"やんちゃ","bonus":"attack","penalty":"specialDefense"},{"name":"ゆうかん","bonus":"attack","penalty":"speed"},{"name":"ずぶとい","bonus":"defense","penalty":"attack"},{"name":"わんぱく","bonus":"defense","penalty":"specialAttack"},{"name":"のうてんき","bonus":"defense","penalty":"specialDefense"},{"name":"のんき","bonus":"defense","penalty":"speed"},{"name":"ひかえめ","bonus":"specialAttack","penalty":"attack"},{"name":"おっとり","bonus":"specialAttack","penalty":"defense"},{"name":"うっかりや","bonus":"specialAttack","penalty":"specialDefense"},{"name":"れいせい","bonus":"specialAttack","penalty":"speed"},{"name":"おだやか","bonus":"specialDefense","penalty":"attack"},{"name":"おとなしい","bonus":"specialDefense","penalty":"defense"},{"name":"しんちょう","bonus":"specialDefense","penalty":"specialAttack"},{"name":"なまいき","bonus":"specialDefense","penalty":"speed"},{"name":"おくびょう","bonus":"speed","penalty":"attack"},{"name":"せっかち","bonus":"speed","penalty":"defense"},{"name":"ようき","bonus":"speed","penalty":"specialAttack"},{"name":"むじゃき","bonus":"speed","penalty":"specialDefense"}];
+    function getNatureColor(p, stat) {
+      if (!p || !p.baseStats) return '';
+      const nature = p.selectedNature || 'まじめ';
+      const natureObj = NATURE_MAP.find(n => n.name === nature) || { bonus: null, penalty: null };
+      if (natureObj.bonus === stat) return 'color:#2e7d32';
+      if (natureObj.penalty === stat) return 'color:#c62828';
+      return '';
+    }
+    function calculateActualStats(p) {
+      if (!p || !p.baseStats) return null;
+      const stats = p.baseStats;
+      const evs = p.evs || {};
+      const nature = p.selectedNature || 'まじめ';
+      const natureObj = NATURE_MAP.find(n => n.name === nature) || { bonus: null, penalty: null };
+      
+      const getBonus = (stat) => {
+        if (stat === 'hp') return 1;
+        if (natureObj.bonus === stat) return 1.1;
+        if (natureObj.penalty === stat) return 0.9;
+        return 1;
+      };
+      
+      const calcBase = (base, ev) => Math.floor((base * 2 + 31 + ev * 2) * 0.5);
+      const hp = calcBase(stats.hp, evs.hp || 0) + 60;
+      const attack = Math.floor((calcBase(stats.attack, evs.attack || 0) + 5) * getBonus('attack'));
+      const defense = Math.floor((calcBase(stats.defense, evs.defense || 0) + 5) * getBonus('defense'));
+      const specialAttack = Math.floor((calcBase(stats.specialAttack, evs.specialAttack || 0) + 5) * getBonus('specialAttack'));
+      const specialDefense = Math.floor((calcBase(stats.specialDefense, evs.specialDefense || 0) + 5) * getBonus('specialDefense'));
+      const speed = Math.floor((calcBase(stats.speed, evs.speed || 0) + 5) * getBonus('speed'));
+      
+      return { hp, attack, defense, specialAttack, specialDefense, speed };
+    }
+
+    const items = (window.ITEM_DATA?.items?.length ? window.ITEM_DATA.items : [{name:'きあいのタスキ',iconUrl:'',description:'HP満タンの時、一撃でひんしになる技を受けてもHPを1残す。'}, {name:'こだわりスカーフ',iconUrl:'',description:'素早さが1.5倍になるが、最初に使った技しか使えない。'}, {name:'こだわりハチマキ',iconUrl:'',description:'攻撃が1.5倍になるが、最初に使った技しか使えない。'}, {name:'こだわりメガネ',iconUrl:'',description:'特攻が1.5倍になるが、最初に使った技しか使えない。'}, {name:'たべのこし',iconUrl:'',description:'ターン終了時に最大HPの1/16回復する。'}, {name:'オボンのみ',iconUrl:'',description:'HPが最大HPの1/2以下になった時、最大HPの1/4回復する。'}, {name:'ラムのみ',iconUrl:'',description:'全ての状態異常と混乱を回復する。'}, {name:'いのちのたま',iconUrl:'',description:'技の威力が1.3倍になるが、攻撃成功時にHPが減る。'}, {name:'たつじんのおび',iconUrl:'',description:'効果抜群の技の威力が1.2倍になる。'}, {name:'きせきのタネ',iconUrl:'',description:'くさタイプの技の威力が1.2倍になる。'}, {name:'オッカのみ',iconUrl:'',description:'効果抜群のほのお技を受けた時、ダメージを半減する。'}, {name:'ヤチェのみ',iconUrl:'',description:'効果抜群のこおり技を受けた時、ダメージを半減する。'}, {name:'フシギバナイト',iconUrl:'',description:'フシギバナがバトル中にメガシンカできる。'}, {name:'ガブリアスナイト',iconUrl:'',description:'ガブリアスがバトル中にメガシンカできる。'}]).map(item => ({ ...item, icon: item.iconUrl ? '🖼️' : '・' }));
+    const megaStoneMap = {};
+    items.forEach(item => {
+      if (item.name.includes('ナイト') && item.description) {
+        const match = item.description.match(/^(.+?)がバトル中メガシンカ可能になる。$/);
+        if (match) {
+          let baseName = match[1];
+          if (megaMap[baseName]) baseName = megaMap[baseName];
+          megaStoneMap[baseName] = item.name;
+        }
+      }
+    });
+    let party = [];
+    let savedParties = [];
+    try {
+      const partyData = localStorage.getItem('party-lab');
+      console.log('party-lab data:', partyData);
+      party = JSON.parse(partyData || '[]').map(normalizeMember);
+    } catch(e) {
+      console.error('Failed to load party:', e);
+    }
+    try {
+      const savedData = localStorage.getItem('party-lab-saved');
+      console.log('party-lab-saved data:', savedData);
+      savedParties = JSON.parse(savedData || '[]');
+    } catch(e) {
+      console.error('Failed to load saved parties:', e);
+    }
+    let editingIndex = -1;
+    const $ = id => {
+      const el = document.getElementById(id);
+      if (!el && id !== 'errorDisplay') console.warn('Element not found:', id);
+      return el;
+    };
+    const iconMarkup = p => p.iconUrl ? `<img src="${p.iconUrl}" alt="">` : p.icon;
+    const toHiragana = value => value.replace(/[ァ-ヶ]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60)).normalize('NFKC').toLowerCase();
+    const statLine = p => { if(!p||!p.baseStats) return ''; const bs=p.baseStats; const actual=calculateActualStats(p); if(!actual) return `<div>種族値 ${bs.hp}/${bs.attack}/${bs.defense}/${bs.specialAttack}/${bs.specialDefense}/${bs.speed}</div>`; let speed=actual.speed; const scarfSpeed=p.item==='こだわりスカーフ'?Math.floor(speed*1.5):null; const speedText=scarfSpeed?`${speed}→${scarfSpeed}`:String(speed); return `<div>種族値 ${bs.hp}/${bs.attack}/${bs.defense}/${bs.specialAttack}/${bs.specialDefense}/${bs.speed}</div><div>実数値 <span style="${getNatureColor(p,'hp')}">${actual.hp}</span>/<span style="${getNatureColor(p,'attack')}">${actual.attack}</span>/<span style="${getNatureColor(p,'defense')}">${actual.defense}</span>/<span style="${getNatureColor(p,'specialAttack')}">${actual.specialAttack}</span>/<span style="${getNatureColor(p,'specialDefense')}">${actual.specialDefense}</span>/<span style="${getNatureColor(p,'speed')}">${speedText}</span></div>`; };
+    function normalizeMember(member) { if(!member) return member; const moves=(member.moves||[]).map(m => typeof m === 'string' ? m : (m && m.name) || '').filter(Boolean); return { ...member, moves }; }
+    function typeColor(type) { return TYPE_COLORS[type] || '#9aa39b'; }
+    function chipTextColor(hex) { const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16); return (r*299+g*587+b*114)/1000 > 155 ? '#20303a' : '#ffffff'; }
+    function moveChip(name) { const data=MOVE_DB[name]; const bg=data?typeColor(data.t):'#c9cfc4'; return `<span class="move-chip" style="--tc:${bg};--tx:${chipTextColor(bg)}">${name}</span>`; }
+    function moveStatText(data) { if(!data || data.c === '変化') return '変化技'; return `威力 ${data.p ?? '—'} ／ 命中 ${data.a == null ? '必中' : data.a}`; }
+    function moveInfoHtml(name) {
+      if(!name) return '<span style="color:var(--muted)">未選択</span>';
+      const data = MOVE_DB[name];
+      if(!data) return `<div class="mi-head"><b>${name}</b><span class="mono mi-stats">データなし</span></div>`;
+      return `<div class="mi-head"><span class="type-chip" style="--tc:${typeColor(data.t)};--tx:${chipTextColor(typeColor(data.t))}">${data.t}</span><span class="cat ${data.c}">${data.c}</span><span class="mono mi-stats">${moveStatText(data)}</span></div><p>${data.e}</p>`;
+    }
+    function learnableMoves(p) { return [...new Set((p.moves || []).map(m => typeof m === 'string' ? m : (m && m.name) || '').filter(Boolean))].sort((a,b) => a.localeCompare(b,'ja')); }
+    function render() { $('countLabel').textContent = `${party.length} / 6`; $('partyGrid').innerHTML = Array.from({length:6}, (_,i) => { const p=party[i]; const evText=p?.evs?Object.entries(p.evs).filter(([,value])=>value).map(([key,value])=>`${key}:${value}`).join(' / '):''; const moveHtml=p?.moves?.length?p.moves.slice(0,4).map(moveChip).join(''):''; const baseForm=getBaseForm(p?.name||''); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,j,a)=>a.indexOf(v)===j); const hasForms=allForms.length>1; const formBtn=hasForms?`<button class="form-btn" data-form-index="${i}" title="フォルム変更">⇄</button>`:''; const abilities=(p?.abilities||[]).filter(Boolean); const currentAbility=p?.selectedAbility||abilities[0]||''; const currentAbilityIndex=abilities.indexOf(currentAbility); const abilityToggle=abilities.length>1?`<button class="ability-toggle" data-ability-toggle="${i}" title="特性を切り替え">${currentAbility||'未選択'} ▾</button>`:`<span>${currentAbility||'未選択'}</span>`; const roleBadge=p?.role?`<span class="role-badge">${p.role}</span>`:''; return `<div class="slot ${p?'filled':''}" style="--slot-bg:${p?.color||'#faf9f2'}"><span class="slot-number">SLOT ${String(i+1).padStart(2,'0')}</span>${p?`<button class="remove" data-remove="${i}" aria-label="${p.name}を外す">×</button>${formBtn}<span class="slot-icon">${iconMarkup(p)}</span><div><div class="slot-name">${p.name}</div><div class="slot-meta">${p.types.join(' / ')}</div>${roleBadge?`<div class="slot-meta">${roleBadge}</div>`:''}<div class="slot-meta">特性: ${abilityToggle}</div><div class="slot-meta">持ち物: ${p.item||'なし'}</div><div class="slot-stats">${statLine(p)}</div>${moveHtml?`<div class="slot-moves">${moveHtml}</div>`:''}${evText?`<div class="slot-stats">努力値: ${evText}</div>`:''}${p.memo?`<div class="slot-stats">メモ: ${p.memo}</div>`:''}<button class="edit-button" data-edit="${i}">詳細を編集</button></div>`:`<span class="slot-icon" style="opacity:.22">＋</span><button class="add" data-add="${i}">ポケモンを選ぶ</button>`}</div>` }).join(''); updateSuggestions(); updateStatus(); renderSaved(); analyze(); }
+    function renderSaved() { $('savedSelect').innerHTML='<option value="">保存したパーティを選択</option>'+savedParties.map((entry,index)=>`<option value="${index}">${entry.name}（${entry.party.length}体）</option>`).join(''); $('deleteSaved').disabled=!savedParties.length; }
+    function updateSuggestions() { const query=toHiragana($('search').value.trim()); const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || toHiragana([p.name,...p.types,...(p.abilities||[])].join('')).includes(query))).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span></button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
+    function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
+    let pendingPokemon = null;
+    function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); localStorage.setItem('party-lab',JSON.stringify(party)); $('abilityPicker').classList.add('hidden'); render(); }
+    function choosePokemon(name) { const p=pokemon.find(x=>x.name===name); if(!p) return; if((p.abilities||[]).length<2) return addPokemon(name); pendingPokemon=p; $('abilityPickerTitle').textContent=`${p.name}の特性を選択`; $('abilityOptions').innerHTML=(p.abilities||['未選択']).map(ability=>`<button class="ability-option" data-ability="${ability}">${ability}</button>`).join(''); $('abilityPicker').classList.remove('hidden'); }
+    
+    function updateActualStatsPreview() {
+      const p = party[editingIndex];
+      if (!p || !p.baseStats) return;
+      const currentEvs = Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input => [input.dataset.ev, Number(input.value) || 0]));
+      const stats = calculateActualStats({...p, evs: currentEvs});
+      if (!stats) return;
+      const totalEv = Object.values(currentEvs).reduce((sum, val) => sum + val, 0);
+      const isOver = totalEv > 66 || Object.values(currentEvs).some(v => v > 32);
+      const scarfText = p.item === 'こだわりスカーフ' ? ` <span style="color:var(--coral)">(スカーフ: ${Math.floor(stats.speed * 1.5)})</span>` : '';
+      $('actualStatsPreview').innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:10.5px"><div>HP: <strong style="' + getNatureColor(p, 'hp') + '">' + stats.hp + '</strong></div><div>攻撃: <strong style="' + getNatureColor(p, 'attack') + '">' + stats.attack + '</strong></div><div>防御: <strong style="' + getNatureColor(p, 'defense') + '">' + stats.defense + '</strong></div><div>特攻: <strong style="' + getNatureColor(p, 'specialAttack') + '">' + stats.specialAttack + '</strong></div><div>特防: <strong style="' + getNatureColor(p, 'specialDefense') + '">' + stats.specialDefense + '</strong></div><div>素早: <strong style="' + getNatureColor(p, 'speed') + '">' + stats.speed + '</strong>' + scarfText + '</div></div>' + (isOver ? '<div style="color:var(--coral);font-size:10px;margin-top:4px">努力値合計が66を超えています</div>' : '');
+    }
+
+    function updateItemPreview() { const item=items.find(entry=>entry.name===$('editItem').value); $('itemIcon').innerHTML=item?.iconUrl?`<img src="${item.iconUrl}" alt="">`:(item?.icon||'・'); $('itemDescription').textContent=item?.description||'持ち物を選択してください'; }
+    function fillMoveSelects(p) { const source=pokemon.find(x=>x.name===p.name); const learned=(source ? learnableMoves(source) : []).filter(name => MOVE_DB[name]); document.querySelectorAll('[data-move]').forEach(select => { const index=Number(select.dataset.move); const current=(p.moves||[])[index]||''; const options=current && !learned.includes(current) ? [current,...learned] : learned; select.innerHTML='<option value="">— 選択しない —</option>'+options.map(name=>`<option value="${name}">${name}</option>`).join(''); select.value=current; document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(current); }); }
+    function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">まじめ</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name]; const baseName=getBaseForm(p.name); const megaStone=isMega?megaStoneMap[baseName]:null; const itemList=isMega&&megaStone?items.filter(item=>item.name===megaStone||item.name===p.item):items; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
+    function closeEditor() { editingIndex=-1; $('editor').classList.add('hidden'); }
+    function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; } p.evs=evs; p.memo=$('editMemo').value.trim(); localStorage.setItem('party-lab',JSON.stringify(party)); closeEditor(); render(); }
+    function renderPartyStats() {
+      const stats = party.map(p => calculateActualStats(p)).filter(Boolean);
+      if (!stats.length) {
+        $('partyStats').innerHTML = '';
+        return;
+      }
+      const keys = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
+      const labels = { hp: 'HP', attack: '攻撃', defense: '防御', specialAttack: '特攻', specialDefense: '特防', speed: '素早' };
+      const html = keys.map(key => {
+        const baseValues = stats.map(s => s[key]);
+        const effectiveValues = stats.map((s, idx) => {
+          if (key === 'speed' && party[idx] && party[idx].item === 'こだわりスカーフ') {
+            return Math.floor(s.speed * 1.5);
+          }
+          return s[key];
+        });
+        const baseMax = Math.max(...baseValues);
+        const baseAvg = Math.round(baseValues.reduce((a, b) => a + b, 0) / baseValues.length);
+        const effectiveMax = Math.max(...effectiveValues);
+        const effectiveAvg = Math.round(effectiveValues.reduce((a, b) => a + b, 0) / effectiveValues.length);
+        if (key === 'speed') {
+          const scarfValues = party.map(p => {
+            if (p.item === 'こだわりスカーフ') {
+              const base = calculateActualStats(p);
+              return base ? Math.floor(base.speed * 1.5) : null;
+            }
+            return null;
+          }).filter(Boolean);
+          const scarfMax = scarfValues.length ? Math.max(...scarfValues) : null;
+          const scarfAvg = scarfValues.length ? Math.round(scarfValues.reduce((a, b) => a + b, 0) / scarfValues.length) : null;
+          if (scarfMax !== null) {
+            return `<div class="party-stat"><small>${labels[key]}（スカーフ）</small><strong>最大${baseMax}→${scarfMax} / 平均${baseAvg}→${scarfAvg}</strong></div>`;
+          }
+        }
+        return `<div class="party-stat"><small>${labels[key]}</small><strong>最大${baseMax} / 平均${baseAvg}</strong></div>`;
+      }).join('');
+      $('partyStats').innerHTML = `<div class="section-label">実数値 <span>最大 / 平均</span></div><div class="party-stats-grid">${html}</div>`;
+    }
+    
+    function updatePartyStatsPreview() {
+      const p = party[editingIndex];
+      if (!p || !party.length) {
+        $('partyStatsPreview').innerHTML = '';
+        return;
+      }
+      const stats = party.map(member => calculateActualStats(member)).filter(Boolean);
+      if (!stats.length) {
+        $('partyStatsPreview').innerHTML = '';
+        return;
+      }
+      const keys = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
+      const labels = { hp: 'HP', attack: '攻撃', defense: '防御', specialAttack: '特攻', specialDefense: '特防', speed: '素早' };
+      const html = keys.map(key => {
+        const values = stats.map(s => s[key]);
+        const max = Math.max(...values);
+        const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+        const currentVal = p && calculateActualStats(p) ? calculateActualStats(p)[key] : '-';
+        const highlight = currentVal === max ? 'color:var(--coral)' : '';
+        return '<div style="display:flex;justify-content:space-between;font-size:10px;padding:2px 0"><span>' + labels[key] + '</span><span style="' + highlight + '">最大' + max + ' / 平均' + avg + '</span></div>';
+      }).join('');
+      $('partyStatsPreview').innerHTML = '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">パーティ内比較</div>' + html;
+    }
+function analyze() {
+      renderPartyStats();
+      if(!party.length) return;
+      const allTypes=['ノーマル','ほのお','みず','でんき','くさ','こおり','かくとう','どく','じめん','ひこう','エスパー','むし','いわ','ゴースト','ドラゴン','あく','はがね','フェアリー'];
+      const counts={};
+      const protections=[];
+      const typeDefenseList=[];
+      party.forEach(p=>{
+        const effects=(abilityEffects[p.selectedAbility]||{});
+        (effects.immune||[]).forEach(type=>protections.push(`${p.name} / ${p.selectedAbility}: ${type}無効`));
+        (effects.resist||[]).forEach(type=>{
+          const baseMultiplier=p.types.some(partyType=>typeWeakness[partyType]?.includes(type))?2:1;
+          const finalMultiplier=baseMultiplier*(effects.multiplier||0.5);
+          protections.push(`${p.name} / ${p.selectedAbility}: ${type}${finalMultiplier===1?'等倍':finalMultiplier<1?'半減':'倍増'}`);
+        });
+        const typeDefense={};
+        allTypes.forEach(attackingType=>{
+          let multiplier=1;
+          if(effects.immune&&effects.immune.includes(attackingType)){multiplier=0;}
+          else{
+            let baseMultiplier=1;
+            p.types.forEach(pokemonType=>{
+              if(typeWeakness[pokemonType]?.includes(attackingType))baseMultiplier*=2;
+              if(typeResist[pokemonType]?.includes(attackingType))baseMultiplier*=0.5;
+            });
+            multiplier=baseMultiplier;
+            if(effects.multiply&&effects.multiply.includes(attackingType))multiplier*=(effects.multiplier||1.25);
+            if(effects.weakness&&effects.weakness.includes(attackingType))multiplier*=(effects.weaknessMultiplier||2);
+            if(effects.resist&&effects.resist.includes(attackingType))multiplier*=(effects.multiplier||0.5);
+          }
+          typeDefense[attackingType]=multiplier;
+        });
+        typeDefenseList.push(typeDefense);
+        p.types.forEach(type=>{
+          const weaknesses=typeWeakness[type]||[];
+          const immunities=effects.immune||[];
+          const resistances=effects.resist||[];
+          weaknesses.forEach(w=>{
+            if(immunities.includes(w))return;
+            if(resistances.includes(w)){counts[w]=(counts[w]||0)+0.5;}
+            else{counts[w]=(counts[w]||0)+1;}
+          });
+        });
+      });
+      const weakness=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+      const variety=new Set(party.flatMap(p=>p.types)).size;
+      const defenseScore=Math.max(0,Math.min(100,100-weakness.reduce((sum,[,count])=>sum+Math.max(0,count-2),0)*4));
+      const score=Math.round((Math.min(100,44+variety*5)+defenseScore+Math.min(100,50+party.length*8)+Math.min(12,protections.length*2))/3);
+      $('score').innerHTML=`${score}<small>/100</small>`;
+      $('scoreCopy').textContent=score>=78?'弱点の重複が少なく、バランスの良いパーティです。':'弱点の重複を確認して、特性やタイプで補完しましょう。';
+      $('metrics').innerHTML=[['TYPE COVERAGE',Math.min(100,44+variety*5),`${variety} types`],['DEFENSE',defenseScore,protections.length?`${protections.length} protections`:'相性を確認'],['PARTY SIZE',Math.min(100,50+party.length*8),`${party.length} members`]].map(m=>`<div class="metric"><span class="eyebrow">${m[0]}</span><strong>${m[1]}</strong><div class="metric-bar"><i style="width:${m[1]}%"></i></div><small class="mono">${m[2]}</small></div>`).join('');
+      const partyWeaknesses=new Set(weakness.map(w=>w[0]));
+      const partyTypes=new Set(party.flatMap(p=>p.types));
+      const topWeakness=weakness.length?weakness[0][0]:null;
+      const topProtections=topWeakness?protections.filter(p=>p.includes(`${topWeakness}無効`)||p.includes(`${topWeakness}半減`)):[];
+      const hasTypeProtection=topWeakness?party.some(p=>p.types.some(type=>typeResist[type]?.includes(topWeakness))):false;
+      const scoredCandidates=pokemon.filter(p=>{if(party.some(x=>x.name===p.name))return false;const baseForm=getBaseForm(p.name);const megaForms=getMegaForms(baseForm);if(p.name!==baseForm&&party.some(x=>x.name===baseForm))return false;if(p.name===baseForm&&party.some(x=>megaForms.includes(x.name)))return false;if(p.name!==baseForm&&party.some(x=>megaForms.includes(x.name)))return false;return true;}).map(p=>{const types=[...p.types];let coversWeakness=0;let coversTopWeakness=0;types.forEach(type=>{partyWeaknesses.forEach(w=>{if(typeResist[type]?.includes(w)){coversWeakness++;if(w===topWeakness)coversTopWeakness++;}});});const newTypes=[...types].filter(t=>!partyTypes.has(t));const newCoverage=newTypes.length;let introducesWeakness=0;let weakToTopWeakness=false;types.forEach(type=>{if(typeWeakness[type]){typeWeakness[type].forEach(w=>{if(!partyWeaknesses.has(w)){introducesWeakness++;if(w===topWeakness)weakToTopWeakness=true;}});}});const score=coversTopWeakness*10+coversWeakness*3+newCoverage*2-introducesWeakness*3-(weakToTopWeakness?5:0);return{...p,score,coversWeakness,coversTopWeakness,newCoverage};}).filter(p=>{if(topWeakness){if(p.types.some(type=>typeWeakness[type]?.includes(topWeakness)))return false;if(topProtections.length===0&&!hasTypeProtection&&!p.types.some(type=>typeResist[type]?.includes(topWeakness)))return false;}return true;}).sort((a,b)=>b.score-a.score).slice(0,10);
+      $('candidates').innerHTML=scoredCandidates.map(p=>`<div class="candidate" data-pokemon="${p.name}" style="cursor:pointer"><div>${iconMarkup(p)} <strong>${p.name}</strong><small>${p.types.join(' / ')}${p.role?` · ${p.role}`:''}${p.coversTopWeakness?` · 最大弱点をカバー`:''}${p.coversWeakness-p.coversTopWeakness?` · 弱点${p.coversWeakness-p.coversTopWeakness}件補完`:''}${p.newCoverage?` · 新規タイプ+${p.newCoverage}`:''}</small></div><b>+${Math.max(0,p.score)} pts</b></div>`).join('')||'<div class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</div>';
+
+      const top=weakness[0];
+      const relevantProtections = top ? protections.filter(p => p.includes(`${top[0]}無効`) || p.includes(`${top[0]}半減`)) : [];
+      $('alert').textContent=top?`${top[0]}の弱点が${top[1]}件重複しています。${relevantProtections.length?`${relevantProtections.slice(0,2).join('、')}で対応可能です。`:`このタイプに強いポケモンを追加しましょう。`}`:'大きな弱点の重複は見つかりませんでした。';
+
+      const typeDefenseHtml = allTypes.map(type => {
+        const avgMultiplier = typeDefenseList.reduce((sum, def) => sum + (def[type] !== undefined ? def[type] : 1), 0) / (typeDefenseList.length || 1);
+        const label = avgMultiplier === 0 ? '×0' : avgMultiplier < 0.5 ? '×0.25' : avgMultiplier <= 0.75 ? '×' + avgMultiplier.toFixed(2) : avgMultiplier === 1 ? '×1' : '×' + avgMultiplier.toFixed(2);
+        const bg = avgMultiplier === 0 ? '#e8f5e9' : avgMultiplier < 1 ? '#fff3e0' : avgMultiplier > 1 ? '#ffebee' : '#f5f5f5';
+        const color = avgMultiplier === 0 ? '#2e7d32' : avgMultiplier < 1 ? '#ef6c00' : avgMultiplier > 1 ? '#c62828' : '#616161';
+        return `<div class="weakness" style="background:${bg};color:${color}"><span>${type}</span><b>${label}</b></div>`;
+      }).join('');
+      $('weaknesses').innerHTML = typeDefenseHtml || '<div class="mono">タイプ情報がありません</div>';
+    }
+    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); render(); }       const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } });
+    $('editor').addEventListener('click', e => {
+      if (e.target === $('editor')) closeEditor();
+    });
+    $('editor').addEventListener('change', e => { if(e.target.matches('[data-move]')) { const index=Number(e.target.dataset.move); document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(e.target.value); } });
+    function downloadJson(filename, value) { const blob=new Blob([JSON.stringify(value,null,2)],{type:'application/json'}); const link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download=filename; link.click(); URL.revokeObjectURL(link.href); }
+    function normalizeImportedParties(value) { const entries=Array.isArray(value)?value:value?.parties; if(!Array.isArray(entries)) throw new Error('パーティデータの形式が違います'); return entries.filter(entry=>entry&&Array.isArray(entry.party)).map(entry=>({name:String(entry.name||'無題のパーティ'),party:entry.party.filter(Boolean).slice(0,6).map(normalizeMember),savedAt:entry.savedAt||new Date().toISOString()})).slice(0,30); }
+    
+    $('editNature').addEventListener('change', updateActualStatsPreview);
+    document.querySelectorAll('input[data-ev]').forEach(function(input) {
+      input.addEventListener('input', function() { this.value=Math.min(32,Math.max(0,Number(this.value)||0)); updateActualStatsPreview(); });
+    });
+    document.querySelectorAll('.ev-quick-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const ev = this.dataset.ev;
+        const value = Number(this.dataset.value);
+        const input = document.querySelector('input[data-ev="' + ev + '"]');
+        if (input) { input.value = value; updateActualStatsPreview(); }
+      });
+    });
+    const saveEditorBtn = $('saveEditor');
+    const cancelEditorBtn = $('cancelEditor');
+    const closeEditorBtn = $('closeEditor');
+    if (saveEditorBtn) saveEditorBtn.addEventListener('click', applyEditor);
+    if (cancelEditorBtn) cancelEditorBtn.addEventListener('click', closeEditor);
+    if (closeEditorBtn) closeEditorBtn.addEventListener('click', closeEditor);
+
+    $('search').addEventListener('input', updateSuggestions);
+    $('editItem').addEventListener('change', updateItemPreview);
+    $('savedSelect').addEventListener('change', () => {
+      const index = Number($('savedSelect').value);
+      if (Number.isNaN(index) || !savedParties[index]) return;
+      party = savedParties[index].party.map(normalizeMember);
+      localStorage.setItem('party-lab', JSON.stringify(party));
+      const memo = savedParties[index].memo || '';
+      const partyMemoEl = $('partyMemo');
+      if (partyMemoEl) partyMemoEl.value = memo;
+      localStorage.setItem('party-lab-memo', memo);
+      render();
+    });
+    $('deleteSaved').addEventListener('click', () => {
+      const index = Number($('savedSelect').value);
+      if (Number.isNaN(index) || !savedParties[index]) return;
+      if (!confirm(`「${savedParties[index].name}」を削除しますか？`)) return;
+      savedParties.splice(index, 1);
+      localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+      renderSaved();
+    });
+    $('loadDemo').addEventListener('click', () => {
+      party = ['メガリザードンY', 'メガゲンガー', 'アシレーヌ', 'ドドゲザン', 'ミミッキュ', 'ウォッシュロトム'].map(n => pokemon.find(p => p.name === n));
+      localStorage.setItem('party-lab', JSON.stringify(party));
+      render();
+    });
+    $('savePartySlot').addEventListener('click', () => {
+      const name = $('partyName').value.trim() || `パーティ ${savedParties.length + 1}`;
+      const memo = $('partyMemo')?.value?.trim() || '';
+      const entry = { name, party: JSON.parse(JSON.stringify(party)), memo, savedAt: new Date().toISOString() };
+      savedParties = [entry, ...savedParties.filter(x => x.name !== name)].slice(0, 30);
+      localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+      renderSaved();
+      $('partyName').value = '';
+    });
+    $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
+    $('importParties').addEventListener('click', () => $('importFile').click());
+    $('importFile').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const imported = normalizeImportedParties(JSON.parse(reader.result));
+          savedParties = [...imported, ...savedParties.filter(current => !imported.some(entry => entry.name === current.name))].slice(0, 30);
+          localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+          renderSaved();
+          alert(`${imported.length}件のパーティを読み込みました。`);
+        } catch (error) {
+          alert(`読み込みに失敗しました: ${error.message}`);
+        }
+        event.target.value = '';
+      };
+      reader.readAsText(file);
+    });
+    try { render(); } catch(e) { console.error('Render error:', e); const el = document.getElementById('errorDisplay'); if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); } }
+
+
+    // Chat functionality
+    const chatHistory = [];
+    function openChat() { $('chatModal').classList.remove('hidden'); $('chatModal').classList.add('visible'); renderChatMessages(); }
+    function closeChat() { $('chatModal').classList.add('hidden'); $('chatModal').classList.remove('visible'); }
+    function sendChat() { const input = $('chatInput'); const text = input.value.trim(); if (!text) return; chatHistory.push({ role: 'user', text }); input.value = ''; const response = generateResponse(text); chatHistory.push({ role: 'assistant', text: response }); renderChatMessages(); }
+    function renderChatMessages() { const container = $('chatMessages'); container.innerHTML = chatHistory.map(msg => '<div class="chat-message ' + msg.role + '"><div class="chat-content">' + msg.text + '</div></div>').join(''); container.scrollTop = container.scrollHeight; }
+    function generateResponse(query) { const q = query.toLowerCase(); if (q.includes('弱点')) { return analyzePartyWeakness(); } if (q.includes('実数値') || q.includes('計算')) { return showActualStats(); } if (q.includes('タイプ') && (q.includes('おすすめ') || q.includes('推薦'))) { const typeMatch = q.match(/([ノーマルほのみずでんきくさこおりかくとうどくじめんひこうエスパーむしいわゴーストドラゴンあくはがねフェアリー]+)/); if (typeMatch) { return recommendByType(typeMatch[1]); } return 'タイプ名を指定してください（例: じめんタイプのポケモンをおすすめして）'; } if (q.includes('採用') || q.includes('パーティ') || q.includes('構築')) { return searchSavedParties(query); } if (q.includes('こだわりスカーフ') || q.includes('スカーフ')) { return showScarfSpeed(); } return '質問の種類を認識できませんでした。以下の例を試してください：\n・このパーティの弱点は？\n・実数値を計算して\n・じめんタイプのポケモンをおすすめして\n・メガチリーンを採用しているパーティは？'; }
+    function analyzePartyWeakness() { if (!party.length) return 'パーティが空です。まずポケモンを追加してください。'; const counts = {}; const protections = []; party.forEach(p => { const effects = abilityEffects[p.selectedAbility] || {}; (effects.immune || []).forEach(type => protections.push(p.name + ' / ' + p.selectedAbility + ': ' + type + '無効')); (effects.resist || []).forEach(type => { const baseMultiplier = p.types.some(partyType => typeWeakness[partyType]?.includes(type)) ? 2 : 1; const finalMultiplier = baseMultiplier * (effects.multiplier || 0.5); protections.push(p.name + ' / ' + p.selectedAbility + ': ' + type + (finalMultiplier === 1 ? '等倍' : finalMultiplier < 1 ? '半減' : '倍増')); }); p.types.forEach(type => { const weaknesses = typeWeakness[type] || []; const immunities = effects.immune || []; const resistances = effects.resist || []; weaknesses.forEach(w => { if (immunities.includes(w)) return; if (resistances.includes(w)) { counts[w] = (counts[w] || 0) + 0.5; } else { counts[w] = (counts[w] || 0) + 1; } }); }); }); const weakness = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5); if (!weakness.length) return '大きな弱点の重複は見つかりませんでした。'; const top = weakness[0]; const relevantProtections = top ? protections.filter(p => p.includes(top[0] + '無効') || p.includes(top[0] + '半減')) : []; let response = '【弱点分析】\n最も重複している弱点: ' + top[0] + '（' + top[1] + '件）\n\n'; if (relevantProtections.length) { response += '対応可能な特性: ' + relevantProtections.slice(0, 3).join('、') + '\n\n'; } else { response += 'この弱点に対応できる特性はありません。タイプ補完を検討してください。\n\n'; } response += '詳細な重複弱点:\n'; weakness.slice(0, 3).forEach(([type, count]) => { response += '・' + type + ': ' + count + '件重複\n'; }); return response; }
+    function showActualStats() { if (!party.length) return 'パーティが空です。まずポケモンを追加してください。'; const stats = party.map(p => calculateActualStats(p)).filter(Boolean); if (!stats.length) return '実数値を計算できるポケモンがいません。'; let response = '【実数値一覧】\n'; party.forEach((p, i) => { const actual = calculateActualStats(p); if (!actual) return; let speed = actual.speed; if (p.item === 'こだわりスカーフ') speed = Math.floor(speed * 1.5); response += (i + 1) + '. ' + p.name + ': HP' + actual.hp + ' / 攻' + actual.attack + ' / 防' + actual.defense + ' / 特' + actual.specialAttack + ' / 特防' + actual.specialDefense + ' / 素' + speed; if (p.item === 'こだわりスカーフ') response += ' (スカーフ)'; response += '\n'; }); return response; }
+    function recommendByType(type) { const targetType = type.replace('タイプ', ''); const candidates = pokemon.filter(p => p.types.includes(targetType)).slice(0, 5); if (!candidates.length) return '「' + targetType + '」タイプのポケモンが見つかりませんでした。'; let response = '【' + targetType + 'タイプのおすすめ】\n'; candidates.forEach(p => { response += '・' + p.name + ' (' + p.types.join('/') + ')\n'; }); return response; }
+    function searchSavedParties(query) { if (!savedParties.length) return '保存済みパーティがありません。まずパーティを保存してください。'; const q = query.toLowerCase(); const matches = savedParties.filter(entry => { const partyNames = entry.party.map(p => p.name).join(' ').toLowerCase(); const memberNames = entry.party.map(p => p.name).join(' '); return memberNames.includes(q) || partyNames.includes(q); }); if (!matches.length) return '条件に一致する保存済みパーティが見つかりませんでした。'; let response = '【保存済みパーティ検索結果】\n'; matches.slice(0, 5).forEach(entry => { response += '・' + entry.name + '（' + entry.party.length + '体）: ' + entry.party.map(p => p.name).join(', ') + '\n'; }); return response; }
+    function showScarfSpeed() { if (!party.length) return 'パーティが空です。まずポケモンを追加してください。'; const scarfUsers = party.filter(p => p.item === 'こだわりスカーフ'); if (!scarfUsers.length) return 'こだわりスカーフを持っているポケモンはいません。'; let response = '【スカーフ使用ポケモン】\n'; scarfUsers.forEach(p => { const actual = calculateActualStats(p); if (!actual) return; const scarfSpeed = Math.floor(actual.speed * 1.5); response += '・' + p.name + ': 素早さ ' + actual.speed + ' → ' + scarfSpeed + '\n'; }); return response; }
+
+    const chatFabEl = $('chatFab');
+    const closeChatEl = $('closeChat');
+    const sendChatEl = $('sendChat');
+    const chatInputEl = $('chatInput');
+    const chatModalEl = $('chatModal');
+    if (chatFabEl) chatFabEl.addEventListener('click', openChat);
+    if (closeChatEl) closeChatEl.addEventListener('click', closeChat);
+    if (sendChatEl) sendChatEl.addEventListener('click', sendChat);
+    if (chatInputEl) chatInputEl.addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+    if (chatModalEl) chatModalEl.addEventListener('click', e => { if (e.target === chatModalEl) closeChat(); });
+    });
+
+
+
+</script>
+</body>
+</html>

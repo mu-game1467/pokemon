@@ -1,0 +1,73 @@
+﻿{
+    "source":  "https://champs.pokedb.tokyo/pokemon/list?season=5\u0026rule=0",
+    "season":  "M-5",
+    "rule":  "single",
+    "fetchedAt":  "2026-08-22T13:47:13.5766207Z",
+    "count":  1,
+    "pokemon":  [
+                    {
+                        "id":  "0445-00",
+                        "name":  "ガブリアス",
+                        "pageUrl":  "https://champs.pokedb.tokyo/pokemon/show/0445-00?season=M-5\u0026format=single",
+                        "iconUrl":  "https://s3-ap-northeast-1.amazonaws.com/pokedb.tokyo/champs/assets/pokemon/icons_128/pokemon-0445-00.webp",
+                        "types":  [
+                                      "ドラゴン",
+                                      "じめん"
+                                  ],
+                        "abilities":  [
+                                          "すながくれ",
+                                          "さめはだ"
+                                      ],
+                        "baseStats":  {
+                                          "hp":  108,
+                                          "attack":  130,
+                                          "defense":  95,
+                                          "specialAttack":  80,
+                                          "specialDefense":  85,
+                                          "speed":  102
+                                      },
+                        "moves":  [
+                                      {
+                                          "name":  "じしん",
+                                          "usageRate":  99.3
+                                      },
+                                      {
+                                          "name":  "ステルスロック",
+                                          "usageRate":  50.1
+                                      },
+                                      {
+                                          "name":  "スケイルショット",
+                                          "usageRate":  46.7
+                                      },
+                                      {
+                                          "name":  "つるぎのまい",
+                                          "usageRate":  32.7
+                                      },
+                                      {
+                                          "name":  "げきりん",
+                                          "usageRate":  30.3
+                                      },
+                                      {
+                                          "name":  "ドラゴンテール",
+                                          "usageRate":  29.6
+                                      },
+                                      {
+                                          "name":  "がんせきふうじ",
+                                          "usageRate":  28.5
+                                      },
+                                      {
+                                          "name":  "どくづき",
+                                          "usageRate":  16
+                                      },
+                                      {
+                                          "name":  "いわなだれ",
+                                          "usageRate":  13.9
+                                      },
+                                      {
+                                          "name":  "ほのおのキバ",
+                                          "usageRate":  11.1
+                                      }
+                                  ]
+                    }
+                ]
+}
