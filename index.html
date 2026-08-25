@@ -76,6 +76,10 @@
     input, select, textarea { width:100%; border:1px solid var(--line); background:white; padding:9px 11px; color:var(--ink); outline:none; border-radius:6px; }
     input:focus, select:focus, textarea:focus { border-color:var(--coral); box-shadow:0 0 0 3px rgba(255,113,91,.12); }
     .suggestions { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .type-filter { display:flex; gap:4px; flex-wrap:wrap; margin-top:6px; }
+    .type-filter-chip { width:22px; height:22px; border-radius:50%; border:1px solid var(--line); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:9px; color:white; font-weight:700; }
+    .type-filter-chip:hover { transform:scale(1.1); }
+    .type-filter-chip.active { outline:2px solid var(--coral); }
     .suggestion { padding:6px 9px; border:1px solid var(--line); background:white; border-radius:6px; display:flex; align-items:center; gap:6px; font-size:11.5px; }
     .suggestion:hover { border-color:var(--coral); }
     .suggestion img { width:24px; height:24px; object-fit:contain; }
@@ -208,6 +212,7 @@
           <div class="party-grid" id="partyGrid"></div>
           <div class="section-label">ポケモンを追加 <span>名前やタイプで検索</span></div>
           <div class="search-row"><input id="search" placeholder="例：ドラゴン / ミミッキュ" autocomplete="off"></div>
+          <div class="type-filter" id="typeFilter"></div>
           <div class="suggestions" id="suggestions"></div>
           <div class="ability-picker hidden" id="abilityPicker"><strong id="abilityPickerTitle">特性を選択</strong><div class="ability-options" id="abilityOptions"></div></div>
           <div class="status" id="status"><i class="status-dot"></i><span>まずはパーティの軸になる1体を選びましょう。</span></div>
@@ -216,7 +221,7 @@
           <div class="diagnosis-intro"><div><div class="eyebrow">PARTY REPORT / LOCAL ANALYSIS</div><h2 style="margin:6px 0 0">診断レポート</h2></div><div class="score" id="score">--<small>/100</small></div><div class="score-copy" id="scoreCopy">6体そろうと、タイプ防御と役割バランスを自動で分析します。</div></div>
           <div class="metrics" id="metrics"></div>
           <div class="party-stats" id="partyStats"></div>
-          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span></div><div id="candidates"></div></div>
+          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div></div>
         </div>
       </div>
 
@@ -393,6 +398,7 @@ function getMegaForms(baseName) {
     });
     let party = [];
     let savedParties = [];
+    let typeFilter = null;
     try {
       const partyData = localStorage.getItem('party-lab');
       console.log('party-lab data:', partyData);
@@ -430,7 +436,7 @@ function getMegaForms(baseName) {
     function learnableMoves(p) { return [...new Set((p.moves || []).map(m => typeof m === 'string' ? m : (m && m.name) || '').filter(Boolean))].sort((a,b) => a.localeCompare(b,'ja')); }
     function render() { $('countLabel').textContent = `${party.length} / 6`; $('partyGrid').innerHTML = Array.from({length:6}, (_,i) => { const p=party[i]; const evText=p?.evs?Object.entries(p.evs).filter(([,value])=>value).map(([key,value])=>`${key}:${value}`).join(' / '):''; const moveHtml=p?.moves?.length?p.moves.slice(0,4).map(moveChip).join(''):''; const baseForm=getBaseForm(p?.name||''); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,j,a)=>a.indexOf(v)===j); const hasForms=allForms.length>1; const formBtn=hasForms?`<button class="form-btn" data-form-index="${i}" title="フォルム変更">⇄</button>`:''; const abilities=(p?.abilities||[]).filter(Boolean); const currentAbility=p?.selectedAbility||abilities[0]||''; const currentAbilityIndex=abilities.indexOf(currentAbility); const abilityToggle=abilities.length>1?`<button class="ability-toggle" data-ability-toggle="${i}" title="特性を切り替え">${currentAbility||'未選択'} ▾</button>`:`<span>${currentAbility||'未選択'}</span>`; const roleBadge=p?.role?`<span class="role-badge">${p.role}</span>`:''; return `<div class="slot ${p?'filled':''}" style="--slot-bg:${p?.color||'#faf9f2'}"><span class="slot-number">SLOT ${String(i+1).padStart(2,'0')}</span>${p?`<button class="remove" data-remove="${i}" aria-label="${p.name}を外す">×</button>${formBtn}<span class="slot-icon">${iconMarkup(p)}</span><div><div class="slot-name">${p.name}</div><div class="slot-meta">${p.types.join(' / ')}</div>${roleBadge?`<div class="slot-meta">${roleBadge}</div>`:''}<div class="slot-meta">特性: ${abilityToggle}</div><div class="slot-meta">持ち物: ${p.item||'なし'}</div><div class="slot-stats">${statLine(p)}</div>${moveHtml?`<div class="slot-moves">${moveHtml}</div>`:''}${evText?`<div class="slot-stats">努力値: ${evText}</div>`:''}${p.memo?`<div class="slot-stats">メモ: ${p.memo}</div>`:''}<button class="edit-button" data-edit="${i}">詳細を編集</button></div>`:`<span class="slot-icon" style="opacity:.22">＋</span><button class="add" data-add="${i}">ポケモンを選ぶ</button>`}</div>` }).join(''); updateSuggestions(); updateStatus(); renderSaved(); analyze(); }
     function renderSaved() { $('savedSelect').innerHTML='<option value="">保存したパーティを選択</option>'+savedParties.map((entry,index)=>`<option value="${index}">${entry.name}（${entry.party.length}体）</option>`).join(''); $('deleteSaved').disabled=!savedParties.length; }
-    function updateSuggestions() { const query=toHiragana($('search').value.trim()); const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || toHiragana([p.name,...p.types,...(p.abilities||[])].join('')).includes(query))).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span></button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
+    function updateSuggestions() { const query=toHiragana($('search').value.trim()); const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || toHiragana([p.name,...p.types,...(p.abilities||[])].join('')).includes(query)) && (!typeFilter || p.types.includes(typeFilter))).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span>${p.types.map(t=>`<span class="type-chip" style="--tc:${typeColor(t)};--tx:${chipTextColor(typeColor(t))};cursor:pointer" data-type-filter="${t}" title="${t}で絞り込み">${t}</span>`).join('')}</button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
     function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
     let pendingPokemon = null;
     function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); localStorage.setItem('party-lab',JSON.stringify(party)); $('abilityPicker').classList.add('hidden'); render(); }
@@ -586,8 +592,41 @@ function analyze() {
         return `<div class="weakness" style="background:${bg};color:${color}"><span>${type}</span><b>${label}</b></div>`;
       }).join('');
       $('weaknesses').innerHTML = typeDefenseHtml || '<div class="mono">タイプ情報がありません</div>';
+
+      const coverage = {};
+      allTypes.forEach(defType => { coverage[defType] = { covered: false, hits: [] }; });
+      party.forEach(p => {
+        const moves = (p.moves || []).filter(name => MOVE_DB[name]).map(name => MOVE_DB[name]);
+        moves.forEach(move => {
+          const moveType = move.t;
+          allTypes.forEach(defType => {
+            if (moveType === defType) return;
+            let multiplier = 1;
+            if (typeWeakness[defType]?.includes(moveType)) multiplier *= 2;
+            if (typeResist[defType]?.includes(moveType)) multiplier *= 0.5;
+            if (multiplier >= 2) {
+              coverage[defType].covered = true;
+              coverage[defType].hits.push({ name: p.name, move: move.t + ' ' + (move.n || move.name) });
+            }
+          });
+        });
+      });
+      const coveredTypes = allTypes.filter(t => coverage[t].covered);
+      const blindSpots = allTypes.filter(t => !coverage[t].covered);
+      const coverageHtml = allTypes.map(type => {
+        const data = coverage[type];
+        const bg = data.covered ? '#e8f5e9' : '#ffebee';
+        const color = data.covered ? '#2e7d32' : '#c62828';
+        const label = data.covered ? '○' : '×';
+        const detail = data.covered ? data.hits.slice(0, 2).map(h => h.name + 'の' + h.move).join('、') : '無効';
+        return `<div class="weakness" style="background:${bg};color:${color}" title="${detail}"><span>${type}</span><b>${label}</b></div>`;
+      }).join('');
+      $('coverage').innerHTML = coverageHtml || '<div class="mono">タイプ情報がありません</div>';
+      if (blindSpots.length) {
+        $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
+      }
     }
-    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); render(); }       const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } });
+    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); render(); }       const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
     $('editor').addEventListener('click', e => {
       if (e.target === $('editor')) closeEditor();
     });
@@ -614,7 +653,19 @@ function analyze() {
     if (cancelEditorBtn) cancelEditorBtn.addEventListener('click', closeEditor);
     if (closeEditorBtn) closeEditorBtn.addEventListener('click', closeEditor);
 
-    $('search').addEventListener('input', updateSuggestions);
+    $('search').addEventListener('input', function() { if (!typeFilter || !this.value.includes(typeFilter)) typeFilter = null; updateSuggestions(); });
+    const typeFilterEl = $('typeFilter');
+    if (typeFilterEl) {
+      const allTypes=['ノーマル','ほのお','みず','でんき','くさ','こおり','かくとう','どく','じめん','ひこう','エスパー','むし','いわ','ゴースト','ドラゴン','あく','はがね','フェアリー'];
+      typeFilterEl.innerHTML = allTypes.map(type => `<span class="type-filter-chip" data-type="${type}" style="background:${typeColor(type)}" title="${type}で絞り込み">${type.charAt(0)}</span>`).join('');
+      typeFilterEl.addEventListener('click', e => {
+        const chip = e.target.closest('[data-type]');
+        if (!chip) return;
+        const selectedType = chip.dataset.type;
+        if (typeFilter === selectedType) { typeFilter = null; $('search').value = ''; } else { typeFilter = selectedType; $('search').value = selectedType; }
+        updateSuggestions();
+      });
+    }
     $('editItem').addEventListener('change', updateItemPreview);
     $('savedSelect').addEventListener('change', () => {
       const index = Number($('savedSelect').value);
