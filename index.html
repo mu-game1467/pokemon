@@ -686,9 +686,12 @@ function analyze() {
       const index = Number($('savedSelect').value);
       if (Number.isNaN(index) || !savedParties[index]) return;
       if (!confirm(`「${savedParties[index].name}」を削除しますか？`)) return;
+      const deletedName = savedParties[index].name;
+      if (currentPartyName === deletedName) { currentPartyName = ''; updateCurrentPartyNameDisplay(); }
       savedParties.splice(index, 1);
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();
+      render();
     });
     $('loadDemo').addEventListener('click', () => {
       party = ['メガリザードンY', 'メガゲンガー', 'アシレーヌ', 'ドドゲザン', 'ミミッキュ', 'ウォッシュロトム'].map(n => pokemon.find(p => p.name === n));
