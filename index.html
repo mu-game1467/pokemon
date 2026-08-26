@@ -636,11 +636,7 @@ function analyze() {
         const detail = data.covered ? data.hits.slice(0, 2).map(h => h.name + 'の' + h.move).join('、') : '無効';
         return `<div class="weakness" style="background:${bg};color:${color}" title="${detail}"><span>${type}</span><b>${label}</b></div>`;
       }).join('');
-      const weakPokemonHtml = blindSpots.map(defType => {
-        const matches = pokemon.filter(p => (p.types || []).includes(defType)).slice(0, 5);
-        return '<div class="weakness" style="background:#ffebee;color:#c62828;margin-top:4px"><span>' + defType + '</span><b>×</b><div style="font-size:10px;margin-top:2px">' + matches.map(p => p.name).join(', ') + '</div></div>';
-      }).join('');
-      $('coverage').innerHTML = coverageHtml + weakPokemonHtml || '<div class="mono">タイプ情報がありません</div>';
+      $('coverage').innerHTML = coverageHtml || '<div class="mono">タイプ情報がありません</div>';
       if (blindSpots.length) {
         $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
       }
