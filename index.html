@@ -466,7 +466,7 @@ function getMegaForms(baseName) {
       const totalEv = Object.values(currentEvs).reduce((sum, val) => sum + val, 0);
       const isOver = totalEv > 66 || Object.values(currentEvs).some(v => v > 32);
       const scarfText = p.item === 'こだわりスカーフ' ? ` <span style="color:var(--coral)">(スカーフ: ${Math.floor(stats.speed * 1.5)})</span>` : '';
-      $('actualStatsPreview').innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:10.5px"><div>HP: <strong style="' + getNatureColor(p, 'hp') + '">' + stats.hp + '</strong></div><div>攻撃: <strong style="' + getNatureColor(p, 'attack') + '">' + stats.attack + '</strong></div><div>防御: <strong style="' + getNatureColor(p, 'defense') + '">' + stats.defense + '</strong></div><div>特攻: <strong style="' + getNatureColor(p, 'specialAttack') + '">' + stats.specialAttack + '</strong></div><div>特防: <strong style="' + getNatureColor(p, 'specialDefense') + '">' + stats.specialDefense + '</strong></div><div>素早: <strong style="' + getNatureColor(p, 'speed') + '">' + stats.speed + '</strong>' + scarfText + '</div></div>' + (isOver ? '<div style="color:var(--coral);font-size:10px;margin-top:4px">努力値合計が66を超えています</div>' : '');
+      $('actualStatsPreview').innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:10.5px"><div>HP: <strong style="' + getNatureColor(p, 'hp') + '">' + stats.hp + '</strong></div><div>攻撃: <strong style="' + getNatureColor(p, 'attack') + '">' + stats.attack + '</strong></div><div>防御: <strong style="' + getNatureColor(p, 'defense') + '">' + stats.defense + '</strong></div><div>特攻: <strong style="' + getNatureColor(p, 'specialAttack') + '">' + stats.specialAttack + '</strong></div><div>特防: <strong style="' + getNatureColor(p, 'specialDefense') + '">' + stats.specialDefense + '</strong></div><div>素早: <strong style="' + getNatureColor(p, 'speed') + '">' + stats.speed + '</strong>' + scarfText + '</div></div><div style="font-size:10.5px;margin-top:4px">努力値合計: ' + totalEv + '/66</div>' + (isOver ? '<div style="color:var(--coral);font-size:10px;margin-top:4px">66を超えています</div>' : '');
     }
 
     function updateItemPreview() { const item=items.find(entry=>entry.name===$('editItem').value); $('itemIcon').innerHTML=item?.iconUrl?`<img src="${item.iconUrl}" alt="">`:(item?.icon||'・'); $('itemDescription').textContent=item?.description||'持ち物を選択してください'; }
@@ -636,7 +636,11 @@ function analyze() {
         const detail = data.covered ? data.hits.slice(0, 2).map(h => h.name + 'の' + h.move).join('、') : '無効';
         return `<div class="weakness" style="background:${bg};color:${color}" title="${detail}"><span>${type}</span><b>${label}</b></div>`;
       }).join('');
-      $('coverage').innerHTML = coverageHtml || '<div class="mono">タイプ情報がありません</div>';
+      const weakPokemonHtml = blindSpots.map(defType => {
+        const matches = pokemon.filter(p => (p.types || []).includes(defType)).slice(0, 5);
+        return '<div class="weakness" style="background:#ffebee;color:#c62828;margin-top:4px"><span>' + defType + '</span><b>×</b><div style="font-size:10px;margin-top:2px">' + matches.map(p => p.name).join(', ') + '</div></div>';
+      }).join('');
+      $('coverage').innerHTML = coverageHtml + weakPokemonHtml || '<div class="mono">タイプ情報がありません</div>';
       if (blindSpots.length) {
         $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
       }
