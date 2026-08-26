@@ -773,15 +773,22 @@ function analyze() {
       userSelects.concat(opponentSelects).concat(opponentPickSelects).forEach(sel => { const el = document.querySelector(sel); if (el) el.innerHTML = options; });
     }
     function openBattleLog() {
-      if (!savedParties.length) { alert('先にパーティを保存してください。'); return; }
-      $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
-      fillBattleLogSelects();
-      ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel && party[i]) sel.value = party[i].name; });
-      ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (savedParties[0] && savedParties[0].party && savedParties[0].party[i]) ? savedParties[0].party[i].name : ''; });
-      ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (savedParties[0] && savedParties[0].party && savedParties[0].party[i]) ? savedParties[0].party[i].name : ''; });
-      $('battleNote').value = '';
-      $('battleResult').value = 'win';
-      $('battleLogModal').classList.remove('hidden');
+      try {
+        console.log('openBattleLog invoked', 'savedParties=', savedParties.length, 'party=', party.length, 'currentPartyName=', currentPartyName);
+        if (!savedParties.length) { alert('先にパーティを保存してください。'); return; }
+        $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
+        fillBattleLogSelects();
+        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel && party[i]) sel.value = party[i].name; });
+        ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (savedParties[0] && savedParties[0].party && savedParties[0].party[i]) ? savedParties[0].party[i].name : ''; });
+        ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (savedParties[0] && savedParties[0].party && savedParties[0].party[i]) ? savedParties[0].party[i].name : ''; });
+        $('battleNote').value = '';
+        $('battleResult').value = 'win';
+        const modal = $('battleLogModal');
+        console.log('battleLogModal', modal);
+        if (modal) modal.classList.remove('hidden');
+      } catch (e) {
+        console.error('openBattleLog failed', e);
+      }
     }
     function closeBattleLog() { $('battleLogModal').classList.add('hidden'); }
     function addBattleLog() {
@@ -821,7 +828,8 @@ function analyze() {
 
     loadBattleLogs();
     const openBattleLogBtn = $('openBattleLog');
-    if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', openBattleLog);
+    console.log('openBattleLogBtn', openBattleLogBtn);
+    if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', () => { console.log('openBattleLog clicked'); openBattleLog(); });
     const closeBattleLogEl = $('closeBattleLog');
     if (closeBattleLogEl) closeBattleLogEl.addEventListener('click', closeBattleLog);
     const saveBattleLogEl = $('saveBattleLog');
