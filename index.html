@@ -779,7 +779,7 @@ function analyze() {
     function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
     function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();
-      const options = allNames.map(name => '<option value="' + name + '">').join('');
+      const options = allNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
       const datalist = document.getElementById('battlePokemonDatalist');
       if (datalist) datalist.innerHTML = options;
       const userSelects = ['#battleUserPick0', '#battleUserPick1', '#battleUserPick2'];
@@ -801,7 +801,21 @@ function analyze() {
         $('battleLogTitle').textContent = '戦績を記録';
         $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
         fillBattleLogSelects();
-        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel) { if (party[i]) sel.value = party[i].name; else sel.value = ''; } });
+        console.log('party debug', party.map(p => p && p.name));
+        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => {
+          const sel = $('battleUserPick' + i);
+          console.log('user pick', id, 'exists', !!sel, 'party[i]', party[i] && party[i].name, 'options', sel ? Array.from(sel.options).map(o => o.value).slice(0, 5) : []);
+          if (sel) {
+            if (party[i] && party[i].name) {
+              const match = Array.from(sel.options).some(o => o.value === party[i].name);
+              console.log('match', id, match);
+              if (match) sel.value = party[i].name;
+              else sel.value = '';
+            } else {
+              sel.value = '';
+            }
+          }
+        });
         ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
         ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
         $('battleNote').value = '';
