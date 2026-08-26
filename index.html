@@ -789,7 +789,7 @@ function analyze() {
       const q = String(query || '').trim().toLowerCase();
       const names = q ? pokemon.filter(p => toHiragana(p.name).includes(q)).map(p => p.name).sort() : pokemon.map(p => p.name).sort();
       const options = '<option value="">—</option>' + names.map(name => '<option value="' + name + '">' + name + '</option>').join('');
-      const selectors = ['#battleUserPick0','#battleUserPick1','#battleUserPick2','#battleOpponent0','#battleOpponent1','#battleOpponent2','#battleOpponent3','#battleOpponent4','#battleOpponent5','#battleOpponentPick0','#battleOpponentPick1','#battleOpponentPick2'];
+      const selectors = ['#battleUserPick0','#battleUserPick1','#battleUserPick2','#battleOpponent0','#battleOpponent1','#battleOpponent2','#battleOpponent3','#battleOpponent4','#battleOpponent5'];
       selectors.forEach(sel => { const el = document.querySelector(sel); if (!el) return; const current = el.value; el.innerHTML = options; if (current && Array.from(el.options).some(o => o.value === current)) el.value = current; });
     }
     function openBattleLog() {
