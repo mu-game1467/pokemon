@@ -872,6 +872,7 @@ function analyze() {
     function closeBattleLogPanel() { $('battleLogPanel').classList.add('hidden'); }
 
     loadBattleLogs();
+    updateBattleLogButtonState();
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);
     if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', () => { console.log('openBattleLog clicked'); openBattleLog(); });
