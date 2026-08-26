@@ -699,7 +699,15 @@ function analyze() {
       if (Number.isNaN(index) || !savedParties[index]) return;
       if (!confirm(`「${savedParties[index].name}」を削除しますか？`)) return;
       const deletedName = savedParties[index].name;
-      if (currentPartyName === deletedName) { currentPartyName = ''; updateCurrentPartyNameDisplay(); }
+      if (currentPartyName === deletedName) {
+        currentPartyName = '';
+        party = [];
+        localStorage.setItem('party-lab', '[]');
+        const memoEl = $('partyMemo');
+        if (memoEl) memoEl.value = '';
+        localStorage.setItem('party-lab-memo', '');
+        updateCurrentPartyNameDisplay();
+      }
       savedParties.splice(index, 1);
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();

@@ -28112,9 +28112,8 @@ window.POKEMON_DATA = {
         "はがねタイプ"
       ],
       "abilities": [
-        "かるわざ",
-        "わるいてぐせ",
-        "いたずらごころ"
+        "どしょく",
+        "すながくれ"
       ],
       "baseStats": {
         "hp": 70,
@@ -28761,7 +28760,8 @@ window.POKEMON_DATA = {
         "ゴーストタイプ"
       ],
       "abilities": [
-        "どくくぐつ"
+        "おもてなし",
+        "たいねつ"
       ],
       "baseStats": {
         "hp": 71,
