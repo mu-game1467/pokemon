@@ -442,7 +442,11 @@ function getMegaForms(baseName) {
     }
     function learnableMoves(p) { return [...new Set((p.moves || []).map(m => typeof m === 'string' ? m : (m && m.name) || '').filter(Boolean))].sort((a,b) => a.localeCompare(b,'ja')); }
     function render() { $('countLabel').textContent = `${party.length} / 6`; updateCurrentPartyNameDisplay(); $('partyGrid').innerHTML = Array.from({length:6}, (_,i) => { const p=party[i]; const evText=p?.evs?Object.entries(p.evs).filter(([,value])=>value).map(([key,value])=>`${key}:${value}`).join(' / '):''; const moveHtml=p?.moves?.length?p.moves.slice(0,4).map(moveChip).join(''):''; const baseForm=getBaseForm(p?.name||''); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,j,a)=>a.indexOf(v)===j); const hasForms=allForms.length>1; const formBtn=hasForms?`<button class="form-btn" data-form-index="${i}" title="フォルム変更">⇄</button>`:''; const abilities=(p?.abilities||[]).filter(Boolean); const currentAbility=p?.selectedAbility||abilities[0]||''; const currentAbilityIndex=abilities.indexOf(currentAbility); const abilityToggle=abilities.length>1?`<button class="ability-toggle" data-ability-toggle="${i}" title="特性を切り替え">${currentAbility||'未選択'} ▾</button>`:`<span>${currentAbility||'未選択'}</span>`; const roleBadge=p?.role?`<span class="role-badge">${p.role}</span>`:''; return `<div class="slot ${p?'filled':''}" style="--slot-bg:${p?.color||'#faf9f2'}"><span class="slot-number">SLOT ${String(i+1).padStart(2,'0')}</span>${p?`<button class="remove" data-remove="${i}" aria-label="${p.name}を外す">×</button>${formBtn}<span class="slot-icon">${iconMarkup(p)}</span><div><div class="slot-name">${p.name}</div><div class="slot-meta">${p.types.join(' / ')}</div>${roleBadge?`<div class="slot-meta">${roleBadge}</div>`:''}<div class="slot-meta">特性: ${abilityToggle}</div><div class="slot-meta">持ち物: ${p.item||'なし'}</div><div class="slot-stats">${statLine(p)}</div>${moveHtml?`<div class="slot-moves">${moveHtml}</div>`:''}${evText?`<div class="slot-stats">努力値: ${evText}</div>`:''}${p.memo?`<div class="slot-stats">メモ: ${p.memo}</div>`:''}<button class="edit-button" data-edit="${i}">詳細を編集</button></div>`:`<span class="slot-icon" style="opacity:.22">＋</span><button class="add" data-add="${i}">ポケモンを選ぶ</button>`}</div>` }).join(''); updateSuggestions(); updateStatus(); renderSaved(); analyze(); }
-    function renderSaved() { $('savedSelect').innerHTML='<option value="">保存したパーティを選択</option>'+savedParties.map((entry,index)=>`<option value="${index}">${entry.name}（${entry.party.length}体）</option>`).join(''); $('deleteSaved').disabled=!savedParties.length; }
+    function updateBattleLogButtonState() {
+      const btn = $('openBattleLog');
+      if (btn) btn.disabled = !savedParties.length;
+    }
+    function renderSaved() { $('savedSelect').innerHTML='<option value="">保存したパーティを選択</option>'+savedParties.map((entry,index)=>`<option value="${index}">${entry.name}（${entry.party.length}体）</option>`).join(''); $('deleteSaved').disabled=!savedParties.length; updateBattleLogButtonState(); }
     function updateSuggestions() { const query=toHiragana($('search').value.trim()); const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || toHiragana([p.name,...p.types,...(p.abilities||[])].join('')).includes(query)) && (!typeFilter || p.types.includes(typeFilter))).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span>${p.types.map(t=>`<span class="type-chip" style="--tc:${typeColor(t)};--tx:${chipTextColor(typeColor(t))};cursor:pointer" data-type-filter="${t}" title="${t}で絞り込み">${t}</span>`).join('')}</button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
     function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
     function updateCurrentPartyNameDisplay() { const el=$('currentPartyNameDisplay'); if(!el) return; el.textContent=currentPartyName?`編集中: ${currentPartyName}`:'候補を検索して追加してください。'; }
@@ -696,6 +700,7 @@ function analyze() {
       savedParties.splice(index, 1);
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();
+      updateBattleLogButtonState();
       render();
     });
     $('loadDemo').addEventListener('click', () => {
@@ -712,6 +717,7 @@ function analyze() {
       savedParties = [entry, ...savedParties.filter(x => x.name !== name)].slice(0, 30);
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();
+      updateBattleLogButtonState();
       $('partyName').value = '';
     });
     $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
@@ -726,6 +732,7 @@ function analyze() {
           savedParties = [...imported, ...savedParties.filter(current => !imported.some(entry => entry.name === current.name))].slice(0, 30);
           localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
           renderSaved();
+          updateBattleLogButtonState();
           alert(`${imported.length}件のパーティを読み込みました。`);
         } catch (error) {
           alert(`読み込みに失敗しました: ${error.message}`);
@@ -787,10 +794,11 @@ function analyze() {
         editingBattleLogId = null;
         console.log('openBattleLog invoked', 'savedParties=', savedParties.length, 'party=', party.length, 'currentPartyName=', currentPartyName);
         if (!savedParties.length) { alert('先にパーティを保存してください。'); return; }
+        if (!party.length) { alert('編集中のパーティが空です。まずパーティを編成してください。'); return; }
         $('battleLogTitle').textContent = '戦績を記録';
         $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
         fillBattleLogSelects();
-        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel && party[i]) sel.value = party[i].name; });
+        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel) { if (party[i]) sel.value = party[i].name; else sel.value = ''; } });
         ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
         ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
         $('battleNote').value = '';
