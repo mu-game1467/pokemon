@@ -886,7 +886,7 @@ function analyze() {
     updateBattleLogButtonState();
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);
-    if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', () => { console.log('openBattleLog clicked'); openBattleLog(); });
+    if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', () => { console.log('openBattleLog clicked'); openBattleLogPanel(); });
     const closeBattleLogEl = $('closeBattleLog');
     if (closeBattleLogEl) closeBattleLogEl.addEventListener('click', closeBattleLog);
     const saveBattleLogEl = $('saveBattleLog');
