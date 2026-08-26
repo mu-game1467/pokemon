@@ -236,7 +236,7 @@
   </main>
   <button class="chat-fab" id="chatFab" title="チャット">💬</button>
    <div class="chat-modal hidden" id="chatModal"><div class="chat-card"><div class="chat-head"><h3>パーティチャット</h3><button class="remove" id="closeChat" aria-label="閉じる">×</button></div><div class="chat-messages" id="chatMessages"></div><div class="chat-input-row"><input id="chatInput" placeholder="質問を入力..." autocomplete="off"><button id="sendChat">送信</button></div></div></div>
-    <div class="battle-log-modal hidden" id="battleLogModal"><div class="editor-card"><div class="editor-head"><div><h2 id="battleLogTitle">戦績を記録</h2><div class="editor-subtitle" id="battleLogSubtitle"></div></div><button class="remove" id="closeBattleLog" aria-label="閉じる">×</button></div><div class="editor-body"><div class="field">結果<select id="battleResult"><option value="win">勝ち</option><option value="loss">負け</option><option value="draw">引き分け</option></select></div><div class="field">自分の選出（3匹）<select id="battleUserPick0"></select><select id="battleUserPick1"></select><select id="battleUserPick2"></select></div><div class="field">相手のパーティ（6匹）<input id="battleOpponent0" list="battlePokemonDatalist"><input id="battleOpponent1" list="battlePokemonDatalist"><input id="battleOpponent2" list="battlePokemonDatalist"><input id="battleOpponent3" list="battlePokemonDatalist"><input id="battleOpponent4" list="battlePokemonDatalist"><input id="battleOpponent5" list="battlePokemonDatalist"></div><div class="field">相手の選出（3匹）<input id="battleOpponentPick0" list="battlePokemonDatalist"><input id="battleOpponentPick1" list="battlePokemonDatalist"><input id="battleOpponentPick2" list="battlePokemonDatalist"></div><div class="field">メモ<textarea id="battleNote" rows="3" placeholder="選出理由、相手の特徴など"></textarea></div><div class="editor-actions"><button class="ghost-btn" id="cancelBattleLog">キャンセル</button><button class="ghost-btn" id="saveBattleLog">記録する</button></div></div></div></div>
+     <div class="battle-log-modal hidden" id="battleLogModal"><div class="editor-card"><div class="editor-head"><div><h2 id="battleLogTitle">戦績を記録</h2><div class="editor-subtitle" id="battleLogSubtitle"></div></div><button class="remove" id="closeBattleLog" aria-label="閉じる">×</button></div><div class="editor-body"><div class="field">結果<select id="battleResult"><option value="win">勝ち</option><option value="loss">負け</option><option value="draw">引き分け</option></select></div><div class="field">自分の選出（3匹）<select id="battleUserPick0"></select><select id="battleUserPick1"></select><select id="battleUserPick2"></select></div><div class="field">相手のパーティ（6匹）<input id="battleOpponent0" list="battlePokemonDatalist"><input id="battleOpponent1" list="battlePokemonDatalist"><input id="battleOpponent2" list="battlePokemonDatalist"><input id="battleOpponent3" list="battlePokemonDatalist"><input id="battleOpponent4" list="battlePokemonDatalist"><input id="battleOpponent5" list="battlePokemonDatalist"></div><div class="field">相手の選出（3匹）<select id="battleOpponentPick0"><option value="">—</option></select><select id="battleOpponentPick1"><option value="">—</option></select><select id="battleOpponentPick2"><option value="">—</option></select></div><div class="field">メモ<textarea id="battleNote" rows="3" placeholder="選出理由、相手の特徴など"></textarea></div><div class="editor-actions"><button class="ghost-btn" id="cancelBattleLog">キャンセル</button><button class="ghost-btn" id="saveBattleLog">記録する</button></div></div></div></div>
     <datalist id="battlePokemonDatalist"></datalist>
    <div class="battle-log-panel hidden" id="battleLogPanel"><div class="editor-card"><div class="editor-head"><div><h2>戦績ログ</h2><div class="editor-subtitle" id="battleLogPanelSubtitle"></div></div><button class="remove" id="closeBattleLogPanel" aria-label="閉じる">×</button></div><div class="editor-body"><div class="battle-log-stats" id="battleLogStats"></div><div class="battle-log-list" id="battleLogList"></div><div class="editor-actions"><button class="ghost-btn" id="addBattleLog">戦績を追加</button><button class="ghost-btn" id="closeBattleLogPanelBtn">閉じる</button></div></div></div></div>
   <div class="editor hidden" id="editor"><div class="editor-card"><div class="editor-head"><div><h2 id="editorTitle">ポケモンを編集</h2><div class="editor-subtitle" id="editorSubtitle"></div></div><button class="remove" id="closeEditor" aria-label="編集を閉じる">×</button></div><div class="editor-body"><label class="field">特性<select id="editAbility"></select></label><label class="field">性格<select id="editNature"></select></label><div class="field">持ち物<select id="editItem"></select><div class="item-preview"><span class="item-icon" id="itemIcon">・</span><span id="itemDescription">持ち物を選択してください</span></div></div><div class="field">採用する技 <span class="hint">このポケモンが覚える技のみ選択できます（最大4つ）</span><div class="move-grid"><div class="move-cell"><select class="move-select" data-move="0"></select><div class="move-info" data-move-info="0"></div></div><div class="move-cell"><select class="move-select" data-move="1"></select><div class="move-info" data-move-info="1"></div></div><div class="move-cell"><select class="move-select" data-move="2"></select><div class="move-info" data-move-info="2"></div></div><div class="move-cell"><select class="move-select" data-move="3"></select><div class="move-info" data-move-info="3"></div></div></div></div><div class="field">努力値（H / A / B / C / D / S）<div class="ev-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div class="ev-cell"><label>HP</label><input data-ev="hp" type="number" min="0" max="32" placeholder="H"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="hp" data-value="0">0</button><button class="ev-quick-btn" data-ev="hp" data-value="2">2</button><button class="ev-quick-btn" data-ev="hp" data-value="32">32</button></div></div><div class="ev-cell"><label>攻撃</label><input data-ev="attack" type="number" min="0" max="32" placeholder="A"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="attack" data-value="0">0</button><button class="ev-quick-btn" data-ev="attack" data-value="2">2</button><button class="ev-quick-btn" data-ev="attack" data-value="32">32</button></div></div><div class="ev-cell"><label>防御</label><input data-ev="defense" type="number" min="0" max="32" placeholder="B"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="defense" data-value="0">0</button><button class="ev-quick-btn" data-ev="defense" data-value="2">2</button><button class="ev-quick-btn" data-ev="defense" data-value="32">32</button></div></div><div class="ev-cell"><label>特攻</label><input data-ev="specialAttack" type="number" min="0" max="32" placeholder="C"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialAttack" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="32">32</button></div></div><div class="ev-cell"><label>特防</label><input data-ev="specialDefense" type="number" min="0" max="32" placeholder="D"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialDefense" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="32">32</button></div></div><div class="ev-cell"><label>素早</label><input data-ev="speed" type="number" min="0" max="32" placeholder="S"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="speed" data-value="0">0</button><button class="ev-quick-btn" data-ev="speed" data-value="2">2</button><button class="ev-quick-btn" data-ev="speed" data-value="32">32</button></div></div></div></div><div class="field">実数値（Lv.50）<div id="actualStatsPreview" style="font-size:11px;color:var(--muted);padding:6px 0;font-weight:400">努力値と性格を設定すると計算されます</div><div id="partyStatsPreview" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"></div></div><label class="field">ポケモンのメモ<textarea id="editMemo" rows="3" placeholder="選出、立ち回りなど"></textarea></label></div><div class="editor-actions"><button class="ghost-btn" id="cancelEditor">キャンセル</button><button class="primary-btn" id="saveEditor">保存する</button></div></div></div>
@@ -795,33 +795,18 @@ function analyze() {
     function openBattleLog() {
       try {
         editingBattleLogId = null;
-        console.log('openBattleLog invoked', 'savedParties=', savedParties.length, 'party=', party.length, 'currentPartyName=', currentPartyName);
         if (!savedParties.length) { alert('先にパーティを保存してください。'); return; }
         if (!party.length) { alert('編集中のパーティが空です。まずパーティを編成してください。'); return; }
         $('battleLogTitle').textContent = '戦績を記録';
         $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
         fillBattleLogSelects();
-        console.log('party debug', party.map(p => p && p.name));
-        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => {
-          const sel = $('battleUserPick' + i);
-          console.log('user pick', id, 'exists', !!sel, 'party[i]', party[i] && party[i].name, 'options', sel ? Array.from(sel.options).map(o => o.value).slice(0, 5) : []);
-          if (sel) {
-            if (party[i] && party[i].name) {
-              const match = Array.from(sel.options).some(o => o.value === party[i].name);
-              console.log('match', id, match);
-              if (match) sel.value = party[i].name;
-              else sel.value = '';
-            } else {
-              sel.value = '';
-            }
-          }
-        });
+        ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel && party[i] && party[i].name) sel.value = party[i].name; });
         ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
-        ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
+        ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) { sel.innerHTML = '<option value="">—</option>'; sel.value = ''; } });
         $('battleNote').value = '';
         $('battleResult').value = 'win';
+        syncOpponentPickOptions();
         const modal = $('battleLogModal');
-        console.log('battleLogModal', modal);
         if (modal) modal.classList.remove('hidden');
       } catch (e) {
         console.error('openBattleLog failed', e);
@@ -836,11 +821,23 @@ function analyze() {
       fillBattleLogSelects();
       ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel) sel.value = (log.userPick3 && log.userPick3[i]) ? log.userPick3[i] : ''; });
       ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (log.opponentParty6 && log.opponentParty6[i]) ? log.opponentParty6[i] : ''; });
+      syncOpponentPickOptions();
       ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = (log.opponentPick3 && log.opponentPick3[i]) ? log.opponentPick3[i] : ''; });
       $('battleNote').value = log.note || '';
       $('battleResult').value = log.result || 'win';
       const modal = $('battleLogModal');
       if (modal) modal.classList.remove('hidden');
+    }
+    function syncOpponentPickOptions() {
+      const partyNames = [0,1,2,3,4,5].map(i => { const el = $('battleOpponent' + i); return el ? el.value.trim() : ''; }).filter(Boolean);
+      ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach(id => {
+        const sel = $(id);
+        if (!sel) return;
+        const current = sel.value;
+        sel.innerHTML = '<option value="">—</option>' + partyNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
+        if (partyNames.includes(current)) sel.value = current;
+        else sel.value = '';
+      });
     }
     function closeBattleLog() { editingBattleLogId = null; $('battleLogModal').classList.add('hidden'); }
     function saveBattleLog() {
@@ -905,6 +902,11 @@ function analyze() {
 
     const battlePokemonQueryEl = $('battlePokemonQuery');
     if (battlePokemonQueryEl) battlePokemonQueryEl.addEventListener('input', e => filterBattlePokemonOptions(e.target.value));
+
+    [0,1,2,3,4,5].forEach(i => {
+      const el = $('battleOpponent' + i);
+      if (el) el.addEventListener('input', () => syncOpponentPickOptions());
+    });
 
     try { render(); } catch(e) { console.error('Render error:', e); const el = document.getElementById('errorDisplay'); if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); } }
 
