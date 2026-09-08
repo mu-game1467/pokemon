@@ -687,6 +687,7 @@ function analyze() {
       if (Number.isNaN(index) || !savedParties[index]) return;
       party = savedParties[index].party.map(normalizeMember);
       currentPartyName = savedParties[index].name || '';
+      $('partyName').value = savedParties[index].name || '';
       localStorage.setItem('party-lab', JSON.stringify(party));
       const memo = savedParties[index].memo || '';
       const partyMemoEl = $('partyMemo');
@@ -717,6 +718,7 @@ function analyze() {
     $('loadDemo').addEventListener('click', () => {
       party = ['メガリザードンY', 'メガゲンガー', 'アシレーヌ', 'ドドゲザン', 'ミミッキュ', 'ウォッシュロトム'].map(n => pokemon.find(p => p.name === n));
       currentPartyName = 'サンプルパーティ';
+      $('partyName').value = 'サンプルパーティ';
       localStorage.setItem('party-lab', JSON.stringify(party));
       render();
     });
