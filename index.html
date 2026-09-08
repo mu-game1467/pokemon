@@ -902,35 +902,37 @@ function analyze() {
     }
      function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
 
-     let serverUserId = '';
-     let serverMode = false;
-     async function saveAllToServer() {
-       if (!serverMode || !serverUserId) return;
-       const data = { party, savedParties, battleLogs, partyName: currentPartyName, memo: $('partyMemo')?.value || '' };
-       try { await fetch('/api/user/' + serverUserId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch(e) { console.error('server save failed:', e); }
-     }
-      async function loadAllFromServer() {
-        const userId = $('userIdInput')?.value.trim();
-        if (!userId) return false;
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 5000);
-          const resp = await fetch('/api/user/' + encodeURIComponent(userId), { signal: controller.signal });
-          clearTimeout(timeoutId);
-          if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
-         const data = await resp.json();
-         party = (data.party || []).map(normalizeMember);
-         savedParties = data.savedParties || [];
-         battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
-         currentPartyName = data.partyName || '';
-         if ($('partyName')) $('partyName').value = currentPartyName;
-         if ($('partyMemo')) $('partyMemo').value = data.memo || '';
-         localStorage.setItem('party-lab', JSON.stringify(party));
-         localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
-         localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs));
-         return true;
-       } catch(e) { console.error('server load error:', e); return false; }
-     }
+      let serverUserId = '';
+      let serverMode = false;
+      const API_BASE_URL = localStorage.getItem('api-base-url') || '';
+      function apiUrl(path) { return API_BASE_URL ? API_BASE_URL + path : path; }
+      async function saveAllToServer() {
+        if (!serverMode || !serverUserId) return;
+        const data = { party, savedParties, battleLogs, partyName: currentPartyName, memo: $('partyMemo')?.value || '' };
+        try { await fetch(apiUrl('/api/user/' + serverUserId), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch(e) { console.error('server save failed:', e); }
+      }
+       async function loadAllFromServer() {
+         const userId = $('userIdInput')?.value.trim();
+         if (!userId) return false;
+         try {
+           const controller = new AbortController();
+           const timeoutId = setTimeout(() => controller.abort(), 5000);
+           const resp = await fetch(apiUrl('/api/user/' + encodeURIComponent(userId)), { signal: controller.signal });
+           clearTimeout(timeoutId);
+           if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
+           const data = await resp.json();
+           party = (data.party || []).map(normalizeMember);
+           savedParties = data.savedParties || [];
+           battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
+           currentPartyName = data.partyName || '';
+           if ($('partyName')) $('partyName').value = currentPartyName;
+           if ($('partyMemo')) $('partyMemo').value = data.memo || '';
+           localStorage.setItem('party-lab', JSON.stringify(party));
+           localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+           localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs));
+           return true;
+         } catch(e) { console.error('server load error:', e); return false; }
+      }
       function loginUser() {
         const userId = $('userIdInput')?.value.trim();
         if (!userId) { alert('ユーザーIDを入力してください。'); return; }
