@@ -909,12 +909,15 @@ function analyze() {
        const data = { party, savedParties, battleLogs, partyName: currentPartyName, memo: $('partyMemo')?.value || '' };
        try { await fetch('/api/user/' + serverUserId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch(e) { console.error('server save failed:', e); }
      }
-     async function loadAllFromServer() {
-       const userId = $('userIdInput')?.value.trim();
-       if (!userId) return false;
-       try {
-         const resp = await fetch('/api/user/' + encodeURIComponent(userId));
-         if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
+      async function loadAllFromServer() {
+        const userId = $('userIdInput')?.value.trim();
+        if (!userId) return false;
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000);
+          const resp = await fetch('/api/user/' + encodeURIComponent(userId), { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
          const data = await resp.json();
          party = (data.party || []).map(normalizeMember);
          savedParties = data.savedParties || [];
@@ -928,25 +931,28 @@ function analyze() {
          return true;
        } catch(e) { console.error('server load error:', e); return false; }
      }
-     function loginUser() {
-       const userId = $('userIdInput')?.value.trim();
-       if (!userId) { alert('ユーザーIDを入力してください。'); return; }
-       loadAllFromServer().then(ok => {
-         if (ok) {
-           serverUserId = userId;
-           serverMode = true;
-           $('userStatus').textContent = 'オンライン: ' + userId;
-           $('userStatus').style.color = 'var(--coral)';
-           render();
-           renderSaved();
-         } else {
-           serverMode = true;
-           serverUserId = userId;
-           $('userStatus').textContent = 'オンライン: ' + userId + ' (新規)';
-           $('userStatus').style.color = 'var(--coral)';
-         }
-       });
-     }
+      function loginUser() {
+        const userId = $('userIdInput')?.value.trim();
+        if (!userId) { alert('ユーザーIDを入力してください。'); return; }
+        const pageOrigin = window.location.origin;
+        if (pageOrigin === 'null' || pageOrigin.startsWith('file://')) {
+          alert('サーバー機能を使用するには、サーバーを起動してください。\n\n' + 'npm start\n\n' + 'その後、ブラウザで http://localhost:3000 または\n' + '同じネットワーク内のPCのIPアドレス:3000 にアクセスしてください。');
+          return;
+        }
+        loadAllFromServer().then(ok => {
+          if (ok) {
+            serverUserId = userId;
+            serverMode = true;
+            $('userStatus').textContent = 'オンライン: ' + userId;
+            $('userStatus').style.color = 'var(--coral)';
+            render();
+            renderSaved();
+            updateBattleLogButtonState();
+          } else {
+            alert('サーバーに接続できませんでした。サーバーが起動しているか確認してください。\n\n' + window.location.origin + '/api/user/' + encodeURIComponent(userId));
+          }
+        });
+      }
      function logoutUser() { serverMode = false; serverUserId = ''; $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
      function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();

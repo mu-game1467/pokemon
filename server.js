@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
+const os = require('os');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -72,6 +72,19 @@ app.get('/api/user/:userId/exists', (req, res) => {
   res.json({ exists: fs.existsSync(filePath) });
 });
 
-app.listen(PORT, () => {
+function getLocalIP() {
+  const nets = os.networkInterfaces();
+  for (const name of Object.keys(nets)) {
+    for (const iface of nets[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) return iface.address;
+    }
+  }
+  return 'localhost';
+}
+
+app.listen(PORT, '0.0.0.0', () => {
+  const ip = getLocalIP();
   console.log('Server running on port ' + PORT);
+  console.log('Local:  http://localhost:' + PORT);
+  console.log('Network: http://' + ip + ':' + PORT);
 });
