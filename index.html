@@ -196,6 +196,20 @@
     .chat-input-row button { padding:8px 12px; border:0; background:var(--ink); color:white; border-radius:8px; font-size:12px; cursor:pointer; }
     .chat-input-row button:hover { background:var(--coral); }
     @media (max-width: 560px) { .chat-card { width:100%; max-height:80vh; } }
+    /* ---- damage calculator ---- */
+    .damage-calc-modal { position:fixed; inset:0; z-index:15; display:grid; place-items:center; padding:16px; background:rgba(21,35,43,.45); }
+    .damage-calc-modal.hidden { display:none; }
+    .damage-result { font-family:'DM Mono',monospace; font-size:13px; }
+    .damage-bar { height:8px; background:#dce2d5; border-radius:4px; margin:6px 0; overflow:hidden; }
+    .damage-bar i { display:block; height:100%; background:var(--coral); border-radius:4px; transition:width .3s; }
+    .damage-calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    @media (max-width: 700px) { .damage-calc-grid { grid-template-columns:1fr; } }
+    .dc-field { display:grid; gap:4px; font-size:10.5px; font-weight:600; }
+    .dc-field select, .dc-field input { font-size:11px; padding:5px 7px; }
+    .dc-result-box { background:#f3f4ea; border-radius:6px; padding:10px; }
+    .dc-toggle { display:flex; gap:4px; flex-wrap:wrap; margin-top:4px; }
+    .dc-toggle label { display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:400; cursor:pointer; }
+    .dc-toggle input { width:auto; }
   </style>
 </head>
 <body>
@@ -203,7 +217,7 @@
     <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
     <header class="topbar">
       <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / OFFLINE TOOL</small></div></div>
-      <div class="top-actions"><button class="text-btn" id="loadDemo">サンプルを読み込む</button></div>
+      <div class="top-actions"><button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button></div>
     </header>
     <section class="hero">
       <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
@@ -240,6 +254,7 @@
     <datalist id="battlePokemonDatalist"></datalist>
    <div class="battle-log-panel hidden" id="battleLogPanel"><div class="editor-card"><div class="editor-head"><div><h2>戦績ログ</h2><div class="editor-subtitle" id="battleLogPanelSubtitle"></div></div><button class="remove" id="closeBattleLogPanel" aria-label="閉じる">×</button></div><div class="editor-body"><div class="battle-log-stats" id="battleLogStats"></div><div class="battle-log-list" id="battleLogList"></div><div class="editor-actions"><button class="ghost-btn" id="addBattleLog">戦績を追加</button><button class="ghost-btn" id="closeBattleLogPanelBtn">閉じる</button></div></div></div></div>
   <div class="editor hidden" id="editor"><div class="editor-card"><div class="editor-head"><div><h2 id="editorTitle">ポケモンを編集</h2><div class="editor-subtitle" id="editorSubtitle"></div></div><button class="remove" id="closeEditor" aria-label="編集を閉じる">×</button></div><div class="editor-body"><label class="field">特性<select id="editAbility"></select></label><label class="field">性格<select id="editNature"></select></label><div class="field">持ち物<select id="editItem"></select><div class="item-preview"><span class="item-icon" id="itemIcon">・</span><span id="itemDescription">持ち物を選択してください</span></div></div><div class="field">採用する技 <span class="hint">このポケモンが覚える技のみ選択できます（最大4つ）</span><div class="move-grid"><div class="move-cell"><select class="move-select" data-move="0"></select><div class="move-info" data-move-info="0"></div></div><div class="move-cell"><select class="move-select" data-move="1"></select><div class="move-info" data-move-info="1"></div></div><div class="move-cell"><select class="move-select" data-move="2"></select><div class="move-info" data-move-info="2"></div></div><div class="move-cell"><select class="move-select" data-move="3"></select><div class="move-info" data-move-info="3"></div></div></div></div><div class="field">努力値（H / A / B / C / D / S）<div class="ev-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div class="ev-cell"><label>HP</label><input data-ev="hp" type="number" min="0" max="32" placeholder="H"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="hp" data-value="0">0</button><button class="ev-quick-btn" data-ev="hp" data-value="2">2</button><button class="ev-quick-btn" data-ev="hp" data-value="32">32</button></div></div><div class="ev-cell"><label>攻撃</label><input data-ev="attack" type="number" min="0" max="32" placeholder="A"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="attack" data-value="0">0</button><button class="ev-quick-btn" data-ev="attack" data-value="2">2</button><button class="ev-quick-btn" data-ev="attack" data-value="32">32</button></div></div><div class="ev-cell"><label>防御</label><input data-ev="defense" type="number" min="0" max="32" placeholder="B"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="defense" data-value="0">0</button><button class="ev-quick-btn" data-ev="defense" data-value="2">2</button><button class="ev-quick-btn" data-ev="defense" data-value="32">32</button></div></div><div class="ev-cell"><label>特攻</label><input data-ev="specialAttack" type="number" min="0" max="32" placeholder="C"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialAttack" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="32">32</button></div></div><div class="ev-cell"><label>特防</label><input data-ev="specialDefense" type="number" min="0" max="32" placeholder="D"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialDefense" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="32">32</button></div></div><div class="ev-cell"><label>素早</label><input data-ev="speed" type="number" min="0" max="32" placeholder="S"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="speed" data-value="0">0</button><button class="ev-quick-btn" data-ev="speed" data-value="2">2</button><button class="ev-quick-btn" data-ev="speed" data-value="32">32</button></div></div></div></div><div class="field">実数値（Lv.50）<div id="actualStatsPreview" style="font-size:11px;color:var(--muted);padding:6px 0;font-weight:400">努力値と性格を設定すると計算されます</div><div id="partyStatsPreview" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"></div></div><label class="field">ポケモンのメモ<textarea id="editMemo" rows="3" placeholder="選出、立ち回りなど"></textarea></label></div><div class="editor-actions"><button class="ghost-btn" id="cancelEditor">キャンセル</button><button class="primary-btn" id="saveEditor">保存する</button></div></div></div>
+  <div class="damage-calc-modal hidden" id="damageCalcModal"><div class="editor-card"><div class="editor-head"><div><h2>ダメージ計算機</h2><div class="editor-subtitle" id="damageCalcSubtitle">攻撃側と防御側、技を選択してください</div></div><button class="remove" id="closeDamageCalc" aria-label="閉じる">×</button></div><div class="editor-body"><div class="damage-calc-grid"><div><div class="dc-field"><label>攻撃ポケモン</label><select id="dcAttacker"><option value="">—</option></select></div><div class="dc-field"><label>技</label><select id="dcMove"><option value="">—</option></select></div><div class="dc-field"><label>レベル</label><input id="dcLevel" type="number" min="1" max="100" value="50"></div><div class="dc-field"><label>防御ポケモン</label><select id="dcDefender"><option value="">—</option></select></div><div class="dc-field"><label>天候</label><select id="dcWeather"><option value="">なし</option><option value="sun">あめ（ほのお↑ / みず↓）</option><option value="rain">あめ（みず↑ / ほのお↓）</option></select></div></div></div><div class="dc-result-box"><div class="damage-result" id="damageResult"><span style="color:var(--muted)">計算結果がここに表示されます</span></div><div class="dc-toggle"><label><input type="checkbox" id="dcLifeOrb"> いのちのたま</label><label><input type="checkbox" id="dcChoiceBand"> こだわりハチマキ</label><label><input type="checkbox" id="dcChoiceSpecs"> こだわりメガネ</label><label><input type="checkbox" id="dcCritical"> 急所</label><label><input type="checkbox" id="dcBurn"> やけど</label><label><input type="checkbox" id="dcHelpingHand"> てっさ</label><label><input type="checkbox" id="dcExpertBelt"> エキスパートベルト</label></div></div></div><div class="editor-actions"><button class="ghost-btn" id="cancelDamageCalc">キャンセル</button></div></div></div>
   <script src="data/moves-champions.js"></script>
   <script src="data/pokemon-champions.js"></script>
   <script src="data/items-champions.js"></script>
@@ -391,6 +406,65 @@ function getMegaForms(baseName) {
       const speed = Math.floor((calcBase(stats.speed, evs.speed || 0) + 5) * getBonus('speed'));
       
       return { hp, attack, defense, specialAttack, specialDefense, speed };
+    }
+
+    function calculateTypeEffectiveness(moveType, defender) {
+      if (!defender || !defender.types || !defender.types.length) return 1;
+      let multiplier = 1;
+      const effects = abilityEffects[defender.selectedAbility] || {};
+      if (effects.immune && effects.immune.includes(moveType)) return 0;
+      defender.types.forEach(defType => {
+        if (typeWeakness[defType]?.includes(moveType)) multiplier *= 2;
+        if (typeResist[defType]?.includes(moveType)) multiplier *= 0.5;
+      });
+      return multiplier;
+    }
+
+    function calculateMoveDamage(attacker, move, defender, opts) {
+      if (!attacker || !move || !defender || !MOVE_DB[move]) return null;
+      const moveData = MOVE_DB[move];
+      if (moveData.c === '変化' || !moveData.p) return null;
+      const level = opts.level || 50;
+      const isPhysical = moveData.c === '物理';
+      const attackStat = isPhysical ? 'attack' : 'specialAttack';
+      const defenseStat = isPhysical ? 'defense' : 'specialDefense';
+      const atk = calculateActualStats(attacker);
+      const def = calculateActualStats(defender);
+      if (!atk || !def) return null;
+      const A = attacker.item === 'こだわりハチマキ' ? Math.floor(atk[attackStat] * 1.5) : atk[attackStat];
+      const D = def[defenseStat];
+      const power = moveData.p;
+      let base = Math.floor((Math.floor((Math.floor(((2 * level / 5 + 2) * power * A) / D) / 50) + 2)));
+      if (!base || base < 1) base = 1;
+      let burnMod = 1;
+      if (isPhysical && opts.burn) burnMod = 0.5;
+      let stab = 1;
+      if (attacker.types && attacker.types.includes(moveData.t)) {
+        const isAdaptability = attacker.selectedAbility === 'アダプタビリティ';
+        stab = isAdaptability ? 2 : 1.5;
+      }
+      const typeEff = calculateTypeEffectiveness(moveData.t, defender);
+      if (typeEff === 0) return { min: 0, max: 0, avg: 0, typeEff: 0, stab: 1, effective: false, ohko: true };
+      let other = 1;
+      if (opts.lifeOrb && attacker.item === 'いのちのたま') other *= 1.3;
+      if (opts.choiceBand && attacker.item === 'こだわりハチマキ') other *= 1.5;
+      if (opts.choiceSpecs && attacker.item === 'こだわりメガネ') other *= 1.5;
+      if (opts.weather === 'sun' && moveData.t === 'ほのお') other *= 1.5;
+      if (opts.weather === 'sun' && moveData.t === 'みず') other *= 0.5;
+      if (opts.weather === 'rain' && moveData.t === 'みず') other *= 1.5;
+      if (opts.weather === 'rain' && moveData.t === 'ほのお') other *= 0.5;
+      if (opts.helpingHand) other *= 1.5;
+      if (opts.critical) other *= 1.5;
+      if (opts.expertBelt && typeEff > 1) other *= 1.2;
+      const defHp = def.hp;
+      let damage = Math.floor(Math.floor(base * burnMod) * other);
+      damage = Math.floor(damage * stab);
+      damage = Math.floor(damage * typeEff);
+      const minDmg = Math.floor(damage * 0.85);
+      const maxDmg = damage;
+      const avg = Math.floor((minDmg + maxDmg) / 2);
+      const koChance = defHp > 0 ? Math.min(1, 1 - (defHp - 1) / (avg || 1)) : 0;
+      return { min: minDmg, max: maxDmg, avg: avg, typeEff, stab, effective: typeEff > 0, ohko: (minDmg >= defHp), koChance };
     }
 
     const items = (window.ITEM_DATA?.items?.length ? window.ITEM_DATA.items : [{name:'きあいのタスキ',iconUrl:'',description:'HP満タンの時、一撃でひんしになる技を受けてもHPを1残す。'}, {name:'こだわりスカーフ',iconUrl:'',description:'素早さが1.5倍になるが、最初に使った技しか使えない。'}, {name:'こだわりハチマキ',iconUrl:'',description:'攻撃が1.5倍になるが、最初に使った技しか使えない。'}, {name:'こだわりメガネ',iconUrl:'',description:'特攻が1.5倍になるが、最初に使った技しか使えない。'}, {name:'たべのこし',iconUrl:'',description:'ターン終了時に最大HPの1/16回復する。'}, {name:'オボンのみ',iconUrl:'',description:'HPが最大HPの1/2以下になった時、最大HPの1/4回復する。'}, {name:'ラムのみ',iconUrl:'',description:'全ての状態異常と混乱を回復する。'}, {name:'いのちのたま',iconUrl:'',description:'技の威力が1.3倍になるが、攻撃成功時にHPが減る。'}, {name:'たつじんのおび',iconUrl:'',description:'効果抜群の技の威力が1.2倍になる。'}, {name:'きせきのタネ',iconUrl:'',description:'くさタイプの技の威力が1.2倍になる。'}, {name:'オッカのみ',iconUrl:'',description:'効果抜群のほのお技を受けた時、ダメージを半減する。'}, {name:'ヤチェのみ',iconUrl:'',description:'効果抜群のこおり技を受けた時、ダメージを半減する。'}, {name:'フシギバナイト',iconUrl:'',description:'フシギバナがバトル中にメガシンカできる。'}, {name:'ガブリアスナイト',iconUrl:'',description:'ガブリアスがバトル中にメガシンカできる。'}]).map(item => ({ ...item, icon: item.iconUrl ? '🖼️' : '・' }));
@@ -763,7 +837,43 @@ function analyze() {
     function closeChat() { $('chatModal').classList.add('hidden'); $('chatModal').classList.remove('visible'); }
     function sendChat() { const input = $('chatInput'); const text = input.value.trim(); if (!text) return; chatHistory.push({ role: 'user', text }); input.value = ''; const response = generateResponse(text); chatHistory.push({ role: 'assistant', text: response }); renderChatMessages(); }
     function renderChatMessages() { const container = $('chatMessages'); container.innerHTML = chatHistory.map(msg => '<div class="chat-message ' + msg.role + '"><div class="chat-content">' + msg.text + '</div></div>').join(''); container.scrollTop = container.scrollHeight; }
-    function generateResponse(query) { const q = query.toLowerCase(); if (q.includes('弱点')) { return analyzePartyWeakness(); } if (q.includes('実数値') || q.includes('計算')) { return showActualStats(); } if (q.includes('タイプ') && (q.includes('おすすめ') || q.includes('推薦'))) { const typeMatch = q.match(/([ノーマルほのみずでんきくさこおりかくとうどくじめんひこうエスパーむしいわゴーストドラゴンあくはがねフェアリー]+)/); if (typeMatch) { return recommendByType(typeMatch[1]); } return 'タイプ名を指定してください（例: じめんタイプのポケモンをおすすめして）'; } if (q.includes('採用') || q.includes('パーティ') || q.includes('構築')) { return searchSavedParties(query); } if (q.includes('こだわりスカーフ') || q.includes('スカーフ')) { return showScarfSpeed(); } return '質問の種類を認識できませんでした。以下の例を試してください：\n・このパーティの弱点は？\n・実数値を計算して\n・じめんタイプのポケモンをおすすめして\n・メガチリーンを採用しているパーティは？'; }
+    function handleDamageQuery(query) {
+      const q = query;
+      const allMoveNames = Object.keys(MOVE_DB);
+      const allPokemonNames = pokemon.map(p => p.name);
+      let attackerName = null;
+      let defenderName = null;
+      let moveName = null;
+      for (const name of allPokemonNames) { if (q.includes(name)) { if (!attackerName) attackerName = name; else if (!defenderName) defenderName = name; } }
+      for (const name of allMoveNames) { if (q.includes(name)) { moveName = name; } }
+      if (!attackerName || !defenderName || !moveName) {
+        return 'ダメージ計算には攻撃ポケモン、技、防御ポケモンが必要です。\n例: マルヤクデのほのおのまどうがサーフゴーに与えるダメージは？\n\nダメージ計算機を開くには、ダメージ計算機ボタンをクリックしてください。';
+      }
+      const attacker = { ...pokemon.find(p => p.name === attackerName) };
+      const defender = { ...pokemon.find(p => p.name === defenderName) };
+      const opts = { level: 50, lifeOrb: attacker.item === 'いのちのたま', choiceBand: attacker.item === 'こだわりハチマキ', choiceSpecs: attacker.item === 'こだわりメガネ', critical: false, burn: false, helpingHand: false, expertBelt: false, weather: '' };
+      const result = calculateMoveDamage(attacker, moveName, defender, opts);
+      if (!result) return moveName + 'はダメージを計算できません（変化技または威力なし）。';
+      const moveData = MOVE_DB[moveName];
+      const atk = calculateActualStats(attacker);
+      const def = calculateActualStats(defender);
+      const defHp = def.hp;
+      const typeLabel = result.typeEff === 0 ? '無効' : result.typeEff === 4 ? 'とてもあいこう' : result.typeEff === 2 ? 'あいこう' : result.typeEff === 1 ? 'ふつう' : result.typeEff === 0.5 ? 'カジュ' : result.typeEff === 0.25 ? 'てきカタ' : '×' + result.typeEff;
+      let response = '【ダメージ計算】\n';
+      response += '攻撃: ' + attackerName + ' LV50 / ' + moveName + ' (威力' + (moveData.p || '—') + ' ' + moveData.t + '/' + moveData.c + ')\n';
+      response += '防御: ' + defenderName + ' (HP' + defHp + ')\n';
+      response += '効果: ' + typeLabel + ' (×' + result.typeEff + ') / STAB: ' + (result.stab > 1 ? 'あり' : 'なし') + '\n';
+      if (result.effective && result.max > 0) {
+        response += 'ダメージ: ' + result.min + '～' + result.max + ' (平均 ' + result.avg + ')\n';
+        response += 'HP: ' + Math.round(result.min / defHp * 100) + '%～' + Math.round(result.max / defHp * 100) + '%\n';
+        if (result.ohko) response += '⇒ OHKO!\n';
+      } else if (result.typeEff === 0) {
+        response += 'ダメージ: 0 (無効)\n';
+      }
+      response += '\n※Lv50、50%確信度。詳細はダメージ計算機で確認できます。';
+      return response;
+    }
+    function generateResponse(query) { const q = query.toLowerCase(); if (q.includes('弱点')) { return analyzePartyWeakness(); } if (q.includes('ダメージ') || (q.includes('計算') && !q.includes('実数値'))) { return handleDamageQuery(query); } if (q.includes('実数値') || q.includes('計算')) { return showActualStats(); } if (q.includes('タイプ') && (q.includes('おすすめ') || q.includes('推薦'))) { const typeMatch = q.match(/([ノーマルほのみずでんきくさこおりかくとうどくじめんひこうエスパーむしいわゴーストドラゴンあくはがねフェアリー]+)/); if (typeMatch) { return recommendByType(typeMatch[1]); } return 'タイプ名を指定してください（例: じめんタイプのポケモンをおすすめして）'; } if (q.includes('採用') || q.includes('パーティ') || q.includes('構築')) { return searchSavedParties(query); } if (q.includes('こだわりスカーフ') || q.includes('スカーフ')) { return showScarfSpeed(); } return '質問の種類を認識できませんでした。以下の例を試してください：\n・このパーティの弱点は？\n・実数値を計算して\n・じめんタイプのポケモンをおすすめして\n・メガチリーンを採用しているパーティは？'; }
     function analyzePartyWeakness() { if (!party.length) return 'パーティが空です。まずポケモンを追加してください。'; const counts = {}; const protections = []; party.forEach(p => { const effects = abilityEffects[p.selectedAbility] || {}; (effects.immune || []).forEach(type => protections.push(p.name + ' / ' + p.selectedAbility + ': ' + type + '無効')); (effects.resist || []).forEach(type => { const baseMultiplier = p.types.some(partyType => typeWeakness[partyType]?.includes(type)) ? 2 : 1; const finalMultiplier = baseMultiplier * (effects.multiplier || 0.5); protections.push(p.name + ' / ' + p.selectedAbility + ': ' + type + (finalMultiplier === 1 ? '等倍' : finalMultiplier < 1 ? '半減' : '倍増')); }); p.types.forEach(type => { const weaknesses = typeWeakness[type] || []; const immunities = effects.immune || []; const resistances = effects.resist || []; weaknesses.forEach(w => { if (immunities.includes(w)) return; if (resistances.includes(w)) { counts[w] = (counts[w] || 0) + 0.5; } else { counts[w] = (counts[w] || 0) + 1; } }); }); }); const weakness = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5); if (!weakness.length) return '大きな弱点の重複は見つかりませんでした。'; const top = weakness[0]; const relevantProtections = top ? protections.filter(p => p.includes(top[0] + '無効') || p.includes(top[0] + '半減')) : []; let response = '【弱点分析】\n最も重複している弱点: ' + top[0] + '（' + top[1] + '件）\n\n'; if (relevantProtections.length) { response += '対応可能な特性: ' + relevantProtections.slice(0, 3).join('、') + '\n\n'; } else { response += 'この弱点に対応できる特性はありません。タイプ補完を検討してください。\n\n'; } response += '詳細な重複弱点:\n'; weakness.slice(0, 3).forEach(([type, count]) => { response += '・' + type + ': ' + count + '件重複\n'; }); return response; }
     function showActualStats() { if (!party.length) return 'パーティが空です。まずポケモンを追加してください。'; const stats = party.map(p => calculateActualStats(p)).filter(Boolean); if (!stats.length) return '実数値を計算できるポケモンがいません。'; let response = '【実数値一覧】\n'; party.forEach((p, i) => { const actual = calculateActualStats(p); if (!actual) return; let speed = actual.speed; if (p.item === 'こだわりスカーフ') speed = Math.floor(speed * 1.5); response += (i + 1) + '. ' + p.name + ': HP' + actual.hp + ' / 攻' + actual.attack + ' / 防' + actual.defense + ' / 特' + actual.specialAttack + ' / 特防' + actual.specialDefense + ' / 素' + speed; if (p.item === 'こだわりスカーフ') response += ' (スカーフ)'; response += '\n'; }); return response; }
     function recommendByType(type) { const targetType = type.replace('タイプ', ''); const candidates = pokemon.filter(p => p.types.includes(targetType)).slice(0, 5); if (!candidates.length) return '「' + targetType + '」タイプのポケモンが見つかりませんでした。'; let response = '【' + targetType + 'タイプのおすすめ】\n'; candidates.forEach(p => { response += '・' + p.name + ' (' + p.types.join('/') + ')\n'; }); return response; }
@@ -917,6 +1027,130 @@ function analyze() {
       const el = $('battleOpponent' + i);
       if (el) el.addEventListener('input', () => syncOpponentPickOptions());
     });
+
+    function fillDamageCalcSelects() {
+      const attackerOptions = [{label:'—',value:''}];
+      party.forEach(p => attackerOptions.push({label:p.name+' ('+p.types.join('/')+')',value:p.name}));
+      pokemon.slice().sort((a,b)=>a.name.localeCompare(b.name,'ja')).forEach(p => {
+        if (!attackerOptions.some(o=>o.value===p.name)) attackerOptions.push({label:p.name,value:p.name});
+      });
+      const defenderOptions = [{label:'—',value:''}];
+      party.forEach(p => defenderOptions.push({label:p.name+' ('+p.types.join('/')+')',value:p.name}));
+      pokemon.slice().sort((a,b)=>a.name.localeCompare(b.name,'ja')).forEach(p => {
+        if (!defenderOptions.some(o=>o.value===p.name)) defenderOptions.push({label:p.name,value:p.name});
+      });
+      const makeOpt = list => list.map(o=>`<option value="${o.value}">${o.label}</option>`).join('');
+      $('dcAttacker').innerHTML = makeOpt(attackerOptions);
+      $('dcDefender').innerHTML = makeOpt(defenderOptions);
+    }
+    function fillAttackMoves() {
+      const name = $('dcAttacker').value;
+      if (!name) { $('dcMove').innerHTML = '<option value="">—</option>'; return; }
+      const p = pokemon.find(pk => pk.name === name);
+      if (!p) { $('dcMove').innerHTML = '<option value="">—</option>'; return; }
+      $('dcMove').innerHTML = '<option value="">—</option>' + learnableMoves(p).map(m=>`<option value="${m}">${m}</option>`).join('');
+    }
+    function openDamageCalc() {
+      fillDamageCalcSelects();
+      $('dcAttacker').value = party.length ? party[0].name : '';
+      fillAttackMoves();
+      $('dcDefender').value = party.length > 1 ? party[1].name : '';
+      $('dcLevel').value = '50';
+      document.querySelectorAll('#dcLifeOrb, #dcChoiceBand, #dcChoiceSpecs, #dcCritical, #dcBurn, #dcHelpingHand, #dcExpertBelt').forEach(el=>{el.checked=false;});
+      $('dcWeather').value = '';
+      $('damageResult').innerHTML = '<span style="color:var(--muted)">計算結果がここに表示されます</span>';
+      $('damageCalcModal').classList.remove('hidden');
+    }
+    function closeDamageCalc() { $('damageCalcModal').classList.add('hidden'); }
+    function runDamageCalc() {
+      const attackerName = $('dcAttacker').value;
+      const defenderName = $('dcDefender').value;
+      const moveName = $('dcMove').value;
+      const level = parseInt($('dcLevel').value) || 50;
+      if (!attackerName || !defenderName || !moveName) {
+        $('damageResult').innerHTML = '<span style="color:var(--coral)">攻撃ポケモン、技、防御ポケモンをすべて選択してください</span>';
+        return;
+      }
+      const attacker = { ...pokemon.find(p => p.name === attackerName) };
+      if (party.some(p => p.name === attackerName)) {
+        const pa = party.find(p => p.name === attackerName);
+        attacker.selectedAbility = pa.selectedAbility || pa.abilities?.[0];
+        attacker.item = pa.item || '';
+        attacker.evs = pa.evs || {};
+      } else {
+        attacker.selectedAbility = attacker.abilities?.[0];
+        attacker.item = '';
+        attacker.evs = {};
+      }
+      attacker.burned = $('dcBurn').checked;
+      const defender = { ...pokemon.find(p => p.name === defenderName) };
+      if (party.some(p => p.name === defenderName)) {
+        const pd = party.find(p => p.name === defenderName);
+        defender.selectedAbility = pd.selectedAbility || pd.abilities?.[0];
+        defender.item = pd.item || '';
+        defender.evs = pd.evs || {};
+      } else {
+        defender.selectedAbility = defender.abilities?.[0];
+        defender.item = '';
+        defender.evs = {};
+      }
+      const opts = {
+        level,
+        lifeOrb: $('dcLifeOrb').checked,
+        choiceBand: $('dcChoiceBand').checked,
+        choiceSpecs: $('dcChoiceSpecs').checked,
+        critical: $('dcCritical').checked,
+        burn: $('dcBurn').checked,
+        helpingHand: $('dcHelpingHand').checked,
+        expertBelt: $('dcExpertBelt').checked,
+        weather: $('dcWeather').value
+      };
+      const result = calculateMoveDamage(attacker, moveName, defender, opts);
+      const moveData = MOVE_DB[moveName];
+      if (!result) {
+        $('damageResult').innerHTML = '<span style="color:var(--muted)">ダメージを計算できません（変化技または威力なし）</span>';
+        return;
+      }
+      const atk = calculateActualStats(attacker);
+      const def = calculateActualStats(defender);
+      const defHp = def ? def.hp : 0;
+      let html = '<div style="font-size:11px;line-height:1.6"><b>' + attackerName + 'の' + moveName + '</b><br>';
+      html += 'タイプ: ' + typeChipHtml(moveData.t) + ' / 分類: ' + moveData.c + ' / 威力: ' + (moveData.p || '—') + '<br>';
+      html += '相手への効果: ' + (result.typeEff === 0 ? '無効' : result.typeEff === 0.25 ? 'てきカタ' : result.typeEff === 0.5 ? 'カジュ' : result.typeEff === 1 ? 'ふつう' : result.typeEff === 2 ? 'あいこう' : result.typeEff === 4 ? 'とてもあいこう' : '×'+result.typeEff) + ' (×' + result.typeEff + ') / STAB: ' + (result.stab > 1 ? 'あり (' + result.stab + '×)' : 'なし') + '<br>';
+      if (result.effective && result.max > 0) {
+        html += '<b style="color:var(--coral)">ダメージ: ' + result.min + '～' + result.max + ' (平均 ' + result.avg + ')</b><br>';
+        html += '相手HP: ' + defHp + ' / ' + Math.round(result.min / defHp * 100) + '%～' + Math.round(result.max / defHp * 100) + '%<br>';
+        if (result.ohko) html += '⇒ ✅ OHKO<br>';
+        const barWidth = Math.min(100, result.avg / defHp * 100);
+        html += '<div class="damage-bar"><i style="width:' + barWidth + '%"></i></div>';
+      } else if (result.typeEff === 0) {
+        html += '<b style="color:var(--coral)">ダメージ: 0 (無効)</b><br>';
+      }
+      const atkStat = atk ? (moveData.c === '物理' ? '攻: ' + atk.attack : '特: ' + atk.specialAttack) : '';
+      const defStat = def ? (moveData.c === '物理' ? '防: ' + def.defense : '特防: ' + def.specialDefense) : '';
+      html += '<div style="color:var(--muted);font-size:10px;margin-top:4px">' + atkStat + ' / ' + defStat + '</div>';
+      html += '</div>';
+      $('damageResult').innerHTML = html;
+    }
+    function typeChipHtml(type) { const bg = typeColor(type); return '<span class="type-chip" style="--tc:'+bg+';--tx:'+chipTextColor(bg)+'>'+type+'</span>'; }
+
+    const openDamageCalcBtn = $('openDamageCalc');
+    const closeDamageCalcEl = $('closeDamageCalc');
+    const cancelDamageCalcEl = $('cancelDamageCalc');
+    if (openDamageCalcBtn) openDamageCalcBtn.addEventListener('click', openDamageCalc);
+    if (closeDamageCalcEl) closeDamageCalcEl.addEventListener('click', closeDamageCalc);
+    if (cancelDamageCalcEl) cancelDamageCalcEl.addEventListener('click', closeDamageCalc);
+    const dcAttackerEl = $('dcAttacker');
+    if (dcAttackerEl) dcAttackerEl.addEventListener('change', fillAttackMoves);
+    const dcMoveEl = $('dcMove');
+    if (dcMoveEl) dcMoveEl.addEventListener('change', runDamageCalc);
+    const dcDefenderEl = $('dcDefender');
+    if (dcDefenderEl) dcDefenderEl.addEventListener('change', runDamageCalc);
+    const dcLevelEl = $('dcLevel');
+    if (dcLevelEl) dcLevelEl.addEventListener('change', runDamageCalc);
+    if ($('damageCalcModal')) $('damageCalcModal').addEventListener('click', e => { if (e.target === $('damageCalcModal')) closeDamageCalc(); });
+    const dcToggles = document.querySelectorAll('#dcLifeOrb, #dcChoiceBand, #dcChoiceSpecs, #dcCritical, #dcBurn, #dcHelpingHand, #dcExpertBelt, #dcWeather');
+    dcToggles.forEach(t => t.addEventListener('change', runDamageCalc));
 
     try { render(); } catch(e) { console.error('Render error:', e); const el = document.getElementById('errorDisplay'); if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); } }
 
