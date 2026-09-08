@@ -217,7 +217,14 @@
     <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
     <header class="topbar">
       <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / OFFLINE TOOL</small></div></div>
-      <div class="top-actions"><button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button></div>
+      <div class="top-actions">
+        <div class="user-id-bar" style="display:flex;align-items:center;gap:6px;font-size:11px">
+          <input id="userIdInput" placeholder="ユーザーID（任意）" autocomplete="off" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:11px;width:140px">
+          <button class="text-btn" id="loginUser" style="font-size:11px;padding:5px 10px">接続</button>
+          <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:60px">オフライン</span>
+        </div>
+        <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button>
+      </div>
     </header>
     <section class="hero">
       <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
@@ -528,7 +535,7 @@ function getMegaForms(baseName) {
     function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
     function updateCurrentPartyNameDisplay() { const el=$('currentPartyNameDisplay'); if(!el) return; el.textContent=currentPartyName?`編集中: ${currentPartyName}`:'候補を検索して追加してください。'; }
     let pendingPokemon = null;
-    function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); localStorage.setItem('party-lab',JSON.stringify(party)); $('abilityPicker').classList.add('hidden'); render(); }
+    function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); $('abilityPicker').classList.add('hidden'); render(); }
     function choosePokemon(name) { const p=pokemon.find(x=>x.name===name); if(!p) return; if((p.abilities||[]).length<2) return addPokemon(name); pendingPokemon=p; $('abilityPickerTitle').textContent=`${p.name}の特性を選択`; $('abilityOptions').innerHTML=(p.abilities||['未選択']).map(ability=>`<button class="ability-option" data-ability="${ability}">${ability}</button>`).join(''); $('abilityPicker').classList.remove('hidden'); }
     
     function updateActualStatsPreview() {
@@ -547,7 +554,7 @@ function getMegaForms(baseName) {
     function fillMoveSelects(p) { const source=pokemon.find(x=>x.name===p.name); const learned=(source ? learnableMoves(source) : []).filter(name => MOVE_DB[name]); document.querySelectorAll('[data-move]').forEach(select => { const index=Number(select.dataset.move); const current=(p.moves||[])[index]||''; const options=current && !learned.includes(current) ? [current,...learned] : learned; select.innerHTML='<option value="">— 選択しない —</option>'+options.map(name=>`<option value="${name}">${name}</option>`).join(''); select.value=current; document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(current); }); }
     function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name]; const baseName=getBaseForm(p.name); const megaStone=isMega?megaStoneMap[baseName]:null; const itemList=isMega&&megaStone?items.filter(item=>item.name===megaStone||item.name===p.item):items; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
     function closeEditor() { editingIndex=-1; $('editor').classList.add('hidden'); }
-    function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; } p.evs=evs; p.memo=$('editMemo').value.trim(); localStorage.setItem('party-lab',JSON.stringify(party)); closeEditor(); render(); }
+    function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; }       p.evs=evs; p.memo=$('editMemo').value.trim(); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); closeEditor(); render(); }
     function renderPartyStats() {
       const stats = party.map(p => calculateActualStats(p)).filter(Boolean);
       if (!stats.length) {
@@ -664,7 +671,7 @@ function analyze() {
 
       const top=weakness[0];
       const relevantProtections = top ? protections.filter(p => p.includes(`${top[0]}無効`) || p.includes(`${top[0]}半減`)) : [];
-      $('alert').textContent=top?`${top[0]}の弱点が${top[1]===1?'1匹':top[1]+'匹'}に重複しています。${relevantProtections.length?`${relevantProtections.slice(0,2).join('、')}で対応可能です。`:`このタイプに強いポケモンを追加しましょう。`}`:'大きな弱点の重複は見つかりませんでした。';
+      $('alert').textContent=top?`${top[0]}の弱点が${top[1]===1?'1匹':top[1]+'匹'}のポケモンにあります。${relevantProtections.length?`${relevantProtections.slice(0,2).join('、')}で対応可能です。`:`このタイプに強いポケモンを追加しましょう。`}`:'大きな弱点の重複は見つかりませんでした。';
 
       const typeDefenseHtml = allTypes.map(type => {
         const avgMultiplier = typeDefenseList.reduce((sum, def) => sum + (def[type] !== undefined ? def[type] : 1), 0) / (typeDefenseList.length || 1);
@@ -708,7 +715,7 @@ function analyze() {
         $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
       }
     }
-    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
+    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
     $('editor').addEventListener('click', e => {
       if (e.target === $('editor')) closeEditor();
     });
@@ -799,7 +806,11 @@ function analyze() {
       renderSaved();
       updateBattleLogButtonState();
       $('partyName').value = '';
+      saveAllToServer();
     });
+    const loginBtn = $('loginUser');
+    if (loginBtn) loginBtn.addEventListener('click', loginUser);
+    if ($('userIdInput')) $('userIdInput').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
     $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
     $('importParties').addEventListener('click', () => $('importFile').click());
     $('importFile').addEventListener('change', event => {
@@ -889,7 +900,54 @@ function analyze() {
     function loadBattleLogs() {
       try { battleLogs.push(...JSON.parse(localStorage.getItem('party-lab-battle-logs') || '[]')); } catch (e) { console.error('battle logs load failed', e); }
     }
-    function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
+     function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
+
+     let serverUserId = '';
+     let serverMode = false;
+     async function saveAllToServer() {
+       if (!serverMode || !serverUserId) return;
+       const data = { party, savedParties, battleLogs, partyName: currentPartyName, memo: $('partyMemo')?.value || '' };
+       try { await fetch('/api/user/' + serverUserId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch(e) { console.error('server save failed:', e); }
+     }
+     async function loadAllFromServer() {
+       const userId = $('userIdInput')?.value.trim();
+       if (!userId) return false;
+       try {
+         const resp = await fetch('/api/user/' + encodeURIComponent(userId));
+         if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
+         const data = await resp.json();
+         party = (data.party || []).map(normalizeMember);
+         savedParties = data.savedParties || [];
+         battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
+         currentPartyName = data.partyName || '';
+         if ($('partyName')) $('partyName').value = currentPartyName;
+         if ($('partyMemo')) $('partyMemo').value = data.memo || '';
+         localStorage.setItem('party-lab', JSON.stringify(party));
+         localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+         localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs));
+         return true;
+       } catch(e) { console.error('server load error:', e); return false; }
+     }
+     function loginUser() {
+       const userId = $('userIdInput')?.value.trim();
+       if (!userId) { alert('ユーザーIDを入力してください。'); return; }
+       loadAllFromServer().then(ok => {
+         if (ok) {
+           serverUserId = userId;
+           serverMode = true;
+           $('userStatus').textContent = 'オンライン: ' + userId;
+           $('userStatus').style.color = 'var(--coral)';
+           render();
+           renderSaved();
+         } else {
+           serverMode = true;
+           serverUserId = userId;
+           $('userStatus').textContent = 'オンライン: ' + userId + ' (新規)';
+           $('userStatus').style.color = 'var(--coral)';
+         }
+       });
+     }
+     function logoutUser() { serverMode = false; serverUserId = ''; $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
      function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();
       const options = allNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
@@ -968,6 +1026,7 @@ function analyze() {
       const entry = Object.assign({ id: base ? base.id : (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())) }, base || { partyName: currentPartyName || (savedParties[0] && savedParties[0].name) || '無題', savedAt: new Date().toISOString() }, { userPick3: userPicks, opponentParty6: opponentParty, opponentPick3: opponentPicks, result: result, note: note });
       if (!base) battleLogs.push(entry);
       saveBattleLogs();
+      saveAllToServer();
       closeBattleLog();
       renderBattleLogPanel();
     }
@@ -975,6 +1034,7 @@ function analyze() {
       if (!confirm('この戦績を削除しますか？')) return;
       battleLogs.splice(battleLogs.findIndex(l => l.id === id), 1);
       saveBattleLogs();
+      saveAllToServer();
       renderBattleLogPanel();
     }
     function resultLabel(v) { return v === 'win' ? '勝ち' : v === 'loss' ? '負け' : '引き分け'; }
