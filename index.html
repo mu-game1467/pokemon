@@ -890,19 +890,21 @@ function analyze() {
       try { battleLogs.push(...JSON.parse(localStorage.getItem('party-lab-battle-logs') || '[]')); } catch (e) { console.error('battle logs load failed', e); }
     }
     function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
-    function fillBattleLogSelects() {
+     function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();
       const options = allNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
       const datalist = document.getElementById('battlePokemonDatalist');
       if (datalist) datalist.innerHTML = options;
+      const partyNames = party.map(p => p.name);
+      const partyOptions = '<option value="">—</option>' + partyNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
       const userSelects = ['#battleUserPick0', '#battleUserPick1', '#battleUserPick2'];
-      userSelects.forEach(sel => { const el = document.querySelector(sel); if (el) el.innerHTML = '<option value="">—</option>' + options; });
+      userSelects.forEach(sel => { const el = document.querySelector(sel); if (el) el.innerHTML = partyOptions; });
     }
     function filterBattlePokemonOptions(query) {
       const q = String(query || '').trim().toLowerCase();
       const names = q ? pokemon.filter(p => toHiragana(p.name).includes(q)).map(p => p.name).sort() : pokemon.map(p => p.name).sort();
       const options = '<option value="">—</option>' + names.map(name => '<option value="' + name + '">' + name + '</option>').join('');
-      const selectors = ['#battleUserPick0','#battleUserPick1','#battleUserPick2','#battleOpponent0','#battleOpponent1','#battleOpponent2','#battleOpponent3','#battleOpponent4','#battleOpponent5'];
+      const selectors = ['#battleOpponent0','#battleOpponent1','#battleOpponent2','#battleOpponent3','#battleOpponent4','#battleOpponent5'];
       selectors.forEach(sel => { const el = document.querySelector(sel); if (!el) return; const current = el.value; el.innerHTML = options; if (current && Array.from(el.options).some(o => o.value === current)) el.value = current; });
     }
     function openBattleLog() {
@@ -913,6 +915,7 @@ function analyze() {
         $('battleLogTitle').textContent = '戦績を記録';
         $('battleLogSubtitle').textContent = currentPartyName ? 'パーティ: ' + currentPartyName : '';
         fillBattleLogSelects();
+        $('battleLogPanel').classList.add('hidden');
         ['battleUserPick0','battleUserPick1','battleUserPick2'].forEach((id, i) => { const sel = $('battleUserPick' + i); if (sel && party[i] && party[i].name) sel.value = party[i].name; });
         ['battleOpponent0','battleOpponent1','battleOpponent2','battleOpponent3','battleOpponent4','battleOpponent5'].forEach((id, i) => { const sel = $(id); if (sel) sel.value = ''; });
         ['battleOpponentPick0','battleOpponentPick1','battleOpponentPick2'].forEach((id, i) => { const sel = $(id); if (sel) { sel.innerHTML = '<option value="">—</option>'; sel.value = ''; } });
@@ -990,6 +993,7 @@ function analyze() {
     }
     function openBattleLogPanel() {
       if (!savedParties.length) { alert('先にパーティを保存してください。'); return; }
+      $('battleLogModal').classList.add('hidden');
       renderBattleLogPanel();
       $('battleLogPanel').classList.remove('hidden');
     }
