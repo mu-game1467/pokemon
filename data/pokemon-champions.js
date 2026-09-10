@@ -1,7 +1,7 @@
 window.POKEMON_DATA = {
   "source": "GameWith + Yakkun",
   "fetchedAt": "2026-08-22T13:37:15.9302513Z",
-  "count": 313,
+  "count": 345,
   "pokemon": [
     {
       "id": "n3",
@@ -27638,7 +27638,823 @@ window.POKEMON_DATA = {
         "のろい",
         "げきりん"
       ]
+    },
+    {
+      "id": "n40",
+      "name": "プクリン",
+      "pageUrl": "https://yakkun.com/ch/zukan/n40",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n40.gif",
+      "types": [
+        "ノーマルタイプ",
+        "フェアリータイプ"
+      ],
+      "abilities": [
+        "メロメロボディ",
+        "かちき",
+        "おみとおし"
+      ],
+      "baseStats": {
+        "hp": 140,
+        "attack": 70,
+        "defense": 45,
+        "specialAttack": 85,
+        "specialDefense": 50,
+        "speed": 45
+      },
+      "moves": []
+    },
+    {
+      "id": "n53",
+      "name": "ペルシアン",
+      "pageUrl": "https://yakkun.com/ch/zukan/n53",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n53.gif",
+      "types": [
+        "ノーマルタイプ"
+      ],
+      "abilities": [
+        "じゅうなん",
+        "テクニシャン",
+        "きんちょうかん"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 70,
+        "defense": 60,
+        "specialAttack": 65,
+        "specialDefense": 65,
+        "speed": 115
+      },
+      "moves": []
+    },
+    {
+      "id": "n53a",
+      "name": "アローラペルシアン",
+      "pageUrl": "https://yakkun.com/ch/zukan/n53a",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n53a.gif",
+      "types": [
+        "あくタイプ"
+      ],
+      "abilities": [
+        "ファーコート",
+        "テクニシャン",
+        "びびり"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 65,
+        "speed": 115
+      },
+      "moves": []
+    },
+    {
+      "id": "n83",
+      "name": "カモネギ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n83",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n83.gif",
+      "types": [
+        "ノーマルタイプ",
+        "ひこうタイプ"
+      ],
+      "abilities": [
+        "するどいめ",
+        "せいしんりょく",
+        "まけんき"
+      ],
+      "baseStats": {
+        "hp": 52,
+        "attack": 90,
+        "defense": 55,
+        "specialAttack": 58,
+        "specialDefense": 62,
+        "speed": 60
+      },
+      "moves": []
+    },
+    {
+      "id": "n122",
+      "name": "バリヤード",
+      "pageUrl": "https://yakkun.com/ch/zukan/n122",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n122.gif",
+      "types": [
+        "エスパータイプ",
+        "フェアリータイプ"
+      ],
+      "abilities": [
+        "ぼうおん",
+        "フィルター",
+        "テクニシャン"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 120,
+        "speed": 90
+      },
+      "moves": []
+    },
+    {
+      "id": "n317",
+      "name": "マルノーム",
+      "pageUrl": "https://yakkun.com/ch/zukan/n317",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n317.gif",
+      "types": [
+        "どくタイプ"
+      ],
+      "abilities": [
+        "ヘドロえき",
+        "ねんちゃく",
+        "くいしんぼう"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 73,
+        "defense": 83,
+        "specialAttack": 73,
+        "specialDefense": 83,
+        "speed": 55
+      },
+      "moves": []
+    },
+    {
+      "id": "n359mz",
+      "name": "メガアブソルZ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n359mz",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n359mz.gif",
+      "types": [
+        "あくタイプ",
+        "ゴーストタイプ"
+      ],
+      "abilities": [
+        "きれあじ"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 154,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 60,
+        "speed": 151
+      },
+      "moves": [],
+      "megaStone": "アブソルナイトZ",
+      "isMega": true,
+      "baseForm": "アブソル"
+    },
+    {
+      "id": "n373",
+      "name": "ボーマンダ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n373",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n373.gif",
+      "types": [
+        "ドラゴンタイプ",
+        "ひこうタイプ"
+      ],
+      "abilities": [
+        "いかく",
+        "じしんかじょう"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 135,
+        "defense": 80,
+        "specialAttack": 110,
+        "specialDefense": 80,
+        "speed": 100
+      },
+      "moves": []
+    },
+    {
+      "id": "n373m",
+      "name": "メガボーマンダ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n373m",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n373m.gif",
+      "types": [
+        "ドラゴンタイプ",
+        "ひこうタイプ"
+      ],
+      "abilities": [
+        "スカイスキン"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 145,
+        "defense": 130,
+        "specialAttack": 120,
+        "specialDefense": 90,
+        "speed": 120
+      },
+      "moves": [],
+      "megaStone": "ボーマンダナイト",
+      "isMega": true,
+      "baseForm": "ボーマンダ"
+    },
+    {
+      "id": "n445mz",
+      "name": "メガガブリアスZ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n445mz",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n445mz.gif",
+      "types": [
+        "ドラゴンタイプ"
+      ],
+      "abilities": [
+        "ふゆう"
+      ],
+      "baseStats": {
+        "hp": 108,
+        "attack": 130,
+        "defense": 85,
+        "specialAttack": 141,
+        "specialDefense": 85,
+        "speed": 151
+      },
+      "moves": [],
+      "megaStone": "ガブリアスナイトZ",
+      "isMega": true,
+      "baseForm": "ガブリアス"
+    },
+    {
+      "id": "n448mz",
+      "name": "メガルカリオZ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n448mz",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n448mz.gif",
+      "types": [
+        "かくとうタイプ",
+        "はがねタイプ"
+      ],
+      "abilities": [
+        "はどうのぼうご"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 100,
+        "defense": 70,
+        "specialAttack": 164,
+        "specialDefense": 70,
+        "speed": 151
+      },
+      "moves": [],
+      "megaStone": "ルカリオナイトZ",
+      "isMega": true,
+      "baseForm": "ルカリオ"
+    },
+    {
+      "id": "n673",
+      "name": "ゴーゴート",
+      "pageUrl": "https://yakkun.com/ch/zukan/n673",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n673.gif",
+      "types": [
+        "くさタイプ"
+      ],
+      "abilities": [
+        "そうしょく",
+        "くさのけがわ"
+      ],
+      "baseStats": {
+        "hp": 123,
+        "attack": 100,
+        "defense": 62,
+        "specialAttack": 97,
+        "specialDefense": 81,
+        "speed": 68
+      },
+      "moves": []
+    },
+    {
+      "id": "n768",
+      "name": "グソクムシャ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n768",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n768.gif",
+      "types": [
+        "むしタイプ",
+        "みずタイプ"
+      ],
+      "abilities": [
+        "ききかいひ"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 125,
+        "defense": 140,
+        "specialAttack": 60,
+        "specialDefense": 90,
+        "speed": 40
+      },
+      "moves": []
+    },
+    {
+      "id": "n768m",
+      "name": "メガグソクムシャ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n768m",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n768m.gif",
+      "types": [
+        "むしタイプ",
+        "はがねタイプ"
+      ],
+      "abilities": [
+        "かたいツメ"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 150,
+        "defense": 175,
+        "specialAttack": 70,
+        "specialDefense": 120,
+        "speed": 40
+      },
+      "moves": [],
+      "megaStone": "グソクムシャナイト",
+      "isMega": true,
+      "baseForm": "グソクムシャ"
+    },
+    {
+      "id": "n812",
+      "name": "ゴリランダー",
+      "pageUrl": "https://yakkun.com/ch/zukan/n812",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n812.gif",
+      "types": [
+        "くさタイプ"
+      ],
+      "abilities": [
+        "しんりょく",
+        "グラスメイカー"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 125,
+        "defense": 90,
+        "specialAttack": 60,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "moves": []
+    },
+    {
+      "id": "n815",
+      "name": "エースバーン",
+      "pageUrl": "https://yakkun.com/ch/zukan/n815",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n815.gif",
+      "types": [
+        "ほのおタイプ"
+      ],
+      "abilities": [
+        "もうか",
+        "リベロ"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 116,
+        "defense": 75,
+        "specialAttack": 65,
+        "specialDefense": 75,
+        "speed": 119
+      },
+      "moves": []
+    },
+    {
+      "id": "n818",
+      "name": "インテレオン",
+      "pageUrl": "https://yakkun.com/ch/zukan/n818",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n818.gif",
+      "types": [
+        "みずタイプ"
+      ],
+      "abilities": [
+        "げきりゅう",
+        "スナイパー"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 65,
+        "specialAttack": 125,
+        "specialDefense": 65,
+        "speed": 120
+      },
+      "moves": []
+    },
+    {
+      "id": "n828",
+      "name": "フォクスライ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n828",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n828.gif",
+      "types": [
+        "あくタイプ"
+      ],
+      "abilities": [
+        "にげあし",
+        "かるわざ",
+        "はりこみ"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 58,
+        "defense": 58,
+        "specialAttack": 87,
+        "specialDefense": 92,
+        "speed": 90
+      },
+      "moves": []
+    },
+    {
+      "id": "n849h",
+      "name": "ストリンダー(ハイ)",
+      "pageUrl": "https://yakkun.com/ch/zukan/n849h",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n849h.gif",
+      "types": [
+        "でんきタイプ",
+        "どくタイプ"
+      ],
+      "abilities": [
+        "パンクロック",
+        "プラス",
+        "テクニシャン",
+        "マイナス"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 70,
+        "specialAttack": 114,
+        "specialDefense": 70,
+        "speed": 75
+      },
+      "moves": []
+    },
+    {
+      "id": "n849l",
+      "name": "ストリンダー(ロー)",
+      "pageUrl": "https://yakkun.com/ch/zukan/n849l",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n849l.gif",
+      "types": [
+        "でんきタイプ",
+        "どくタイプ"
+      ],
+      "abilities": [
+        "パンクロック",
+        "マイナス",
+        "テクニシャン"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 70,
+        "specialAttack": 114,
+        "specialDefense": 70,
+        "speed": 75
+      },
+      "moves": []
+    },
+    {
+      "id": "n853",
+      "name": "オトスパス",
+      "pageUrl": "https://yakkun.com/ch/zukan/n853",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n853.gif",
+      "types": [
+        "かくとうタイプ"
+      ],
+      "abilities": [
+        "じゅうなん",
+        "テクニシャン"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 118,
+        "defense": 90,
+        "specialAttack": 70,
+        "specialDefense": 80,
+        "speed": 42
+      },
+      "moves": []
+    },
+    {
+      "id": "n863",
+      "name": "ニャイキング",
+      "pageUrl": "https://yakkun.com/ch/zukan/n863",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n863.gif",
+      "types": [
+        "はがねタイプ"
+      ],
+      "abilities": [
+        "カブトアーマー",
+        "かたいツメ",
+        "はがねのせいしん"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 100,
+        "specialAttack": 50,
+        "specialDefense": 60,
+        "speed": 50
+      },
+      "moves": []
+    },
+    {
+      "id": "n865",
+      "name": "ネギガナイト",
+      "pageUrl": "https://yakkun.com/ch/zukan/n865",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n865.gif",
+      "types": [
+        "かくとうタイプ"
+      ],
+      "abilities": [
+        "ふくつのこころ",
+        "きもったま"
+      ],
+      "baseStats": {
+        "hp": 62,
+        "attack": 135,
+        "defense": 95,
+        "specialAttack": 68,
+        "specialDefense": 82,
+        "speed": 65
+      },
+      "moves": []
+    },
+    {
+      "id": "n871",
+      "name": "バチンウニ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n871",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n871.gif",
+      "types": [
+        "でんきタイプ"
+      ],
+      "abilities": [
+        "ひらいしん",
+        "エレキメイカー"
+      ],
+      "baseStats": {
+        "hp": 48,
+        "attack": 101,
+        "defense": 95,
+        "specialAttack": 91,
+        "specialDefense": 85,
+        "speed": 15
+      },
+      "moves": []
+    },
+    {
+      "id": "n876mo",
+      "name": "イエッサン(オス)",
+      "pageUrl": "https://yakkun.com/ch/zukan/n876mo",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n876mo.gif",
+      "types": [
+        "エスパータイプ",
+        "ノーマルタイプ"
+      ],
+      "abilities": [
+        "せいしんりょく",
+        "シンクロ",
+        "サイコメイカー"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 55,
+        "specialAttack": 105,
+        "specialDefense": 95,
+        "speed": 95
+      },
+      "moves": []
+    },
+    {
+      "id": "n876f",
+      "name": "イエッサン(メス)",
+      "pageUrl": "https://yakkun.com/ch/zukan/n876f",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n876f.gif",
+      "types": [
+        "エスパータイプ",
+        "ノーマルタイプ"
+      ],
+      "abilities": [
+        "マイペース",
+        "シンクロ",
+        "サイコメイカー"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 55,
+        "defense": 65,
+        "specialAttack": 95,
+        "specialDefense": 105,
+        "speed": 85
+      },
+      "moves": []
+    },
+    {
+      "id": "n923",
+      "name": "パーモット",
+      "pageUrl": "https://yakkun.com/ch/zukan/n923",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n923.gif",
+      "types": [
+        "でんきタイプ",
+        "かくとうタイプ"
+      ],
+      "abilities": [
+        "ちくでん",
+        "しぜんかいふく",
+        "てつのこぶし"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 115,
+        "defense": 70,
+        "specialAttack": 70,
+        "specialDefense": 60,
+        "speed": 105
+      },
+      "moves": []
+    },
+    {
+      "id": "n930",
+      "name": "オリーヴァ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n930",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n930.gif",
+      "types": [
+        "くさタイプ",
+        "ノーマルタイプ"
+      ],
+      "abilities": [
+        "こぼれダネ",
+        "しゅうかく"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 69,
+        "defense": 90,
+        "specialAttack": 125,
+        "specialDefense": 109,
+        "speed": 39
+      },
+      "moves": []
+    },
+    {
+      "id": "n931",
+      "name": "イキリンコ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n931",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n931.gif",
+      "types": [
+        "ノーマルタイプ",
+        "ひこうタイプ"
+      ],
+      "abilities": [
+        "いかく",
+        "はりきり",
+        "こんじょう",
+        "ちからずく"
+      ],
+      "baseStats": {
+        "hp": 82,
+        "attack": 96,
+        "defense": 51,
+        "specialAttack": 45,
+        "specialDefense": 51,
+        "speed": 92
+      },
+      "moves": []
+    },
+    {
+      "id": "n943",
+      "name": "マフィティフ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n943",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n943.gif",
+      "types": [
+        "あくタイプ"
+      ],
+      "abilities": [
+        "いかく",
+        "ばんけん",
+        "はりこみ"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 90,
+        "specialAttack": 60,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "moves": []
+    },
+    {
+      "id": "n998",
+      "name": "セグレイブ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n998",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n998.gif",
+      "types": [
+        "ドラゴンタイプ",
+        "こおりタイプ"
+      ],
+      "abilities": [
+        "ねつこうかん",
+        "アイスボディ"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 145,
+        "defense": 92,
+        "specialAttack": 75,
+        "specialDefense": 86,
+        "speed": 87
+      },
+      "moves": []
+    },
+    {
+      "id": "n998m",
+      "name": "メガセグレイブ",
+      "pageUrl": "https://yakkun.com/ch/zukan/n998m",
+      "iconUrl": "https://img.yakkun.com/poke/icon96/n998m.gif",
+      "types": [
+        "ドラゴンタイプ",
+        "こおりタイプ"
+      ],
+      "abilities": [
+        "ねつこうかん"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 175,
+        "defense": 117,
+        "specialAttack": 105,
+        "specialDefense": 101,
+        "speed": 87
+      },
+      "moves": [],
+      "megaStone": "セグレイブナイト",
+      "isMega": true,
+      "baseForm": "セグレイブ"
     }
   ],
-  "updatedAt": "2026-08-26T01:12:01.958Z"
+  "updatedAt": "2026-09-10T02:43:20Z",
+  "items": [
+    {
+      "name": "ながねぎ",
+      "description": "カモネギ ネギガナイトが きゅうしょアップ ×2になる。"
+    },
+    {
+      "name": "ゴツゴツメット",
+      "description": "接触技を受けると 相手の最大HPの 1/8のダメージを与える。"
+    },
+    {
+      "name": "ふうせん",
+      "description": "地面にいないことになり じめんタイプの技 まきびし どくびし ねばねばネット状態が効かない。 技のダメージを受けると その対戦中は 無くなる。"
+    },
+    {
+      "name": "レッドカード",
+      "description": "技でダメージを与えてきた相手を交代させる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "ノーマルジュエル",
+      "description": "ノーマルタイプの技の威力が 1.3倍になる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "グランドコート",
+      "description": "技や特性でフィールドを張った時 継続ターンが3ターン長くなる。 (合計8ターン)"
+    },
+    {
+      "name": "エレキシード",
+      "description": "エレキフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "サイコシード",
+      "description": "ミストフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "ミストシード",
+      "description": "サイコフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "グラスシード",
+      "description": "グラスフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
+    },
+    {
+      "name": "アブソルナイトZ",
+      "description": "アブソルがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "ガブリアスナイトZ",
+      "description": "ガブリアスがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "ルカリオナイトZ",
+      "description": "ルカリオがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "ボーマンダナイト",
+      "description": "ボーマンダがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "グソクムシャナイト",
+      "description": "グソクムシャがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "セグレイブナイト",
+      "description": "セグレイブがバトル中メガシンカ可能になる。"
+    }
+  ]
 };

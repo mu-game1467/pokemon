@@ -1,0 +1,802 @@
+{
+  "source": "https://gamewith.jp/pokemon-champions/574460",
+  "fetchedAt": "2026-09-10T02:27:46.000Z",
+  "pokemon": [
+    {
+      "name": "プクリン",
+      "pokedexNo": 40,
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "baseStats": {
+        "hp": 140,
+        "attack": 70,
+        "defense": 45,
+        "specialAttack": 85,
+        "specialDefense": 50,
+        "speed": 45
+      },
+      "abilities": [
+        "メロメロボディ",
+        "かちき",
+        "おみとおし"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/040.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575626",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "ペルシアン",
+      "pokedexNo": 53,
+      "types": [
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 70,
+        "defense": 60,
+        "specialAttack": 65,
+        "specialDefense": 65,
+        "speed": 115
+      },
+      "abilities": [
+        "じゅうなん",
+        "テクニシャン",
+        "きんちょうかん"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/053.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575627",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "アローラペルシアン",
+      "pokedexNo": 53,
+      "types": [
+        "dark"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 65,
+        "speed": 115
+      },
+      "abilities": [
+        "ファーコート",
+        "テクニシャン",
+        "びびり"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/053_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575628",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "カモネギ",
+      "pokedexNo": 83,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 52,
+        "attack": 90,
+        "defense": 55,
+        "specialAttack": 58,
+        "specialDefense": 62,
+        "speed": 60
+      },
+      "abilities": [
+        "するどいめ",
+        "せいしんりょく",
+        "まけんき"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/083.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575708",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "バリヤード",
+      "pokedexNo": 122,
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 120,
+        "speed": 90
+      },
+      "abilities": [
+        "ぼうおん",
+        "フィルター",
+        "テクニシャン"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/122.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575705",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "マルノーム",
+      "pokedexNo": 317,
+      "types": [
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 73,
+        "defense": 83,
+        "specialAttack": 73,
+        "specialDefense": 83,
+        "speed": 55
+      },
+      "abilities": [
+        "ヘドロえき",
+        "ねんちゃく",
+        "くいしんぼう"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/317.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575704",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "メガアブソルZ",
+      "pokedexNo": 359,
+      "types": [
+        "dark",
+        "ghost"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 154,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 60,
+        "speed": 151
+      },
+      "abilities": [
+        "きれあじ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/359_2.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/574492",
+      "megaStone": "アブソルナイトZ",
+      "isMega": true,
+      "baseForm": "アブソル"
+    },
+    {
+      "name": "ボーマンダ",
+      "pokedexNo": 373,
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 135,
+        "defense": 80,
+        "specialAttack": 110,
+        "specialDefense": 80,
+        "speed": 100
+      },
+      "abilities": [
+        "いかく",
+        "じしんかじょう"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/373.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575013",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "メガボーマンダ",
+      "pokedexNo": 373,
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 145,
+        "defense": 130,
+        "specialAttack": 120,
+        "specialDefense": 90,
+        "speed": 120
+      },
+      "abilities": [
+        "スカイスキン"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/373_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575012",
+      "megaStone": "ボーマンダナイト",
+      "isMega": true,
+      "baseForm": "ボーマンダ"
+    },
+    {
+      "name": "メガガブリアスZ",
+      "pokedexNo": 445,
+      "types": [
+        "dragon"
+      ],
+      "baseStats": {
+        "hp": 108,
+        "attack": 130,
+        "defense": 85,
+        "specialAttack": 141,
+        "specialDefense": 85,
+        "speed": 151
+      },
+      "abilities": [
+        "ふゆう"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/445_2.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/574491",
+      "megaStone": "ガブリアスナイトZ",
+      "isMega": true,
+      "baseForm": "ガブリアス"
+    },
+    {
+      "name": "メガルカリオZ",
+      "pokedexNo": 448,
+      "types": [
+        "fighting",
+        "steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 100,
+        "defense": 70,
+        "specialAttack": 164,
+        "specialDefense": 70,
+        "speed": 151
+      },
+      "abilities": [
+        "はどうのぼうご"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/448_2.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/574490",
+      "megaStone": "ルカリオナイトZ",
+      "isMega": true,
+      "baseForm": "ルカリオ"
+    },
+    {
+      "name": "ゴーゴート",
+      "pokedexNo": 673,
+      "types": [
+        "grass"
+      ],
+      "baseStats": {
+        "hp": 123,
+        "attack": 100,
+        "defense": 62,
+        "specialAttack": 97,
+        "specialDefense": 81,
+        "speed": 68
+      },
+      "abilities": [
+        "そうしょく",
+        "くさのけがわ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/673.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575629",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "グソクムシャ",
+      "pokedexNo": 768,
+      "types": [
+        "bug",
+        "water"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 125,
+        "defense": 140,
+        "specialAttack": 60,
+        "specialDefense": 90,
+        "speed": 40
+      },
+      "abilities": [
+        "ききかいひ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/768.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575014",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "メガグソクムシャ",
+      "pokedexNo": 768,
+      "types": [
+        "bug",
+        "steel"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 150,
+        "defense": 175,
+        "specialAttack": 70,
+        "specialDefense": 120,
+        "speed": 40
+      },
+      "abilities": [
+        "かたいツメ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/768_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575652",
+      "megaStone": "グソクムシャナイト",
+      "isMega": true,
+      "baseForm": "グソクムシャ"
+    },
+    {
+      "name": "ゴリランダー",
+      "pokedexNo": 812,
+      "types": [
+        "grass"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 125,
+        "defense": 90,
+        "specialAttack": 60,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "abilities": [
+        "しんりょく",
+        "グラスメイカー"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/812.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/574661",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "エースバーン",
+      "pokedexNo": 815,
+      "types": [
+        "fire"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 116,
+        "defense": 75,
+        "specialAttack": 65,
+        "specialDefense": 75,
+        "speed": 119
+      },
+      "abilities": [
+        "もうか",
+        "リベロ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/815.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575630",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "インテレオン",
+      "pokedexNo": 818,
+      "types": [
+        "water"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 65,
+        "specialAttack": 125,
+        "specialDefense": 65,
+        "speed": 120
+      },
+      "abilities": [
+        "げきりゅう",
+        "スナイパー"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/818.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575631",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "フォクスライ",
+      "pokedexNo": 828,
+      "types": [
+        "dark"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 58,
+        "defense": 58,
+        "specialAttack": 87,
+        "specialDefense": 92,
+        "speed": 90
+      },
+      "abilities": [
+        "にげあし",
+        "かるわざ",
+        "はりこみ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/828.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575632",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "ストリンダー(ハイ)",
+      "pokedexNo": 849,
+      "types": [
+        "electric",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 70,
+        "specialAttack": 114,
+        "specialDefense": 70,
+        "speed": 75
+      },
+      "abilities": [
+        "パンクロック",
+        "プラス",
+        "テクニシャン",
+        "マイナス"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/849.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575633",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "ストリンダー(ロー)",
+      "pokedexNo": 849,
+      "types": [
+        "electric",
+        "poison"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 70,
+        "specialAttack": 114,
+        "specialDefense": 70,
+        "speed": 75
+      },
+      "abilities": [
+        "パンクロック",
+        "マイナス",
+        "テクニシャン"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/849_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575768",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "オトスパス",
+      "pokedexNo": 853,
+      "types": [
+        "fighting"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 118,
+        "defense": 90,
+        "specialAttack": 70,
+        "specialDefense": 80,
+        "speed": 42
+      },
+      "abilities": [
+        "じゅうなん",
+        "テクニシャン"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/853.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575634",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "ニャイキング",
+      "pokedexNo": 863,
+      "types": [
+        "steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 100,
+        "specialAttack": 50,
+        "specialDefense": 60,
+        "speed": 50
+      },
+      "abilities": [
+        "カブトアーマー",
+        "かたいツメ",
+        "はがねのせいしん"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/863.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575635",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "ネギガナイト",
+      "pokedexNo": 865,
+      "types": [
+        "fighting"
+      ],
+      "baseStats": {
+        "hp": 62,
+        "attack": 135,
+        "defense": 95,
+        "specialAttack": 68,
+        "specialDefense": 82,
+        "speed": 65
+      },
+      "abilities": [
+        "ふくつのこころ",
+        "きもったま"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/865.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575636",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "バチンウニ",
+      "pokedexNo": 871,
+      "types": [
+        "electric"
+      ],
+      "baseStats": {
+        "hp": 48,
+        "attack": 101,
+        "defense": 95,
+        "specialAttack": 91,
+        "specialDefense": 85,
+        "speed": 15
+      },
+      "abilities": [
+        "ひらいしん",
+        "エレキメイカー"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/871.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575637",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "イエッサン(オス)",
+      "pokedexNo": 876,
+      "types": [
+        "psychic",
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 55,
+        "specialAttack": 105,
+        "specialDefense": 95,
+        "speed": 95
+      },
+      "abilities": [
+        "せいしんりょく",
+        "シンクロ",
+        "サイコメイカー"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/876.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575639",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "イエッサン(メス)",
+      "pokedexNo": 876,
+      "types": [
+        "psychic",
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 55,
+        "defense": 65,
+        "specialAttack": 95,
+        "specialDefense": 105,
+        "speed": 85
+      },
+      "abilities": [
+        "マイペース",
+        "シンクロ",
+        "サイコメイカー"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/876_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575638",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "パーモット",
+      "pokedexNo": 923,
+      "types": [
+        "electric",
+        "fighting"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 115,
+        "defense": 70,
+        "specialAttack": 70,
+        "specialDefense": 60,
+        "speed": 105
+      },
+      "abilities": [
+        "ちくでん",
+        "しぜんかいふく",
+        "てつのこぶし"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/923.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575656",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "オリーヴァ",
+      "pokedexNo": 930,
+      "types": [
+        "grass",
+        "normal"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 69,
+        "defense": 90,
+        "specialAttack": 125,
+        "specialDefense": 109,
+        "speed": 39
+      },
+      "abilities": [
+        "こぼれダネ",
+        "しゅうかく"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/930.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575640",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "イキリンコ",
+      "pokedexNo": 931,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "baseStats": {
+        "hp": 82,
+        "attack": 96,
+        "defense": 51,
+        "specialAttack": 45,
+        "specialDefense": 51,
+        "speed": 92
+      },
+      "abilities": [
+        "いかく",
+        "はりきり",
+        "こんじょう",
+        "ちからずく"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/931.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575641",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "マフィティフ",
+      "pokedexNo": 943,
+      "types": [
+        "dark"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 90,
+        "specialAttack": 60,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "abilities": [
+        "いかく",
+        "ばんけん",
+        "はりこみ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/943.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575642",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "セグレイブ",
+      "pokedexNo": 998,
+      "types": [
+        "dragon",
+        "ice"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 145,
+        "defense": 92,
+        "specialAttack": 75,
+        "specialDefense": 86,
+        "speed": 87
+      },
+      "abilities": [
+        "ねつこうかん",
+        "アイスボディ"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/998.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/574625",
+      "megaStone": null,
+      "isMega": false,
+      "baseForm": null
+    },
+    {
+      "name": "メガセグレイブ",
+      "pokedexNo": 998,
+      "types": [
+        "dragon",
+        "ice"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 175,
+        "defense": 117,
+        "specialAttack": 105,
+        "specialDefense": 101,
+        "speed": 87
+      },
+      "abilities": [
+        "ねつこうかん"
+      ],
+      "iconUrl": "https://img.gamewith.jp/article_tools/pokemon-champions/gacha/998_1.png",
+      "pageUrl": "https://gamewith.jp/pokemon-champions/575651",
+      "megaStone": "セグレイブナイト",
+      "isMega": true,
+      "baseForm": "セグレイブ"
+    }
+  ]
+}

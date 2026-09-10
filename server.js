@@ -82,9 +82,15 @@ function getLocalIP() {
   return 'localhost';
 }
 
-app.listen(PORT, '0.0.0.0', () => {
-  const ip = getLocalIP();
-  console.log('Server running on port ' + PORT);
-  console.log('Local:  http://localhost:' + PORT);
-  console.log('Network: http://' + ip + ':' + PORT);
-});
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => {
+    const ip = getLocalIP();
+    console.log('Server running on port ' + PORT);
+    console.log('Local:  http://localhost:' + PORT);
+    console.log('Network: http://' + ip + ':' + PORT);
+  });
+}
+
+module.exports = app;
+module.exports.safeUserId = safeUserId;
+module.exports.getUserFilePath = getUserFilePath;
