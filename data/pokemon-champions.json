@@ -7,7 +7,7 @@
       "id": "n3",
       "name": "フシギバナ",
       "pageUrl": "https://yakkun.com/ch/zukan/n3",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n3.gif",
+      "iconUrl": "images/pokemon/n3.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -89,7 +89,7 @@
       "id": "n3m",
       "name": "メガフシギバナ",
       "pageUrl": "https://yakkun.com/ch/zukan/n3m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n3m.gif",
+      "iconUrl": "images/pokemon/n3m.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -171,7 +171,7 @@
       "id": "n6",
       "name": "リザードン",
       "pageUrl": "https://yakkun.com/ch/zukan/n6",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n6.gif",
+      "iconUrl": "images/pokemon/n6.gif",
       "types": [
         "ほのおタイプ",
         "ひこうタイプ"
@@ -267,7 +267,7 @@
       "id": "n6x",
       "name": "メガリザードンX",
       "pageUrl": "https://yakkun.com/ch/zukan/n6x",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n6x.gif",
+      "iconUrl": "images/pokemon/n6x.gif",
       "types": [
         "ほのおタイプ",
         "ドラゴンタイプ"
@@ -365,7 +365,7 @@
       "id": "n6y",
       "name": "メガリザードンY",
       "pageUrl": "https://yakkun.com/ch/zukan/n6y",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n6y.gif",
+      "iconUrl": "images/pokemon/n6y.gif",
       "types": [
         "ほのおタイプ",
         "ひこうタイプ"
@@ -460,7 +460,7 @@
       "id": "n9",
       "name": "カメックス",
       "pageUrl": "https://yakkun.com/ch/zukan/n9",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n9.gif",
+      "iconUrl": "images/pokemon/n9.gif",
       "types": [
         "みずタイプ"
       ],
@@ -556,7 +556,7 @@
       "id": "n9m",
       "name": "メガカメックス",
       "pageUrl": "https://yakkun.com/ch/zukan/n9m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n9m.gif",
+      "iconUrl": "images/pokemon/n9m.gif",
       "types": [
         "みずタイプ"
       ],
@@ -654,7 +654,7 @@
       "id": "n15",
       "name": "スピアー",
       "pageUrl": "https://yakkun.com/ch/zukan/n15",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n15.gif",
+      "iconUrl": "images/pokemon/n15.gif",
       "types": [
         "むしタイプ",
         "どくタイプ"
@@ -731,7 +731,7 @@
       "id": "n15m",
       "name": "メガスピアー",
       "pageUrl": "https://yakkun.com/ch/zukan/n15m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n15m.gif",
+      "iconUrl": "images/pokemon/n15m.gif",
       "types": [
         "むしタイプ",
         "どくタイプ"
@@ -809,7 +809,7 @@
       "id": "n18",
       "name": "ピジョット",
       "pageUrl": "https://yakkun.com/ch/zukan/n18",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n18.gif",
+      "iconUrl": "images/pokemon/n18.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -865,7 +865,7 @@
       "id": "n18m",
       "name": "メガピジョット",
       "pageUrl": "https://yakkun.com/ch/zukan/n18m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n18m.gif",
+      "iconUrl": "images/pokemon/n18m.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -921,7 +921,7 @@
       "id": "n24",
       "name": "アーボック",
       "pageUrl": "https://yakkun.com/ch/zukan/n24",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n24.gif",
+      "iconUrl": "images/pokemon/n24.gif",
       "types": [
         "どくタイプ"
       ],
@@ -1015,7 +1015,7 @@
       "id": "n25",
       "name": "ピカチュウ",
       "pageUrl": "https://yakkun.com/ch/zukan/n25",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n25.gif",
+      "iconUrl": "images/pokemon/n25.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -1098,7 +1098,7 @@
       "id": "n26",
       "name": "ライチュウ",
       "pageUrl": "https://yakkun.com/ch/zukan/n26",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n26.gif",
+      "iconUrl": "images/pokemon/n26.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -1187,7 +1187,7 @@
       "id": "n26a",
       "name": "ライチュウ (アローラ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n26a",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n26a.gif",
+      "iconUrl": "images/pokemon/n26a.gif",
       "types": [
         "でんきタイプ",
         "エスパータイプ"
@@ -1346,7 +1346,7 @@
       "id": "n26x",
       "name": "メガライチュウX",
       "pageUrl": "https://yakkun.com/ch/zukan/n26x",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n26x.gif",
+      "iconUrl": "images/pokemon/n26x.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -1435,7 +1435,7 @@
       "id": "n26y",
       "name": "メガライチュウY",
       "pageUrl": "https://yakkun.com/ch/zukan/n26y",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n26y.gif",
+      "iconUrl": "images/pokemon/n26y.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -1524,7 +1524,7 @@
       "id": "n36",
       "name": "ピクシー",
       "pageUrl": "https://yakkun.com/ch/zukan/n36",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n36.gif",
+      "iconUrl": "images/pokemon/n36.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -1639,7 +1639,7 @@
       "id": "n36m",
       "name": "メガピクシー",
       "pageUrl": "https://yakkun.com/ch/zukan/n36m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n36m.gif",
+      "iconUrl": "images/pokemon/n36m.gif",
       "types": [
         "フェアリータイプ",
         "ひこうタイプ"
@@ -1756,7 +1756,7 @@
       "id": "n38",
       "name": "キュウコン",
       "pageUrl": "https://yakkun.com/ch/zukan/n38",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n38.gif",
+      "iconUrl": "images/pokemon/n38.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -1846,7 +1846,7 @@
       "id": "n38a",
       "name": "キュウコン (アローラ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n38a",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n38a.gif",
+      "iconUrl": "images/pokemon/n38a.gif",
       "types": [
         "こおりタイプ",
         "フェアリータイプ"
@@ -1970,7 +1970,7 @@
       "id": "n45",
       "name": "ラフレシア",
       "pageUrl": "https://yakkun.com/ch/zukan/n45",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n45.gif",
+      "iconUrl": "images/pokemon/n45.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -2051,7 +2051,7 @@
       "id": "n59",
       "name": "ウインディ",
       "pageUrl": "https://yakkun.com/ch/zukan/n59",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n59.gif",
+      "iconUrl": "images/pokemon/n59.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -2132,7 +2132,7 @@
       "id": "n59h",
       "name": "ウインディ (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n59h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n59h.gif",
+      "iconUrl": "images/pokemon/n59h.gif",
       "types": [
         "ほのおタイプ",
         "いわタイプ"
@@ -2233,7 +2233,7 @@
       "id": "n65",
       "name": "フーディン",
       "pageUrl": "https://yakkun.com/ch/zukan/n65",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n65.gif",
+      "iconUrl": "images/pokemon/n65.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -2317,7 +2317,7 @@
       "id": "n65m",
       "name": "メガフーディン",
       "pageUrl": "https://yakkun.com/ch/zukan/n65m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n65m.gif",
+      "iconUrl": "images/pokemon/n65m.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -2403,7 +2403,7 @@
       "id": "n68",
       "name": "カイリキー",
       "pageUrl": "https://yakkun.com/ch/zukan/n68",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n68.gif",
+      "iconUrl": "images/pokemon/n68.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -2493,7 +2493,7 @@
       "id": "n71",
       "name": "ウツボット",
       "pageUrl": "https://yakkun.com/ch/zukan/n71",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n71.gif",
+      "iconUrl": "images/pokemon/n71.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -2576,7 +2576,7 @@
       "id": "n71m",
       "name": "メガウツボット",
       "pageUrl": "https://yakkun.com/ch/zukan/n71m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n71m.gif",
+      "iconUrl": "images/pokemon/n71m.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -2660,7 +2660,7 @@
       "id": "n80",
       "name": "ヤドラン",
       "pageUrl": "https://yakkun.com/ch/zukan/n80",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n80.gif",
+      "iconUrl": "images/pokemon/n80.gif",
       "types": [
         "みずタイプ",
         "エスパータイプ"
@@ -2763,7 +2763,7 @@
       "id": "n80m",
       "name": "メガヤドラン",
       "pageUrl": "https://yakkun.com/ch/zukan/n80m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n80m.gif",
+      "iconUrl": "images/pokemon/n80m.gif",
       "types": [
         "みずタイプ",
         "エスパータイプ"
@@ -2866,7 +2866,7 @@
       "id": "n80g",
       "name": "ヤドラン (ガラル)",
       "pageUrl": "https://yakkun.com/ch/zukan/n80g",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n80g.gif",
+      "iconUrl": "images/pokemon/n80g.gif",
       "types": [
         "どくタイプ",
         "エスパータイプ"
@@ -3010,7 +3010,7 @@
       "id": "n94",
       "name": "ゲンガー",
       "pageUrl": "https://yakkun.com/ch/zukan/n94",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n94.gif",
+      "iconUrl": "images/pokemon/n94.gif",
       "types": [
         "ゴーストタイプ",
         "どくタイプ"
@@ -3109,7 +3109,7 @@
       "id": "n94m",
       "name": "メガゲンガー",
       "pageUrl": "https://yakkun.com/ch/zukan/n94m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n94m.gif",
+      "iconUrl": "images/pokemon/n94m.gif",
       "types": [
         "ゴーストタイプ",
         "どくタイプ"
@@ -3207,7 +3207,7 @@
       "id": "n115",
       "name": "ガルーラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n115",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n115.gif",
+      "iconUrl": "images/pokemon/n115.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -3298,7 +3298,7 @@
       "id": "n115m",
       "name": "メガガルーラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n115m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n115m.gif",
+      "iconUrl": "images/pokemon/n115m.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -3386,7 +3386,7 @@
       "id": "n121",
       "name": "スターミー",
       "pageUrl": "https://yakkun.com/ch/zukan/n121",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n121.gif",
+      "iconUrl": "images/pokemon/n121.gif",
       "types": [
         "みずタイプ",
         "エスパータイプ"
@@ -3473,7 +3473,7 @@
       "id": "n121m",
       "name": "メガスターミー",
       "pageUrl": "https://yakkun.com/ch/zukan/n121m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n121m.gif",
+      "iconUrl": "images/pokemon/n121m.gif",
       "types": [
         "みずタイプ",
         "エスパータイプ"
@@ -3559,7 +3559,7 @@
       "id": "n127",
       "name": "カイロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n127",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n127.gif",
+      "iconUrl": "images/pokemon/n127.gif",
       "types": [
         "むしタイプ"
       ],
@@ -3636,7 +3636,7 @@
       "id": "n127m",
       "name": "メガカイロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n127m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n127m.gif",
+      "iconUrl": "images/pokemon/n127m.gif",
       "types": [
         "むしタイプ",
         "ひこうタイプ"
@@ -3712,7 +3712,7 @@
       "id": "n128",
       "name": "ケンタロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n128",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n128.gif",
+      "iconUrl": "images/pokemon/n128.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -3793,7 +3793,7 @@
       "id": "n128a",
       "name": "ケンタロス (パルデア単)",
       "pageUrl": "https://yakkun.com/ch/zukan/n128a",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n128a.gif",
+      "iconUrl": "images/pokemon/n128a.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -3872,7 +3872,7 @@
       "id": "n128b",
       "name": "ケンタロス (パルデア炎)",
       "pageUrl": "https://yakkun.com/ch/zukan/n128b",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n128b.gif",
+      "iconUrl": "images/pokemon/n128b.gif",
       "types": [
         "かくとうタイプ",
         "ほのおタイプ"
@@ -3957,7 +3957,7 @@
       "id": "n128c",
       "name": "ケンタロス (パルデア水)",
       "pageUrl": "https://yakkun.com/ch/zukan/n128c",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n128c.gif",
+      "iconUrl": "images/pokemon/n128c.gif",
       "types": [
         "かくとうタイプ",
         "みずタイプ"
@@ -4041,7 +4041,7 @@
       "id": "n130",
       "name": "ギャラドス",
       "pageUrl": "https://yakkun.com/ch/zukan/n130",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n130.gif",
+      "iconUrl": "images/pokemon/n130.gif",
       "types": [
         "みずタイプ",
         "ひこうタイプ"
@@ -4132,7 +4132,7 @@
       "id": "n130m",
       "name": "メガギャラドス",
       "pageUrl": "https://yakkun.com/ch/zukan/n130m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n130m.gif",
+      "iconUrl": "images/pokemon/n130m.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -4225,7 +4225,7 @@
       "id": "n132",
       "name": "メタモン",
       "pageUrl": "https://yakkun.com/ch/zukan/n132",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n132.gif",
+      "iconUrl": "images/pokemon/n132.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -4249,7 +4249,7 @@
       "id": "n134",
       "name": "シャワーズ",
       "pageUrl": "https://yakkun.com/ch/zukan/n134",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n134.gif",
+      "iconUrl": "images/pokemon/n134.gif",
       "types": [
         "みずタイプ"
       ],
@@ -4331,7 +4331,7 @@
       "id": "n135",
       "name": "サンダース",
       "pageUrl": "https://yakkun.com/ch/zukan/n135",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n135.gif",
+      "iconUrl": "images/pokemon/n135.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -4413,7 +4413,7 @@
       "id": "n136",
       "name": "ブースター",
       "pageUrl": "https://yakkun.com/ch/zukan/n136",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n136.gif",
+      "iconUrl": "images/pokemon/n136.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -4493,7 +4493,7 @@
       "id": "n142",
       "name": "プテラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n142",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n142.gif",
+      "iconUrl": "images/pokemon/n142.gif",
       "types": [
         "いわタイプ",
         "ひこうタイプ"
@@ -4576,7 +4576,7 @@
       "id": "n142m",
       "name": "メガプテラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n142m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n142m.gif",
+      "iconUrl": "images/pokemon/n142m.gif",
       "types": [
         "いわタイプ",
         "ひこうタイプ"
@@ -4660,7 +4660,7 @@
       "id": "n143",
       "name": "カビゴン",
       "pageUrl": "https://yakkun.com/ch/zukan/n143",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n143.gif",
+      "iconUrl": "images/pokemon/n143.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -4767,7 +4767,7 @@
       "id": "n149",
       "name": "カイリュー",
       "pageUrl": "https://yakkun.com/ch/zukan/n149",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n149.gif",
+      "iconUrl": "images/pokemon/n149.gif",
       "types": [
         "ドラゴンタイプ",
         "ひこうタイプ"
@@ -4874,7 +4874,7 @@
       "id": "n149m",
       "name": "メガカイリュー",
       "pageUrl": "https://yakkun.com/ch/zukan/n149m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n149m.gif",
+      "iconUrl": "images/pokemon/n149m.gif",
       "types": [
         "ドラゴンタイプ",
         "ひこうタイプ"
@@ -4980,7 +4980,7 @@
       "id": "n154",
       "name": "メガニウム",
       "pageUrl": "https://yakkun.com/ch/zukan/n154",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n154.gif",
+      "iconUrl": "images/pokemon/n154.gif",
       "types": [
         "くさタイプ"
       ],
@@ -5064,7 +5064,7 @@
       "id": "n154m",
       "name": "メガメガニウム",
       "pageUrl": "https://yakkun.com/ch/zukan/n154m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n154m.gif",
+      "iconUrl": "images/pokemon/n154m.gif",
       "types": [
         "くさタイプ",
         "フェアリータイプ"
@@ -5151,7 +5151,7 @@
       "id": "n157",
       "name": "バクフーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n157",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n157.gif",
+      "iconUrl": "images/pokemon/n157.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -5238,7 +5238,7 @@
       "id": "n157h",
       "name": "バクフーン (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n157h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n157h.gif",
+      "iconUrl": "images/pokemon/n157h.gif",
       "types": [
         "ほのおタイプ",
         "ゴーストタイプ"
@@ -5343,7 +5343,7 @@
       "id": "n160",
       "name": "オーダイル",
       "pageUrl": "https://yakkun.com/ch/zukan/n160",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n160.gif",
+      "iconUrl": "images/pokemon/n160.gif",
       "types": [
         "みずタイプ"
       ],
@@ -5448,7 +5448,7 @@
       "id": "n160m",
       "name": "メガオーダイル",
       "pageUrl": "https://yakkun.com/ch/zukan/n160m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n160m.gif",
+      "iconUrl": "images/pokemon/n160m.gif",
       "types": [
         "みずタイプ",
         "ドラゴンタイプ"
@@ -5553,7 +5553,7 @@
       "id": "n168",
       "name": "アリアドス",
       "pageUrl": "https://yakkun.com/ch/zukan/n168",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n168.gif",
+      "iconUrl": "images/pokemon/n168.gif",
       "types": [
         "むしタイプ",
         "どくタイプ"
@@ -5642,7 +5642,7 @@
       "id": "n181",
       "name": "デンリュウ",
       "pageUrl": "https://yakkun.com/ch/zukan/n181",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n181.gif",
+      "iconUrl": "images/pokemon/n181.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -5732,7 +5732,7 @@
       "id": "n181m",
       "name": "メガデンリュウ",
       "pageUrl": "https://yakkun.com/ch/zukan/n181m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n181m.gif",
+      "iconUrl": "images/pokemon/n181m.gif",
       "types": [
         "でんきタイプ",
         "ドラゴンタイプ"
@@ -5817,7 +5817,7 @@
       "id": "n184",
       "name": "マリルリ",
       "pageUrl": "https://yakkun.com/ch/zukan/n184",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n184.gif",
+      "iconUrl": "images/pokemon/n184.gif",
       "types": [
         "みずタイプ",
         "フェアリータイプ"
@@ -5908,7 +5908,7 @@
       "id": "n186",
       "name": "ニョロトノ",
       "pageUrl": "https://yakkun.com/ch/zukan/n186",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n186.gif",
+      "iconUrl": "images/pokemon/n186.gif",
       "types": [
         "みずタイプ"
       ],
@@ -5989,7 +5989,7 @@
       "id": "n196",
       "name": "エーフィ",
       "pageUrl": "https://yakkun.com/ch/zukan/n196",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n196.gif",
+      "iconUrl": "images/pokemon/n196.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -6079,7 +6079,7 @@
       "id": "n197",
       "name": "ブラッキー",
       "pageUrl": "https://yakkun.com/ch/zukan/n197",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n197.gif",
+      "iconUrl": "images/pokemon/n197.gif",
       "types": [
         "あくタイプ"
       ],
@@ -6169,7 +6169,7 @@
       "id": "n199",
       "name": "ヤドキング",
       "pageUrl": "https://yakkun.com/ch/zukan/n199",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n199.gif",
+      "iconUrl": "images/pokemon/n199.gif",
       "types": [
         "みずタイプ",
         "エスパータイプ"
@@ -6279,7 +6279,7 @@
       "id": "n199g",
       "name": "ヤドキング (ガラル)",
       "pageUrl": "https://yakkun.com/ch/zukan/n199g",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n199g.gif",
+      "iconUrl": "images/pokemon/n199g.gif",
       "types": [
         "どくタイプ",
         "エスパータイプ"
@@ -6417,7 +6417,7 @@
       "id": "n205",
       "name": "フォレトス",
       "pageUrl": "https://yakkun.com/ch/zukan/n205",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n205.gif",
+      "iconUrl": "images/pokemon/n205.gif",
       "types": [
         "むしタイプ",
         "はがねタイプ"
@@ -6510,7 +6510,7 @@
       "id": "n208",
       "name": "ハガネール",
       "pageUrl": "https://yakkun.com/ch/zukan/n208",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n208.gif",
+      "iconUrl": "images/pokemon/n208.gif",
       "types": [
         "はがねタイプ",
         "じめんタイプ"
@@ -6601,7 +6601,7 @@
       "id": "n208m",
       "name": "メガハガネール",
       "pageUrl": "https://yakkun.com/ch/zukan/n208m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n208m.gif",
+      "iconUrl": "images/pokemon/n208m.gif",
       "types": [
         "はがねタイプ",
         "じめんタイプ"
@@ -6690,7 +6690,7 @@
       "id": "n211",
       "name": "ハリーセン",
       "pageUrl": "https://yakkun.com/ch/zukan/n211",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n211.gif",
+      "iconUrl": "images/pokemon/n211.gif",
       "types": [
         "みずタイプ",
         "どくタイプ"
@@ -6779,7 +6779,7 @@
       "id": "n212",
       "name": "ハッサム",
       "pageUrl": "https://yakkun.com/ch/zukan/n212",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n212.gif",
+      "iconUrl": "images/pokemon/n212.gif",
       "types": [
         "むしタイプ",
         "はがねタイプ"
@@ -6868,7 +6868,7 @@
       "id": "n212m",
       "name": "メガハッサム",
       "pageUrl": "https://yakkun.com/ch/zukan/n212m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n212m.gif",
+      "iconUrl": "images/pokemon/n212m.gif",
       "types": [
         "むしタイプ",
         "はがねタイプ"
@@ -6954,7 +6954,7 @@
       "id": "n214",
       "name": "ヘラクロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n214",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n214.gif",
+      "iconUrl": "images/pokemon/n214.gif",
       "types": [
         "むしタイプ",
         "かくとうタイプ"
@@ -7045,7 +7045,7 @@
       "id": "n214m",
       "name": "メガヘラクロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n214m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n214m.gif",
+      "iconUrl": "images/pokemon/n214m.gif",
       "types": [
         "むしタイプ",
         "かくとうタイプ"
@@ -7131,7 +7131,7 @@
       "id": "n227",
       "name": "エアームド",
       "pageUrl": "https://yakkun.com/ch/zukan/n227",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n227.gif",
+      "iconUrl": "images/pokemon/n227.gif",
       "types": [
         "はがねタイプ",
         "ひこうタイプ"
@@ -7207,7 +7207,7 @@
       "id": "n227m",
       "name": "メガエアームド",
       "pageUrl": "https://yakkun.com/ch/zukan/n227m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n227m.gif",
+      "iconUrl": "images/pokemon/n227m.gif",
       "types": [
         "はがねタイプ",
         "ひこうタイプ"
@@ -7277,7 +7277,7 @@
       "id": "n229",
       "name": "ヘルガー",
       "pageUrl": "https://yakkun.com/ch/zukan/n229",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n229.gif",
+      "iconUrl": "images/pokemon/n229.gif",
       "types": [
         "あくタイプ",
         "ほのおタイプ"
@@ -7369,7 +7369,7 @@
       "id": "n229m",
       "name": "メガヘルガー",
       "pageUrl": "https://yakkun.com/ch/zukan/n229m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n229m.gif",
+      "iconUrl": "images/pokemon/n229m.gif",
       "types": [
         "あくタイプ",
         "ほのおタイプ"
@@ -7460,7 +7460,7 @@
       "id": "n248",
       "name": "バンギラス",
       "pageUrl": "https://yakkun.com/ch/zukan/n248",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n248.gif",
+      "iconUrl": "images/pokemon/n248.gif",
       "types": [
         "いわタイプ",
         "あくタイプ"
@@ -7576,7 +7576,7 @@
       "id": "n248m",
       "name": "メガバンギラス",
       "pageUrl": "https://yakkun.com/ch/zukan/n248m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n248m.gif",
+      "iconUrl": "images/pokemon/n248m.gif",
       "types": [
         "いわタイプ",
         "あくタイプ"
@@ -7690,7 +7690,7 @@
       "id": "n254",
       "name": "ジュカイン",
       "pageUrl": "https://yakkun.com/ch/zukan/n254",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n254.gif",
+      "iconUrl": "images/pokemon/n254.gif",
       "types": [
         "くさタイプ"
       ],
@@ -7790,7 +7790,7 @@
       "id": "n254m",
       "name": "メガジュカイン",
       "pageUrl": "https://yakkun.com/ch/zukan/n254m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n254m.gif",
+      "iconUrl": "images/pokemon/n254m.gif",
       "types": [
         "くさタイプ",
         "ドラゴンタイプ"
@@ -7889,7 +7889,7 @@
       "id": "n257",
       "name": "バシャーモ",
       "pageUrl": "https://yakkun.com/ch/zukan/n257",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n257.gif",
+      "iconUrl": "images/pokemon/n257.gif",
       "types": [
         "ほのおタイプ",
         "かくとうタイプ"
@@ -7991,7 +7991,7 @@
       "id": "n257m",
       "name": "メガバシャーモ",
       "pageUrl": "https://yakkun.com/ch/zukan/n257m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n257m.gif",
+      "iconUrl": "images/pokemon/n257m.gif",
       "types": [
         "ほのおタイプ",
         "かくとうタイプ"
@@ -8092,7 +8092,7 @@
       "id": "n260",
       "name": "ラグラージ",
       "pageUrl": "https://yakkun.com/ch/zukan/n260",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n260.gif",
+      "iconUrl": "images/pokemon/n260.gif",
       "types": [
         "みずタイプ",
         "じめんタイプ"
@@ -8193,7 +8193,7 @@
       "id": "n260m",
       "name": "メガラグラージ",
       "pageUrl": "https://yakkun.com/ch/zukan/n260m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n260m.gif",
+      "iconUrl": "images/pokemon/n260m.gif",
       "types": [
         "みずタイプ",
         "じめんタイプ"
@@ -8291,7 +8291,7 @@
       "id": "n279",
       "name": "ペリッパー",
       "pageUrl": "https://yakkun.com/ch/zukan/n279",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n279.gif",
+      "iconUrl": "images/pokemon/n279.gif",
       "types": [
         "みずタイプ",
         "ひこうタイプ"
@@ -8369,7 +8369,7 @@
       "id": "n282",
       "name": "サーナイト",
       "pageUrl": "https://yakkun.com/ch/zukan/n282",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n282.gif",
+      "iconUrl": "images/pokemon/n282.gif",
       "types": [
         "エスパータイプ",
         "フェアリータイプ"
@@ -8474,7 +8474,7 @@
       "id": "n282m",
       "name": "メガサーナイト",
       "pageUrl": "https://yakkun.com/ch/zukan/n282m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n282m.gif",
+      "iconUrl": "images/pokemon/n282m.gif",
       "types": [
         "エスパータイプ",
         "フェアリータイプ"
@@ -8578,7 +8578,7 @@
       "id": "n302",
       "name": "ヤミラミ",
       "pageUrl": "https://yakkun.com/ch/zukan/n302",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n302.gif",
+      "iconUrl": "images/pokemon/n302.gif",
       "types": [
         "あくタイプ",
         "ゴーストタイプ"
@@ -8691,7 +8691,7 @@
       "id": "n302m",
       "name": "メガヤミラミ",
       "pageUrl": "https://yakkun.com/ch/zukan/n302m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n302m.gif",
+      "iconUrl": "images/pokemon/n302m.gif",
       "types": [
         "あくタイプ",
         "ゴーストタイプ"
@@ -8796,7 +8796,7 @@
       "id": "n303",
       "name": "クチート",
       "pageUrl": "https://yakkun.com/ch/zukan/n303",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n303.gif",
+      "iconUrl": "images/pokemon/n303.gif",
       "types": [
         "はがねタイプ",
         "フェアリータイプ"
@@ -8892,7 +8892,7 @@
       "id": "n303m",
       "name": "メガクチート",
       "pageUrl": "https://yakkun.com/ch/zukan/n303m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n303m.gif",
+      "iconUrl": "images/pokemon/n303m.gif",
       "types": [
         "はがねタイプ",
         "フェアリータイプ"
@@ -8988,7 +8988,7 @@
       "id": "n306",
       "name": "ボスゴドラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n306",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n306.gif",
+      "iconUrl": "images/pokemon/n306.gif",
       "types": [
         "はがねタイプ",
         "いわタイプ"
@@ -9096,7 +9096,7 @@
       "id": "n306m",
       "name": "メガボスゴドラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n306m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n306m.gif",
+      "iconUrl": "images/pokemon/n306m.gif",
       "types": [
         "はがねタイプ"
       ],
@@ -9198,7 +9198,7 @@
       "id": "n308",
       "name": "チャーレム",
       "pageUrl": "https://yakkun.com/ch/zukan/n308",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n308.gif",
+      "iconUrl": "images/pokemon/n308.gif",
       "types": [
         "かくとうタイプ",
         "エスパータイプ"
@@ -9299,7 +9299,7 @@
       "id": "n308m",
       "name": "メガチャーレム",
       "pageUrl": "https://yakkun.com/ch/zukan/n308m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n308m.gif",
+      "iconUrl": "images/pokemon/n308m.gif",
       "types": [
         "かくとうタイプ",
         "エスパータイプ"
@@ -9399,7 +9399,7 @@
       "id": "n310",
       "name": "ライボルト",
       "pageUrl": "https://yakkun.com/ch/zukan/n310",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n310.gif",
+      "iconUrl": "images/pokemon/n310.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -9472,7 +9472,7 @@
       "id": "n310m",
       "name": "メガライボルト",
       "pageUrl": "https://yakkun.com/ch/zukan/n310m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n310m.gif",
+      "iconUrl": "images/pokemon/n310m.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -9544,7 +9544,7 @@
       "id": "n319",
       "name": "サメハダー",
       "pageUrl": "https://yakkun.com/ch/zukan/n319",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n319.gif",
+      "iconUrl": "images/pokemon/n319.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -9625,7 +9625,7 @@
       "id": "n319m",
       "name": "メガサメハダー",
       "pageUrl": "https://yakkun.com/ch/zukan/n319m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n319m.gif",
+      "iconUrl": "images/pokemon/n319m.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -9708,7 +9708,7 @@
       "id": "n323",
       "name": "バクーダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n323",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n323.gif",
+      "iconUrl": "images/pokemon/n323.gif",
       "types": [
         "ほのおタイプ",
         "じめんタイプ"
@@ -9800,7 +9800,7 @@
       "id": "n323m",
       "name": "メガバクーダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n323m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n323m.gif",
+      "iconUrl": "images/pokemon/n323m.gif",
       "types": [
         "ほのおタイプ",
         "じめんタイプ"
@@ -9890,7 +9890,7 @@
       "id": "n324",
       "name": "コータス",
       "pageUrl": "https://yakkun.com/ch/zukan/n324",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n324.gif",
+      "iconUrl": "images/pokemon/n324.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -9971,7 +9971,7 @@
       "id": "n334",
       "name": "チルタリス",
       "pageUrl": "https://yakkun.com/ch/zukan/n334",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n334.gif",
+      "iconUrl": "images/pokemon/n334.gif",
       "types": [
         "ドラゴンタイプ",
         "ひこうタイプ"
@@ -10060,7 +10060,7 @@
       "id": "n334m",
       "name": "メガチルタリス",
       "pageUrl": "https://yakkun.com/ch/zukan/n334m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n334m.gif",
+      "iconUrl": "images/pokemon/n334m.gif",
       "types": [
         "ドラゴンタイプ",
         "フェアリータイプ"
@@ -10147,7 +10147,7 @@
       "id": "n350",
       "name": "ミロカロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n350",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n350.gif",
+      "iconUrl": "images/pokemon/n350.gif",
       "types": [
         "みずタイプ"
       ],
@@ -10232,7 +10232,7 @@
       "id": "n351",
       "name": "ポワルン",
       "pageUrl": "https://yakkun.com/ch/zukan/n351",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n351.gif",
+      "iconUrl": "images/pokemon/n351.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -10291,7 +10291,7 @@
       "id": "n354",
       "name": "ジュペッタ",
       "pageUrl": "https://yakkun.com/ch/zukan/n354",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n354.gif",
+      "iconUrl": "images/pokemon/n354.gif",
       "types": [
         "ゴーストタイプ"
       ],
@@ -10381,7 +10381,7 @@
       "id": "n354m",
       "name": "メガジュペッタ",
       "pageUrl": "https://yakkun.com/ch/zukan/n354m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n354m.gif",
+      "iconUrl": "images/pokemon/n354m.gif",
       "types": [
         "ゴーストタイプ"
       ],
@@ -10467,7 +10467,7 @@
       "id": "n358",
       "name": "チリーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n358",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n358.gif",
+      "iconUrl": "images/pokemon/n358.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -10554,7 +10554,7 @@
       "id": "n358m",
       "name": "メガチリーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n358m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n358m.gif",
+      "iconUrl": "images/pokemon/n358m.gif",
       "types": [
         "エスパータイプ",
         "はがねタイプ"
@@ -10643,7 +10643,7 @@
       "id": "n359",
       "name": "アブソル",
       "pageUrl": "https://yakkun.com/ch/zukan/n359",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n359.gif",
+      "iconUrl": "images/pokemon/n359.gif",
       "types": [
         "あくタイプ"
       ],
@@ -10738,7 +10738,7 @@
       "id": "n359m",
       "name": "メガアブソル",
       "pageUrl": "https://yakkun.com/ch/zukan/n359m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n359m.gif",
+      "iconUrl": "images/pokemon/n359m.gif",
       "types": [
         "あくタイプ"
       ],
@@ -10829,7 +10829,7 @@
       "id": "n362",
       "name": "オニゴーリ",
       "pageUrl": "https://yakkun.com/ch/zukan/n362",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n362.gif",
+      "iconUrl": "images/pokemon/n362.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -10907,7 +10907,7 @@
       "id": "n362m",
       "name": "メガオニゴーリ",
       "pageUrl": "https://yakkun.com/ch/zukan/n362m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n362m.gif",
+      "iconUrl": "images/pokemon/n362m.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -10981,7 +10981,7 @@
       "id": "n376",
       "name": "メタグロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n376",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n376.gif",
+      "iconUrl": "images/pokemon/n376.gif",
       "types": [
         "はがねタイプ",
         "エスパータイプ"
@@ -11073,7 +11073,7 @@
       "id": "n376m",
       "name": "メガメタグロス",
       "pageUrl": "https://yakkun.com/ch/zukan/n376m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n376m.gif",
+      "iconUrl": "images/pokemon/n376m.gif",
       "types": [
         "はがねタイプ",
         "エスパータイプ"
@@ -11160,7 +11160,7 @@
       "id": "n389",
       "name": "ドダイトス",
       "pageUrl": "https://yakkun.com/ch/zukan/n389",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n389.gif",
+      "iconUrl": "images/pokemon/n389.gif",
       "types": [
         "くさタイプ",
         "じめんタイプ"
@@ -11256,7 +11256,7 @@
       "id": "n392",
       "name": "ゴウカザル",
       "pageUrl": "https://yakkun.com/ch/zukan/n392",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n392.gif",
+      "iconUrl": "images/pokemon/n392.gif",
       "types": [
         "ほのおタイプ",
         "かくとうタイプ"
@@ -11370,7 +11370,7 @@
       "id": "n395",
       "name": "エンペルト",
       "pageUrl": "https://yakkun.com/ch/zukan/n395",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n395.gif",
+      "iconUrl": "images/pokemon/n395.gif",
       "types": [
         "みずタイプ",
         "はがねタイプ"
@@ -11468,7 +11468,7 @@
       "id": "n398",
       "name": "ムクホーク",
       "pageUrl": "https://yakkun.com/ch/zukan/n398",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n398.gif",
+      "iconUrl": "images/pokemon/n398.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -11535,7 +11535,7 @@
       "id": "n398m",
       "name": "メガムクホーク",
       "pageUrl": "https://yakkun.com/ch/zukan/n398m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n398m.gif",
+      "iconUrl": "images/pokemon/n398m.gif",
       "types": [
         "かくとうタイプ",
         "ひこうタイプ"
@@ -11602,7 +11602,7 @@
       "id": "n405",
       "name": "レントラー",
       "pageUrl": "https://yakkun.com/ch/zukan/n405",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n405.gif",
+      "iconUrl": "images/pokemon/n405.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -11679,7 +11679,7 @@
       "id": "n407",
       "name": "ロズレイド",
       "pageUrl": "https://yakkun.com/ch/zukan/n407",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n407.gif",
+      "iconUrl": "images/pokemon/n407.gif",
       "types": [
         "くさタイプ",
         "どくタイプ"
@@ -11755,7 +11755,7 @@
       "id": "n409",
       "name": "ラムパルド",
       "pageUrl": "https://yakkun.com/ch/zukan/n409",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n409.gif",
+      "iconUrl": "images/pokemon/n409.gif",
       "types": [
         "いわタイプ"
       ],
@@ -11853,7 +11853,7 @@
       "id": "n411",
       "name": "トリデプス",
       "pageUrl": "https://yakkun.com/ch/zukan/n411",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n411.gif",
+      "iconUrl": "images/pokemon/n411.gif",
       "types": [
         "いわタイプ",
         "はがねタイプ"
@@ -11945,7 +11945,7 @@
       "id": "n428",
       "name": "ミミロップ",
       "pageUrl": "https://yakkun.com/ch/zukan/n428",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n428.gif",
+      "iconUrl": "images/pokemon/n428.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -12045,7 +12045,7 @@
       "id": "n428m",
       "name": "メガミミロップ",
       "pageUrl": "https://yakkun.com/ch/zukan/n428m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n428m.gif",
+      "iconUrl": "images/pokemon/n428m.gif",
       "types": [
         "ノーマルタイプ",
         "かくとうタイプ"
@@ -12140,7 +12140,7 @@
       "id": "n442",
       "name": "ミカルゲ",
       "pageUrl": "https://yakkun.com/ch/zukan/n442",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n442.gif",
+      "iconUrl": "images/pokemon/n442.gif",
       "types": [
         "ゴーストタイプ",
         "あくタイプ"
@@ -12220,7 +12220,7 @@
       "id": "n445",
       "name": "ガブリアス",
       "pageUrl": "https://yakkun.com/ch/zukan/n445",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n445.gif",
+      "iconUrl": "images/pokemon/n445.gif",
       "types": [
         "ドラゴンタイプ",
         "じめんタイプ"
@@ -12302,7 +12302,7 @@
       "id": "n445m",
       "name": "メガガブリアス",
       "pageUrl": "https://yakkun.com/ch/zukan/n445m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n445m.gif",
+      "iconUrl": "images/pokemon/n445m.gif",
       "types": [
         "ドラゴンタイプ",
         "じめんタイプ"
@@ -12384,7 +12384,7 @@
       "id": "n448",
       "name": "ルカリオ",
       "pageUrl": "https://yakkun.com/ch/zukan/n448",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n448.gif",
+      "iconUrl": "images/pokemon/n448.gif",
       "types": [
         "かくとうタイプ",
         "はがねタイプ"
@@ -12492,7 +12492,7 @@
       "id": "n448m",
       "name": "メガルカリオ",
       "pageUrl": "https://yakkun.com/ch/zukan/n448m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n448m.gif",
+      "iconUrl": "images/pokemon/n448m.gif",
       "types": [
         "かくとうタイプ",
         "はがねタイプ"
@@ -12595,7 +12595,7 @@
       "id": "n450",
       "name": "カバルドン",
       "pageUrl": "https://yakkun.com/ch/zukan/n450",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n450.gif",
+      "iconUrl": "images/pokemon/n450.gif",
       "types": [
         "じめんタイプ"
       ],
@@ -12669,7 +12669,7 @@
       "id": "n454",
       "name": "ドクロッグ",
       "pageUrl": "https://yakkun.com/ch/zukan/n454",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n454.gif",
+      "iconUrl": "images/pokemon/n454.gif",
       "types": [
         "どくタイプ",
         "かくとうタイプ"
@@ -12775,7 +12775,7 @@
       "id": "n460",
       "name": "ユキノオー",
       "pageUrl": "https://yakkun.com/ch/zukan/n460",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n460.gif",
+      "iconUrl": "images/pokemon/n460.gif",
       "types": [
         "くさタイプ",
         "こおりタイプ"
@@ -12864,7 +12864,7 @@
       "id": "n460m",
       "name": "メガユキノオー",
       "pageUrl": "https://yakkun.com/ch/zukan/n460m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n460m.gif",
+      "iconUrl": "images/pokemon/n460m.gif",
       "types": [
         "くさタイプ",
         "こおりタイプ"
@@ -12949,7 +12949,7 @@
       "id": "n461",
       "name": "マニューラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n461",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n461.gif",
+      "iconUrl": "images/pokemon/n461.gif",
       "types": [
         "あくタイプ",
         "こおりタイプ"
@@ -13045,7 +13045,7 @@
       "id": "n464",
       "name": "ドサイドン",
       "pageUrl": "https://yakkun.com/ch/zukan/n464",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n464.gif",
+      "iconUrl": "images/pokemon/n464.gif",
       "types": [
         "じめんタイプ",
         "いわタイプ"
@@ -13161,7 +13161,7 @@
       "id": "n470",
       "name": "リーフィア",
       "pageUrl": "https://yakkun.com/ch/zukan/n470",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n470.gif",
+      "iconUrl": "images/pokemon/n470.gif",
       "types": [
         "くさタイプ"
       ],
@@ -13242,7 +13242,7 @@
       "id": "n471",
       "name": "グレイシア",
       "pageUrl": "https://yakkun.com/ch/zukan/n471",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n471.gif",
+      "iconUrl": "images/pokemon/n471.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -13323,7 +13323,7 @@
       "id": "n472",
       "name": "グライオン",
       "pageUrl": "https://yakkun.com/ch/zukan/n472",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n472.gif",
+      "iconUrl": "images/pokemon/n472.gif",
       "types": [
         "じめんタイプ",
         "ひこうタイプ"
@@ -13422,7 +13422,7 @@
       "id": "n473",
       "name": "マンムー",
       "pageUrl": "https://yakkun.com/ch/zukan/n473",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n473.gif",
+      "iconUrl": "images/pokemon/n473.gif",
       "types": [
         "こおりタイプ",
         "じめんタイプ"
@@ -13510,7 +13510,7 @@
       "id": "n475",
       "name": "エルレイド",
       "pageUrl": "https://yakkun.com/ch/zukan/n475",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n475.gif",
+      "iconUrl": "images/pokemon/n475.gif",
       "types": [
         "エスパータイプ",
         "かくとうタイプ"
@@ -13640,7 +13640,7 @@
       "id": "n475m",
       "name": "メガエルレイド",
       "pageUrl": "https://yakkun.com/ch/zukan/n475m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n475m.gif",
+      "iconUrl": "images/pokemon/n475m.gif",
       "types": [
         "エスパータイプ",
         "かくとうタイプ"
@@ -13764,7 +13764,7 @@
       "id": "n478",
       "name": "ユキメノコ",
       "pageUrl": "https://yakkun.com/ch/zukan/n478",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n478.gif",
+      "iconUrl": "images/pokemon/n478.gif",
       "types": [
         "こおりタイプ",
         "ゴーストタイプ"
@@ -13856,7 +13856,7 @@
       "id": "n478m",
       "name": "メガユキメノコ",
       "pageUrl": "https://yakkun.com/ch/zukan/n478m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n478m.gif",
+      "iconUrl": "images/pokemon/n478m.gif",
       "types": [
         "こおりタイプ",
         "ゴーストタイプ"
@@ -13944,7 +13944,7 @@
       "id": "n479",
       "name": "ロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479.gif",
+      "iconUrl": "images/pokemon/n479.gif",
       "types": [
         "でんきタイプ",
         "ゴーストタイプ"
@@ -14009,7 +14009,7 @@
       "id": "n479h",
       "name": "ヒートロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479h.gif",
+      "iconUrl": "images/pokemon/n479h.gif",
       "types": [
         "でんきタイプ",
         "ほのおタイプ"
@@ -14077,7 +14077,7 @@
       "id": "n479w",
       "name": "ウォッシュロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479w",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479w.gif",
+      "iconUrl": "images/pokemon/n479w.gif",
       "types": [
         "でんきタイプ",
         "みずタイプ"
@@ -14142,7 +14142,7 @@
       "id": "n479f",
       "name": "フロストロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479f.gif",
+      "iconUrl": "images/pokemon/n479f.gif",
       "types": [
         "でんきタイプ",
         "こおりタイプ"
@@ -14210,7 +14210,7 @@
       "id": "n479s",
       "name": "スピンロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479s",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479s.gif",
+      "iconUrl": "images/pokemon/n479s.gif",
       "types": [
         "でんきタイプ",
         "ひこうタイプ"
@@ -14278,7 +14278,7 @@
       "id": "n479c",
       "name": "カットロトム",
       "pageUrl": "https://yakkun.com/ch/zukan/n479c",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n479c.gif",
+      "iconUrl": "images/pokemon/n479c.gif",
       "types": [
         "でんきタイプ",
         "くさタイプ"
@@ -14346,7 +14346,7 @@
       "id": "n497",
       "name": "ジャローダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n497",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n497.gif",
+      "iconUrl": "images/pokemon/n497.gif",
       "types": [
         "くさタイプ"
       ],
@@ -14422,7 +14422,7 @@
       "id": "n500",
       "name": "エンブオー",
       "pageUrl": "https://yakkun.com/ch/zukan/n500",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n500.gif",
+      "iconUrl": "images/pokemon/n500.gif",
       "types": [
         "ほのおタイプ",
         "かくとうタイプ"
@@ -14525,7 +14525,7 @@
       "id": "n500m",
       "name": "メガエンブオー",
       "pageUrl": "https://yakkun.com/ch/zukan/n500m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n500m.gif",
+      "iconUrl": "images/pokemon/n500m.gif",
       "types": [
         "ほのおタイプ",
         "かくとうタイプ"
@@ -14627,7 +14627,7 @@
       "id": "n503",
       "name": "ダイケンキ",
       "pageUrl": "https://yakkun.com/ch/zukan/n503",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n503.gif",
+      "iconUrl": "images/pokemon/n503.gif",
       "types": [
         "みずタイプ"
       ],
@@ -14711,7 +14711,7 @@
       "id": "n503h",
       "name": "ダイケンキ (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n503h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n503h.gif",
+      "iconUrl": "images/pokemon/n503h.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -14813,7 +14813,7 @@
       "id": "n505",
       "name": "ミルホッグ",
       "pageUrl": "https://yakkun.com/ch/zukan/n505",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n505.gif",
+      "iconUrl": "images/pokemon/n505.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -14889,7 +14889,7 @@
       "id": "n510",
       "name": "レパルダス",
       "pageUrl": "https://yakkun.com/ch/zukan/n510",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n510.gif",
+      "iconUrl": "images/pokemon/n510.gif",
       "types": [
         "あくタイプ"
       ],
@@ -14973,7 +14973,7 @@
       "id": "n512",
       "name": "ヤナッキー",
       "pageUrl": "https://yakkun.com/ch/zukan/n512",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n512.gif",
+      "iconUrl": "images/pokemon/n512.gif",
       "types": [
         "くさタイプ"
       ],
@@ -15046,7 +15046,7 @@
       "id": "n514",
       "name": "バオッキー",
       "pageUrl": "https://yakkun.com/ch/zukan/n514",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n514.gif",
+      "iconUrl": "images/pokemon/n514.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -15124,7 +15124,7 @@
       "id": "n516",
       "name": "ヒヤッキー",
       "pageUrl": "https://yakkun.com/ch/zukan/n516",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n516.gif",
+      "iconUrl": "images/pokemon/n516.gif",
       "types": [
         "みずタイプ"
       ],
@@ -15199,7 +15199,7 @@
       "id": "n518",
       "name": "ムシャーナ",
       "pageUrl": "https://yakkun.com/ch/zukan/n518",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n518.gif",
+      "iconUrl": "images/pokemon/n518.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -15276,7 +15276,7 @@
       "id": "n530",
       "name": "ドリュウズ",
       "pageUrl": "https://yakkun.com/ch/zukan/n530",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n530.gif",
+      "iconUrl": "images/pokemon/n530.gif",
       "types": [
         "じめんタイプ",
         "はがねタイプ"
@@ -15354,7 +15354,7 @@
       "id": "n530m",
       "name": "メガドリュウズ",
       "pageUrl": "https://yakkun.com/ch/zukan/n530m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n530m.gif",
+      "iconUrl": "images/pokemon/n530m.gif",
       "types": [
         "じめんタイプ",
         "はがねタイプ"
@@ -15427,7 +15427,7 @@
       "id": "n531",
       "name": "タブンネ",
       "pageUrl": "https://yakkun.com/ch/zukan/n531",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n531.gif",
+      "iconUrl": "images/pokemon/n531.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -15520,7 +15520,7 @@
       "id": "n531m",
       "name": "メガタブンネ",
       "pageUrl": "https://yakkun.com/ch/zukan/n531m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n531m.gif",
+      "iconUrl": "images/pokemon/n531m.gif",
       "types": [
         "ノーマルタイプ",
         "フェアリータイプ"
@@ -15612,7 +15612,7 @@
       "id": "n534",
       "name": "ローブシン",
       "pageUrl": "https://yakkun.com/ch/zukan/n534",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n534.gif",
+      "iconUrl": "images/pokemon/n534.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -15697,7 +15697,7 @@
       "id": "n545",
       "name": "ペンドラー",
       "pageUrl": "https://yakkun.com/ch/zukan/n545",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n545.gif",
+      "iconUrl": "images/pokemon/n545.gif",
       "types": [
         "むしタイプ",
         "どくタイプ"
@@ -15774,7 +15774,7 @@
       "id": "n545m",
       "name": "メガペンドラー",
       "pageUrl": "https://yakkun.com/ch/zukan/n545m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n545m.gif",
+      "iconUrl": "images/pokemon/n545m.gif",
       "types": [
         "むしタイプ",
         "どくタイプ"
@@ -15849,7 +15849,7 @@
       "id": "n547",
       "name": "エルフーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n547",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n547.gif",
+      "iconUrl": "images/pokemon/n547.gif",
       "types": [
         "くさタイプ",
         "フェアリータイプ"
@@ -15924,7 +15924,7 @@
       "id": "n553",
       "name": "ワルビアル",
       "pageUrl": "https://yakkun.com/ch/zukan/n553",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n553.gif",
+      "iconUrl": "images/pokemon/n553.gif",
       "types": [
         "じめんタイプ",
         "あくタイプ"
@@ -16032,7 +16032,7 @@
       "id": "n560",
       "name": "ズルズキン",
       "pageUrl": "https://yakkun.com/ch/zukan/n560",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n560.gif",
+      "iconUrl": "images/pokemon/n560.gif",
       "types": [
         "あくタイプ",
         "かくとうタイプ"
@@ -16139,7 +16139,7 @@
       "id": "n560m",
       "name": "メガズルズキン",
       "pageUrl": "https://yakkun.com/ch/zukan/n560m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n560m.gif",
+      "iconUrl": "images/pokemon/n560m.gif",
       "types": [
         "あくタイプ",
         "かくとうタイプ"
@@ -16245,7 +16245,7 @@
       "id": "n563",
       "name": "デスカーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n563",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n563.gif",
+      "iconUrl": "images/pokemon/n563.gif",
       "types": [
         "ゴーストタイプ"
       ],
@@ -16321,7 +16321,7 @@
       "id": "n569",
       "name": "ダストダス",
       "pageUrl": "https://yakkun.com/ch/zukan/n569",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n569.gif",
+      "iconUrl": "images/pokemon/n569.gif",
       "types": [
         "どくタイプ"
       ],
@@ -16398,7 +16398,7 @@
       "id": "n571",
       "name": "ゾロアーク",
       "pageUrl": "https://yakkun.com/ch/zukan/n571",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n571.gif",
+      "iconUrl": "images/pokemon/n571.gif",
       "types": [
         "あくタイプ"
       ],
@@ -16490,7 +16490,7 @@
       "id": "n571h",
       "name": "ゾロアーク (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n571h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n571h.gif",
+      "iconUrl": "images/pokemon/n571h.gif",
       "types": [
         "ノーマルタイプ",
         "ゴーストタイプ"
@@ -16595,7 +16595,7 @@
       "id": "n579",
       "name": "ランクルス",
       "pageUrl": "https://yakkun.com/ch/zukan/n579",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n579.gif",
+      "iconUrl": "images/pokemon/n579.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -16685,7 +16685,7 @@
       "id": "n584",
       "name": "バイバニラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n584",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n584.gif",
+      "iconUrl": "images/pokemon/n584.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -16750,7 +16750,7 @@
       "id": "n587",
       "name": "エモンガ",
       "pageUrl": "https://yakkun.com/ch/zukan/n587",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n587.gif",
+      "iconUrl": "images/pokemon/n587.gif",
       "types": [
         "でんきタイプ",
         "ひこうタイプ"
@@ -16820,7 +16820,7 @@
       "id": "n604",
       "name": "シビルドン",
       "pageUrl": "https://yakkun.com/ch/zukan/n604",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n604.gif",
+      "iconUrl": "images/pokemon/n604.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -16917,7 +16917,7 @@
       "id": "n604m",
       "name": "メガシビルドン",
       "pageUrl": "https://yakkun.com/ch/zukan/n604m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n604m.gif",
+      "iconUrl": "images/pokemon/n604m.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -17018,7 +17018,7 @@
       "id": "n609",
       "name": "シャンデラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n609",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n609.gif",
+      "iconUrl": "images/pokemon/n609.gif",
       "types": [
         "ゴーストタイプ",
         "ほのおタイプ"
@@ -17097,7 +17097,7 @@
       "id": "n609m",
       "name": "メガシャンデラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n609m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n609m.gif",
+      "iconUrl": "images/pokemon/n609m.gif",
       "types": [
         "ゴーストタイプ",
         "ほのおタイプ"
@@ -17177,7 +17177,7 @@
       "id": "n614",
       "name": "ツンベアー",
       "pageUrl": "https://yakkun.com/ch/zukan/n614",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n614.gif",
+      "iconUrl": "images/pokemon/n614.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -17273,7 +17273,7 @@
       "id": "n618",
       "name": "マッギョ",
       "pageUrl": "https://yakkun.com/ch/zukan/n618",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n618.gif",
+      "iconUrl": "images/pokemon/n618.gif",
       "types": [
         "じめんタイプ",
         "でんきタイプ"
@@ -17348,7 +17348,7 @@
       "id": "n618g",
       "name": "マッギョ (ガラル)",
       "pageUrl": "https://yakkun.com/ch/zukan/n618g",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n618g.gif",
+      "iconUrl": "images/pokemon/n618g.gif",
       "types": [
         "じめんタイプ",
         "はがねタイプ"
@@ -17428,7 +17428,7 @@
       "id": "n623",
       "name": "ゴルーグ",
       "pageUrl": "https://yakkun.com/ch/zukan/n623",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n623.gif",
+      "iconUrl": "images/pokemon/n623.gif",
       "types": [
         "じめんタイプ",
         "ゴーストタイプ"
@@ -17531,7 +17531,7 @@
       "id": "n623m",
       "name": "メガゴルーグ",
       "pageUrl": "https://yakkun.com/ch/zukan/n623m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n623m.gif",
+      "iconUrl": "images/pokemon/n623m.gif",
       "types": [
         "じめんタイプ",
         "ゴーストタイプ"
@@ -17628,7 +17628,7 @@
       "id": "n635",
       "name": "サザンドラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n635",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n635.gif",
+      "iconUrl": "images/pokemon/n635.gif",
       "types": [
         "あくタイプ",
         "ドラゴンタイプ"
@@ -17729,7 +17729,7 @@
       "id": "n637",
       "name": "ウルガモス",
       "pageUrl": "https://yakkun.com/ch/zukan/n637",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n637.gif",
+      "iconUrl": "images/pokemon/n637.gif",
       "types": [
         "むしタイプ",
         "ほのおタイプ"
@@ -17810,7 +17810,7 @@
       "id": "n652",
       "name": "ブリガロン",
       "pageUrl": "https://yakkun.com/ch/zukan/n652",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n652.gif",
+      "iconUrl": "images/pokemon/n652.gif",
       "types": [
         "くさタイプ",
         "かくとうタイプ"
@@ -17921,7 +17921,7 @@
       "id": "n652m",
       "name": "メガブリガロン",
       "pageUrl": "https://yakkun.com/ch/zukan/n652m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n652m.gif",
+      "iconUrl": "images/pokemon/n652m.gif",
       "types": [
         "くさタイプ",
         "かくとうタイプ"
@@ -18031,7 +18031,7 @@
       "id": "n655",
       "name": "マフォクシー",
       "pageUrl": "https://yakkun.com/ch/zukan/n655",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n655.gif",
+      "iconUrl": "images/pokemon/n655.gif",
       "types": [
         "ほのおタイプ",
         "エスパータイプ"
@@ -18127,7 +18127,7 @@
       "id": "n655m",
       "name": "メガマフォクシー",
       "pageUrl": "https://yakkun.com/ch/zukan/n655m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n655m.gif",
+      "iconUrl": "images/pokemon/n655m.gif",
       "types": [
         "ほのおタイプ",
         "エスパータイプ"
@@ -18222,7 +18222,7 @@
       "id": "n658",
       "name": "ゲッコウガ",
       "pageUrl": "https://yakkun.com/ch/zukan/n658",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n658.gif",
+      "iconUrl": "images/pokemon/n658.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -18310,7 +18310,7 @@
       "id": "n658m",
       "name": "メガゲッコウガ",
       "pageUrl": "https://yakkun.com/ch/zukan/n658m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n658m.gif",
+      "iconUrl": "images/pokemon/n658m.gif",
       "types": [
         "みずタイプ",
         "あくタイプ"
@@ -18397,7 +18397,7 @@
       "id": "n660",
       "name": "ホルード",
       "pageUrl": "https://yakkun.com/ch/zukan/n660",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n660.gif",
+      "iconUrl": "images/pokemon/n660.gif",
       "types": [
         "ノーマルタイプ",
         "じめんタイプ"
@@ -18480,7 +18480,7 @@
       "id": "n663",
       "name": "ファイアロー",
       "pageUrl": "https://yakkun.com/ch/zukan/n663",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n663.gif",
+      "iconUrl": "images/pokemon/n663.gif",
       "types": [
         "ほのおタイプ",
         "ひこうタイプ"
@@ -18554,7 +18554,7 @@
       "id": "n666",
       "name": "ビビヨン",
       "pageUrl": "https://yakkun.com/ch/zukan/n666",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n666.gif",
+      "iconUrl": "images/pokemon/n666.gif",
       "types": [
         "むしタイプ",
         "ひこうタイプ"
@@ -18622,7 +18622,7 @@
       "id": "n668",
       "name": "カエンジシ",
       "pageUrl": "https://yakkun.com/ch/zukan/n668",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n668.gif",
+      "iconUrl": "images/pokemon/n668.gif",
       "types": [
         "ほのおタイプ",
         "ノーマルタイプ"
@@ -18696,7 +18696,7 @@
       "id": "n668m",
       "name": "メガカエンジシ",
       "pageUrl": "https://yakkun.com/ch/zukan/n668m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n668m.gif",
+      "iconUrl": "images/pokemon/n668m.gif",
       "types": [
         "ほのおタイプ",
         "ノーマルタイプ"
@@ -18768,7 +18768,7 @@
       "id": "n670e",
       "name": "フラエッテ (えいえん)",
       "pageUrl": "https://yakkun.com/ch/zukan/n670e",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n670e.gif",
+      "iconUrl": "images/pokemon/n670e.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -18859,7 +18859,7 @@
       "id": "n670m",
       "name": "メガフラエッテ",
       "pageUrl": "https://yakkun.com/ch/zukan/n670m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n670m.gif",
+      "iconUrl": "images/pokemon/n670m.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -18922,7 +18922,7 @@
       "id": "n671",
       "name": "フラージェス",
       "pageUrl": "https://yakkun.com/ch/zukan/n671",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n671.gif",
+      "iconUrl": "images/pokemon/n671.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -18991,7 +18991,7 @@
       "id": "n675",
       "name": "ゴロンダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n675",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n675.gif",
+      "iconUrl": "images/pokemon/n675.gif",
       "types": [
         "かくとうタイプ",
         "あくタイプ"
@@ -19096,7 +19096,7 @@
       "id": "n676",
       "name": "トリミアン",
       "pageUrl": "https://yakkun.com/ch/zukan/n676",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n676.gif",
+      "iconUrl": "images/pokemon/n676.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -19158,7 +19158,7 @@
       "id": "n678",
       "name": "ニャオニクス♂",
       "pageUrl": "https://yakkun.com/ch/zukan/n678",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n678.gif",
+      "iconUrl": "images/pokemon/n678.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -19241,7 +19241,7 @@
       "id": "n678f",
       "name": "ニャオニクス♀",
       "pageUrl": "https://yakkun.com/ch/zukan/n678f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n678f.gif",
+      "iconUrl": "images/pokemon/n678f.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -19321,7 +19321,7 @@
       "id": "n678m",
       "name": "メガニャオニクス♂",
       "pageUrl": "https://yakkun.com/ch/zukan/n678m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n678m.gif",
+      "iconUrl": "images/pokemon/n678m.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -19435,7 +19435,7 @@
       "id": "n678fm",
       "name": "メガニャオニクス♀",
       "pageUrl": "https://yakkun.com/ch/zukan/n678fm",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n678fm.gif",
+      "iconUrl": "images/pokemon/n678fm.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -19547,7 +19547,7 @@
       "id": "n681",
       "name": "ギルガルド (シールド)",
       "pageUrl": "https://yakkun.com/ch/zukan/n681",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n681.gif",
+      "iconUrl": "images/pokemon/n681.gif",
       "types": [
         "はがねタイプ",
         "ゴーストタイプ"
@@ -19637,7 +19637,7 @@
       "id": "n681b",
       "name": "ギルガルド (ブレード)",
       "pageUrl": "https://yakkun.com/ch/zukan/n681b",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n681b.gif",
+      "iconUrl": "images/pokemon/n681b.gif",
       "types": [
         "はがねタイプ",
         "ゴーストタイプ"
@@ -19727,7 +19727,7 @@
       "id": "n683",
       "name": "フレフワン",
       "pageUrl": "https://yakkun.com/ch/zukan/n683",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n683.gif",
+      "iconUrl": "images/pokemon/n683.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -19821,7 +19821,7 @@
       "id": "n685",
       "name": "ペロリーム",
       "pageUrl": "https://yakkun.com/ch/zukan/n685",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n685.gif",
+      "iconUrl": "images/pokemon/n685.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -19886,7 +19886,7 @@
       "id": "n687",
       "name": "カラマネロ",
       "pageUrl": "https://yakkun.com/ch/zukan/n687",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n687.gif",
+      "iconUrl": "images/pokemon/n687.gif",
       "types": [
         "あくタイプ",
         "エスパータイプ"
@@ -19979,7 +19979,7 @@
       "id": "n687m",
       "name": "メガカラマネロ",
       "pageUrl": "https://yakkun.com/ch/zukan/n687m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n687m.gif",
+      "iconUrl": "images/pokemon/n687m.gif",
       "types": [
         "あくタイプ",
         "エスパータイプ"
@@ -20070,7 +20070,7 @@
       "id": "n689",
       "name": "ガメノデス",
       "pageUrl": "https://yakkun.com/ch/zukan/n689",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n689.gif",
+      "iconUrl": "images/pokemon/n689.gif",
       "types": [
         "いわタイプ",
         "みずタイプ"
@@ -20199,7 +20199,7 @@
       "id": "n689m",
       "name": "メガガメノデス",
       "pageUrl": "https://yakkun.com/ch/zukan/n689m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n689m.gif",
+      "iconUrl": "images/pokemon/n689m.gif",
       "types": [
         "いわタイプ",
         "かくとうタイプ"
@@ -20293,7 +20293,7 @@
       "id": "n691",
       "name": "ドラミドロ",
       "pageUrl": "https://yakkun.com/ch/zukan/n691",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n691.gif",
+      "iconUrl": "images/pokemon/n691.gif",
       "types": [
         "どくタイプ",
         "ドラゴンタイプ"
@@ -20370,7 +20370,7 @@
       "id": "n691m",
       "name": "メガドラミドロ",
       "pageUrl": "https://yakkun.com/ch/zukan/n691m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n691m.gif",
+      "iconUrl": "images/pokemon/n691m.gif",
       "types": [
         "どくタイプ",
         "ドラゴンタイプ"
@@ -20445,7 +20445,7 @@
       "id": "n693",
       "name": "ブロスター",
       "pageUrl": "https://yakkun.com/ch/zukan/n693",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n693.gif",
+      "iconUrl": "images/pokemon/n693.gif",
       "types": [
         "みずタイプ"
       ],
@@ -20541,7 +20541,7 @@
       "id": "n695",
       "name": "エレザード",
       "pageUrl": "https://yakkun.com/ch/zukan/n695",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n695.gif",
+      "iconUrl": "images/pokemon/n695.gif",
       "types": [
         "でんきタイプ",
         "ノーマルタイプ"
@@ -20629,7 +20629,7 @@
       "id": "n697",
       "name": "ガチゴラス",
       "pageUrl": "https://yakkun.com/ch/zukan/n697",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n697.gif",
+      "iconUrl": "images/pokemon/n697.gif",
       "types": [
         "いわタイプ",
         "ドラゴンタイプ"
@@ -20717,7 +20717,7 @@
       "id": "n699",
       "name": "アマルルガ",
       "pageUrl": "https://yakkun.com/ch/zukan/n699",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n699.gif",
+      "iconUrl": "images/pokemon/n699.gif",
       "types": [
         "いわタイプ",
         "こおりタイプ"
@@ -20797,7 +20797,7 @@
       "id": "n700",
       "name": "ニンフィア",
       "pageUrl": "https://yakkun.com/ch/zukan/n700",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n700.gif",
+      "iconUrl": "images/pokemon/n700.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -20875,7 +20875,7 @@
       "id": "n701",
       "name": "ルチャブル",
       "pageUrl": "https://yakkun.com/ch/zukan/n701",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n701.gif",
+      "iconUrl": "images/pokemon/n701.gif",
       "types": [
         "かくとうタイプ",
         "ひこうタイプ"
@@ -20974,7 +20974,7 @@
       "id": "n701m",
       "name": "メガルチャブル",
       "pageUrl": "https://yakkun.com/ch/zukan/n701m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n701m.gif",
+      "iconUrl": "images/pokemon/n701m.gif",
       "types": [
         "かくとうタイプ",
         "ひこうタイプ"
@@ -21071,7 +21071,7 @@
       "id": "n702",
       "name": "デデンネ",
       "pageUrl": "https://yakkun.com/ch/zukan/n702",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n702.gif",
+      "iconUrl": "images/pokemon/n702.gif",
       "types": [
         "でんきタイプ",
         "フェアリータイプ"
@@ -21146,7 +21146,7 @@
       "id": "n706",
       "name": "ヌメルゴン",
       "pageUrl": "https://yakkun.com/ch/zukan/n706",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n706.gif",
+      "iconUrl": "images/pokemon/n706.gif",
       "types": [
         "ドラゴンタイプ"
       ],
@@ -21235,7 +21235,7 @@
       "id": "n706h",
       "name": "ヌメルゴン (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n706h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n706h.gif",
+      "iconUrl": "images/pokemon/n706h.gif",
       "types": [
         "はがねタイプ",
         "ドラゴンタイプ"
@@ -21332,7 +21332,7 @@
       "id": "n707",
       "name": "クレッフィ",
       "pageUrl": "https://yakkun.com/ch/zukan/n707",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n707.gif",
+      "iconUrl": "images/pokemon/n707.gif",
       "types": [
         "はがねタイプ",
         "フェアリータイプ"
@@ -21400,7 +21400,7 @@
       "id": "n709",
       "name": "オーロット",
       "pageUrl": "https://yakkun.com/ch/zukan/n709",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n709.gif",
+      "iconUrl": "images/pokemon/n709.gif",
       "types": [
         "ゴーストタイプ",
         "くさタイプ"
@@ -21498,7 +21498,7 @@
       "id": "n711",
       "name": "パンプジン (普通)",
       "pageUrl": "https://yakkun.com/ch/zukan/n711",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n711.gif",
+      "iconUrl": "images/pokemon/n711.gif",
       "types": [
         "ゴーストタイプ",
         "くさタイプ"
@@ -21605,7 +21605,7 @@
       "id": "n711s",
       "name": "パンプジン (小)",
       "pageUrl": "https://yakkun.com/ch/zukan/n711s",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n711s.gif",
+      "iconUrl": "images/pokemon/n711s.gif",
       "types": [
         "ゴーストタイプ",
         "くさタイプ"
@@ -21712,7 +21712,7 @@
       "id": "n711l",
       "name": "パンプジン (大)",
       "pageUrl": "https://yakkun.com/ch/zukan/n711l",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n711l.gif",
+      "iconUrl": "images/pokemon/n711l.gif",
       "types": [
         "ゴーストタイプ",
         "くさタイプ"
@@ -21819,7 +21819,7 @@
       "id": "n711k",
       "name": "パンプジン (特大)",
       "pageUrl": "https://yakkun.com/ch/zukan/n711k",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n711k.gif",
+      "iconUrl": "images/pokemon/n711k.gif",
       "types": [
         "ゴーストタイプ",
         "くさタイプ"
@@ -21926,7 +21926,7 @@
       "id": "n713",
       "name": "クレベース",
       "pageUrl": "https://yakkun.com/ch/zukan/n713",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n713.gif",
+      "iconUrl": "images/pokemon/n713.gif",
       "types": [
         "こおりタイプ"
       ],
@@ -21999,7 +21999,7 @@
       "id": "n713h",
       "name": "クレベース (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n713h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n713h.gif",
+      "iconUrl": "images/pokemon/n713h.gif",
       "types": [
         "こおりタイプ",
         "いわタイプ"
@@ -22085,7 +22085,7 @@
       "id": "n715",
       "name": "オンバーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n715",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n715.gif",
+      "iconUrl": "images/pokemon/n715.gif",
       "types": [
         "ひこうタイプ",
         "ドラゴンタイプ"
@@ -22174,7 +22174,7 @@
       "id": "n724",
       "name": "ジュナイパー",
       "pageUrl": "https://yakkun.com/ch/zukan/n724",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n724.gif",
+      "iconUrl": "images/pokemon/n724.gif",
       "types": [
         "くさタイプ",
         "ゴーストタイプ"
@@ -22264,7 +22264,7 @@
       "id": "n724h",
       "name": "ジュナイパー (ヒスイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n724h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n724h.gif",
+      "iconUrl": "images/pokemon/n724h.gif",
       "types": [
         "くさタイプ",
         "かくとうタイプ"
@@ -22370,7 +22370,7 @@
       "id": "n727",
       "name": "ガオガエン",
       "pageUrl": "https://yakkun.com/ch/zukan/n727",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n727.gif",
+      "iconUrl": "images/pokemon/n727.gif",
       "types": [
         "ほのおタイプ",
         "あくタイプ"
@@ -22471,7 +22471,7 @@
       "id": "n730",
       "name": "アシレーヌ",
       "pageUrl": "https://yakkun.com/ch/zukan/n730",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n730.gif",
+      "iconUrl": "images/pokemon/n730.gif",
       "types": [
         "みずタイプ",
         "フェアリータイプ"
@@ -22558,7 +22558,7 @@
       "id": "n733",
       "name": "ドデカバシ",
       "pageUrl": "https://yakkun.com/ch/zukan/n733",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n733.gif",
+      "iconUrl": "images/pokemon/n733.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -22636,7 +22636,7 @@
       "id": "n740",
       "name": "ケケンカニ",
       "pageUrl": "https://yakkun.com/ch/zukan/n740",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n740.gif",
+      "iconUrl": "images/pokemon/n740.gif",
       "types": [
         "かくとうタイプ",
         "こおりタイプ"
@@ -22724,7 +22724,7 @@
       "id": "n740m",
       "name": "メガケケンカニ",
       "pageUrl": "https://yakkun.com/ch/zukan/n740m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n740m.gif",
+      "iconUrl": "images/pokemon/n740m.gif",
       "types": [
         "かくとうタイプ",
         "こおりタイプ"
@@ -22810,7 +22810,7 @@
       "id": "n745",
       "name": "ルガルガン (まひる)",
       "pageUrl": "https://yakkun.com/ch/zukan/n745",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n745.gif",
+      "iconUrl": "images/pokemon/n745.gif",
       "types": [
         "いわタイプ"
       ],
@@ -22911,7 +22911,7 @@
       "id": "n745f",
       "name": "ルガルガン (まよなか)",
       "pageUrl": "https://yakkun.com/ch/zukan/n745f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n745f.gif",
+      "iconUrl": "images/pokemon/n745f.gif",
       "types": [
         "いわタイプ"
       ],
@@ -23025,7 +23025,7 @@
       "id": "n745d",
       "name": "ルガルガン (たそがれ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n745d",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n745d.gif",
+      "iconUrl": "images/pokemon/n745d.gif",
       "types": [
         "いわタイプ"
       ],
@@ -23127,7 +23127,7 @@
       "id": "n748",
       "name": "ドヒドイデ",
       "pageUrl": "https://yakkun.com/ch/zukan/n748",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n748.gif",
+      "iconUrl": "images/pokemon/n748.gif",
       "types": [
         "どくタイプ",
         "みずタイプ"
@@ -23203,7 +23203,7 @@
       "id": "n750",
       "name": "バンバドロ",
       "pageUrl": "https://yakkun.com/ch/zukan/n750",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n750.gif",
+      "iconUrl": "images/pokemon/n750.gif",
       "types": [
         "じめんタイプ"
       ],
@@ -23272,7 +23272,7 @@
       "id": "n752",
       "name": "オニシズクモ",
       "pageUrl": "https://yakkun.com/ch/zukan/n752",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n752.gif",
+      "iconUrl": "images/pokemon/n752.gif",
       "types": [
         "みずタイプ",
         "むしタイプ"
@@ -23347,7 +23347,7 @@
       "id": "n758",
       "name": "エンニュート",
       "pageUrl": "https://yakkun.com/ch/zukan/n758",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n758.gif",
+      "iconUrl": "images/pokemon/n758.gif",
       "types": [
         "どくタイプ",
         "ほのおタイプ"
@@ -23441,7 +23441,7 @@
       "id": "n763",
       "name": "アマージョ",
       "pageUrl": "https://yakkun.com/ch/zukan/n763",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n763.gif",
+      "iconUrl": "images/pokemon/n763.gif",
       "types": [
         "くさタイプ"
       ],
@@ -23519,7 +23519,7 @@
       "id": "n765",
       "name": "ヤレユータン",
       "pageUrl": "https://yakkun.com/ch/zukan/n765",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n765.gif",
+      "iconUrl": "images/pokemon/n765.gif",
       "types": [
         "ノーマルタイプ",
         "エスパータイプ"
@@ -23608,7 +23608,7 @@
       "id": "n766",
       "name": "ナゲツケサル",
       "pageUrl": "https://yakkun.com/ch/zukan/n766",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n766.gif",
+      "iconUrl": "images/pokemon/n766.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -23722,7 +23722,7 @@
       "id": "n778",
       "name": "ミミッキュ",
       "pageUrl": "https://yakkun.com/ch/zukan/n778",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n778.gif",
+      "iconUrl": "images/pokemon/n778.gif",
       "types": [
         "ゴーストタイプ",
         "フェアリータイプ"
@@ -23805,7 +23805,7 @@
       "id": "n780",
       "name": "ジジーロン",
       "pageUrl": "https://yakkun.com/ch/zukan/n780",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n780.gif",
+      "iconUrl": "images/pokemon/n780.gif",
       "types": [
         "ノーマルタイプ",
         "ドラゴンタイプ"
@@ -23896,7 +23896,7 @@
       "id": "n780m",
       "name": "メガジジーロン",
       "pageUrl": "https://yakkun.com/ch/zukan/n780m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n780m.gif",
+      "iconUrl": "images/pokemon/n780m.gif",
       "types": [
         "ノーマルタイプ",
         "ドラゴンタイプ"
@@ -23985,7 +23985,7 @@
       "id": "n784",
       "name": "ジャラランガ",
       "pageUrl": "https://yakkun.com/ch/zukan/n784",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n784.gif",
+      "iconUrl": "images/pokemon/n784.gif",
       "types": [
         "ドラゴンタイプ",
         "かくとうタイプ"
@@ -24088,7 +24088,7 @@
       "id": "n823",
       "name": "アーマーガア",
       "pageUrl": "https://yakkun.com/ch/zukan/n823",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n823.gif",
+      "iconUrl": "images/pokemon/n823.gif",
       "types": [
         "ひこうタイプ",
         "はがねタイプ"
@@ -24168,7 +24168,7 @@
       "id": "n841",
       "name": "アップリュー",
       "pageUrl": "https://yakkun.com/ch/zukan/n841",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n841.gif",
+      "iconUrl": "images/pokemon/n841.gif",
       "types": [
         "くさタイプ",
         "ドラゴンタイプ"
@@ -24237,7 +24237,7 @@
       "id": "n842",
       "name": "タルップル",
       "pageUrl": "https://yakkun.com/ch/zukan/n842",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n842.gif",
+      "iconUrl": "images/pokemon/n842.gif",
       "types": [
         "くさタイプ",
         "ドラゴンタイプ"
@@ -24313,7 +24313,7 @@
       "id": "n844",
       "name": "サダイジャ",
       "pageUrl": "https://yakkun.com/ch/zukan/n844",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n844.gif",
+      "iconUrl": "images/pokemon/n844.gif",
       "types": [
         "じめんタイプ"
       ],
@@ -24385,7 +24385,7 @@
       "id": "n855",
       "name": "ポットデス",
       "pageUrl": "https://yakkun.com/ch/zukan/n855",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n855.gif",
+      "iconUrl": "images/pokemon/n855.gif",
       "types": [
         "ゴーストタイプ"
       ],
@@ -24454,7 +24454,7 @@
       "id": "n858",
       "name": "ブリムオン",
       "pageUrl": "https://yakkun.com/ch/zukan/n858",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n858.gif",
+      "iconUrl": "images/pokemon/n858.gif",
       "types": [
         "エスパータイプ",
         "フェアリータイプ"
@@ -24538,7 +24538,7 @@
       "id": "n861",
       "name": "オーロンゲ",
       "pageUrl": "https://yakkun.com/ch/zukan/n861",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n861.gif",
+      "iconUrl": "images/pokemon/n861.gif",
       "types": [
         "あくタイプ",
         "フェアリータイプ"
@@ -24627,7 +24627,7 @@
       "id": "n866",
       "name": "バリコオル",
       "pageUrl": "https://yakkun.com/ch/zukan/n866",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n866.gif",
+      "iconUrl": "images/pokemon/n866.gif",
       "types": [
         "こおりタイプ",
         "エスパータイプ"
@@ -24745,7 +24745,7 @@
       "id": "n867",
       "name": "デスバーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n867",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n867.gif",
+      "iconUrl": "images/pokemon/n867.gif",
       "types": [
         "じめんタイプ",
         "ゴーストタイプ"
@@ -24837,7 +24837,7 @@
       "id": "n869",
       "name": "マホイップ",
       "pageUrl": "https://yakkun.com/ch/zukan/n869",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n869.gif",
+      "iconUrl": "images/pokemon/n869.gif",
       "types": [
         "フェアリータイプ"
       ],
@@ -24909,7 +24909,7 @@
       "id": "n870",
       "name": "タイレーツ",
       "pageUrl": "https://yakkun.com/ch/zukan/n870",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n870.gif",
+      "iconUrl": "images/pokemon/n870.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -24983,7 +24983,7 @@
       "id": "n870m",
       "name": "メガタイレーツ",
       "pageUrl": "https://yakkun.com/ch/zukan/n870m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n870m.gif",
+      "iconUrl": "images/pokemon/n870m.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -25056,7 +25056,7 @@
       "id": "n877",
       "name": "モルペコ",
       "pageUrl": "https://yakkun.com/ch/zukan/n877",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n877.gif",
+      "iconUrl": "images/pokemon/n877.gif",
       "types": [
         "でんきタイプ",
         "あくタイプ"
@@ -25144,7 +25144,7 @@
       "id": "n887",
       "name": "ドラパルト",
       "pageUrl": "https://yakkun.com/ch/zukan/n887",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n887.gif",
+      "iconUrl": "images/pokemon/n887.gif",
       "types": [
         "ドラゴンタイプ",
         "ゴーストタイプ"
@@ -25232,7 +25232,7 @@
       "id": "n899",
       "name": "アヤシシ",
       "pageUrl": "https://yakkun.com/ch/zukan/n899",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n899.gif",
+      "iconUrl": "images/pokemon/n899.gif",
       "types": [
         "ノーマルタイプ",
         "エスパータイプ"
@@ -25318,7 +25318,7 @@
       "id": "n900",
       "name": "バサギリ",
       "pageUrl": "https://yakkun.com/ch/zukan/n900",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n900.gif",
+      "iconUrl": "images/pokemon/n900.gif",
       "types": [
         "むしタイプ",
         "いわタイプ"
@@ -25399,7 +25399,7 @@
       "id": "n902",
       "name": "イダイトウ♂",
       "pageUrl": "https://yakkun.com/ch/zukan/n902",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n902.gif",
+      "iconUrl": "images/pokemon/n902.gif",
       "types": [
         "みずタイプ",
         "ゴーストタイプ"
@@ -25473,7 +25473,7 @@
       "id": "n902f",
       "name": "イダイトウ♀",
       "pageUrl": "https://yakkun.com/ch/zukan/n902f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n902f.gif",
+      "iconUrl": "images/pokemon/n902f.gif",
       "types": [
         "みずタイプ",
         "ゴーストタイプ"
@@ -25547,7 +25547,7 @@
       "id": "n903",
       "name": "オオニューラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n903",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n903.gif",
+      "iconUrl": "images/pokemon/n903.gif",
       "types": [
         "かくとうタイプ",
         "どくタイプ"
@@ -25633,7 +25633,7 @@
       "id": "n904",
       "name": "ハリーマン",
       "pageUrl": "https://yakkun.com/ch/zukan/n904",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n904.gif",
+      "iconUrl": "images/pokemon/n904.gif",
       "types": [
         "あくタイプ",
         "どくタイプ"
@@ -25718,7 +25718,7 @@
       "id": "n908",
       "name": "マスカーニャ",
       "pageUrl": "https://yakkun.com/ch/zukan/n908",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n908.gif",
+      "iconUrl": "images/pokemon/n908.gif",
       "types": [
         "くさタイプ",
         "あくタイプ"
@@ -25807,7 +25807,7 @@
       "id": "n911",
       "name": "ラウドボーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n911",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n911.gif",
+      "iconUrl": "images/pokemon/n911.gif",
       "types": [
         "ほのおタイプ",
         "ゴーストタイプ"
@@ -25887,7 +25887,7 @@
       "id": "n914",
       "name": "ウェーニバル",
       "pageUrl": "https://yakkun.com/ch/zukan/n914",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n914.gif",
+      "iconUrl": "images/pokemon/n914.gif",
       "types": [
         "みずタイプ",
         "かくとうタイプ"
@@ -25970,7 +25970,7 @@
       "id": "n946",
       "name": "イッカネズミ",
       "pageUrl": "https://yakkun.com/ch/zukan/n946",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n946.gif",
+      "iconUrl": "images/pokemon/n946.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -26044,7 +26044,7 @@
       "id": "n965",
       "name": "キョジオーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n965",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n965.gif",
+      "iconUrl": "images/pokemon/n965.gif",
       "types": [
         "いわタイプ"
       ],
@@ -26121,7 +26121,7 @@
       "id": "n1004",
       "name": "グレンアルマ",
       "pageUrl": "https://yakkun.com/ch/zukan/n1004",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1004.gif",
+      "iconUrl": "images/pokemon/n1004.gif",
       "types": [
         "ほのおタイプ",
         "エスパータイプ"
@@ -26199,7 +26199,7 @@
       "id": "n1005",
       "name": "ソウブレイズ",
       "pageUrl": "https://yakkun.com/ch/zukan/n1005",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1005.gif",
+      "iconUrl": "images/pokemon/n1005.gif",
       "types": [
         "ほのおタイプ",
         "ゴーストタイプ"
@@ -26277,7 +26277,7 @@
       "id": "n941",
       "name": "ハラバリー",
       "pageUrl": "https://yakkun.com/ch/zukan/n941",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n941.gif",
+      "iconUrl": "images/pokemon/n941.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -26340,7 +26340,7 @@
       "id": "n939",
       "name": "スコヴィラン",
       "pageUrl": "https://yakkun.com/ch/zukan/n939",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n939.gif",
+      "iconUrl": "images/pokemon/n939.gif",
       "types": [
         "くさタイプ",
         "ほのおタイプ"
@@ -26413,7 +26413,7 @@
       "id": "n939m",
       "name": "メガスコヴィラン",
       "pageUrl": "https://yakkun.com/ch/zukan/n939m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n939m.gif",
+      "iconUrl": "images/pokemon/n939m.gif",
       "types": [
         "くさタイプ",
         "ほのおタイプ"
@@ -26484,7 +26484,7 @@
       "id": "n927",
       "name": "クエスパトラ",
       "pageUrl": "https://yakkun.com/ch/zukan/n927",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n927.gif",
+      "iconUrl": "images/pokemon/n927.gif",
       "types": [
         "エスパータイプ"
       ],
@@ -26564,7 +26564,7 @@
       "id": "n1002",
       "name": "デカヌチャン",
       "pageUrl": "https://yakkun.com/ch/zukan/n1002",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1002.gif",
+      "iconUrl": "images/pokemon/n1002.gif",
       "types": [
         "フェアリータイプ",
         "はがねタイプ"
@@ -26641,7 +26641,7 @@
       "id": "n934",
       "name": "イルカマン (ナイーブ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n934",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n934.gif",
+      "iconUrl": "images/pokemon/n934.gif",
       "types": [
         "みずタイプ"
       ],
@@ -26731,7 +26731,7 @@
       "id": "n934f",
       "name": "イルカマン (マイティ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n934f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n934f.gif",
+      "iconUrl": "images/pokemon/n934f.gif",
       "types": [
         "みずタイプ"
       ],
@@ -26819,7 +26819,7 @@
       "id": "n944",
       "name": "ミミズズ",
       "pageUrl": "https://yakkun.com/ch/zukan/n944",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n944.gif",
+      "iconUrl": "images/pokemon/n944.gif",
       "types": [
         "はがねタイプ"
       ],
@@ -26882,7 +26882,7 @@
       "id": "n967",
       "name": "キラフロル",
       "pageUrl": "https://yakkun.com/ch/zukan/n967",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n967.gif",
+      "iconUrl": "images/pokemon/n967.gif",
       "types": [
         "いわタイプ",
         "どくタイプ"
@@ -26952,7 +26952,7 @@
       "id": "n967m",
       "name": "メガキラフロル",
       "pageUrl": "https://yakkun.com/ch/zukan/n967m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n967m.gif",
+      "iconUrl": "images/pokemon/n967m.gif",
       "types": [
         "いわタイプ",
         "どくタイプ"
@@ -27021,7 +27021,7 @@
       "id": "n925",
       "name": "ハカドッグ",
       "pageUrl": "https://yakkun.com/ch/zukan/n925",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n925.gif",
+      "iconUrl": "images/pokemon/n925.gif",
       "types": [
         "ゴーストタイプ"
       ],
@@ -27096,7 +27096,7 @@
       "id": "n1010",
       "name": "コノヨザル",
       "pageUrl": "https://yakkun.com/ch/zukan/n1010",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1010.gif",
+      "iconUrl": "images/pokemon/n1010.gif",
       "types": [
         "かくとうタイプ",
         "ゴーストタイプ"
@@ -27196,7 +27196,7 @@
       "id": "n928",
       "name": "リキキリン",
       "pageUrl": "https://yakkun.com/ch/zukan/n928",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n928.gif",
+      "iconUrl": "images/pokemon/n928.gif",
       "types": [
         "ノーマルタイプ",
         "エスパータイプ"
@@ -27290,7 +27290,7 @@
       "id": "n1008",
       "name": "ドドゲザン",
       "pageUrl": "https://yakkun.com/ch/zukan/n1008",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1008.gif",
+      "iconUrl": "images/pokemon/n1008.gif",
       "types": [
         "あくタイプ",
         "はがねタイプ"
@@ -27367,7 +27367,7 @@
       "id": "n977",
       "name": "サーフゴー",
       "pageUrl": "https://yakkun.com/ch/zukan/n977",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n977.gif",
+      "iconUrl": "images/pokemon/n977.gif",
       "types": [
         "はがねタイプ",
         "ゴーストタイプ"
@@ -27432,7 +27432,7 @@
       "id": "n1025",
       "name": "ヤバソチャ",
       "pageUrl": "https://yakkun.com/ch/zukan/n1025",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1025.gif",
+      "iconUrl": "images/pokemon/n1025.gif",
       "types": [
         "くさタイプ",
         "ゴーストタイプ"
@@ -27491,7 +27491,7 @@
       "id": "n1023",
       "name": "ブリジュラス",
       "pageUrl": "https://yakkun.com/ch/zukan/n1023",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1023.gif",
+      "iconUrl": "images/pokemon/n1023.gif",
       "types": [
         "はがねタイプ",
         "ドラゴンタイプ"
@@ -27567,7 +27567,7 @@
       "id": "n1013",
       "name": "カミツオロチ",
       "pageUrl": "https://yakkun.com/ch/zukan/n1013",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n1013.gif",
+      "iconUrl": "images/pokemon/n1013.gif",
       "types": [
         "くさタイプ",
         "ドラゴンタイプ"
@@ -27643,7 +27643,7 @@
       "id": "n40",
       "name": "プクリン",
       "pageUrl": "https://yakkun.com/ch/zukan/n40",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n40.gif",
+      "iconUrl": "images/pokemon/n40.gif",
       "types": [
         "ノーマルタイプ",
         "フェアリータイプ"
@@ -27833,7 +27833,7 @@
       "id": "n53",
       "name": "ペルシアン",
       "pageUrl": "https://yakkun.com/ch/zukan/n53",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n53.gif",
+      "iconUrl": "images/pokemon/n53.gif",
       "types": [
         "ノーマルタイプ"
       ],
@@ -27977,7 +27977,7 @@
       "id": "n53a",
       "name": "アローラペルシアン",
       "pageUrl": "https://yakkun.com/ch/zukan/n53a",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n53a.gif",
+      "iconUrl": "images/pokemon/n53a.gif",
       "types": [
         "あくタイプ"
       ],
@@ -28110,7 +28110,7 @@
       "id": "n83",
       "name": "カモネギ",
       "pageUrl": "https://yakkun.com/ch/zukan/n83",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n83.gif",
+      "iconUrl": "images/pokemon/n83.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -28231,7 +28231,7 @@
       "id": "n122",
       "name": "バリヤード",
       "pageUrl": "https://yakkun.com/ch/zukan/n122",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n122.gif",
+      "iconUrl": "images/pokemon/n122.gif",
       "types": [
         "エスパータイプ",
         "フェアリータイプ"
@@ -28397,7 +28397,7 @@
       "id": "n317",
       "name": "マルノーム",
       "pageUrl": "https://yakkun.com/ch/zukan/n317",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n317.gif",
+      "iconUrl": "images/pokemon/n317.gif",
       "types": [
         "どくタイプ"
       ],
@@ -28520,7 +28520,7 @@
       "id": "n359mz",
       "name": "メガアブソルZ",
       "pageUrl": "https://yakkun.com/ch/zukan/n359mz",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n359mz.gif",
+      "iconUrl": "images/pokemon/n359mz.gif",
       "types": [
         "あくタイプ",
         "ゴーストタイプ"
@@ -28662,7 +28662,7 @@
       "id": "n373",
       "name": "ボーマンダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n373",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n373.gif",
+      "iconUrl": "images/pokemon/n373.gif",
       "types": [
         "ドラゴンタイプ",
         "ひこうタイプ"
@@ -28787,7 +28787,7 @@
       "id": "n373m",
       "name": "メガボーマンダ",
       "pageUrl": "https://yakkun.com/ch/zukan/n373m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n373m.gif",
+      "iconUrl": "images/pokemon/n373m.gif",
       "types": [
         "ドラゴンタイプ",
         "ひこうタイプ"
@@ -28914,7 +28914,7 @@
       "id": "n445mz",
       "name": "メガガブリアスZ",
       "pageUrl": "https://yakkun.com/ch/zukan/n445mz",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n445mz.gif",
+      "iconUrl": "images/pokemon/n445mz.gif",
       "types": [
         "ドラゴンタイプ"
       ],
@@ -29042,7 +29042,7 @@
       "id": "n448mz",
       "name": "メガルカリオZ",
       "pageUrl": "https://yakkun.com/ch/zukan/n448mz",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n448mz.gif",
+      "iconUrl": "images/pokemon/n448mz.gif",
       "types": [
         "かくとうタイプ",
         "はがねタイプ"
@@ -29195,7 +29195,7 @@
       "id": "n673",
       "name": "ゴーゴート",
       "pageUrl": "https://yakkun.com/ch/zukan/n673",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n673.gif",
+      "iconUrl": "images/pokemon/n673.gif",
       "types": [
         "くさタイプ"
       ],
@@ -29298,7 +29298,7 @@
       "id": "n768",
       "name": "グソクムシャ",
       "pageUrl": "https://yakkun.com/ch/zukan/n768",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n768.gif",
+      "iconUrl": "images/pokemon/n768.gif",
       "types": [
         "むしタイプ",
         "みずタイプ"
@@ -29414,7 +29414,7 @@
       "id": "n768m",
       "name": "メガグソクムシャ",
       "pageUrl": "https://yakkun.com/ch/zukan/n768m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n768m.gif",
+      "iconUrl": "images/pokemon/n768m.gif",
       "types": [
         "むしタイプ",
         "はがねタイプ"
@@ -29533,7 +29533,7 @@
       "id": "n812",
       "name": "ゴリランダー",
       "pageUrl": "https://yakkun.com/ch/zukan/n812",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n812.gif",
+      "iconUrl": "images/pokemon/n812.gif",
       "types": [
         "くさタイプ"
       ],
@@ -29641,7 +29641,7 @@
       "id": "n815",
       "name": "エースバーン",
       "pageUrl": "https://yakkun.com/ch/zukan/n815",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n815.gif",
+      "iconUrl": "images/pokemon/n815.gif",
       "types": [
         "ほのおタイプ"
       ],
@@ -29743,7 +29743,7 @@
       "id": "n818",
       "name": "インテレオン",
       "pageUrl": "https://yakkun.com/ch/zukan/n818",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n818.gif",
+      "iconUrl": "images/pokemon/n818.gif",
       "types": [
         "みずタイプ"
       ],
@@ -29841,7 +29841,7 @@
       "id": "n828",
       "name": "フォクスライ",
       "pageUrl": "https://yakkun.com/ch/zukan/n828",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n828.gif",
+      "iconUrl": "images/pokemon/n828.gif",
       "types": [
         "あくタイプ"
       ],
@@ -29925,7 +29925,7 @@
       "id": "n849h",
       "name": "ストリンダー(ハイ)",
       "pageUrl": "https://yakkun.com/ch/zukan/n849h",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n849h.gif",
+      "iconUrl": "images/pokemon/n849h.gif",
       "types": [
         "でんきタイプ",
         "どくタイプ"
@@ -30035,7 +30035,7 @@
       "id": "n849l",
       "name": "ストリンダー(ロー)",
       "pageUrl": "https://yakkun.com/ch/zukan/n849l",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n849l.gif",
+      "iconUrl": "images/pokemon/n849l.gif",
       "types": [
         "でんきタイプ",
         "どくタイプ"
@@ -30144,7 +30144,7 @@
       "id": "n853",
       "name": "オトスパス",
       "pageUrl": "https://yakkun.com/ch/zukan/n853",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n853.gif",
+      "iconUrl": "images/pokemon/n853.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -30232,7 +30232,7 @@
       "id": "n863",
       "name": "ニャイキング",
       "pageUrl": "https://yakkun.com/ch/zukan/n863",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n863.gif",
+      "iconUrl": "images/pokemon/n863.gif",
       "types": [
         "はがねタイプ"
       ],
@@ -30355,7 +30355,7 @@
       "id": "n865",
       "name": "ネギガナイト",
       "pageUrl": "https://yakkun.com/ch/zukan/n865",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n865.gif",
+      "iconUrl": "images/pokemon/n865.gif",
       "types": [
         "かくとうタイプ"
       ],
@@ -30445,7 +30445,7 @@
       "id": "n871",
       "name": "バチンウニ",
       "pageUrl": "https://yakkun.com/ch/zukan/n871",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n871.gif",
+      "iconUrl": "images/pokemon/n871.gif",
       "types": [
         "でんきタイプ"
       ],
@@ -30528,7 +30528,7 @@
       "id": "n876mo",
       "name": "イエッサン(オス)",
       "pageUrl": "https://yakkun.com/ch/zukan/n876mo",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n876mo.gif",
+      "iconUrl": "images/pokemon/n876mo.gif",
       "types": [
         "エスパータイプ",
         "ノーマルタイプ"
@@ -30622,7 +30622,7 @@
       "id": "n876f",
       "name": "イエッサン(メス)",
       "pageUrl": "https://yakkun.com/ch/zukan/n876f",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n876f.gif",
+      "iconUrl": "images/pokemon/n876f.gif",
       "types": [
         "エスパータイプ",
         "ノーマルタイプ"
@@ -30714,7 +30714,7 @@
       "id": "n923",
       "name": "パーモット",
       "pageUrl": "https://yakkun.com/ch/zukan/n923",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n923.gif",
+      "iconUrl": "images/pokemon/n923.gif",
       "types": [
         "でんきタイプ",
         "かくとうタイプ"
@@ -30810,7 +30810,7 @@
       "id": "n930",
       "name": "オリーヴァ",
       "pageUrl": "https://yakkun.com/ch/zukan/n930",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n930.gif",
+      "iconUrl": "images/pokemon/n930.gif",
       "types": [
         "くさタイプ",
         "ノーマルタイプ"
@@ -30877,7 +30877,7 @@
       "id": "n931",
       "name": "イキリンコ",
       "pageUrl": "https://yakkun.com/ch/zukan/n931",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n931.gif",
+      "iconUrl": "images/pokemon/n931.gif",
       "types": [
         "ノーマルタイプ",
         "ひこうタイプ"
@@ -30954,7 +30954,7 @@
       "id": "n943",
       "name": "マフィティフ",
       "pageUrl": "https://yakkun.com/ch/zukan/n943",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n943.gif",
+      "iconUrl": "images/pokemon/n943.gif",
       "types": [
         "あくタイプ"
       ],
@@ -31036,7 +31036,7 @@
       "id": "n998",
       "name": "セグレイブ",
       "pageUrl": "https://yakkun.com/ch/zukan/n998",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n998.gif",
+      "iconUrl": "images/pokemon/n998.gif",
       "types": [
         "ドラゴンタイプ",
         "こおりタイプ"
@@ -31132,7 +31132,7 @@
       "id": "n998m",
       "name": "メガセグレイブ",
       "pageUrl": "https://yakkun.com/ch/zukan/n998m",
-      "iconUrl": "https://img.yakkun.com/poke/icon96/n998m.gif",
+      "iconUrl": "images/pokemon/n998m.gif",
       "types": [
         "ドラゴンタイプ",
         "こおりタイプ"
