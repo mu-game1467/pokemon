@@ -853,8 +853,21 @@ function analyze() {
       if (!attackerName || !defenderName || !moveName) {
         return 'ダメージ計算には攻撃ポケモン、技、防御ポケモンが必要です。\n例: マルヤクデのほのおのまどうがサーフゴーに与えるダメージは？\n\nダメージ計算機を開くには、ダメージ計算機ボタンをクリックしてください。';
       }
-      const attacker = { ...pokemon.find(p => p.name === attackerName) };
-      const defender = { ...pokemon.find(p => p.name === defenderName) };
+      const attackerBase = pokemon.find(p => p.name === attackerName);
+      const defenderBase = pokemon.find(p => p.name === defenderName);
+      const pa = party.find(p => p.name === attackerName);
+      const pd = party.find(p => p.name === defenderName);
+      const attacker = { ...attackerBase };
+      const defender = { ...defenderBase };
+      attacker.selectedAbility = (pa?.selectedAbility || pa?.abilities?.[0] || attackerBase?.abilities?.[0] || '') ;
+      attacker.item = pa?.item || '';
+      attacker.evs = pa?.evs || {};
+      attacker.selectedNature = pa?.selectedNature || pa?.nature || 'まじめ';
+      attacker.burned = false;
+      defender.selectedAbility = (pd?.selectedAbility || pd?.abilities?.[0] || defenderBase?.abilities?.[0] || '');
+      defender.item = pd?.item || '';
+      defender.evs = pd?.evs || {};
+      defender.selectedNature = pd?.selectedNature || pd?.nature || 'まじめ';
       const opts = { level: 50, lifeOrb: attacker.item === 'いのちのたま', choiceBand: attacker.item === 'こだわりハチマキ', choiceSpecs: attacker.item === 'こだわりメガネ', critical: false, burn: false, helpingHand: false, expertBelt: false, weather: '' };
       const result = calculateMoveDamage(attacker, moveName, defender, opts);
       if (!result) return moveName + 'はダメージを計算できません（変化技または威力なし）。';
@@ -1142,10 +1155,12 @@ function analyze() {
         attacker.selectedAbility = pa.selectedAbility || pa.abilities?.[0];
         attacker.item = pa.item || '';
         attacker.evs = pa.evs || {};
+        attacker.selectedNature = pa.selectedNature || pa.nature || 'まじめ';
       } else {
         attacker.selectedAbility = attacker.abilities?.[0];
         attacker.item = '';
         attacker.evs = {};
+        attacker.selectedNature = 'まじめ';
       }
       attacker.burned = $('dcBurn').checked;
       const defender = { ...pokemon.find(p => p.name === defenderName) };
@@ -1154,10 +1169,12 @@ function analyze() {
         defender.selectedAbility = pd.selectedAbility || pd.abilities?.[0];
         defender.item = pd.item || '';
         defender.evs = pd.evs || {};
+        defender.selectedNature = pd.selectedNature || pd.nature || 'まじめ';
       } else {
         defender.selectedAbility = defender.abilities?.[0];
         defender.item = '';
         defender.evs = {};
+        defender.selectedNature = 'まじめ';
       }
       const opts = {
         level,
