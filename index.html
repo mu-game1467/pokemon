@@ -219,11 +219,12 @@
     .dc-toggle { display:flex; gap:4px; flex-wrap:wrap; margin-top:4px; }
     .dc-toggle label { display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:400; cursor:pointer; }
      .dc-toggle input { width:auto; }
-     .login-modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:9999; }
-     .login-modal { background:white; border-radius:10px; padding:24px; width:90%; max-width:320px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
-     .login-modal h2 { margin:0 0 12px; font-size:16px; }
+      .login-screen { position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
+      .login-screen.hidden { display:none; }
+      .login-card { background:white; border-radius:10px; padding:24px; width:90%; max-width:320px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+      .login-card h2 { margin:0 0 12px; font-size:18px; }
      .login-card .field { margin-bottom:8px; }
-     .login-card .field input { width:100%; box-sizing:border-box; }
+      .login-card .field input { width:100%; box-sizing:border-box; font-size:14px; padding:8px 10px; }
      .login-tabs button { border-bottom:2px solid transparent; }
      .login-tabs button.active { border-bottom-color:var(--coral); }
    </style>
@@ -239,30 +240,37 @@
         <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
       </div>
     </header>
-    <div class="login-modal-overlay hidden" id="loginModalOverlay">
-      <div class="login-modal">
-        <div class="login-card">
-          <h2>ログイン / 新規登録</h2>
-          <div class="login-tabs" style="display:flex;gap:4px;margin-bottom:12px">
-            <button class="text-btn" id="loginTab" style="flex:1">ログイン</button>
-            <button class="text-btn" id="registerTab" style="flex:1">新規登録</button>
-          </div>
-          <div id="loginForm">
-            <div class="field"><input id="loginUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
-            <div class="field"><input id="loginPassword" type="password" placeholder="パスワード" autocomplete="current-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
-            <button class="ghost-btn" id="loginSubmit" style="width:100%;margin-top:8px">ログイン</button>
-          </div>
-          <div id="registerForm" class="hidden">
-            <div class="field"><input id="registerUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
-            <div class="field"><input id="registerPassword" type="password" placeholder="パスワード" autocomplete="new-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
-            <div class="field"><input id="registerPassword2" type="password" placeholder="パスワード（確認）" autocomplete="new-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
-            <button class="ghost-btn" id="registerSubmit" style="width:100%;margin-top:8px">新規登録</button>
-          </div>
-          <div id="loginError" style="color:var(--coral);font-size:10px;margin-top:8px;height:14px"></div>
-          <button class="text-btn" id="skipLogin" style="width:100%;margin-top:8px;font-size:11px">Continue without login</button>
+    <div class="login-screen hidden" id="loginScreen">
+      <div class="login-card">
+        <h2>ログイン / 新規登録</h2>
+        <div class="login-tabs" style="display:flex;gap:4px;margin-bottom:12px">
+          <button class="text-btn" id="loginTab" style="flex:1">ログイン</button>
+          <button class="text-btn" id="registerTab" style="flex:1">新規登録</button>
         </div>
+        <div id="loginForm">
+          <div class="field"><input id="loginUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px"></div>
+          <div class="field"><input id="loginPassword" type="password" placeholder="パスワード" autocomplete="current-password" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px"></div>
+          <button class="ghost-btn" id="loginSubmit" style="width:100%;margin-top:8px">ログイン</button>
+        </div>
+        <div id="registerForm" class="hidden">
+          <div class="field"><input id="registerUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px"></div>
+          <div class="field"><input id="registerPassword" type="password" placeholder="パスワード" autocomplete="new-password" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px"></div>
+          <div class="field"><input id="registerPassword2" type="password" placeholder="パスワード（確認）" autocomplete="new-password" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px"></div>
+          <button class="ghost-btn" id="registerSubmit" style="width:100%;margin-top:8px">新規登録</button>
+        </div>
+        <div id="loginError" style="color:var(--coral);font-size:11px;margin-top:8px;height:16px"></div>
+        <button class="text-btn" id="skipLogin" style="width:100%;margin-top:8px;font-size:12px">Continue without login</button>
       </div>
     </div>
+    <div id="appContent">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / TEAM BUILDER</small></div></div>
+      <div class="top-actions">
+        <span id="userStatus" style="color:var(--muted);font-size:13px;min-width:100px;font-weight:500">オフライン</span>
+        <button class="text-btn" id="openDamageCalc" style="font-size:12px;padding:6px 12px">ダメージ計算</button>
+        <button class="text-btn" id="logoutUser" style="font-size:12px;padding:6px 12px;display:none">ログアウト</button>
+      </div>
+    </header>
     <section class="hero">
       <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
       <div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div>
@@ -285,12 +293,13 @@
           <div class="diagnosis-intro"><div><div class="eyebrow">PARTY REPORT / LOCAL ANALYSIS</div><h2 style="margin:6px 0 0">診断レポート</h2></div><div class="score" id="score">--<small>/100</small></div><div class="score-copy" id="scoreCopy">6体そろうと、タイプ防御と役割バランスを自動で分析します。</div></div>
           <div class="metrics" id="metrics"></div>
           <div class="party-stats" id="partyStats"></div>
-          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span><label style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer"><input type="checkbox" id="toggleMegaCandidates" checked style="width:auto"><span>メガシンカ表示</span></label></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div><div class="section-label">役割分布 <span>補完状況</span></div><div id="roleDistribution"></div></div>
+          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span><label style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer"><input type="checkbox" id="toggleMegaCandidates" checked style="width:auto"><span>メガシンカ表示</span></label></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div></div>
         </div>
       </div>
 
     </section>
     <footer><span>PARTY LAB / LOCAL-FIRST TOOL</span><span>非公式ファンツール。ゲーム内の正式仕様は公式情報をご確認ください。</span></footer>
+    </div>
   </main>
   <button class="chat-fab" id="chatFab" title="チャット">💬</button>
    <div class="chat-modal hidden" id="chatModal"><div class="chat-card"><div class="chat-head"><h3>パーティチャット</h3><button class="remove" id="closeChat" aria-label="閉じる">×</button></div><div class="chat-messages" id="chatMessages"></div><div class="chat-input-row"><input id="chatInput" placeholder="質問を入力..." autocomplete="off"><button id="sendChat">送信</button></div></div></div>
@@ -575,6 +584,8 @@ function getMegaForms(baseName) {
     };
     const iconMarkup = p => p.iconUrl ? `<img src="${p.iconUrl}" alt="">` : p.icon;
     const toHiragana = value => value.replace(/[ァ-ヶ]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60)).normalize('NFKC').toLowerCase();
+    const ROMAJI_MAP = {'a':'あ','i':'い','u':'う','e':'え','o':'お','ka':'か','ki':'き','ku':'く','ke':'け','ko':'こ','sa':'さ','si':'し','su':'す','se':'せ','so':'そ','ta':'た','ti':'ち','tu':'つ','na':'な','ni':'に','nu':'ぬ','ne':'ね','no':'の','ha':'は','hi':'ひ','hu':'ふ','ho':'ほ','ma':'ま','mi':'み','mu':'む','me':'め','mo':'も','ya':'や','yu':'ゆ','yo':'よ','ra':'ら','ri':'り','ru':'る','re':'れ','ro':'ろ','wa':'わ','wo':'を','n':'ん','ga':'が','gi':'ぎ','gu':'ぐ','ge':'げ','go':'ご','za':'ざ','zi':'じ','zu':'ず','ze':'ぜ','zo':'ぞ','da':'だ','de':'で','do':'ど','ba':'ば','bi':'び','bu':'ぶ','be':'べ','bo':'ぼ','pa':'ぱ','pi':'ぴ','pu':'ぷ','pe':'ぺ','po':'ぽ','kya':'きゃ','kyu':'きゅ','kyo':'きょ','gya':'ぎゃ','gyu':'ぎゅ','gyo':'ぎょ','sha':'しゃ','shu':'しゅ','sho':'しょ','cha':'ちゃ','chu':'ちゅ','cho':'ちょ','nya':'んゃ','nyu':'んゅ','nyo':'んょ','hya':'ひゃ','hyu':'ひゅ','hyo':'ひょ','mya':'みゃ','myu':'みゅ','myo':'みょ','rya':'りゃ','ryu':'りゅ','ryo':'りょ','bya':'びゃ','byu':'びゅ','byo':'びょ','pya':'ぴゃ','pyu':'ぴゅ','pyo':'ぴょ','fa':'ふぁ','fi':'ふぃ','fe':'ふぇ','fo':'ふぉ'};
+    const toHiraganaFromRomaji = romaji => { const s = romaji.toLowerCase().replace(/n'/g, 'ん').replace(/n/g, 'ん'); let result = ''; let i = 0; while (i < s.length) { for (let len = 4; len >= 1; len--) { const part = s.slice(i, i + len); if (ROMAJI_MAP[part]) { result += ROMAJI_MAP[part]; i += len; break; } if (len === 1) { result += part; i++; break; } } } return result; };
     const statLine = p => { if(!p||!p.baseStats) return ''; const bs=p.baseStats; const actual=calculateActualStats(p); if(!actual) return `<div>種族値 ${bs.hp}/${bs.attack}/${bs.defense}/${bs.specialAttack}/${bs.specialDefense}/${bs.speed}</div>`; let speed=actual.speed; const scarfSpeed=p.item==='こだわりスカーフ'?Math.floor(speed*1.5):null; const speedText=scarfSpeed?`${speed}→${scarfSpeed}`:String(speed); return `<div>種族値 ${bs.hp}/${bs.attack}/${bs.defense}/${bs.specialAttack}/${bs.specialDefense}/${bs.speed}</div><div>実数値 <span style="${getNatureColor(p,'hp')}">${actual.hp}</span>/<span style="${getNatureColor(p,'attack')}">${actual.attack}</span>/<span style="${getNatureColor(p,'defense')}">${actual.defense}</span>/<span style="${getNatureColor(p,'specialAttack')}">${actual.specialAttack}</span>/<span style="${getNatureColor(p,'specialDefense')}">${actual.specialDefense}</span>/<span style="${getNatureColor(p,'speed')}">${speedText}</span></div>`; };
     function normalizeMember(member) { if(!member) return member; const moves=(member.moves||[]).map(m => typeof m === 'string' ? m : (m && m.name) || '').filter(Boolean); return { ...member, moves }; }
     function typeColor(type) { return TYPE_COLORS[type] || '#9aa39b'; }
@@ -595,7 +606,7 @@ function getMegaForms(baseName) {
     }
     function renderSaved() { $('savedSelect').innerHTML='<option value="">保存したパーティを選択</option>'+savedParties.map((entry,index)=>`<option value="${index}">${entry.name}（${entry.party.length}体）</option>`).join(''); $('deleteSaved').disabled=!savedParties.length; updateBattleLogButtonState(); }
     function baseStatTotal(p) { const bs=p.baseStats||{}; return (bs.hp||0)+(bs.attack||0)+(bs.defense||0)+(bs.specialAttack||0)+(bs.specialDefense||0)+(bs.speed||0); }
-    function updateSuggestions() { const query=toHiragana($('search').value.trim()); const matchScore=p => { if(!query) return 0; const hn=toHiragana(p.name); if(hn===query) return 3; if(hn.includes(query)) return 2; if((p.types||[]).some(t=>toHiragana(t).includes(query))) return 1; if((p.abilities||[]).some(a=>toHiragana(a).includes(query))) return 1; return 0; }; const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || matchScore(p)>0) && (!typeFilter || p.types.includes(typeFilter))).sort((a,b)=>matchScore(b)-matchScore(a)||baseStatTotal(b)-baseStatTotal(a)).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span>${p.types.map(t=>`<span class="type-chip" style="--tc:${typeColor(t)};--tx:${chipTextColor(typeColor(t))};cursor:pointer" data-type-filter="${t}" title="${t}で絞り込み">${t}</span>`).join('')}</button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
+    function updateSuggestions() { const rawQuery=$('search').value.trim().toLowerCase(); const query=toHiragana(rawQuery); const romajiQuery=toHiraganaFromRomaji(rawQuery); const matchScore=p => { if(!query && !romajiQuery) return 0; const hn=toHiragana(p.name); if(hn===query) return 3; if(hn===romajiQuery) return 3; if(hn.includes(query)) return 2; if(hn.includes(romajiQuery)) return 2; if((p.types||[]).some(t=>toHiragana(t).includes(query))) return 1; if((p.types||[]).some(t=>toHiragana(t).includes(romajiQuery))) return 1; if((p.abilities||[]).some(a=>toHiragana(a).includes(query))) return 1; if((p.abilities||[]).some(a=>toHiragana(a).includes(romajiQuery))) return 1; return 0; }; const results=pokemon.filter(p => !party.some(x=>x.name===p.name) && (!query || !romajiQuery || matchScore(p)>0) && (!typeFilter || p.types.includes(typeFilter))).sort((a,b)=>matchScore(b)-matchScore(a)||baseStatTotal(b)-baseStatTotal(a)).slice(0,8); $('suggestions').innerHTML = results.map(p=>`<button class="suggestion" data-pokemon="${p.name}">${iconMarkup(p)} ${p.name} <span class="mono" style="color:var(--muted);font-size:10px">${p.role||''}</span>${p.types.map(t=>`<span class="type-chip" style="--tc:${typeColor(t)};--tx:${chipTextColor(typeColor(t))};cursor:pointer" data-type-filter="${t}" title="${t}で絞り込み">${t}</span>`).join('')}</button>`).join('') || '<span class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</span>'; }
     function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
     function updateCurrentPartyNameDisplay() { const el=$('currentPartyNameDisplay'); if(!el) return; el.textContent=currentPartyName?`編集中: ${currentPartyName}`:'候補を検索して追加してください。'; }
     let pendingPokemon = null;
@@ -779,16 +790,7 @@ function getMegaForms(baseName) {
             $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
           }
         }
-        const roleCounts={};
-        const roleLabels={ '物理AT':'物理アタッカー', '特殊AT':'特殊アタッカー', '物理受け':'物理ウォール', '特殊受け':'特殊ウォール', '受け':'ウォール', 'サポート':'サポート', 'バランス':'バランス', '速攻':'速攻', '両刀':'両刀' };
-        const allRoles=['物理AT','特殊AT','物理受け','特殊受け','受け','サポート','バランス','速攻','両刀'];
-        party.forEach(p=>{ const role=p.role||'バランス'; roleCounts[role]=(roleCounts[role]||0)+1; });
-        const presentRoles=allRoles.filter(r=>roleCounts[r]);
-        const missingRoles=allRoles.filter(r=>!roleCounts[r]);
-        const roleHtml=presentRoles.map(role=>'<div class="role-distribution-item" style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0eee9"><span>'+(roleLabels[role]||role)+'</span><strong style="color:var(--coral)">'+roleCounts[role]+'</strong></div>').join('');
-        const missingHtml=missingRoles.length?'<div style="margin-top:6px;font-size:10px;color:var(--muted)">不足: '+missingRoles.map(r=>roleLabels[r]||r).join('、')+'</div>':'<div style="margin-top:6px;font-size:10px;color:var(--muted)">すべての役割が揃っています。</div>';
-        $('roleDistribution').innerHTML = '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">パーティ内の役割分布</div>' + (roleHtml || '<div class="mono" style="color:var(--muted)">パーティがありません</div>') + missingHtml;
-    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); const nextIsMega=!!megaMap[nextForm];const nextBase=getBaseForm(nextForm);const nextItem=nextIsMega?(newP.megaStone||megaStoneMap[nextBase]||p.item):p.item;party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:nextItem, memo:p.memo}; saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; saveAllToServer(); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
+        document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); const nextIsMega=!!megaMap[nextForm];const nextBase=getBaseForm(nextForm);const nextItem=nextIsMega?(newP.megaStone||megaStoneMap[nextBase]||p.item):p.item;party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:nextItem, memo:p.memo}; saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; saveAllToServer(); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
     $('editor').addEventListener('click', e => {
       if (e.target === $('editor')) closeEditor();
     });
@@ -902,8 +904,8 @@ function getMegaForms(baseName) {
     if ($('loginUsername')) $('loginUsername').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
     if ($('loginPassword')) $('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
     if ($('registerSubmit')) $('registerSubmit').addEventListener('click', registerUser);
-    if ($('skipLogin')) $('skipLogin').addEventListener('click', () => { authUserId = ''; $('loginModalOverlay').classList.add('hidden'); render(); renderSaved(); updateBattleLogButtonState(); });
-    if ($('loginModalOverlay')) $('loginModalOverlay').addEventListener('click', e => { if (e.target === $('loginModalOverlay')) { authUserId = ''; $('loginModalOverlay').classList.add('hidden'); render(); renderSaved(); updateBattleLogButtonState(); } });
+    if ($('skipLogin')) $('skipLogin').addEventListener('click', () => { authUserId = ''; $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden'); render(); renderSaved(); updateBattleLogButtonState(); });
+    if ($('loginScreen')) $('loginScreen').addEventListener('click', e => { if (e.target === $('loginScreen')) { authUserId = ''; $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden'); render(); renderSaved(); updateBattleLogButtonState(); } });
     if ($('registerUsername')) $('registerUsername').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
     if ($('registerPassword2')) $('registerPassword2').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
     if ($('loginTab')) $('loginTab').addEventListener('click', function() { $('loginTab').classList.add('active'); $('registerTab').classList.remove('active'); $('loginForm').classList.remove('hidden'); $('registerForm').classList.add('hidden'); });
@@ -1070,7 +1072,8 @@ function getMegaForms(baseName) {
         $('userStatus').textContent = username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
-        $('loginModalOverlay').classList.add('hidden');
+        $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden');
+
         await loadAllFromServer();
         render(); renderSaved(); updateBattleLogButtonState();
       } catch(e) { showLoginError('ログインに失敗しました。' + e.message); }
@@ -1101,7 +1104,7 @@ function getMegaForms(baseName) {
       savedParties = [];
       currentPartyName = '';
       editingEntryId = null;
-      $('loginModalOverlay').classList.remove('hidden');
+      $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
       if ($('loginTab')) $('loginTab').classList.add('active');
       if ($('registerTab')) $('registerTab').classList.remove('active');
       if ($('loginForm')) $('loginForm').classList.remove('hidden');
@@ -1227,7 +1230,7 @@ function getMegaForms(baseName) {
     const storedUser = localStorage.getItem('party-current-user');
     if (storedUser) {
       authUserId = storedUser;
-      $('loginModalOverlay').classList.add('hidden');
+      $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden');
       if ($('userStatus')) { $('userStatus').textContent = storedUser; $('userStatus').style.color = 'var(--coral)'; }
       if ($('logoutUser')) $('logoutUser').style.display = 'inline-block';
       loadAllFromServer().then((success) => {
@@ -1236,14 +1239,14 @@ function getMegaForms(baseName) {
         } else {
           localStorage.removeItem('party-current-user');
           authUserId = '';
-          $('loginModalOverlay').classList.remove('hidden');
+          $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
           if ($('userStatus')) { $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
           if ($('logoutUser')) $('logoutUser').style.display = 'none';
           render();
         }
       });
     } else {
-      $('loginModalOverlay').classList.remove('hidden');
+      $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
     }
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);

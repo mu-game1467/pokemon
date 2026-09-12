@@ -952,19 +952,19 @@ window.ITEM_DATA = {
     },
     {
       "name": "アブソルナイトZ",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m506.png",
       "category": "",
       "description": "アブソルがバトル中メガシンカ可能になる。"
     },
     {
       "name": "ガブリアスナイトZ",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m550.png",
       "category": "",
       "description": "ガブリアスがバトル中メガシンカ可能になる。"
     },
     {
       "name": "ルカリオナイトZ",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m523.png",
       "category": "",
       "description": "ルカリオがバトル中メガシンカ可能になる。"
     },
