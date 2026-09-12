@@ -232,7 +232,7 @@
            <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:80px">オフライン</span>
            <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
         </div>
-         <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button><button class="text-btn" id="copyPartyText">パーティをコピー</button>
+         <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button>
       </div>
     </header>
     <section class="hero">
@@ -1298,25 +1298,6 @@ function getMegaForms(baseName) {
     const cancelDamageCalcEl = $('cancelDamageCalc');
     if (openDamageCalcBtn) openDamageCalcBtn.addEventListener('click', openDamageCalc);
     if (closeDamageCalcEl) closeDamageCalcEl.addEventListener('click', closeDamageCalc);
-    function copyPartyAsText() {
-      if (!party.length) { alert('パーティが空です。まずポケモンを追加してください。'); return; }
-      const lines = party.map((p, i) => {
-        const moves = (p.moves || []).filter(Boolean).join(' / ') || 'なし';
-        const item = p.item || 'なし';
-        const ability = p.selectedAbility || (p.abilities || [])[0] || 'なし';
-        const nature = p.selectedNature || 'まじめ';
-        const evs = p.evs;
-        const evStr = evs ? [evs.hp||0, evs.attack||0, evs.defense||0, evs.specialAttack||0, evs.specialDefense||0, evs.specialDefense||0, evs.speed||0].join('/') : '0/0/0/0/0/0';
-        return `${i+1}. ${p.name} @ ${item}\n   特性: ${ability}\n   性格: ${nature} / EVs: ${evStr}\n   技: ${moves}`;
-      });
-      const text = (currentPartyName ? `【${currentPartyName}】\n` : '') + lines.join('\n\n');
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = $('copyPartyText');
-        if (btn) { const orig = btn.textContent; btn.textContent = 'コピー完了！'; setTimeout(() => btn.textContent = orig, 1500); }
-      });
-    }
-    const copyPartyBtn = $('copyPartyText');
-    if (copyPartyBtn) copyPartyBtn.addEventListener('click', copyPartyAsText);
     if (cancelDamageCalcEl) cancelDamageCalcEl.addEventListener('click', closeDamageCalc);
     const dcAttackerEl = $('dcAttacker');
     if (dcAttackerEl) dcAttackerEl.addEventListener('change', fillAttackMoves);
