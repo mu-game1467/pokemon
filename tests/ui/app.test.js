@@ -1,6 +1,17 @@
 const { test, expect } = require('@playwright/test');
 
+async function dismissLoginModal(page) {
+  const skipBtn = await page.$('#skipLogin');
+  if (skipBtn) {
+    const isHidden = await skipBtn.evaluate(el => el.closest('#loginModalOverlay')?.classList.contains('hidden'));
+    if (!isHidden) {
+      await skipBtn.click();
+    }
+  }
+}
+
 async function addPokemonBySearch(page, query) {
+  await dismissLoginModal(page);
   await page.fill('#search', query);
   await page.waitForSelector('.suggestion');
   await page.click('.suggestion');
@@ -137,12 +148,14 @@ test.describe('Frontend: Pokemon Details', () => {
 test.describe('Frontend: Damage Calculator', () => {
   test('damage calculator modal opens', async ({ page }) => {
     await page.goto('/');
+    await dismissLoginModal(page);
     await page.click('#openDamageCalc');
     await expect(page.locator('#damageCalcModal')).not.toHaveClass(/hidden/);
   });
 
   test('damage calculator has attacker and defender selects', async ({ page }) => {
     await page.goto('/');
+    await dismissLoginModal(page);
     await page.click('#openDamageCalc');
     const attackerSelect = await page.$('#dcAttacker');
     const defenderSelect = await page.$('#dcDefender');
