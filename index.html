@@ -815,7 +815,7 @@ function analyze() {
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();
       updateBattleLogButtonState();
-      $('partyName').value = '';
+      updateCurrentPartyNameDisplay();
       saveAllToServer();
     });
     const loginBtn = $('loginUser');
