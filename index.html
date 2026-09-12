@@ -524,6 +524,28 @@ function getMegaForms(baseName) {
         }
       }
     });
+    const baseNameToId = {};
+    pokemon.forEach(p => { if (p.id && !baseNameToId[p.name]) baseNameToId[p.name] = p.id; });
+    const megaStoneItemIds = {};
+    items.forEach(item => {
+      if (item.name.includes('ナイト') && item.description) {
+        const m = item.description.match(/^(.+?)がバトル中メガシンカ可能になる。$/);
+        if (m) {
+          let bn = m[1];
+          if (megaMap[bn]) bn = megaMap[bn];
+          const pid = baseNameToId[bn];
+          if (pid) megaStoneItemIds[item.name] = pid;
+        }
+      }
+    });
+    const idNum = (id) => Number(id.replace(/^n/, ''));
+    const sortedItems = [...items].sort((a, b) => {
+      const aId = megaStoneItemIds[a.name], bId = megaStoneItemIds[b.name];
+      if (!aId && !bId) return a.name.localeCompare(b.name, 'ja');
+      if (!aId) return -1;
+      if (!bId) return 1;
+      return idNum(aId) - idNum(bId) || a.name.localeCompare(b.name, 'ja');
+    });
     let party = [];
     let savedParties = [];
     let typeFilter = null;
@@ -579,7 +601,7 @@ function getMegaForms(baseName) {
 
     function updateItemPreview() { const item=items.find(entry=>entry.name===$('editItem').value); $('itemIcon').innerHTML=item?.iconUrl?`<img src="${item.iconUrl}" alt="">`:(item?.icon||'・'); $('itemDescription').textContent=item?.description||'持ち物を選択してください'; }
     function fillMoveSelects(p) { const source=pokemon.find(x=>x.name===p.name); const learned=(source ? learnableMoves(source) : []).filter(name => MOVE_DB[name]); document.querySelectorAll('[data-move]').forEach(select => { const index=Number(select.dataset.move); const current=(p.moves||[])[index]||''; const options=current && !learned.includes(current) ? [current,...learned] : learned; select.innerHTML='<option value="">— 選択しない —</option>'+options.map(name=>`<option value="${name}">${name}</option>`).join(''); select.value=current; document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(current); }); }
-    function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name]; const baseName=getBaseForm(p.name); const megaStone=isMega?megaStoneMap[baseName]:null; const itemList=isMega&&megaStone?items.filter(item=>item.name===megaStone||item.name===p.item):items; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
+    function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name]; const baseName=getBaseForm(p.name); const megaStone=isMega?megaStoneMap[baseName]:null; const itemList=isMega&&megaStone?sortedItems.filter(item=>item.name===megaStone||item.name===p.item):sortedItems; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
     function closeEditor() { editingIndex=-1; $('editor').classList.add('hidden'); }
     function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; }       p.evs=evs; p.memo=$('editMemo').value.trim(); saveAllToServer(); closeEditor(); render(); }
     function renderPartyStats() {
