@@ -1190,6 +1190,8 @@ function getMegaForms(baseName) {
     if (storedUser) {
       authUserId = storedUser;
       $('loginModalOverlay').classList.add('hidden');
+      if ($('userStatus')) { $('userStatus').textContent = storedUser; $('userStatus').style.color = 'var(--coral)'; }
+      if ($('logoutUser')) $('logoutUser').style.display = 'inline-block';
       loadAllFromServer().then((success) => {
         if (success) {
           render(); renderSaved(); updateBattleLogButtonState();
@@ -1197,6 +1199,8 @@ function getMegaForms(baseName) {
           localStorage.removeItem('party-current-user');
           authUserId = '';
           $('loginModalOverlay').classList.remove('hidden');
+          if ($('userStatus')) { $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
+          if ($('logoutUser')) $('logoutUser').style.display = 'none';
           render();
         }
       });
