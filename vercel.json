@@ -1,3 +1,17 @@
 {
-  "name": "pokecham"
+  "name": "pokecham",
+  "routes": [
+    {
+      "src": "/data/(.*)\\.js$",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/data/.*",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      }
+    }
+  ]
 }
