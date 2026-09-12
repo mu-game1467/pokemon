@@ -2,3 +2,5 @@ node_modules/
 data/users/
 data/accounts.json
 *.log
+test-results/
+
