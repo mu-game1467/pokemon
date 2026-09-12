@@ -5,10 +5,16 @@ const fs = require('fs');
 process.env.NODE_ENV = 'test';
 
 const app = require('../../server.js');
+const { safeUserId, getUserFilePath, getAccounts, saveAccounts } = require('../../server.js');
+
+const TEST_USER = 'testuser_auth';
+const TEST_PASS = 'testpass123';
+
+function getAuthHeaders(token) {
+  return { Authorization: 'Bearer ' + token };
+}
 
 describe('Server API: safeUserId', () => {
-  const { safeUserId, getUserFilePath } = require('../../server.js');
-
   test('allows alphanumeric, hyphen, underscore', () => {
     expect(safeUserId('user_123-abc')).toBe('user_123-abc');
   });
@@ -27,20 +33,71 @@ describe('Server API: safeUserId', () => {
   });
 });
 
-describe('Server API: /api/user/:userId', () => {
-  const TEST_USER_ID = 'test_user_ut_001';
-
-  afterAll(async () => {
-    // Clean up test data
-    const { getUserFilePath } = require('../../server.js');;
-    const filePath = getUserFilePath(TEST_USER_ID);
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-    }
+describe('Server API: /api/register and /api/login', () => {
+  test('register creates a new account', async () => {
+    const res = await request(app)
+      .post('/api/register')
+      .send({ username: TEST_USER, password: TEST_PASS });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('success', true);
+    expect(res.body).toHaveProperty('username', TEST_USER);
   });
 
-  test('GET returns default structure for non-existent user', async () => {
-    const res = await request(app).get('/api/user/' + TEST_USER_ID + '_noexist');
+  test('register rejects duplicate username', async () => {
+    const res = await request(app)
+      .post('/api/register')
+      .send({ username: TEST_USER, password: TEST_PASS });
+    expect(res.status).toBe(409);
+    expect(res.body).toHaveProperty('error');
+  });
+
+  test('register rejects missing fields', async () => {
+    const res = await request(app)
+      .post('/api/register')
+      .send({ username: '', password: '' });
+    expect(res.status).toBe(400);
+  });
+
+  test('login succeeds with correct credentials', async () => {
+    const res = await request(app)
+      .post('/api/login')
+      .send({ username: TEST_USER, password: TEST_PASS });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('success', true);
+    expect(res.body).toHaveProperty('token');
+    expect(res.body).toHaveProperty('username', TEST_USER);
+  });
+
+  test('login fails with wrong password', async () => {
+    const res = await request(app)
+      .post('/api/login')
+      .send({ username: TEST_USER, password: 'wrongpass' });
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty('error');
+  });
+
+  test('login fails with nonexistent user', async () => {
+    const res = await request(app)
+      .post('/api/login')
+      .send({ username: 'nonexistent', password: 'whatever' });
+    expect(res.status).toBe(401);
+  });
+});
+
+describe('Server API: /api/data (authenticated)', () => {
+  let token;
+
+  beforeAll(async () => {
+    const res = await request(app)
+      .post('/api/login')
+      .send({ username: TEST_USER, password: TEST_PASS });
+    token = res.body.token;
+  });
+
+  test('GET returns default structure', async () => {
+    const res = await request(app)
+      .get('/api/data')
+      .set(getAuthHeaders(token));
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('party');
     expect(res.body).toHaveProperty('savedParties');
@@ -55,20 +112,23 @@ describe('Server API: /api/user/:userId', () => {
   test('POST saves and GET retrieves user data', async () => {
     const testData = {
       party: [{ name: 'テストポケモン', id: 'n9999' }],
-      savedParties: [{ name: 'テストパーティ', pokemon: [] }],
+      savedParties: [{ name: 'テストパーティ', party: [] }],
       battleLogs: [{ result: 'win' }],
       memo: 'テストメモ',
       partyName: 'テストチーム'
     };
 
     const postRes = await request(app)
-      .post('/api/user/' + TEST_USER_ID)
+      .post('/api/data')
+      .set(getAuthHeaders(token))
       .send(testData);
 
     expect(postRes.status).toBe(200);
     expect(postRes.body).toHaveProperty('success', true);
 
-    const getRes = await request(app).get('/api/user/' + TEST_USER_ID);
+    const getRes = await request(app)
+      .get('/api/data')
+      .set(getAuthHeaders(token));
     expect(getRes.status).toBe(200);
     expect(getRes.body.party).toEqual(testData.party);
     expect(getRes.body.memo).toBe('テストメモ');
@@ -76,16 +136,47 @@ describe('Server API: /api/user/:userId', () => {
     expect(getRes.body).toHaveProperty('updatedAt');
   });
 
-  test('DELETE removes user data', async () => {
-    // Ensure data exists
-    await request(app).post('/api/user/' + TEST_USER_ID).send({ party: [] });
+  test('GET without token returns 401', async () => {
+    const res = await request(app).get('/api/data');
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty('error');
+  });
 
-    const delRes = await request(app).post('/api/user/' + TEST_USER_ID + '/delete');
+  test('DELETE removes user data', async () => {
+    await request(app)
+      .post('/api/data')
+      .set(getAuthHeaders(token))
+      .send({ party: [{ name: 'to-delete' }] });
+
+    const delRes = await request(app)
+      .post('/api/data/delete')
+      .set(getAuthHeaders(token));
     expect(delRes.status).toBe(200);
     expect(delRes.body).toHaveProperty('success', true);
 
-    // Verify it's gone
-    const getRes = await request(app).get('/api/user/' + TEST_USER_ID);
+    const getRes = await request(app)
+      .get('/api/data')
+      .set(getAuthHeaders(token));
     expect(getRes.body.party).toEqual([]);
   });
+});
+
+describe('Server API: /api/user/:userId/exists (legacy)', () => {
+  test('returns exists status', async () => {
+    const res = await request(app).get('/api/user/' + TEST_USER + '/exists');
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('exists');
+  });
+});
+
+afterAll(async () => {
+  const accounts = getAccounts();
+  if (accounts[TEST_USER]) {
+    delete accounts[TEST_USER];
+    saveAccounts(accounts);
+  }
+  const filePath = getUserFilePath(TEST_USER);
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
 });

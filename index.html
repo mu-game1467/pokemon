@@ -217,24 +217,49 @@
     .dc-field.invisible { visibility:hidden; height:0; padding:0; margin:0; }
     .dc-toggle { display:flex; gap:4px; flex-wrap:wrap; margin-top:4px; }
     .dc-toggle label { display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:400; cursor:pointer; }
-    .dc-toggle input { width:auto; }
-  </style>
+     .dc-toggle input { width:auto; }
+     .login-modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:9999; }
+     .login-modal { background:white; border-radius:10px; padding:24px; width:90%; max-width:320px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+     .login-modal h2 { margin:0 0 12px; font-size:16px; }
+     .login-card .field { margin-bottom:8px; }
+     .login-card .field input { width:100%; box-sizing:border-box; }
+     .login-tabs button { border-bottom:2px solid transparent; }
+     .login-tabs button.active { border-bottom-color:var(--coral); }
+   </style>
 </head>
 <body>
   <main class="app">
     <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
-    <header class="topbar">
-      <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / OFFLINE TOOL</small></div></div>
+  <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / TEAM BUILDER</small></div></div>
       <div class="top-actions">
-        <div class="user-id-bar" style="display:flex;align-items:center;gap:6px;font-size:11px">
-          <input id="userIdInput" placeholder="ユーザーID（任意）" autocomplete="off" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:11px;width:140px">
-           <button class="text-btn" id="loginUser" style="font-size:11px;padding:5px 10px">接続</button>
-           <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:80px">オフライン</span>
-           <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
-        </div>
-         <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button>
+        <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:80px">オフライン</span>
+        <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
       </div>
     </header>
+    <div class="login-modal-overlay hidden" id="loginModalOverlay">
+      <div class="login-modal">
+        <div class="login-card">
+          <h2>ログイン / 新規登録</h2>
+          <div class="login-tabs" style="display:flex;gap:4px;margin-bottom:12px">
+            <button class="text-btn" id="loginTab" style="flex:1">ログイン</button>
+            <button class="text-btn" id="registerTab" style="flex:1">新規登録</button>
+          </div>
+          <div id="loginForm">
+            <div class="field"><input id="loginUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
+            <div class="field"><input id="loginPassword" type="password" placeholder="パスワード" autocomplete="current-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
+            <button class="ghost-btn" id="loginSubmit" style="width:100%;margin-top:8px">ログイン</button>
+          </div>
+          <div id="registerForm" class="hidden">
+            <div class="field"><input id="registerUsername" placeholder="ユーザー名" autocomplete="username" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
+            <div class="field"><input id="registerPassword" type="password" placeholder="パスワード" autocomplete="new-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
+            <div class="field"><input id="registerPassword2" type="password" placeholder="パスワード（確認）" autocomplete="new-password" style="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-size:12px"></div>
+            <button class="ghost-btn" id="registerSubmit" style="width:100%;margin-top:8px">新規登録</button>
+          </div>
+          <div id="loginError" style="color:var(--coral);font-size:10px;margin-top:8px;height:14px"></div>
+        </div>
+      </div>
+    </div>
     <section class="hero">
       <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
       <div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div>
@@ -500,20 +525,6 @@ function getMegaForms(baseName) {
     let savedParties = [];
     let typeFilter = null;
     let currentPartyName = '';
-    try {
-      const partyData = localStorage.getItem('party-lab');
-      console.log('party-lab data:', partyData);
-      party = JSON.parse(partyData || '[]').map(normalizeMember);
-    } catch(e) {
-      console.error('Failed to load party:', e);
-    }
-    try {
-      const savedData = localStorage.getItem('party-lab-saved');
-      console.log('party-lab-saved data:', savedData);
-      savedParties = JSON.parse(savedData || '[]');
-    } catch(e) {
-      console.error('Failed to load saved parties:', e);
-    }
     let editingIndex = -1;
     let editingEntryId = null;
     let showMegaInCandidates = true;
@@ -548,7 +559,7 @@ function getMegaForms(baseName) {
     function updateStatus() { const text = party.length===0?'まずはパーティの軸になる1体を選びましょう。':party.length<6?`${6-party.length}枠空いています。弱点補完を意識して追加しましょう。`:'パーティが完成しました。右側の診断レポートを確認できます。'; $('status').querySelector('span').textContent=text; $('status').classList.toggle('ready',party.length===6); }
     function updateCurrentPartyNameDisplay() { const el=$('currentPartyNameDisplay'); if(!el) return; el.textContent=currentPartyName?`編集中: ${currentPartyName}`:'候補を検索して追加してください。'; }
     let pendingPokemon = null;
-    function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); $('abilityPicker').classList.add('hidden'); render(); }
+    function addPokemon(name, slot, selectedAbility) { if(party.length>=6 || party.some(p=>p.name===name)) return; const source=pokemon.find(x=>x.name===name); const p={...source, moves:[], selectedAbility:selectedAbility||source.abilities?.[0]}; if(slot!==undefined) party[slot]=p; else party.push(p); party=party.filter(Boolean); saveAllToServer(); $('abilityPicker').classList.add('hidden'); render(); }
     function choosePokemon(name) { const p=pokemon.find(x=>x.name===name); if(!p) return; if((p.abilities||[]).length<2) return addPokemon(name); pendingPokemon=p; $('abilityPickerTitle').textContent=`${p.name}の特性を選択`; $('abilityOptions').innerHTML=(p.abilities||['未選択']).map(ability=>`<button class="ability-option" data-ability="${ability}">${ability}</button>`).join(''); $('abilityPicker').classList.remove('hidden'); }
     
     function updateActualStatsPreview() {
@@ -567,7 +578,7 @@ function getMegaForms(baseName) {
     function fillMoveSelects(p) { const source=pokemon.find(x=>x.name===p.name); const learned=(source ? learnableMoves(source) : []).filter(name => MOVE_DB[name]); document.querySelectorAll('[data-move]').forEach(select => { const index=Number(select.dataset.move); const current=(p.moves||[])[index]||''; const options=current && !learned.includes(current) ? [current,...learned] : learned; select.innerHTML='<option value="">— 選択しない —</option>'+options.map(name=>`<option value="${name}">${name}</option>`).join(''); select.value=current; document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(current); }); }
     function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name]; const baseName=getBaseForm(p.name); const megaStone=isMega?megaStoneMap[baseName]:null; const itemList=isMega&&megaStone?items.filter(item=>item.name===megaStone||item.name===p.item):items; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
     function closeEditor() { editingIndex=-1; $('editor').classList.add('hidden'); }
-    function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; }       p.evs=evs; p.memo=$('editMemo').value.trim(); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); closeEditor(); render(); }
+    function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('努力値の合計が66を超えています。現在の合計: '+totalEv); return; }       p.evs=evs; p.memo=$('editMemo').value.trim(); saveAllToServer(); closeEditor(); render(); }
     function renderPartyStats() {
       const stats = party.map(p => calculateActualStats(p)).filter(Boolean);
       if (!stats.length) {
@@ -737,7 +748,7 @@ function getMegaForms(baseName) {
         const roleHtml=presentRoles.map(role=>'<div class="role-distribution-item" style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0eee9"><span>'+(roleLabels[role]||role)+'</span><strong style="color:var(--coral)">'+roleCounts[role]+'</strong></div>').join('');
         const missingHtml=missingRoles.length?'<div style="margin-top:6px;font-size:10px;color:var(--muted)">不足: '+missingRoles.map(r=>roleLabels[r]||r).join('、')+'</div>':'<div style="margin-top:6px;font-size:10px;color:var(--muted)">すべての役割が揃っています。</div>';
         $('roleDistribution').innerHTML = '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">パーティ内の役割分布</div>' + (roleHtml || '<div class="mono" style="color:var(--muted)">パーティがありません</div>') + missingHtml;
-    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
+    document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; saveAllToServer(); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
     $('editor').addEventListener('click', e => {
       if (e.target === $('editor')) closeEditor();
     });
@@ -789,11 +800,11 @@ function getMegaForms(baseName) {
       currentPartyName = savedParties[index].name || '';
       editingEntryId = savedParties[index].savedAt || null;
       $('partyName').value = savedParties[index].name || '';
-      localStorage.setItem('party-lab', JSON.stringify(party));
+      saveAllToServer();
       const memo = savedParties[index].memo || '';
       const partyMemoEl = $('partyMemo');
       if (partyMemoEl) partyMemoEl.value = memo;
-      localStorage.setItem('party-lab-memo', memo);
+      
       render();
     });
     $('deleteSaved').addEventListener('click', () => {
@@ -805,14 +816,14 @@ function getMegaForms(baseName) {
         currentPartyName = '';
         party = [];
         editingEntryId = null;
-        localStorage.setItem('party-lab', '[]');
+        
         const memoEl = $('partyMemo');
         if (memoEl) memoEl.value = '';
-        localStorage.setItem('party-lab-memo', '');
+        
         updateCurrentPartyNameDisplay();
       }
       savedParties.splice(index, 1);
-      localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+      saveAllToServer();
       renderSaved();
       updateBattleLogButtonState();
       render();
@@ -822,7 +833,7 @@ function getMegaForms(baseName) {
       currentPartyName = 'サンプルパーティ';
       editingEntryId = null;
       $('partyName').value = 'サンプルパーティ';
-      localStorage.setItem('party-lab', JSON.stringify(party));
+      saveAllToServer();
       render();
     });
     $('savePartySlot').addEventListener('click', () => {
@@ -841,15 +852,20 @@ function getMegaForms(baseName) {
         savedParties = [entry, ...savedParties.filter(x => x.savedAt !== entry.savedAt)].slice(0, 30);
       }
       editingEntryId = null;
-      localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+      saveAllToServer();
       renderSaved();
       updateBattleLogButtonState();
       updateCurrentPartyNameDisplay();
       saveAllToServer();
     });
-    const loginBtn = $('loginUser');
-    if (loginBtn) loginBtn.addEventListener('click', loginUser);
-    if ($('userIdInput')) $('userIdInput').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
+    if ($('loginSubmit')) $('loginSubmit').addEventListener('click', loginUser);
+    if ($('loginUsername')) $('loginUsername').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
+    if ($('loginPassword')) $('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
+    if ($('registerSubmit')) $('registerSubmit').addEventListener('click', registerUser);
+    if ($('registerUsername')) $('registerUsername').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
+    if ($('registerPassword2')) $('registerPassword2').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
+    if ($('loginTab')) $('loginTab').addEventListener('click', function() { $('loginTab').classList.add('active'); $('registerTab').classList.remove('active'); $('loginForm').classList.remove('hidden'); $('registerForm').classList.add('hidden'); });
+    if ($('registerTab')) $('registerTab').addEventListener('click', function() { $('registerTab').classList.add('active'); $('loginTab').classList.remove('active'); $('registerForm').classList.remove('hidden'); $('loginForm').classList.add('hidden'); });
     const logoutBtn = $('logoutUser');
     if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
     $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
@@ -863,7 +879,7 @@ function getMegaForms(baseName) {
         try {
           const imported = normalizeImportedParties(JSON.parse(reader.result));
           savedParties = [...imported, ...savedParties.filter(current => !imported.some(entry => entry.name === current.name))].slice(0, 30);
-          localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
+          saveAllToServer();
           renderSaved();
           updateBattleLogButtonState();
           alert(`${imported.length}件のパーティを読み込みました。`);
@@ -958,67 +974,96 @@ function getMegaForms(baseName) {
     function loadBattleLogs() {
       try { battleLogs.push(...JSON.parse(localStorage.getItem('party-lab-battle-logs') || '[]')); } catch (e) { console.error('battle logs load failed', e); }
     }
-     function saveBattleLogs() { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); }
-
-      let serverUserId = '';
-      let serverMode = false;
-      function storageKey(key) {
-        return serverUserId ? key + '-' + serverUserId : key;
-      }
-      function saveAllToServer() {
-        if (!serverMode || !serverUserId) return;
-        try {
-          const memo = $('partyMemo')?.value || '';
-          localStorage.setItem(storageKey('party-lab'), JSON.stringify(party));
-          localStorage.setItem(storageKey('party-lab-saved'), JSON.stringify(savedParties));
-          localStorage.setItem(storageKey('party-lab-battle-logs'), JSON.stringify(battleLogs));
-          localStorage.setItem(storageKey('party-lab-party-name'), currentPartyName);
-          localStorage.setItem(storageKey('party-lab-memo'), memo);
-        } catch(e) { console.error('save failed:', e); }
-      }
-       function loadAllFromServer() {
-        const userId = $('userIdInput')?.value.trim();
-        if (!userId) return false;
-        try {
-          party = JSON.parse(localStorage.getItem(storageKey('party-lab')) || '[]').map(normalizeMember);
-          savedParties = JSON.parse(localStorage.getItem(storageKey('party-lab-saved')) || '[]');
-          battleLogs.splice(0, battleLogs.length, ...(JSON.parse(localStorage.getItem(storageKey('party-lab-battle-logs')) || '[]')));
-          currentPartyName = localStorage.getItem(storageKey('party-lab-party-name')) || '';
-          if ($('partyName')) $('partyName').value = currentPartyName;
-          const memo = localStorage.getItem(storageKey('party-lab-memo')) || '';
-          if ($('partyMemo')) $('partyMemo').value = memo;
-          return true;
-        } catch(e) { console.error('load error:', e); return false; }
-       }
-      function loginUser() {
-        const userId = $('userIdInput')?.value.trim();
-        if (!userId) { alert('ユーザーIDを入力してください。'); return; }
-         serverUserId = userId;
-        localStorage.setItem('party-lab-user-id', userId);
-        serverMode = true;
-        $('userStatus').textContent = 'ローカル: ' + userId;
+    function saveBattleLogs() { try { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); } catch(e) {} }
+    let authToken = '';
+    let authUserId = '';
+    function showLoginError(msg) { const el = $('loginError'); if (el) el.textContent = msg; }
+    function saveAllToServer() {
+      if (!authToken) return;
+      const memo = $('partyMemo')?.value || '';
+      fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken },
+        body: JSON.stringify({ party: party, savedParties: savedParties, battleLogs: battleLogs, memo: memo, partyName: currentPartyName })
+      }).catch(e => console.error('save failed:', e));
+    }
+    async function loadAllFromServer() {
+      if (!authToken) return false;
+      try {
+        const res = await fetch('/api/data', { headers: { 'Authorization': 'Bearer ' + authToken } });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        party = (data.party || []).map(normalizeMember);
+        savedParties = data.savedParties || [];
+        battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
+        currentPartyName = data.partyName || '';
+        if ($('partyName')) $('partyName').value = currentPartyName;
+        if ($('partyMemo')) $('partyMemo').value = data.memo || '';
+        return true;
+      } catch(e) { console.error('load error:', e); return false; }
+    }
+    function loginUser() {
+      const username = $('loginUsername')?.value.trim();
+      const password = $('loginPassword')?.value.trim();
+      if (!username || !password) { showLoginError('ユーザー名とパスワードを入力してください。'); return; }
+      fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username, password: password })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) { showLoginError(data.error); return; }
+        authToken = data.token;
+        authUserId = data.username;
+        localStorage.setItem('party-token', authToken);
+        $('userStatus').textContent = data.username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
-        loadAllFromServer();
-        saveAllToServer();
-        render();
-        renderSaved();
-        updateBattleLogButtonState();
-      }
-      function logoutUser() {
-         serverMode = false;
-        localStorage.removeItem('party-lab-user-id');
-        serverUserId = '';
-        $('userIdInput').value = '';
-        $('userStatus').textContent = 'オフライン';
-        $('userStatus').style.color = 'var(--muted)';
-        $('logoutUser').style.display = 'none';
-        party = JSON.parse(localStorage.getItem('party-lab') || '[]').map(normalizeMember);
-        savedParties = JSON.parse(localStorage.getItem('party-lab-saved') || '[]');
-        render();
-        renderSaved();
-      }
-     function fillBattleLogSelects() {
+        $('loginModalOverlay').classList.add('hidden');
+        loadAllFromServer().then(() => { render(); renderSaved(); updateBattleLogButtonState(); });
+      })
+      .catch(e => showLoginError('ログインに失敗しました。'));
+    }
+    async function registerUser() {
+      const username = $('registerUsername')?.value.trim();
+      const password = $('registerPassword')?.value.trim();
+      const password2 = $('registerPassword2')?.value.trim();
+      if (!username || !password) { showLoginError('ユーザー名とパスワードを入力してください。'); return; }
+      if (password !== password2) { showLoginError('パスワードが一致しません。'); return; }
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: username, password: password })
+        });
+        const data = await res.json();
+        if (data.error) { showLoginError(data.error); return; }
+        showLoginError('登録成功！ログインしてください。');
+        if ($('registerTab')) $('registerTab').click();
+      } catch(e) { showLoginError('登録に失敗しました。'); }
+    }
+    function logoutUser() {
+      if (authToken) fetch('/api/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + authToken } }).catch(()=>{});
+      authToken = '';
+      authUserId = '';
+      localStorage.removeItem('party-token');
+      $('userStatus').textContent = 'オフライン';
+      $('userStatus').style.color = 'var(--muted)';
+      $('logoutUser').style.display = 'none';
+      party = [];
+      savedParties = [];
+      currentPartyName = '';
+      editingEntryId = null;
+      $('loginModalOverlay').classList.remove('hidden');
+      if ($('loginTab')) $('loginTab').classList.add('active');
+      if ($('registerTab')) $('registerTab').classList.remove('active');
+      if ($('loginForm')) $('loginForm').classList.remove('hidden');
+      if ($('registerForm')) $('registerForm').classList.add('hidden');
+      showLoginError('');
+    }
+    
+    function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();
       const options = allNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
       const datalist = document.getElementById('battlePokemonDatalist');
@@ -1132,10 +1177,13 @@ function getMegaForms(baseName) {
     loadBattleLogs();
     updateBattleLogButtonState();
 
-    const storedUserId = localStorage.getItem('party-lab-user-id');
-    if (storedUserId) {
-      $('userIdInput').value = storedUserId;
-      loginUser();
+    const storedToken = localStorage.getItem('party-token');
+    if (storedToken) {
+      authToken = storedToken;
+      $('loginModalOverlay').classList.add('hidden');
+      loadAllFromServer().then(() => { render(); renderSaved(); updateBattleLogButtonState(); });
+    } else {
+      $('loginModalOverlay').classList.remove('hidden');
     }
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);
