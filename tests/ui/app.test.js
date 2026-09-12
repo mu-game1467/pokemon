@@ -145,6 +145,38 @@ test.describe('Frontend: Pokemon Details', () => {
   });
 });
 
+test.describe('Frontend: Mega Form Cycling', () => {
+  test('mega Pokemon can cycle through forms including Z variant', async ({ page }) => {
+    await page.goto('/');
+    await addPokemonBySearch(page, 'アブソル');
+    await page.click('.edit-button');
+    await expect(page.locator('#editor')).not.toHaveClass(/hidden/);
+    const slotName = await page.textContent('.slot.filled .slot-name');
+    expect(slotName).toContain('アブソル');
+    await page.click('[data-form-index="0"]');
+    const nextSlotName = await page.textContent('.slot.filled .slot-name');
+    expect(['メガアブソル', 'メガアブソルZ'].some(name => nextSlotName.includes(name))).toBe(true);
+  });
+
+  test('mega form editor shows correct mega stone', async ({ page }) => {
+    await page.goto('/');
+    await addPokemonBySearch(page, 'アブソル');
+    await page.click('.edit-button');
+    await page.click('[data-form-index="0"]');
+    await page.click('[data-form-index="0"]');
+    await page.click('.edit-button');
+    const itemOptions = await page.$$eval('#editItem option', opts => opts.map(o => o.textContent));
+    const slotName = await page.textContent('.slot.filled .slot-name');
+    if (slotName.includes('メガアブソルZ')) {
+      expect(itemOptions).toContain('アブソルナイトZ');
+      expect(itemOptions).not.toContain('アブソルナイト');
+    } else if (slotName.includes('メガアブソル')) {
+      expect(itemOptions).toContain('アブソルナイト');
+      expect(itemOptions).not.toContain('アブソルナイトZ');
+    }
+  });
+});
+
 test.describe('Frontend: Damage Calculator', () => {
   test('damage calculator modal opens', async ({ page }) => {
     await page.goto('/');

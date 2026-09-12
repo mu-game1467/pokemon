@@ -139,10 +139,45 @@ describe('pokemon-champions.json data integrity', () => {
 
   test('M-C items are present', () => {
     const mcItems = ['アブソルナイトZ', 'ガブリアスナイトZ', 'ルカリオナイトZ',
+      'アブソルナイト', 'ガブリアスナイト', 'ルカリオナイト',
       'ボーマンダナイト', 'グソクムシャナイト', 'セグレイブナイト'];
     const itemNames = champions.items.map(i => i.name);
     mcItems.forEach(name => {
       expect(itemNames).toContain(name);
+    });
+  });
+
+  test('each mega form has correct megaStone assigned', () => {
+    const megaEntries = champions.pokemon.filter(p => p.isMega === true);
+    const megaByName = Object.fromEntries(megaEntries.map(p => [p.name, p]));
+    const expectedMegaStones = {
+      'メガアブソル': 'アブソルナイト',
+      'メガアブソルZ': 'アブソルナイトZ',
+      'メガガブリアス': 'ガブリアスナイト',
+      'メガガブリアスZ': 'ガブリアスナイトZ',
+      'メガルカリオ': 'ルカリオナイト',
+      'メガルカリオZ': 'ルカリオナイトZ',
+    };
+    Object.entries(expectedMegaStones).forEach(([formName, stoneName]) => {
+      expect(megaByName[formName]).toBeDefined();
+      expect(megaByName[formName].megaStone).toBe(stoneName);
+    });
+  });
+
+  test('each mega form has correct baseForm', () => {
+    const megaEntries = champions.pokemon.filter(p => p.isMega === true);
+    const megaByName = Object.fromEntries(megaEntries.map(p => [p.name, p]));
+    const expectedBaseForms = {
+      'メガアブソル': 'アブソル',
+      'メガアブソルZ': 'アブソル',
+      'メガガブリアス': 'ガブリアス',
+      'メガガブリアスZ': 'ガブリアス',
+      'メガルカリオ': 'ルカリオ',
+      'メガルカリオZ': 'ルカリオ',
+    };
+    Object.entries(expectedBaseForms).forEach(([formName, baseForm]) => {
+      expect(megaByName[formName]).toBeDefined();
+      expect(megaByName[formName].baseForm).toBe(baseForm);
     });
   });
 });
@@ -169,6 +204,16 @@ describe('pokemon-champions.js sync with JSON', () => {
     const names = jsData.pokemon.map(p => p.name);
     expect(names).toContain('プクリン');
     expect(names).toContain('メガアブソルZ');
+    expect(names).toContain('メガガブリアスZ');
+    expect(names).toContain('メガルカリオZ');
+  });
+
+  test('JS file contains non-Z mega stone items', () => {
+    const jsData = loadJs(path.join(DATA_DIR, 'pokemon-champions.js'));
+    const itemNames = jsData.items.map(i => i.name);
+    expect(itemNames).toContain('アブソルナイト');
+    expect(itemNames).toContain('ガブリアスナイト');
+    expect(itemNames).toContain('ルカリオナイト');
   });
 });
 
