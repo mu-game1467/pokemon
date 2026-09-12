@@ -515,6 +515,7 @@ function getMegaForms(baseName) {
       console.error('Failed to load saved parties:', e);
     }
     let editingIndex = -1;
+    let editingEntryId = null;
     const $ = id => {
       const el = document.getElementById(id);
       if (!el && id !== 'errorDisplay') console.warn('Element not found:', id);
@@ -771,6 +772,7 @@ function analyze() {
       if (Number.isNaN(index) || !savedParties[index]) return;
       party = savedParties[index].party.map(normalizeMember);
       currentPartyName = savedParties[index].name || '';
+      editingEntryId = savedParties[index].savedAt || null;
       $('partyName').value = savedParties[index].name || '';
       localStorage.setItem('party-lab', JSON.stringify(party));
       const memo = savedParties[index].memo || '';
@@ -787,6 +789,7 @@ function analyze() {
       if (currentPartyName === deletedName) {
         currentPartyName = '';
         party = [];
+        editingEntryId = null;
         localStorage.setItem('party-lab', '[]');
         const memoEl = $('partyMemo');
         if (memoEl) memoEl.value = '';
@@ -802,6 +805,7 @@ function analyze() {
     $('loadDemo').addEventListener('click', () => {
       party = ['メガリザードンY', 'メガゲンガー', 'アシレーヌ', 'ドドゲザン', 'ミミッキュ', 'ウォッシュロトム'].map(n => pokemon.find(p => p.name === n));
       currentPartyName = 'サンプルパーティ';
+      editingEntryId = null;
       $('partyName').value = 'サンプルパーティ';
       localStorage.setItem('party-lab', JSON.stringify(party));
       render();
@@ -810,8 +814,18 @@ function analyze() {
       const name = $('partyName').value.trim() || `パーティ ${savedParties.length + 1}`;
       currentPartyName = name;
       const memo = $('partyMemo')?.value?.trim() || '';
-      const entry = { name, party: JSON.parse(JSON.stringify(party)), memo, savedAt: new Date().toISOString() };
-      savedParties = [entry, ...savedParties.filter(x => x.name !== name)].slice(0, 30);
+      if (editingEntryId) {
+        const existingIndex = savedParties.findIndex(x => x.savedAt === editingEntryId);
+        if (existingIndex >= 0) {
+          savedParties[existingIndex] = { name, party: JSON.parse(JSON.stringify(party)), memo, savedAt: editingEntryId };
+        } else {
+          savedParties = [{ name, party: JSON.parse(JSON.stringify(party)), memo, savedAt: new Date().toISOString() }, ...savedParties.filter(x => x.savedAt !== editingEntryId)].slice(0, 30);
+        }
+      } else {
+        const entry = { name, party: JSON.parse(JSON.stringify(party)), memo, savedAt: new Date().toISOString() };
+        savedParties = [entry, ...savedParties.filter(x => x.savedAt !== entry.savedAt)].slice(0, 30);
+      }
+      editingEntryId = null;
       localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
       renderSaved();
       updateBattleLogButtonState();
@@ -963,7 +977,8 @@ function analyze() {
       function loginUser() {
         const userId = $('userIdInput')?.value.trim();
         if (!userId) { alert('ユーザーIDを入力してください。'); return; }
-        serverUserId = userId;
+         serverUserId = userId;
+        localStorage.setItem('party-lab-user-id', userId);
         serverMode = true;
         $('userStatus').textContent = 'ローカル: ' + userId;
         $('userStatus').style.color = 'var(--coral)';
@@ -975,7 +990,8 @@ function analyze() {
         updateBattleLogButtonState();
       }
       function logoutUser() {
-        serverMode = false;
+         serverMode = false;
+        localStorage.removeItem('party-lab-user-id');
         serverUserId = '';
         $('userIdInput').value = '';
         $('userStatus').textContent = 'オフライン';
@@ -1099,6 +1115,12 @@ function analyze() {
 
     loadBattleLogs();
     updateBattleLogButtonState();
+
+    const storedUserId = localStorage.getItem('party-lab-user-id');
+    if (storedUserId) {
+      $('userIdInput').value = storedUserId;
+      loginUser();
+    }
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);
     if (openBattleLogBtn) openBattleLogBtn.addEventListener('click', () => { console.log('openBattleLog clicked'); openBattleLogPanel(); });
