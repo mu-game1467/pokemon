@@ -232,7 +232,7 @@
            <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:80px">オフライン</span>
            <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
         </div>
-        <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button>
+         <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button><button class="text-btn" id="copyPartyText">パーティをコピー</button>
       </div>
     </header>
     <section class="hero">
@@ -257,7 +257,7 @@
           <div class="diagnosis-intro"><div><div class="eyebrow">PARTY REPORT / LOCAL ANALYSIS</div><h2 style="margin:6px 0 0">診断レポート</h2></div><div class="score" id="score">--<small>/100</small></div><div class="score-copy" id="scoreCopy">6体そろうと、タイプ防御と役割バランスを自動で分析します。</div></div>
           <div class="metrics" id="metrics"></div>
           <div class="party-stats" id="partyStats"></div>
-          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span><label style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer"><input type="checkbox" id="toggleMegaCandidates" checked style="width:auto"><span>メガシンカ表示</span></label></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div></div>
+          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span><label style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer"><input type="checkbox" id="toggleMegaCandidates" checked style="width:auto"><span>メガシンカ表示</span></label></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div><div class="section-label">役割分布 <span>補完状況</span></div><div id="roleDistribution"></div></div>
         </div>
       </div>
 
@@ -630,104 +630,113 @@ function getMegaForms(baseName) {
       }).join('');
       $('partyStatsPreview').innerHTML = '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">パーティ内比較</div>' + html;
     }
-function analyze() {
-      renderPartyStats();
-      if(!party.length) return;
-      const allTypes=['ノーマル','ほのお','みず','でんき','くさ','こおり','かくとう','どく','じめん','ひこう','エスパー','むし','いわ','ゴースト','ドラゴン','あく','はがね','フェアリー'];
-      const counts={};
-      const protections=[];
-      const typeDefenseList=[];
-      party.forEach(p=>{
-        const effects=(abilityEffects[p.selectedAbility]||{});
-        (effects.immune||[]).forEach(type=>protections.push(`${p.name} / ${p.selectedAbility}: ${type}無効`));
-        (effects.resist||[]).forEach(type=>{
-          const baseMultiplier=p.types.some(partyType=>typeWeakness[partyType]?.includes(type))?2:1;
-          const finalMultiplier=baseMultiplier*(effects.multiplier||0.5);
-          protections.push(`${p.name} / ${p.selectedAbility}: ${type}${finalMultiplier===1?'等倍':finalMultiplier<1?'半減':'倍増'}`);
-        });
-        const typeDefense={};
-        allTypes.forEach(attackingType=>{
-          let multiplier=1;
-          if(effects.immune&&effects.immune.includes(attackingType)){multiplier=0;}
-          else{
-            let baseMultiplier=1;
-            p.types.forEach(pokemonType=>{
-              if(typeWeakness[pokemonType]?.includes(attackingType))baseMultiplier*=2;
-              if(typeResist[pokemonType]?.includes(attackingType))baseMultiplier*=0.5;
+    function analyze() {
+          renderPartyStats();
+          if(!party.length) return;
+          const allTypes=['ノーマル','ほのお','みず','でんき','くさ','こおり','かくとう','どく','じめん','ひこう','エスパー','むし','いわ','ゴースト','ドラゴン','あく','はがね','フェアリー'];
+          const counts={};
+          const protections=[];
+          const typeDefenseList=[];
+          party.forEach(p=>{
+            const effects=(abilityEffects[p.selectedAbility]||{});
+            (effects.immune||[]).forEach(type=>protections.push(`${p.name} / ${p.selectedAbility}: ${type}無効`));
+            (effects.resist||[]).forEach(type=>{
+              const baseMultiplier=p.types.some(partyType=>typeWeakness[partyType]?.includes(type))?2:1;
+              const finalMultiplier=baseMultiplier*(effects.multiplier||0.5);
+              protections.push(`${p.name} / ${p.selectedAbility}: ${type}${finalMultiplier===1?'等倍':finalMultiplier<1?'半減':'倍増'}`);
             });
-            multiplier=baseMultiplier;
-            if(effects.multiply&&effects.multiply.includes(attackingType))multiplier*=(effects.multiplier||1.25);
-            if(effects.weakness&&effects.weakness.includes(attackingType))multiplier*=(effects.weaknessMultiplier||2);
-            if(effects.resist&&effects.resist.includes(attackingType))multiplier*=(effects.multiplier||0.5);
-          }
-          typeDefense[attackingType]=multiplier;
-        });
-        typeDefenseList.push(typeDefense);
-        allTypes.forEach(attackingType => {
-          if (typeDefense[attackingType] > 1) counts[attackingType] = (counts[attackingType] || 0) + 1;
-        });
-      });
-      const weakness=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
-      const variety=new Set(party.flatMap(p=>p.types)).size;
-      const defenseScore=Math.max(0,Math.min(100,100-weakness.reduce((sum,[,count])=>sum+Math.max(0,count-2),0)*4));
-      const score=Math.round((Math.min(100,44+variety*5)+defenseScore+Math.min(100,50+party.length*8)+Math.min(12,protections.length*2))/3);
-      $('score').innerHTML=`${score}<small>/100</small>`;
-      $('scoreCopy').textContent=score>=78?'弱点の重複が少なく、バランスの良いパーティです。':'弱点の重複を確認して、特性やタイプで補完しましょう。';
-      $('metrics').innerHTML=[['TYPE COVERAGE',Math.min(100,44+variety*5),`${variety} types`],['DEFENSE',defenseScore,protections.length?`${protections.length} protections`:'相性を確認'],['PARTY SIZE',Math.min(100,50+party.length*8),`${party.length} members`]].map(m=>`<div class="metric"><span class="eyebrow">${m[0]}</span><strong>${m[1]}</strong><div class="metric-bar"><i style="width:${m[1]}%"></i></div><small class="mono">${m[2]}</small></div>`).join('');
-      const partyWeaknesses=new Set(weakness.map(w=>w[0]));
-      const partyTypes=new Set(party.flatMap(p=>p.types));
-      const topWeakness=weakness.length?weakness[0][0]:null;
-      const topProtections=topWeakness?protections.filter(p=>p.includes(`${topWeakness}無効`)||p.includes(`${topWeakness}半減`)):[];
-      const hasTypeProtection=topWeakness?party.some(p=>p.types.some(type=>typeResist[type]?.includes(topWeakness))):false;
-      const scoredCandidates=pokemon.filter(p=>{if(party.some(x=>x.name===p.name))return false;const baseForm=getBaseForm(p.name);const megaForms=getMegaForms(baseForm);if(p.name!==baseForm&&party.some(x=>x.name===baseForm))return false;if(p.name===baseForm&&party.some(x=>megaForms.includes(x.name)))return false;if(p.name!==baseForm&&party.some(x=>megaForms.includes(x.name)))return false;return true;}).map(p=>{const types=[...p.types];let coversWeakness=0;let coversTopWeakness=0;types.forEach(type=>{partyWeaknesses.forEach(w=>{if(typeResist[type]?.includes(w)){coversWeakness++;if(w===topWeakness)coversTopWeakness++;}});});const newTypes=[...types].filter(t=>!partyTypes.has(t));const newCoverage=newTypes.length;let introducesWeakness=0;let sharedWeakness=0;let weakToTopWeakness=false;types.forEach(type=>{if(typeWeakness[type]){typeWeakness[type].forEach(w=>{if(!partyWeaknesses.has(w)){introducesWeakness++;if(w===topWeakness)weakToTopWeakness=true;}else{sharedWeakness++;}});}});const score=coversTopWeakness*10+coversWeakness*3+newCoverage*2-introducesWeakness*3-(weakToTopWeakness?5:0)-sharedWeakness*2;return{...p,score,coversWeakness,coversTopWeakness,newCoverage,sharedWeakness};}).filter(p=>{if(!showMegaInCandidates&&megaMap[p.name])return false;if(topWeakness){if(p.types.some(type=>typeWeakness[type]?.includes(topWeakness)))return false;if(topProtections.length===0&&!hasTypeProtection&&!p.types.some(type=>typeResist[type]?.includes(topWeakness)))return false;}return true;}).sort((a,b)=>b.score-a.score||baseStatTotal(b)-baseStatTotal(a)).slice(0,10);
-      $('candidates').innerHTML=scoredCandidates.map(p=>`<div class="candidate" data-pokemon="${p.name}" style="cursor:pointer"><div>${iconMarkup(p)} <strong>${p.name}</strong><small>${p.types.join(' / ')}${p.role?` · ${p.role}`:''}${p.coversTopWeakness?` · 最大弱点をカバー`:''}${p.coversWeakness-p.coversTopWeakness?` · 弱点${p.coversWeakness-p.coversTopWeakness}件補完`:''}${p.newCoverage?` · 新規タイプ+${p.newCoverage}`:''}${p.sharedWeakness?` · 共通弱点${p.sharedWeakness}件`:''}</small></div><b>+${Math.max(0,p.score)} pts</b></div>`).join('')||'<div class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</div>';
-
-      const top=weakness[0];
-      const relevantProtections = top ? protections.filter(p => p.includes(`${top[0]}無効`) || p.includes(`${top[0]}半減`)) : [];
-      $('alert').textContent=top?`${top[0]}の弱点が${top[1]===1?'1匹':top[1]+'匹'}のポケモンにあります。${relevantProtections.length?`${relevantProtections.slice(0,2).join('、')}で対応可能です。`:`このタイプに強いポケモンを追加しましょう。`}`:'大きな弱点の重複は見つかりませんでした。';
-
-      const typeDefenseHtml = allTypes.map(type => {
-        const avgMultiplier = typeDefenseList.reduce((sum, def) => sum + (def[type] !== undefined ? def[type] : 1), 0) / (typeDefenseList.length || 1);
-        const label = avgMultiplier === 0 ? '×0' : avgMultiplier < 0.5 ? '×0.25' : avgMultiplier <= 0.75 ? '×' + avgMultiplier.toFixed(2) : avgMultiplier === 1 ? '×1' : '×' + avgMultiplier.toFixed(2);
-        const bg = avgMultiplier === 0 ? '#e8f5e9' : avgMultiplier < 1 ? '#fff3e0' : avgMultiplier > 1 ? '#ffebee' : '#f5f5f5';
-        const color = avgMultiplier === 0 ? '#2e7d32' : avgMultiplier < 1 ? '#ef6c00' : avgMultiplier > 1 ? '#c62828' : '#616161';
-        return `<div class="weakness" style="background:${bg};color:${color}"><span>${type}</span><b>${label}</b></div>`;
-      }).join('');
-      $('weaknesses').innerHTML = typeDefenseHtml || '<div class="mono">タイプ情報がありません</div>';
-
-      const coverage = {};
-      allTypes.forEach(defType => { coverage[defType] = { covered: false, hits: [] }; });
-      party.forEach(p => {
-        const moves = (p.moves || []).filter(name => MOVE_DB[name]).map(name => MOVE_DB[name]);
-        moves.forEach(move => {
-          const moveType = move.t;
-          allTypes.forEach(defType => {
-            if (moveType === defType) return;
-            let multiplier = 1;
-            if (typeWeakness[defType]?.includes(moveType)) multiplier *= 2;
-            if (typeResist[defType]?.includes(moveType)) multiplier *= 0.5;
-            if (multiplier >= 2) {
-              coverage[defType].covered = true;
-              coverage[defType].hits.push({ name: p.name, move: move.t + ' ' + (move.n || move.name) });
-            }
+            const typeDefense={};
+            allTypes.forEach(attackingType=>{
+              let multiplier=1;
+              if(effects.immune&&effects.immune.includes(attackingType)){multiplier=0;}
+              else{
+                let baseMultiplier=1;
+                p.types.forEach(pokemonType=>{
+                  if(typeWeakness[pokemonType]?.includes(attackingType))baseMultiplier*=2;
+                  if(typeResist[pokemonType]?.includes(attackingType))baseMultiplier*=0.5;
+                });
+                multiplier=baseMultiplier;
+                if(effects.multiply&&effects.multiply.includes(attackingType))multiplier*=(effects.multiplier||1.25);
+                if(effects.weakness&&effects.weakness.includes(attackingType))multiplier*=(effects.weaknessMultiplier||2);
+                if(effects.resist&&effects.resist.includes(attackingType))multiplier*=(effects.multiplier||0.5);
+              }
+              typeDefense[attackingType]=multiplier;
+            });
+            typeDefenseList.push(typeDefense);
+            allTypes.forEach(attackingType => {
+              if (typeDefense[attackingType] > 1) counts[attackingType] = (counts[attackingType] || 0) + 1;
+            });
           });
-        });
-      });
-      const coveredTypes = allTypes.filter(t => coverage[t].covered);
-      const blindSpots = allTypes.filter(t => !coverage[t].covered);
-      const coverageHtml = allTypes.map(type => {
-        const data = coverage[type];
-        const bg = data.covered ? '#e8f5e9' : '#ffebee';
-        const color = data.covered ? '#2e7d32' : '#c62828';
-        const label = data.covered ? '○' : '×';
-        const detail = data.covered ? data.hits.slice(0, 2).map(h => h.name + 'の' + h.move).join('、') : '無効';
-        return `<div class="weakness" style="background:${bg};color:${color}" title="${detail}"><span>${type}</span><b>${label}</b></div>`;
-      }).join('');
-      $('coverage').innerHTML = coverageHtml || '<div class="mono">タイプ情報がありません</div>';
-      if (blindSpots.length) {
-        $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
-      }
-    }
+          const weakness=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+          const variety=new Set(party.flatMap(p=>p.types)).size;
+          const defenseScore=Math.max(0,Math.min(100,100-weakness.reduce((sum,[,count])=>sum+Math.max(0,count-2),0)*4));
+          const score=Math.round((Math.min(100,44+variety*5)+defenseScore+Math.min(100,50+party.length*8)+Math.min(12,protections.length*2))/3);
+          $('score').innerHTML=`${score}<small>/100</small>`;
+          $('scoreCopy').textContent=score>=78?'弱点の重複が少なく、バランスの良いパーティです。':'弱点の重複を確認して、特性やタイプで補完しましょう。';
+          $('metrics').innerHTML=[['TYPE COVERAGE',Math.min(100,44+variety*5),`${variety} types`],['DEFENSE',defenseScore,protections.length?`${protections.length} protections`:'相性を確認'],['PARTY SIZE',Math.min(100,50+party.length*8),`${party.length} members`]].map(m=>`<div class="metric"><span class="eyebrow">${m[0]}</span><strong>${m[1]}</strong><div class="metric-bar"><i style="width:${m[1]}%"></i></div><small class="mono">${m[2]}</small></div>`).join('');
+          const partyWeaknesses=new Set(weakness.map(w=>w[0]));
+          const partyTypes=new Set(party.flatMap(p=>p.types));
+          const topWeakness=weakness.length?weakness[0][0]:null;
+          const topProtections=topWeakness?protections.filter(p=>p.includes(`${topWeakness}無効`)||p.includes(`${topWeakness}半減`)):[];
+          const hasTypeProtection=topWeakness?party.some(p=>p.types.some(type=>typeResist[type]?.includes(topWeakness))):false;
+          const scoredCandidates=pokemon.filter(p=>{if(party.some(x=>x.name===p.name))return false;const baseForm=getBaseForm(p.name);const megaForms=getMegaForms(baseForm);if(p.name!==baseForm&&party.some(x=>x.name===baseForm))return false;if(p.name===baseForm&&party.some(x=>megaForms.includes(x.name)))return false;if(p.name!==baseForm&&party.some(x=>megaForms.includes(x.name)))return false;return true;}).map(p=>{const types=[...p.types];let coversWeakness=0;let coversTopWeakness=0;types.forEach(type=>{partyWeaknesses.forEach(w=>{if(typeResist[type]?.includes(w)){coversWeakness++;if(w===topWeakness)coversTopWeakness++;}});});const newTypes=[...types].filter(t=>!partyTypes.has(t));const newCoverage=newTypes.length;let introducesWeakness=0;let sharedWeakness=0;let weakToTopWeakness=false;types.forEach(type=>{if(typeWeakness[type]){typeWeakness[type].forEach(w=>{if(!partyWeaknesses.has(w)){introducesWeakness++;if(w===topWeakness)weakToTopWeakness=true;}else{sharedWeakness++;}});}});const score=coversTopWeakness*10+coversWeakness*3+newCoverage*2-introducesWeakness*3-(weakToTopWeakness?5:0)-sharedWeakness*2;return{...p,score,coversWeakness,coversTopWeakness,newCoverage,sharedWeakness};}).filter(p=>{if(!showMegaInCandidates&&megaMap[p.name])return false;if(topWeakness){if(p.types.some(type=>typeWeakness[type]?.includes(topWeakness)))return false;if(topProtections.length===0&&!hasTypeProtection&&!p.types.some(type=>typeResist[type]?.includes(topWeakness)))return false;}return true;}).sort((a,b)=>b.score-a.score||baseStatTotal(b)-baseStatTotal(a)).slice(0,10);
+          $('candidates').innerHTML=scoredCandidates.map(p=>`<div class="candidate" data-pokemon="${p.name}" style="cursor:pointer"><div>${iconMarkup(p)} <strong>${p.name}</strong><small>${p.types.join(' / ')}${p.role?` · ${p.role}`:''}${p.coversTopWeakness?` · 最大弱点をカバー`:''}${p.coversWeakness-p.coversTopWeakness?` · 弱点${p.coversWeakness-p.coversTopWeakness}件補完`:''}${p.newCoverage?` · 新規タイプ+${p.newCoverage}`:''}${p.sharedWeakness?` · 共通弱点${p.sharedWeakness}件`:''}</small></div><b>+${Math.max(0,p.score)} pts</b></div>`).join('')||'<div class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</div>';
+    
+          const top=weakness[0];
+          const relevantProtections = top ? protections.filter(p => p.includes(`${top[0]}無効`) || p.includes(`${top[0]}半減`)) : [];
+          $('alert').textContent=top?`${top[0]}の弱点が${top[1]===1?'1匹':top[1]+'匹'}のポケモンにあります。${relevantProtections.length?`${relevantProtections.slice(0,2).join('、')}で対応可能です。`:`このタイプに強いポケモンを追加しましょう。`}`:'大きな弱点の重複は見つかりませんでした。';
+    
+          const typeDefenseHtml = allTypes.map(type => {
+            const avgMultiplier = typeDefenseList.reduce((sum, def) => sum + (def[type] !== undefined ? def[type] : 1), 0) / (typeDefenseList.length || 1);
+            const label = avgMultiplier === 0 ? '×0' : avgMultiplier < 0.5 ? '×0.25' : avgMultiplier <= 0.75 ? '×' + avgMultiplier.toFixed(2) : avgMultiplier === 1 ? '×1' : '×' + avgMultiplier.toFixed(2);
+            const bg = avgMultiplier === 0 ? '#e8f5e9' : avgMultiplier < 1 ? '#fff3e0' : avgMultiplier > 1 ? '#ffebee' : '#f5f5f5';
+            const color = avgMultiplier === 0 ? '#2e7d32' : avgMultiplier < 1 ? '#ef6c00' : avgMultiplier > 1 ? '#c62828' : '#616161';
+            return `<div class="weakness" style="background:${bg};color:${color}"><span>${type}</span><b>${label}</b></div>`;
+          }).join('');
+          $('weaknesses').innerHTML = typeDefenseHtml || '<div class="mono">タイプ情報がありません</div>';
+    
+          const coverage = {};
+          allTypes.forEach(defType => { coverage[defType] = { covered: false, hits: [] }; });
+          party.forEach(p => {
+            const moves = (p.moves || []).filter(name => MOVE_DB[name]).map(name => MOVE_DB[name]);
+            moves.forEach(move => {
+              const moveType = move.t;
+              allTypes.forEach(defType => {
+                if (moveType === defType) return;
+                let multiplier = 1;
+                if (typeWeakness[defType]?.includes(moveType)) multiplier *= 2;
+                if (typeResist[defType]?.includes(moveType)) multiplier *= 0.5;
+                if (multiplier >= 2) {
+                  coverage[defType].covered = true;
+                  coverage[defType].hits.push({ name: p.name, move: move.t + ' ' + (move.n || move.name) });
+                }
+              });
+            });
+          });
+          const coveredTypes = allTypes.filter(t => coverage[t].covered);
+          const blindSpots = allTypes.filter(t => !coverage[t].covered);
+          const coverageHtml = allTypes.map(type => {
+            const data = coverage[type];
+            const bg = data.covered ? '#e8f5e9' : '#ffebee';
+            const color = data.covered ? '#2e7d32' : '#c62828';
+            const label = data.covered ? '○' : '×';
+            const detail = data.covered ? data.hits.slice(0, 2).map(h => h.name + 'の' + h.move).join('、') : '無効';
+            return `<div class="weakness" style="background:${bg};color:${color}" title="${detail}"><span>${type}</span><b>${label}</b></div>`;
+          }).join('');
+          $('coverage').innerHTML = coverageHtml || '<div class="mono">タイプ情報がありません</div>';
+          if (blindSpots.length) {
+            $('alert').textContent += ` 技で${blindSpots.length}タイプに効かない可能性があります。`;
+          }
+        }
+        const roleCounts={};
+        const roleLabels={ '物理AT':'物理アタッカー', '特殊AT':'特殊アタッカー', '物理受け':'物理ウォール', '特殊受け':'特殊ウォール', '受け':'ウォール', 'サポート':'サポート', 'バランス':'バランス', '速攻':'速攻', '両刀':'両刀' };
+        const allRoles=['物理AT','特殊AT','物理受け','特殊受け','受け','サポート','バランス','速攻','両刀'];
+        party.forEach(p=>{ const role=p.role||'バランス'; roleCounts[role]=(roleCounts[role]||0)+1; });
+        const presentRoles=allRoles.filter(r=>roleCounts[r]);
+        const missingRoles=allRoles.filter(r=>!roleCounts[r]);
+        const roleHtml=presentRoles.map(role=>'<div class="role-distribution-item" style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0eee9"><span>'+(roleLabels[role]||role)+'</span><strong style="color:var(--coral)">'+roleCounts[role]+'</strong></div>').join('');
+        const missingHtml=missingRoles.length?'<div style="margin-top:6px;font-size:10px;color:var(--muted)">不足: '+missingRoles.map(r=>roleLabels[r]||r).join('、')+'</div>':'<div style="margin-top:6px;font-size:10px;color:var(--muted)">すべての役割が揃っています。</div>';
+        $('roleDistribution').innerHTML = '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">パーティ内の役割分布</div>' + (roleHtml || '<div class="mono" style="color:var(--muted)">パーティがありません</div>') + missingHtml;
     document.addEventListener('click', e => { const target=e.target.closest('[data-pokemon]'); if(target) choosePokemon(target.dataset.pokemon); const ability=e.target.closest('[data-ability]'); if(ability&&pendingPokemon) addPokemon(pendingPokemon.name,undefined,ability.dataset.ability); const edit=e.target.closest('[data-edit]'); if(edit) openEditor(Number(edit.dataset.edit)); const add=e.target.closest('[data-add]'); if(add) $('search').focus(); const remove=e.target.closest('[data-remove]'); if(remove) { party.splice(Number(remove.dataset.remove),1); localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); }       const editBattle=e.target.closest('[data-edit-battle-log]'); if(editBattle){ editBattleLog(editBattle.dataset.editBattleLog); return; } const deleteBattle=e.target.closest('[data-delete-battle-log]'); if(deleteBattle){ deleteBattleLog(deleteBattle.dataset.deleteBattleLog); return; } const formBtn=e.target.closest('[data-form-index]'); if(formBtn) { const index=Number(formBtn.dataset.formIndex); const p=party[index]; if(!p) return; const baseForm=getBaseForm(p.name); const allForms=[baseForm,...getMegaForms(baseForm)].filter((v,i,a)=>a.indexOf(v)===i); if(allForms.length<=1) return; const currentIndex=allForms.indexOf(p.name); const nextIndex=(currentIndex+1)%allForms.length; const nextForm=allForms[nextIndex]; const newP=pokemon.find(x=>x.name===nextForm); if(!newP) return; const newAbilities=newP.abilities||[]; const nextAbility=(p.selectedAbility&&newAbilities.includes(p.selectedAbility))?p.selectedAbility:(newAbilities[0]||''); party[index]={...newP, moves:p.moves, selectedAbility:nextAbility, evs:p.evs, selectedNature:p.selectedNature, item:p.item, memo:p.memo}; localStorage.setItem('party-lab',JSON.stringify(party)); saveAllToServer(); render(); } const abilityToggle=e.target.closest('[data-ability-toggle]'); if(abilityToggle) { const index=Number(abilityToggle.dataset.abilityToggle); const p=party[index]; if(!p || !p.abilities?.length) return; const abilities=p.abilities.filter(Boolean); const current=p.selectedAbility||abilities[0]; const currentIndex=abilities.indexOf(current); const nextIndex=(currentIndex+1)%abilities.length; p.selectedAbility=abilities[nextIndex]; localStorage.setItem('party-lab',JSON.stringify(party)); render(); } const typeFilterChip=e.target.closest('[data-type-filter]'); if(typeFilterChip) { typeFilter=typeFilterChip.dataset.typeFilter; $('search').value=typeFilter; updateSuggestions(); } });
     $('editor').addEventListener('click', e => {
       if (e.target === $('editor')) closeEditor();
@@ -1289,6 +1298,25 @@ function analyze() {
     const cancelDamageCalcEl = $('cancelDamageCalc');
     if (openDamageCalcBtn) openDamageCalcBtn.addEventListener('click', openDamageCalc);
     if (closeDamageCalcEl) closeDamageCalcEl.addEventListener('click', closeDamageCalc);
+    function copyPartyAsText() {
+      if (!party.length) { alert('パーティが空です。まずポケモンを追加してください。'); return; }
+      const lines = party.map((p, i) => {
+        const moves = (p.moves || []).filter(Boolean).join(' / ') || 'なし';
+        const item = p.item || 'なし';
+        const ability = p.selectedAbility || (p.abilities || [])[0] || 'なし';
+        const nature = p.selectedNature || 'まじめ';
+        const evs = p.evs;
+        const evStr = evs ? [evs.hp||0, evs.attack||0, evs.defense||0, evs.specialAttack||0, evs.specialDefense||0, evs.specialDefense||0, evs.speed||0].join('/') : '0/0/0/0/0/0';
+        return `${i+1}. ${p.name} @ ${item}\n   特性: ${ability}\n   性格: ${nature} / EVs: ${evStr}\n   技: ${moves}`;
+      });
+      const text = (currentPartyName ? `【${currentPartyName}】\n` : '') + lines.join('\n\n');
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = $('copyPartyText');
+        if (btn) { const orig = btn.textContent; btn.textContent = 'コピー完了！'; setTimeout(() => btn.textContent = orig, 1500); }
+      });
+    }
+    const copyPartyBtn = $('copyPartyText');
+    if (copyPartyBtn) copyPartyBtn.addEventListener('click', copyPartyAsText);
     if (cancelDamageCalcEl) cancelDamageCalcEl.addEventListener('click', closeDamageCalc);
     const dcAttackerEl = $('dcAttacker');
     if (dcAttackerEl) dcAttackerEl.addEventListener('change', fillAttackMoves);
