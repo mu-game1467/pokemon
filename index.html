@@ -228,8 +228,9 @@
       <div class="top-actions">
         <div class="user-id-bar" style="display:flex;align-items:center;gap:6px;font-size:11px">
           <input id="userIdInput" placeholder="ユーザーID（任意）" autocomplete="off" style="padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-size:11px;width:140px">
-          <button class="text-btn" id="loginUser" style="font-size:11px;padding:5px 10px">接続</button>
-          <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:60px">オフライン</span>
+           <button class="text-btn" id="loginUser" style="font-size:11px;padding:5px 10px">接続</button>
+           <span id="userStatus" style="color:var(--muted);font-size:9.5px;min-width:80px">オフライン</span>
+           <button class="text-btn" id="logoutUser" style="font-size:11px;padding:5px 10px;display:none">ログアウト</button>
         </div>
         <button class="text-btn" id="loadDemo">サンプルを読み込む</button><button class="text-btn" id="openDamageCalc">ダメージ計算</button>
       </div>
@@ -820,6 +821,8 @@ function analyze() {
     const loginBtn = $('loginUser');
     if (loginBtn) loginBtn.addEventListener('click', loginUser);
     if ($('userIdInput')) $('userIdInput').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
+    const logoutBtn = $('logoutUser');
+    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
     $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
     $('importParties').addEventListener('click', () => $('importFile').click());
     $('importFile').addEventListener('change', event => {
@@ -929,58 +932,60 @@ function analyze() {
 
       let serverUserId = '';
       let serverMode = false;
-      const API_BASE_URL = localStorage.getItem('api-base-url') || '';
-      function apiUrl(path) { return API_BASE_URL ? API_BASE_URL + path : path; }
-      async function saveAllToServer() {
+      function storageKey(key) {
+        return serverUserId ? key + '-' + serverUserId : key;
+      }
+      function saveAllToServer() {
         if (!serverMode || !serverUserId) return;
-        const data = { party, savedParties, battleLogs, partyName: currentPartyName, memo: $('partyMemo')?.value || '' };
-        try { await fetch(apiUrl('/api/user/' + serverUserId), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch(e) { console.error('server save failed:', e); }
+        try {
+          const memo = $('partyMemo')?.value || '';
+          localStorage.setItem(storageKey('party-lab'), JSON.stringify(party));
+          localStorage.setItem(storageKey('party-lab-saved'), JSON.stringify(savedParties));
+          localStorage.setItem(storageKey('party-lab-battle-logs'), JSON.stringify(battleLogs));
+          localStorage.setItem(storageKey('party-lab-party-name'), currentPartyName);
+          localStorage.setItem(storageKey('party-lab-memo'), memo);
+        } catch(e) { console.error('save failed:', e); }
       }
-       async function loadAllFromServer() {
-         const userId = $('userIdInput')?.value.trim();
-         if (!userId) return false;
-         try {
-           const controller = new AbortController();
-           const timeoutId = setTimeout(() => controller.abort(), 5000);
-           const resp = await fetch(apiUrl('/api/user/' + encodeURIComponent(userId)), { signal: controller.signal });
-           clearTimeout(timeoutId);
-           if (!resp.ok) { console.error('server load failed:', resp.status); return false; }
-           const data = await resp.json();
-           party = (data.party || []).map(normalizeMember);
-           savedParties = data.savedParties || [];
-           battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
-           currentPartyName = data.partyName || '';
-           if ($('partyName')) $('partyName').value = currentPartyName;
-           if ($('partyMemo')) $('partyMemo').value = data.memo || '';
-           localStorage.setItem('party-lab', JSON.stringify(party));
-           localStorage.setItem('party-lab-saved', JSON.stringify(savedParties));
-           localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs));
-           return true;
-         } catch(e) { console.error('server load error:', e); return false; }
-      }
+       function loadAllFromServer() {
+        const userId = $('userIdInput')?.value.trim();
+        if (!userId) return false;
+        try {
+          party = JSON.parse(localStorage.getItem(storageKey('party-lab')) || '[]').map(normalizeMember);
+          savedParties = JSON.parse(localStorage.getItem(storageKey('party-lab-saved')) || '[]');
+          battleLogs.splice(0, battleLogs.length, ...(JSON.parse(localStorage.getItem(storageKey('party-lab-battle-logs')) || '[]')));
+          currentPartyName = localStorage.getItem(storageKey('party-lab-party-name')) || '';
+          if ($('partyName')) $('partyName').value = currentPartyName;
+          const memo = localStorage.getItem(storageKey('party-lab-memo')) || '';
+          if ($('partyMemo')) $('partyMemo').value = memo;
+          return true;
+        } catch(e) { console.error('load error:', e); return false; }
+       }
       function loginUser() {
         const userId = $('userIdInput')?.value.trim();
         if (!userId) { alert('ユーザーIDを入力してください。'); return; }
-        const pageOrigin = window.location.origin;
-        if (pageOrigin === 'null' || pageOrigin.startsWith('file://')) {
-          alert('サーバー機能を使用するには、サーバーを起動してください。\n\n' + 'npm start\n\n' + 'その後、ブラウザで http://localhost:3000 または\n' + '同じネットワーク内のPCのIPアドレス:3000 にアクセスしてください。');
-          return;
-        }
-        loadAllFromServer().then(ok => {
-          if (ok) {
-            serverUserId = userId;
-            serverMode = true;
-            $('userStatus').textContent = 'オンライン: ' + userId;
-            $('userStatus').style.color = 'var(--coral)';
-            render();
-            renderSaved();
-            updateBattleLogButtonState();
-          } else {
-            alert('サーバーに接続できませんでした。サーバーが起動しているか確認してください。\n\n' + window.location.origin + '/api/user/' + encodeURIComponent(userId));
-          }
-        });
+        serverUserId = userId;
+        serverMode = true;
+        $('userStatus').textContent = 'ローカル: ' + userId;
+        $('userStatus').style.color = 'var(--coral)';
+        $('logoutUser').style.display = 'inline-block';
+        loadAllFromServer();
+        saveAllToServer();
+        render();
+        renderSaved();
+        updateBattleLogButtonState();
       }
-     function logoutUser() { serverMode = false; serverUserId = ''; $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
+      function logoutUser() {
+        serverMode = false;
+        serverUserId = '';
+        $('userIdInput').value = '';
+        $('userStatus').textContent = 'オフライン';
+        $('userStatus').style.color = 'var(--muted)';
+        $('logoutUser').style.display = 'none';
+        party = JSON.parse(localStorage.getItem('party-lab') || '[]').map(normalizeMember);
+        savedParties = JSON.parse(localStorage.getItem('party-lab-saved') || '[]');
+        render();
+        renderSaved();
+      }
      function fillBattleLogSelects() {
       const allNames = pokemon.map(p => p.name).sort();
       const options = allNames.map(name => '<option value="' + name + '">' + name + '</option>').join('');
