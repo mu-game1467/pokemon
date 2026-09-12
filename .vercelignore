@@ -1,0 +1,6 @@
+tests/
+scripts/
+test-results/
+node_modules/
+.git/
+.gitignore
