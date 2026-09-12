@@ -257,7 +257,7 @@
           <div class="diagnosis-intro"><div><div class="eyebrow">PARTY REPORT / LOCAL ANALYSIS</div><h2 style="margin:6px 0 0">診断レポート</h2></div><div class="score" id="score">--<small>/100</small></div><div class="score-copy" id="scoreCopy">6体そろうと、タイプ防御と役割バランスを自動で分析します。</div></div>
           <div class="metrics" id="metrics"></div>
           <div class="party-stats" id="partyStats"></div>
-          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div></div>
+          <div class="content"><div class="section-label">タイプ防御 <span>弱点が多い順</span></div><div class="weakness-list" id="weaknesses"></div><div class="section-label">見つかった穴</div><div class="alert" id="alert">パーティを6体登録すると、具体的な改善ポイントを表示します。</div><div class="section-label">改善候補 <span>補完スコア順</span><label style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer"><input type="checkbox" id="toggleMegaCandidates" checked style="width:auto"><span>メガシンカ表示</span></label></div><div id="candidates"></div><div class="section-label" style="margin-top:8px">技カバレッジ <span>タイプ別の攻撃可否</span></div><div class="weakness-list" id="coverage"></div></div>
         </div>
       </div>
 
@@ -516,6 +516,7 @@ function getMegaForms(baseName) {
     }
     let editingIndex = -1;
     let editingEntryId = null;
+    let showMegaInCandidates = true;
     const $ = id => {
       const el = document.getElementById(id);
       if (!el && id !== 'errorDisplay') console.warn('Element not found:', id);
@@ -678,7 +679,7 @@ function analyze() {
       const topWeakness=weakness.length?weakness[0][0]:null;
       const topProtections=topWeakness?protections.filter(p=>p.includes(`${topWeakness}無効`)||p.includes(`${topWeakness}半減`)):[];
       const hasTypeProtection=topWeakness?party.some(p=>p.types.some(type=>typeResist[type]?.includes(topWeakness))):false;
-      const scoredCandidates=pokemon.filter(p=>{if(party.some(x=>x.name===p.name))return false;const baseForm=getBaseForm(p.name);const megaForms=getMegaForms(baseForm);if(p.name!==baseForm&&party.some(x=>x.name===baseForm))return false;if(p.name===baseForm&&party.some(x=>megaForms.includes(x.name)))return false;if(p.name!==baseForm&&party.some(x=>megaForms.includes(x.name)))return false;return true;}).map(p=>{const types=[...p.types];let coversWeakness=0;let coversTopWeakness=0;types.forEach(type=>{partyWeaknesses.forEach(w=>{if(typeResist[type]?.includes(w)){coversWeakness++;if(w===topWeakness)coversTopWeakness++;}});});const newTypes=[...types].filter(t=>!partyTypes.has(t));const newCoverage=newTypes.length;let introducesWeakness=0;let sharedWeakness=0;let weakToTopWeakness=false;types.forEach(type=>{if(typeWeakness[type]){typeWeakness[type].forEach(w=>{if(!partyWeaknesses.has(w)){introducesWeakness++;if(w===topWeakness)weakToTopWeakness=true;}else{sharedWeakness++;}});}});const score=coversTopWeakness*10+coversWeakness*3+newCoverage*2-introducesWeakness*3-(weakToTopWeakness?5:0)-sharedWeakness*2;return{...p,score,coversWeakness,coversTopWeakness,newCoverage,sharedWeakness};}).filter(p=>{if(topWeakness){if(p.types.some(type=>typeWeakness[type]?.includes(topWeakness)))return false;if(topProtections.length===0&&!hasTypeProtection&&!p.types.some(type=>typeResist[type]?.includes(topWeakness)))return false;}return true;}).sort((a,b)=>b.score-a.score||baseStatTotal(b)-baseStatTotal(a)).slice(0,10);
+      const scoredCandidates=pokemon.filter(p=>{if(party.some(x=>x.name===p.name))return false;const baseForm=getBaseForm(p.name);const megaForms=getMegaForms(baseForm);if(p.name!==baseForm&&party.some(x=>x.name===baseForm))return false;if(p.name===baseForm&&party.some(x=>megaForms.includes(x.name)))return false;if(p.name!==baseForm&&party.some(x=>megaForms.includes(x.name)))return false;return true;}).map(p=>{const types=[...p.types];let coversWeakness=0;let coversTopWeakness=0;types.forEach(type=>{partyWeaknesses.forEach(w=>{if(typeResist[type]?.includes(w)){coversWeakness++;if(w===topWeakness)coversTopWeakness++;}});});const newTypes=[...types].filter(t=>!partyTypes.has(t));const newCoverage=newTypes.length;let introducesWeakness=0;let sharedWeakness=0;let weakToTopWeakness=false;types.forEach(type=>{if(typeWeakness[type]){typeWeakness[type].forEach(w=>{if(!partyWeaknesses.has(w)){introducesWeakness++;if(w===topWeakness)weakToTopWeakness=true;}else{sharedWeakness++;}});}});const score=coversTopWeakness*10+coversWeakness*3+newCoverage*2-introducesWeakness*3-(weakToTopWeakness?5:0)-sharedWeakness*2;return{...p,score,coversWeakness,coversTopWeakness,newCoverage,sharedWeakness};}).filter(p=>{if(!showMegaInCandidates&&megaMap[p.name])return false;if(topWeakness){if(p.types.some(type=>typeWeakness[type]?.includes(topWeakness)))return false;if(topProtections.length===0&&!hasTypeProtection&&!p.types.some(type=>typeResist[type]?.includes(topWeakness)))return false;}return true;}).sort((a,b)=>b.score-a.score||baseStatTotal(b)-baseStatTotal(a)).slice(0,10);
       $('candidates').innerHTML=scoredCandidates.map(p=>`<div class="candidate" data-pokemon="${p.name}" style="cursor:pointer"><div>${iconMarkup(p)} <strong>${p.name}</strong><small>${p.types.join(' / ')}${p.role?` · ${p.role}`:''}${p.coversTopWeakness?` · 最大弱点をカバー`:''}${p.coversWeakness-p.coversTopWeakness?` · 弱点${p.coversWeakness-p.coversTopWeakness}件補完`:''}${p.newCoverage?` · 新規タイプ+${p.newCoverage}`:''}${p.sharedWeakness?` · 共通弱点${p.sharedWeakness}件`:''}</small></div><b>+${Math.max(0,p.score)} pts</b></div>`).join('')||'<div class="mono" style="color:var(--muted);font-size:11px">候補が見つかりません</div>';
 
       const top=weakness[0];
@@ -843,6 +844,7 @@ function analyze() {
     const logoutBtn = $('logoutUser');
     if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
     $('exportParties').addEventListener('click', () => downloadJson('party-lab-parties.json', { version: 1, exportedAt: new Date().toISOString(), parties: savedParties }));
+    if ($('toggleMegaCandidates')) $('toggleMegaCandidates').addEventListener('change', function() { showMegaInCandidates = this.checked; render(); });
     $('importParties').addEventListener('click', () => $('importFile').click());
     $('importFile').addEventListener('change', event => {
       const file = event.target.files[0];
