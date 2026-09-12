@@ -17,7 +17,7 @@ module.exports = defineConfig({
     },
   ],
   webServer: {
-    command: 'node local-server.js',
+    command: 'node static-server.js',
     url: 'http://localhost:3000',
     reuseExistingServer: true,
     timeout: 10000,

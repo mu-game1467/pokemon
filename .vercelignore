@@ -6,6 +6,6 @@ node_modules/
 .gitignore
 package.json
 package-lock.json
-local-server.js
+static-server.js
 data/users/
 data/accounts.json
