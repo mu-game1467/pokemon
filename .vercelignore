@@ -4,5 +4,8 @@ test-results/
 node_modules/
 .git/
 .gitignore
+package.json
+package-lock.json
+local-server.js
 data/users/
 data/accounts.json
