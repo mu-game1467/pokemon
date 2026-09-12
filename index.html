@@ -1181,7 +1181,16 @@ function getMegaForms(baseName) {
     if (storedToken) {
       authToken = storedToken;
       $('loginModalOverlay').classList.add('hidden');
-      loadAllFromServer().then(() => { render(); renderSaved(); updateBattleLogButtonState(); });
+      loadAllFromServer().then((success) => {
+        if (success) {
+          render(); renderSaved(); updateBattleLogButtonState();
+        } else {
+          localStorage.removeItem('party-token');
+          authToken = '';
+          $('loginModalOverlay').classList.remove('hidden');
+          render();
+        }
+      });
     } else {
       $('loginModalOverlay').classList.remove('hidden');
     }
