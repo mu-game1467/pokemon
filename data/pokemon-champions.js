@@ -12600,7 +12600,10 @@ window.POKEMON_DATA = {
         "れいとうパンチ",
         "ローキック",
         "わるだくみ"
-      ]
+      ],
+      "megaStone": "ルカリオナイト",
+      "isMega": true,
+      "baseForm": "ルカリオ"
     },
     {
       "id": "n450",
@@ -12675,9 +12678,6 @@ window.POKEMON_DATA = {
         "かみなりのキバ",
         "ストーンエッジ"
       ],
-      "megaStone": "ルカリオナイト",
-      "isMega": true,
-      "baseForm": "ルカリオ"
     },
     {
       "id": "n454",
