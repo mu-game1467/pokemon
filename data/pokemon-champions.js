@@ -10828,7 +10828,10 @@ window.POKEMON_DATA = {
         "メロメロ",
         "りんしょう",
         "れいとうビーム"
-      ]
+      ],
+      "megaStone": "アブソルナイト",
+      "isMega": true,
+      "baseForm": "アブソル"
     },
     {
       "id": "n362",
@@ -12383,7 +12386,10 @@ window.POKEMON_DATA = {
         "りゅうのはどう",
         "りんしょう",
         "ワイドブレイカー"
-      ]
+      ],
+      "megaStone": "ガブリアスナイト",
+      "isMega": true,
+      "baseForm": "ガブリアス"
     },
     {
       "id": "n448",
@@ -12668,7 +12674,10 @@ window.POKEMON_DATA = {
         "だくりゅう",
         "かみなりのキバ",
         "ストーンエッジ"
-      ]
+      ],
+      "megaStone": "ルカリオナイト",
+      "isMega": true,
+      "baseForm": "ルカリオ"
     },
     {
       "id": "n454",
@@ -31279,11 +31288,23 @@ window.POKEMON_DATA = {
       "description": "アブソルがバトル中メガシンカ可能になる。"
     },
     {
+      "name": "アブソルナイト",
+      "description": "アブソルがバトル中メガシンカ可能になる。"
+    },
+    {
       "name": "ガブリアスナイトZ",
       "description": "ガブリアスがバトル中メガシンカ可能になる。"
     },
     {
+      "name": "ガブリアスナイト",
+      "description": "ガブリアスがバトル中メガシンカ可能になる。"
+    },
+    {
       "name": "ルカリオナイトZ",
+      "description": "ルカリオがバトル中メガシンカ可能になる。"
+    },
+    {
+      "name": "ルカリオナイト",
       "description": "ルカリオがバトル中メガシンカ可能になる。"
     },
     {
