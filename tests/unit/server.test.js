@@ -4,8 +4,8 @@ const fs = require('fs');
 
 process.env.NODE_ENV = 'test';
 
-const app = require('../../server.js');
-const { safeUserId, getUserFilePath, getAccounts, saveAccounts } = require('../../server.js');
+const app = require('../../local-server.js');
+const { safeUserId, getUserFilePath, getAccounts, saveAccounts } = require('../../local-server.js');
 
 const TEST_USER = 'testuser_auth';
 const TEST_PASS = 'testpass123';
