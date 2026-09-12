@@ -975,55 +975,63 @@ function getMegaForms(baseName) {
       try { battleLogs.push(...JSON.parse(localStorage.getItem('party-lab-battle-logs') || '[]')); } catch (e) { console.error('battle logs load failed', e); }
     }
     function saveBattleLogs() { try { localStorage.setItem('party-lab-battle-logs', JSON.stringify(battleLogs)); } catch(e) {} }
-    let authToken = '';
     let authUserId = '';
+    function hashPassword(password) {
+      if (window.crypto && crypto.subtle) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(password)).then(buf => {
+          const arr = Array.from(new Uint8Array(buf));
+          return arr.map(b => b.toString(16).padStart(2, '0')).join('');
+        });
+      }
+      let hash = 5381;
+      for (let i = 0; i < password.length; i++) hash = ((hash << 5) + hash + password.charCodeAt(i)) & 0xffffffff;
+      return Promise.resolve(hash.toString(36));
+    }
+    function storageKey(key) { return authUserId ? key + '-' + authUserId : key; }
     function showLoginError(msg) { const el = $('loginError'); if (el) el.textContent = msg; }
     function saveAllToServer() {
-      if (!authToken) return;
-      const memo = $('partyMemo')?.value || '';
-      fetch('/api/data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken },
-        body: JSON.stringify({ party: party, savedParties: savedParties, battleLogs: battleLogs, memo: memo, partyName: currentPartyName })
-      }).catch(e => console.error('save failed:', e));
+      if (!authUserId) return;
+      try {
+        const memo = $('partyMemo')?.value || '';
+        localStorage.setItem(storageKey('party-lab'), JSON.stringify(party));
+        localStorage.setItem(storageKey('party-lab-saved'), JSON.stringify(savedParties));
+        localStorage.setItem(storageKey('party-lab-battle-logs'), JSON.stringify(battleLogs));
+        localStorage.setItem(storageKey('party-lab-party-name'), currentPartyName);
+        localStorage.setItem(storageKey('party-lab-memo'), memo);
+      } catch(e) { console.error('save failed:', e); }
     }
     async function loadAllFromServer() {
-      if (!authToken) return false;
+      if (!authUserId) return false;
       try {
-        const res = await fetch('/api/data', { headers: { 'Authorization': 'Bearer ' + authToken } });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        party = (data.party || []).map(normalizeMember);
-        savedParties = data.savedParties || [];
-        battleLogs.splice(0, battleLogs.length, ...(data.battleLogs || []));
-        currentPartyName = data.partyName || '';
+        party = JSON.parse(localStorage.getItem(storageKey('party-lab')) || '[]').map(normalizeMember);
+        savedParties = JSON.parse(localStorage.getItem(storageKey('party-lab-saved')) || '[]');
+        battleLogs.splice(0, battleLogs.length, ...(JSON.parse(localStorage.getItem(storageKey('party-lab-battle-logs')) || '[]')));
+        currentPartyName = localStorage.getItem(storageKey('party-lab-party-name')) || '';
         if ($('partyName')) $('partyName').value = currentPartyName;
-        if ($('partyMemo')) $('partyMemo').value = data.memo || '';
+        const memo = localStorage.getItem(storageKey('party-lab-memo')) || '';
+        if ($('partyMemo')) $('partyMemo').value = memo;
         return true;
       } catch(e) { console.error('load error:', e); return false; }
     }
-    function loginUser() {
+    async function loginUser() {
       const username = $('loginUsername')?.value.trim();
       const password = $('loginPassword')?.value.trim();
       if (!username || !password) { showLoginError('ユーザー名とパスワードを入力してください。'); return; }
-      fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, password: password })
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.error) { showLoginError(data.error); return; }
-        authToken = data.token;
-        authUserId = data.username;
-        localStorage.setItem('party-token', authToken);
-        $('userStatus').textContent = data.username;
+      try {
+        const accounts = JSON.parse(localStorage.getItem('party-accounts') || '{}');
+        const account = accounts[username];
+        if (!account) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+        const hash = await hashPassword(password);
+        if (hash !== account.hash) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+        authUserId = username;
+        localStorage.setItem('party-current-user', username);
+        $('userStatus').textContent = username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
         $('loginModalOverlay').classList.add('hidden');
-        loadAllFromServer().then(() => { render(); renderSaved(); updateBattleLogButtonState(); });
-      })
-      .catch(e => showLoginError('ログインに失敗しました。'));
+        await loadAllFromServer();
+        render(); renderSaved(); updateBattleLogButtonState();
+      } catch(e) { showLoginError('ログインに失敗しました。' + e.message); }
     }
     async function registerUser() {
       const username = $('registerUsername')?.value.trim();
@@ -1032,22 +1040,18 @@ function getMegaForms(baseName) {
       if (!username || !password) { showLoginError('ユーザー名とパスワードを入力してください。'); return; }
       if (password !== password2) { showLoginError('パスワードが一致しません。'); return; }
       try {
-        const res = await fetch('/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: username, password: password })
-        });
-        const data = await res.json();
-        if (data.error) { showLoginError(data.error); return; }
+        const accounts = JSON.parse(localStorage.getItem('party-accounts') || '{}');
+        if (accounts[username]) { showLoginError('このユーザー名は既に使用されています。'); return; }
+        const hash = await hashPassword(password);
+        accounts[username] = { hash: hash, createdAt: new Date().toISOString() };
+        localStorage.setItem('party-accounts', JSON.stringify(accounts));
         showLoginError('登録成功！ログインしてください。');
         if ($('registerTab')) $('registerTab').click();
-      } catch(e) { showLoginError('登録に失敗しました。'); }
+      } catch(e) { showLoginError('登録に失敗しました。' + e.message); }
     }
     function logoutUser() {
-      if (authToken) fetch('/api/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + authToken } }).catch(()=>{});
-      authToken = '';
       authUserId = '';
-      localStorage.removeItem('party-token');
+      localStorage.removeItem('party-current-user');
       $('userStatus').textContent = 'オフライン';
       $('userStatus').style.color = 'var(--muted)';
       $('logoutUser').style.display = 'none';
@@ -1061,6 +1065,7 @@ function getMegaForms(baseName) {
       if ($('loginForm')) $('loginForm').classList.remove('hidden');
       if ($('registerForm')) $('registerForm').classList.add('hidden');
       showLoginError('');
+      render();
     }
     
     function fillBattleLogSelects() {
@@ -1177,16 +1182,16 @@ function getMegaForms(baseName) {
     loadBattleLogs();
     updateBattleLogButtonState();
 
-    const storedToken = localStorage.getItem('party-token');
-    if (storedToken) {
-      authToken = storedToken;
+    const storedUser = localStorage.getItem('party-current-user');
+    if (storedUser) {
+      authUserId = storedUser;
       $('loginModalOverlay').classList.add('hidden');
       loadAllFromServer().then((success) => {
         if (success) {
           render(); renderSaved(); updateBattleLogButtonState();
         } else {
-          localStorage.removeItem('party-token');
-          authToken = '';
+          localStorage.removeItem('party-current-user');
+          authUserId = '';
           $('loginModalOverlay').classList.remove('hidden');
           render();
         }
