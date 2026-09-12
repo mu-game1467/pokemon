@@ -1,3 +1,6 @@
+server.js
+package.json
+package-lock.json
 tests/
 scripts/
 test-results/
