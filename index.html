@@ -705,7 +705,7 @@ function getMegaForms(baseName) {
 
     function updateItemPreview() { const item=items.find(entry=>entry.name===$('editItem').value); $('itemIcon').innerHTML=item?.iconUrl?`<img src="${item.iconUrl}" alt="">`:(item?.icon||'・'); $('itemDescription').textContent=item?.description||'持ち物を選択してください'; }
     function fillMoveSelects(p) { const source=pokemon.find(x=>x.name===p.name); const learned=(source ? learnableMoves(source) : []).filter(name => MOVE_DB[name]); document.querySelectorAll('[data-move]').forEach(select => { const index=Number(select.dataset.move); const current=(p.moves||[])[index]||''; const options=current && !learned.includes(current) ? [current,...learned] : learned; select.innerHTML='<option value="">— 選択しない —</option>'+options.map(name=>`<option value="${name}">${name}</option>`).join(''); select.value=current; document.querySelector(`[data-move-info="${index}"]`).innerHTML=moveInfoHtml(current); }); }
-    function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name];const baseName=getBaseForm(p.name);const megaStones=megaStoneMap[baseName]||[];const megaStoneSuffix=p.name.match(/^(メガ.+?)(X|Y|Z)$/);const megaStone=isMega?(p.megaStone||(megaStoneSuffix?megaStones.find(s=>s.endsWith(megaStoneSuffix[1])):(megaStones[0]||null))):null;const itemList=isMega&&megaStone?sortedItems.filter(item=>item.name===megaStone):sortedItems; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
+    function openEditor(index) { const p=party[index]; if(!p) return; editingIndex=index; $('editorTitle').textContent=`${p.name}の詳細`; $('editorSubtitle').textContent=currentPartyName?`パーティ: ${currentPartyName}`:''; $('editAbility').innerHTML=(p.abilities||['未選択']).map(a=>`<option>${a}</option>`).join(''); $('editAbility').value=p.selectedAbility||p.abilities?.[0]||'未選択'; $('editNature').innerHTML='<option value="">性格を選択</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻撃↑ / 防御↓)</option><option value="いじっぱり">いじっぱり (攻撃↑ / 特攻↓)</option><option value="やんちゃ">やんちゃ (攻撃↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻撃↑ / 素早↓)</option><option value="ずぶとい">ずぶとい (防御↑ / 攻撃↓)</option><option value="わんぱく">わんぱく (防御↑ / 特攻↓)</option><option value="のうてんき">のうてんき (防御↑ / 特防↓)</option><option value="のんき">のんき (防御↑ / 素早↓)</option><option value="ひかえめ">ひかえめ (特攻↑ / 攻撃↓)</option><option value="おっとり">おっとり (特攻↑ / 防御↓)</option><option value="うっかりや">うっかりや (特攻↑ / 特防↓)</option><option value="れいせい">れいせい (特攻↑ / 素早↓)</option><option value="おだやか">おだやか (特防↑ / 攻撃↓)</option><option value="おとなしい">おとなしい (特防↑ / 防御↓)</option><option value="しんちょう">しんちょう (特防↑ / 特攻↓)</option><option value="なまいき">なまいき (特防↑ / 素早↓)</option><option value="おくびょう">おくびょう (素早↑ / 攻撃↓)</option><option value="せっかち">せっかち (素早↑ / 防御↓)</option><option value="ようき">ようき (素早↑ / 特攻↓)</option><option value="むじゃき">むじゃき (素早↑ / 特防↓)</option>'; const isMega=!!megaMap[p.name];const baseName=getBaseForm(p.name);const megaStones=megaStoneMap[baseName]||[];const MEGA_STONE_BY_FORM={'メガリザードンX':'リザードナイトX','メガリザードンY':'リザードナイトY','メガライチュウX':'ライチュウナイトX','メガライチュウY':'ライチュウナイトY'};const megaStoneSuffix=p.name.match(/^(メガ.+?)(X|Y|Z)$/);const suffixLetter=megaStoneSuffix?megaStoneSuffix[2]:'';const megaStone=isMega?(p.megaStone||MEGA_STONE_BY_FORM[p.name]||(suffixLetter?megaStones.find(s=>s.endsWith(suffixLetter)):(megaStones[0]||null))):null;const itemList=isMega&&megaStone?sortedItems.filter(item=>item.name===megaStone):sortedItems; $('editItem').innerHTML='<option value="">持ち物なし</option>'+itemList.map(item=>`<option value="${item.name}">${item.name}</option>`).join(''); $('editItem').value=p.item||''; updateItemPreview(); fillMoveSelects(p); const defaultEvs={hp:0,attack:0,defense:0,specialAttack:0,specialDefense:0,speed:0}; document.querySelectorAll('input[data-ev]').forEach(input=>{ const key=input.dataset.ev; input.value=p.evs?.[key]??defaultEvs[key]??0; }); $('editMemo').value=p.memo||''; $('editNature').value=p.selectedNature||'まじめ'; updateActualStatsPreview(); $('editor').classList.remove('hidden'); }
     function closeEditor() { editingIndex=-1; $('editor').classList.add('hidden'); }
     function applyEditor() { const p=party[editingIndex]; if(!p) return closeEditor(); p.selectedAbility=$('editAbility').value; p.selectedNature=$('editNature').value; p.item=$('editItem').value; p.moves=[...document.querySelectorAll('[data-move]')].map(select=>select.value.trim()).filter(Boolean); const evs=Object.fromEntries([...document.querySelectorAll('input[data-ev]')].map(input=>[input.dataset.ev,Math.min(32,Math.max(0,Number(input.value)||0))])); const totalEv=Object.values(evs).reduce((sum,val)=>sum+val,0); if(totalEv>66){ alert('能力ポイントの合計が66を超えています。現在の合計: '+totalEv); return; }       p.evs=evs; p.memo=$('editMemo').value.trim(); saveAllToServer(); closeEditor(); render(); }
     function renderPartyStats() {
@@ -1660,6 +1660,32 @@ function getMegaForms(baseName) {
     const CBD_API_BASE = 'https://championsbattledata.com';
     const CBD_API_URL = CBD_API_BASE + '/api';
     let cbdPokemonCache = null;
+    let cbdFullList = [];
+    function stripCho(s) { return (s || '').replace(/[ー―‐‑]/g, ''); }
+    function analyticsEntryMatches(p, rawInput) {
+      const inputLower = (rawInput || '').trim().toLowerCase();
+      if (!inputLower) return true;
+      const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name;
+      const jaLower = ja.toLowerCase();
+      const jaHira = kataToHira(ja).toLowerCase();
+      const inputHira = kataToHira(rawInput.trim()).toLowerCase();
+      const inputKata = romajiToKata(inputLower);
+      const jaNoCho = stripCho(jaLower);
+      const kataNoCho = stripCho(inputKata || '');
+      return jaLower.startsWith(inputLower) ||
+             jaHira.startsWith(inputLower) ||
+             jaHira.startsWith(inputHira) ||
+             (inputKata && (jaLower.startsWith(inputKata) || (kataNoCho && jaNoCho.startsWith(kataNoCho)))) ||
+             p.name.toLowerCase().startsWith(inputLower) ||
+             (p.showdownId || '').toLowerCase().startsWith(inputLower) ||
+             jaLower.includes(inputLower);
+    }
+    function renderAnalyticsDatalist(filterText) {
+      const datalist = $('analyticsPokemonDatalist');
+      if (!datalist) return;
+      const list = (cbdFullList.length ? cbdFullList : (cbdPokemonCache?.pokemon || [])).filter(p => analyticsEntryMatches(p, filterText || ''));
+      datalist.innerHTML = list.slice(0, 100).map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; return `<option value="${ja}" label="${p.showdownId}">${ja} (${p.showdownId})</option>`; }).join('');
+    }
     let megaFormIndex = 0;
     let lastBattleData = null;
 
@@ -1672,8 +1698,15 @@ function getMegaForms(baseName) {
       return str.replace(/[\u30A1-\u30FA\u30FE\u30FF]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
     }
 
+      function normalizeRomaji(s) {
+      let t = (s || '').toLowerCase();
+      t = t.replace(/-/g, '').replace(/'/g, '').replace(/’/g, '').replace(/\s+/g, '');
+      t = t.replace(/([bcdfghjklmnpqrstvwxz])\1/g, '$1っ$1');
+      t = t.replace(/aa/g, 'アー').replace(/ii/g, 'イー').replace(/uu/g, 'ウー').replace(/ee/g, 'エー').replace(/oo/g, 'オー');
+      return t;
+    }
     function romajiToKata(rom) {
-      const r = rom.toLowerCase();
+      const r = normalizeRomaji(rom);
       const table = {
         'a':'ア','i':'イ','u':'ウ','e':'エ','o':'オ',
         'ka':'カ','ki':'キ','ku':'ク','ke':'ケ','ko':'コ',
@@ -1693,8 +1726,9 @@ function getMegaForms(baseName) {
         'kyo':'キョ','shu':'シュ','sho':'ショ','cho':'チョ','chu':'チュ','cha':'チャ',
         'nyo':'ニョ','nyu':'ニュ','nya':'ニャ','ryo':'リョ','ryu':'リュ','rya':'リャ',
         'gyo':'ギョ','gyu':'ギュ','gya':'ギャ','byo':'ビョ','byu':'ビュ','bya':'ビャ',
-        'pyo':'ピョ','pyu':'ピュ','pya':'ピャ','kyu':'キュ','kya':'キャ',
-        'fa':'ファ','fi':'フィ','fe':'フェ','fo':'フォ',
+        'pyo':'ピョ','pyu':'ピュ','pya':'ピャ','kyu':'キュ','kya':'キャ','kyi':'キィ','kye':'キェ',
+        'la':'ラ','li':'リ','lu':'ル','le':'レ','lo':'ロ',
+        'di':'ディ','du':'ドゥ','che':'チェ','she':'シェ','je':'ジェ','tsa':'ツァ','tse':'ツェ','tsi':'ツィ','tso':'ツォ','ti':'ティ','tu':'トゥ','wyu':'ウュ','myu':'ミュ','myo':'ミョ','mya':'ミャ','hyo':'ヒョ','hyu':'ヒュ','hya':'ヒャ','sya':'シャ','syu':'シュ','syo':'ショ','zya':'ジャ','zyu':'ジュ','zyo':'ジョ','jya':'ジャ','jyu':'ジュ','jyo':'ジョ','ja':'ジャ','ju':'ジュ','jo':'ジョ','zya':'ジャ','kwa':'クァ','kwi':'クィ','kwe':'クェ','kwo':'クォ',
         'va':'ヴァ','vi':'ヴィ','ve':'ヴェ','vo':'ヴォ',
       };
       let result = '';
@@ -1855,10 +1889,11 @@ function getMegaForms(baseName) {
       datalist.innerHTML = '';
       try {
         const data = await fetchCbdIndex();
-        const list = (data.pokemon || []).sort((a, b) => a.name.localeCompare(b.name));
-        datalist.innerHTML = list.map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; return `<option value="${p.showdownId}" label="${ja}">${ja}</option>`; }).join('');
-        if (savedId && list.some(p => p.showdownId === savedId)) {
-          const savedPk = list.find(p => p.showdownId === savedId);
+        cbdFullList = (data.pokemon || []).sort((a, b) => a.name.localeCompare(b.name));
+        renderAnalyticsDatalist('');
+        input.addEventListener('input', () => renderAnalyticsDatalist(input.value.trim()));
+        if (savedId && cbdFullList.some(p => p.showdownId === savedId)) {
+          const savedPk = cbdFullList.find(p => p.showdownId === savedId);
           input.value = window.SHOWDOWN_TO_JA?.[savedPk.showdownId] || savedPk.name;
           loadAnalyticsData();
         }
@@ -1878,16 +1913,26 @@ function getMegaForms(baseName) {
         if (byId) return val;
         const byName = cached.find(p => p.name.toLowerCase() === val.toLowerCase());
         if (byName) return byName.showdownId;
+        const byJaExact = cached.find(p => {
+          const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name;
+          return ja === val || kataToHira(ja) === kataToHira(val);
+        });
+        if (byJaExact) return byJaExact.showdownId;
         const jaMatch = cached.find(p => {
           const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name;
           const jaLower = ja.toLowerCase();
           const jaHira = kataToHira(ja).toLowerCase();
           const inputLower = val.toLowerCase();
+          const inputHira = kataToHira(val).toLowerCase();
           const inputKata = romajiToKata(inputLower);
+          const jaNoCho = stripCho(jaLower);
+          const kataNoCho = stripCho(inputKata || '');
           return jaLower.startsWith(inputLower) ||
                  jaHira.startsWith(inputLower) ||
-                 (inputKata && jaLower.startsWith(inputKata)) ||
-                 p.name.toLowerCase().startsWith(inputLower);
+                 jaHira.startsWith(inputHira) ||
+                 (inputKata && (jaLower.startsWith(inputKata) || (kataNoCho && jaNoCho.startsWith(kataNoCho)))) ||
+                 p.name.toLowerCase().startsWith(inputLower) ||
+                 (p.showdownId || '').toLowerCase().startsWith(inputLower);
         });
         if (jaMatch) return jaMatch.showdownId;
       }
@@ -1897,11 +1942,14 @@ function getMegaForms(baseName) {
         const jaLower = ja.toLowerCase();
         const jaHira = kataToHira(ja).toLowerCase();
         const inputLower = val.toLowerCase();
+        const inputHira = kataToHira(val).toLowerCase();
         const inputKata = romajiToKata(inputLower);
         if (sid === val || sid.toLowerCase() === inputLower || sid.toLowerCase().startsWith(inputLower)) return sid;
+        if (ja === val || kataToHira(ja) === kataToHira(val)) return sid;
         if (jaLower.startsWith(inputLower) ||
             jaHira.startsWith(inputLower) ||
-            (inputKata && jaLower.startsWith(inputKata))) return sid;
+            jaHira.startsWith(inputHira) ||
+            (inputKata && (jaLower.startsWith(inputKata) || (stripCho(inputKata) && stripCho(jaLower).startsWith(stripCho(inputKata)))))) return sid;
       }
       return val;
     }
