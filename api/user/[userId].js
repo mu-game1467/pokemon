@@ -2,10 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const DATA_DIR = path.join(os.homedir(), '.pokemon-champions-data', 'users');
+const DATA_DIR = process.env.VERCEL ? path.join(os.tmpdir(), 'pokemon-champions-users') : path.join(os.homedir(), '.pokemon-champions-data', 'users');
 
 if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch(e) {
+    console.error('Failed to create data dir:', e);
+  }
 }
 
 function safeUserId(id) {
@@ -17,7 +21,8 @@ function getUserFilePath(userId) {
 }
 
 module.exports = async function handler(req, res) {
-  const userId = safeUserId(req.query.userId || '');
+  try {
+  const userId = safeUserId((req.query.userId || req.params?.userId || '') + '');
 
   if (!userId) {
     if (res.status) res.status(400);
@@ -48,7 +53,8 @@ module.exports = async function handler(req, res) {
       else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: 'Failed to read user data' })); }
     }
   } else if (req.method === 'POST') {
-    const existing = fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf8')) : {};
+    let existing = {};
+    try { existing = fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf8')) : {}; } catch(e) {}
     const data = {
       party: req.body.party !== undefined ? req.body.party : (existing.party || []),
       savedParties: req.body.savedParties !== undefined ? req.body.savedParties : (existing.savedParties || []),
@@ -72,5 +78,13 @@ module.exports = async function handler(req, res) {
     if (res.status) res.status(405);
     if (res.json) res.json({ error: 'Method not allowed' });
     else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: 'Method not allowed' })); }
+  }
+  } catch(e) {
+    console.error('Handler error:', e);
+    try {
+      if (res.status) res.status(500);
+      if (res.json) res.json({ error: 'Server error' });
+      else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: 'Server error' })); }
+    } catch(e2) {}
   }
 };
