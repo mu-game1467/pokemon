@@ -1844,6 +1844,18 @@ function getMegaForms(baseName) {
         });
         if (jaMatch) return jaMatch.showdownId;
       }
+      const showdownIds = window.SHOWDOWN_TO_JA ? Object.keys(window.SHOWDOWN_TO_JA) : [];
+      for (const sid of showdownIds) {
+        const ja = window.SHOWDOWN_TO_JA[sid];
+        const jaLower = ja.toLowerCase();
+        const jaHira = kataToHira(ja).toLowerCase();
+        const inputLower = val.toLowerCase();
+        const inputKata = romajiToKata(inputLower);
+        if (sid === val || sid.toLowerCase() === inputLower) return sid;
+        if (jaLower.startsWith(inputLower) ||
+            jaHira.startsWith(inputLower) ||
+            (inputKata && jaLower.startsWith(inputKata))) return sid;
+      }
       return val;
     }
 
@@ -1935,10 +1947,10 @@ function getMegaForms(baseName) {
       fieldBody += `<tr><th>ベースポケモン</th><td>${pkName || '—'}</td></tr>`;
       fieldBody += `<tr><th>フォーマット</th><td>${fmtJp} / ${seasonJp}</td></tr>`;
       fieldBody += `<tr><th>ランク</th><td>${rankVal || '—'}</td></tr>`;
-      fieldBody += `<tr><th>トップ技</th><td>${topMove ? (MOVE_EN_TO_JA[topMove.name] || topMove.name) + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
-      fieldBody += `<tr><th>トップアイテム</th><td>${topItem ? (ITEM_EN_TO_JA[topItem.name] || UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
-      fieldBody += `<tr><th>トップ能力</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
-      fieldBody += `<tr><th>トップ相棋者</th><td>${topMateJa}</td></tr>`;
+      fieldBody += `<tr><th>トップ技は採用率の高い技</th><td>${topMove ? (MOVE_EN_TO_JA[topMove.name] || topMove.name) + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
+      fieldBody += `<tr><th>トップアイテムは採用率の高い持ち物</th><td>${topItem ? (ITEM_EN_TO_JA[topItem.name] || UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>トップ能力は採用率の高い特性</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>トップ相棋者は採用率の高い同じチームのポケモン</th><td>${topMateJa}</td></tr>`;
       fieldBody += `<tr><td colspan="2"><div style="font-weight:700;font-size:11px;color:var(--muted);padding:4px 0 2px 0">基礎ステータス</div></td></tr>`;
       statOrder.forEach(k => {
         const val = baseStats[k] || 0;
