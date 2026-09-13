@@ -892,61 +892,61 @@ window.ITEM_DATA = {
     },
     {
       "name": "ながねぎ",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item259_2.png",
       "category": "どうぐ",
       "description": "カモネギ ネギガナイトが きゅうしょアップ ×2になる。"
     },
     {
       "name": "ゴツゴツメット",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item540.png",
       "category": "どうぐ",
       "description": "接触技を受けると 相手の最大HPの 1/8のダメージを与える。"
     },
     {
       "name": "ふうせん",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item541.png",
       "category": "どうぐ",
       "description": "地面にいないことになり じめんタイプの技 まきびし どくびし ねばねばネット状態が効かない。 技のダメージを受けると その対戦中は 無くなる。"
     },
     {
       "name": "レッドカード",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item542.png",
       "category": "どうぐ",
       "description": "技でダメージを与えてきた相手を交代させる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "ノーマルジュエル",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item564.png",
       "category": "どうぐ",
       "description": "ノーマルタイプの技の威力が 1.3倍になる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "グランドコート",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item879.png",
       "category": "どうぐ",
       "description": "技や特性でフィールドを張った時 継続ターンが3ターン長くなる。 (合計8ターン)"
     },
     {
       "name": "エレキシード",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item881.png",
       "category": "どうぐ",
       "description": "エレキフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "サイコシード",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item882.png",
       "category": "どうぐ",
       "description": "ミストフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "ミストシード",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item883.png",
       "category": "どうぐ",
       "description": "サイコフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "グラスシード",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item884.png",
       "category": "どうぐ",
       "description": "グラスフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
@@ -970,19 +970,19 @@ window.ITEM_DATA = {
     },
     {
       "name": "ボーマンダナイト",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m544.png",
       "category": "",
       "description": "ボーマンダがバトル中メガシンカ可能になる。"
     },
     {
       "name": "グソクムシャナイト",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m621.png",
       "category": "",
       "description": "グソクムシャがバトル中メガシンカ可能になる。"
     },
     {
       "name": "セグレイブナイト",
-      "iconUrl": "",
+      "iconUrl": "images/items/i_item_m566.png",
       "category": "",
       "description": "セグレイブがバトル中メガシンカ可能になる。"
     }
