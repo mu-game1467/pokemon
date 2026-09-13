@@ -212,6 +212,7 @@
      .tab-btn { flex:1; padding:10px 14px; border:0; border-bottom:2px solid transparent; background:transparent; font-weight:600; font-size:12px; color:var(--muted); cursor:pointer; transition:.15s; }
      .tab-btn:hover { color:var(--ink); }
      .tab-btn.active { border-bottom-color:var(--coral); color:var(--coral); }
+     .team-member-compact .type-chip { font-size:7px; padding:1px 3px; }
     .damage-result { font-family:'DM Mono',monospace; font-size:13px; }
     .damage-bar { height:8px; background:#dce2d5; border-radius:4px; margin:6px 0; overflow:hidden; }
     .damage-bar i { display:block; height:100%; background:var(--coral); border-radius:4px; transition:width .3s; }
@@ -314,7 +315,8 @@
           <div>
             <div class="eyebrow">TEAM BUILDS</div>
             <h2>上位構築</h2>
-            <p id="teamBuildsSubtitle">pokedb.tokyoのシーズン別人気チームビルド</p>
+      <p id="teamBuildsSubtitle">pokedb.tokyoのシーズン別人気チームビルド</p>
+          <p style="font-size:10px;color:var(--muted)">技・努力値はpokedb APIで公開されていません。構築記事から確認してください。</p>
           </div>
         </div>
         <div class="content">
@@ -1480,9 +1482,13 @@ function getMegaForms(baseName) {
       const ruleEn = seasonData.ruleEn || (seasonData.rule === 'シングル' ? 'single' : 'double');
       const seasonNum = seasonData.seasonNumber || parseInt(season.replace('M-', ''));
       const pokedbUrl = `${POKEDB_BASE_URL}/opendata/s${seasonNum}_${ruleEn}_ranked_teams.json`;
+      const articleUrl = `${POKEDB_BASE_URL}/article/search?rule=${ruleEn === 'single' ? '0' : '1'}&season=${seasonData.season}`;
 
       const teams = seasonData.teams.slice(0, 20);
-      $('teamBuildsContent').innerHTML = `<div style="margin-bottom:8px"><a href="${pokedbUrl}" target="_blank" rel="noopener" style="font-size:10px;color:var(--coral)">データソース (pokedb.tokyo) ↗</a></div>` + teams.map(t => renderTeamCard(t)).join('');
+      $('teamBuildsContent').innerHTML = `<div style="margin-bottom:8px;display:flex;gap:12px;align-items:center;font-size:10px;color:var(--muted)">
+        <a href="${pokedbUrl}" target="_blank" rel="noopener" style="color:var(--coral)">データソース (pokedb.tokyo) ↗</a>
+        <a href="${articleUrl}" target="_blank" rel="noopener" style="color:var(--coral)">構築記事検索 ↗</a>
+      </div>` + teams.map(t => renderTeamCard(t)).join('');
     }
     function teamMemberHtml(member) {
       const icon = member.iconUrl ? `<img src="${member.iconUrl}" alt="" style="width:32px;height:32px;object-fit:contain">` : '<span style="font-size:20px;opacity:.3">★</span>';
