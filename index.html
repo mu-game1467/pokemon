@@ -361,7 +361,8 @@
            <div class="content">
             <div id="analyticsControls" style="margin-bottom:12px;display:flex;gap:8px;align-items:end">
               <div style="flex:2;position:relative">
-                <input type="text" id="analyticsPokemonInput" list="analyticsPokemonDatalist" placeholder="ポケモン検索…" style="width:100%;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white">
+                <input type="text" id="analyticsPokemonInput" list="analyticsPokemonDatalist" placeholder="ポケモン検索… (例: ユキノオー / ゆき / yuki / abomasnow)" autocomplete="off" style="width:100%;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white">
+                <div id="analyticsSuggest" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--line);border-radius:6px;margin-top:2px;max-height:220px;overflow-y:auto;z-index:50;box-shadow:0 6px 18px rgba(0,0,0,.08)"></div>
                 <datalist id="analyticsPokemonDatalist"></datalist>
               </div>
               <select id="analyticsFormatSelect" style="flex:1;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white">
@@ -369,7 +370,7 @@
                 <option value="Doubles">ダブル</option>
               </select>
             </div>
-            <p style="font-size:10px;color:var(--muted);margin:0 0 8px">技・持ち物・能力・性格・能力ポイント・同じチームのポケモンの使用率を表示。データはchampionsbattledata.comから取得。</p>
+            <p style="font-size:10px;color:var(--muted);margin:0 0 8px">技・持ち物・特性・性格・努力値・相方の使用率を表示。データはchampionsbattledata.comから取得。持ち物・特性・技・性格は日本語名で表示します。</p>
             <div id="analyticsContent"></div>
            </div>
         </div>
@@ -1727,16 +1728,39 @@ function getMegaForms(baseName) {
       return jaLower.startsWith(inputLower) ||
              jaHira.startsWith(inputLower) ||
              jaHira.startsWith(inputHira) ||
-             (inputKata && (jaLower.startsWith(inputKata) || (kataNoCho && jaNoCho.startsWith(kataNoCho)))) ||
+             (inputKata && (jaLower.startsWith(inputKata) || jaLower.includes(inputKata) || (kataNoCho && (jaNoCho.startsWith(kataNoCho) || jaNoCho.includes(kataNoCho))))) ||
              p.name.toLowerCase().startsWith(inputLower) ||
+             p.name.toLowerCase().includes(inputLower) ||
              (p.showdownId || '').toLowerCase().startsWith(inputLower) ||
-             jaLower.includes(inputLower);
+             (p.showdownId || '').toLowerCase().includes(inputLower) ||
+             jaLower.includes(inputLower) ||
+             jaHira.includes(inputHira);
     }
     function renderAnalyticsDatalist(filterText) {
       const datalist = $('analyticsPokemonDatalist');
-      if (!datalist) return;
+      const box = $('analyticsSuggest');
       const list = (cbdFullList.length ? cbdFullList : (cbdPokemonCache?.pokemon || [])).filter(p => analyticsEntryMatches(p, filterText || ''));
-      datalist.innerHTML = list.slice(0, 100).map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; return `<option value="${ja}" label="${p.showdownId}">${ja} (${p.showdownId})</option>`; }).join('');
+      const top = list.slice(0, 30);
+      if (datalist) {
+        datalist.innerHTML = top.map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; const hira = (typeof kataToHira === 'function' ? kataToHira(ja) : ja); return `<option value="${ja} ${hira} ${p.showdownId} ${p.name}">${ja} (${p.showdownId})</option>`; }).join('');
+      }
+      if (!box) return;
+      const q = (filterText || '').trim();
+      if (!q) { box.style.display = 'none'; box.innerHTML = ''; return; }
+      if (!top.length) { box.style.display = 'none'; box.innerHTML = ''; return; }
+      box.innerHTML = top.slice(0, 8).map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; return `<button type="button" data-sid="${p.showdownId}" style="display:flex;width:100%;text-align:left;gap:6px;align-items:center;padding:6px 9px;border:0;background:white;font-size:12px;cursor:pointer" onmouseover="this.style.background='#f3f4ea'" onmouseout="this.style.background='white'">${ja} <span style="color:var(--muted);font-size:10px">${p.showdownId}</span></button>`; }).join('');
+      box.style.display = 'block';
+      box.querySelectorAll('button[data-sid]').forEach(btn => {
+        btn.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          const sid = btn.getAttribute('data-sid');
+          const ja = window.SHOWDOWN_TO_JA?.[sid] || sid;
+          const input = $('analyticsPokemonInput');
+          if (input) input.value = ja;
+          box.style.display = 'none';
+          loadAnalyticsData();
+        });
+      });
     }
     let megaFormIndex = 0;
     let lastBattleData = null;
@@ -1753,8 +1777,8 @@ function getMegaForms(baseName) {
       function normalizeRomaji(s) {
       let t = (s || '').toLowerCase();
       t = t.replace(/-/g, '').replace(/'/g, '').replace(/’/g, '').replace(/\s+/g, '');
-      t = t.replace(/([bcdfghjklmnpqrstvwxz])\1/g, '$1っ$1');
-      t = t.replace(/aa/g, 'アー').replace(/ii/g, 'イー').replace(/uu/g, 'ウー').replace(/ee/g, 'エー').replace(/oo/g, 'オー');
+      // 長音・促音のゆれ吸収: 「ゆきのおー」側も「ユキノオ」化して比較できるよう前処理
+      // (stripCho と併用。ここでは oo→o 等の短縮はしない)
       return t;
     }
     function romajiToKata(rom) {
@@ -1767,7 +1791,7 @@ function getMegaForms(baseName) {
         'na':'ナ','ni':'ニ','nu':'ヌ','ne':'ネ','no':'ノ',
         'ha':'ハ','hi':'ヒ','fu':'フ','he':'ヘ','ho':'ホ',
         'ma':'マ','mi':'ミ','mu':'ム','me':'メ','mo':'モ',
-        'ya':'ヤ','yu':'ユ','yo':'ヨ','yo':'ヨ',
+        'ya':'ヤ','yu':'ユ','yo':'ヨ',
         'ra':'ラ','ri':'リ','ru':'ル','re':'レ','ro':'ロ',
         'wa':'ワ','wo':'ヲ','n':'ン',
         'ga':'ガ','gi':'ギ','gu':'グ','ge':'ゲ','go':'ゴ',
@@ -1809,120 +1833,99 @@ function getMegaForms(baseName) {
     };
 
     const NATURE_EN_TO_JA = {
-      'Hardy':'まじめ','Lonely':'さみしがり','Adamant':'いじっぱり','Naughty':'やんちゃ',
-      'Brave':'むじゃき','Bold':'ゆうき','Relaxed':'のんびり','Impish':'わんぱく','Lax':'のうてん',
-      'Bashful':'ぶんばん','Docile':'のんき','Quirky':'うぶんがい','Serious':'まじめ',
-      'Sassy':'とうべつ','Timid':'おだんちゃ','Hasty':'はややき','Jolly':'ようき','Naive':'うんむ',
-      'Modest':'ひかえめ','Mild':'あまい','Quiet':'ごちゃごちゃ','Rash':'のろま',
-      'Calm':'しんちょう','Gentle':'りっぱ','Careful':'しんげん'
+      'Hardy':'がんばりや','Lonely':'さみしがり','Brave':'ゆうかん','Adamant':'いじっぱり','Naughty':'やんちゃ',
+      'Bold':'ずぶとい','Docile':'すなお','Relaxed':'のんき','Impish':'わんぱく','Lax':'のうてんき',
+      'Timid':'おくびょう','Hasty':'せっかち','Serious':'まじめ','Jolly':'ようき','Naive':'むじゃき',
+      'Modest':'ひかえめ','Mild':'おっとり','Quiet':'れいせい','Bashful':'てれや','Rash':'うっかりや',
+      'Calm':'おだやか','Gentle':'おとなしい','Sassy':'なまいき','Careful':'しんちょう','Quirky':'きまぐれ'
     };
 
     const ITEM_EN_TO_JA = {
-      'Leftovers':'ユキダマ','Choice Band':'チョイスバンド','Choice Specs':'チョイススペックス',
-      'Choice Scarf':'チョイススカーフ','Life Orb':'ライフオーブ','Focus Sash':'フォーカスサシ',
-      'Expert Belt':'エキスパートベルト','Weakness Policy':'弱点ポリシー','Air Balloon':'エアーバルーン',
-      'Focus Band':'フォーカスバンド','Destiny Knot':'デステノさく','Scope Lens':'スコープレンズ',
-      'Wide Lens':'ワイドレンズ','Muscle Band':'マッスルバンド','Icy Rock':'アイシーロック',
-      'Heat Rock':'ヒートロック','Damp Rock':'ダンプロック','Smooth Rock':'スムースロック',
-      'Black Sludge':'ブラックスラッジ','White Herb':'ホワイトハーク','Black Herb':'ブラックハーク',
-      'Eject Pack':'イージェクトパック','Eject Button':'イージェクトボタン','Red Card':'レッドカード',
-      'Assault Vest':'アサルトベスト','Sitrus Berry':'シトロベリー','Oran Berry':'オランベリー',
-      'Rindo Berry':'ラゴスベリー','Passo Berry':'パッサベリー','Wacan Berry':'ワガッチベリー',
-      'Rare Candy':'レアキャンディ','PP Max':'ピーピーマックス','PP Up':'ピーピーアップ',
-      'HP Up':'HPアップ','Protein':'プロテイン','Iron':'鉄','Calcium':'カルシウム','Zinc':'亜鉋',
-      'Carbos':'ドクタカ','Revival Herb':'リバイバルハーク','Black Belt':'ブラックベルト',
-      'Sharp Beak':'シャープビーク','Metal Coat':'メタルコート','Quick Claw':'クイッククロー',
-      'Kings Rock':'キングスラ','Deep Sea Tooth':'ディープシートゥース','Deep Sea Scale':'ディープシースケイル',
-      'Light Ball':'ライトボール','Hard Stone':'ハードストーン','Odd Keystone':'オッドキーストーン',
-      'Lucky Punch':'ラッキーパンチ','Light Clay':'ライトクリ','Zoom Lens':'ズームレンズ',
-      'Power Anklet':'パワアンクレット','Power Bracer':'パワブレーサー','Power Belt':'パワベルト'
+      'Leftovers':'たべのこし','Choice Band':'こだわりハチマキ','Choice Specs':'こだわりメガネ',
+      'Choice Scarf':'こだわりスカーフ','Life Orb':'いのちのたま','Focus Sash':'きあいのタスキ',
+      'Expert Belt':'たつじんのおび','Weakness Policy':'じゃくてんほけん','Air Balloon':'ふうせん',
+      'Focus Band':'きあいのハチマキ','Destiny Knot':'あかいいと','Scope Lens':'ピントレンズ',
+      'Wide Lens':'こうかくレンズ','Muscle Band':'ちからのハチマキ','Light Clay':'ひかりのねんど',
+      'Abomasite':'ユキノオーナイト','Garchompite':'ガブリアスナイト','Garchompite Z':'ガブリアスナイトZ',
+      'Rocky Helmet':'ゴツゴツメット','Sitrus Berry':'オボンのみ','Lum Berry':'ラムのみ','Chesto Berry':'カゴのみ',
+      'Yache Berry':'ヤチェのみ','Occa Berry':'オッカのみ','Miracle Seed':'きせきのタネ',
+      'White Herb':'しろいハーブ','Mental Herb':'メンタルハーブ','Power Herb':'パワフルハーブ',
+      'Eject Button':'だっしゅつボタン','Eject Pack':'だっしゅつパック','Red Card':'レッドカード',
+      'Assault Vest':'とつげきチョッキ','Heavy-Duty Boots':'あつぞこブーツ','Safety Goggles':'ぼうじんゴーグル',
+      'Icy Rock':'つめたいいわ','Heat Rock':'あついいわ','Damp Rock':'しめったいわ','Smooth Rock':'さらさらいわ',
+      'Black Sludge':'くろいヘドロ','Bright Powder':'ひかりのこな','King\u0027s Rock':'おうじゃのしるし',
+      'Quick Claw':'せんせいのツメ','Metal Coat':'メタルコート','Magnet':'じしゃく',
+      'Sharp Beak':'するどいくちばし','Hard Stone':'かたいいし','Soft Sand':'やわらかいすな',
+      'Poison Barb':'どくバリ','Never-Melt Ice':'とけないこおり','Spell Tag':'のろいのおふだ',
+      'Twisted Spoon':'まがったスプーン','Charcoal':'もくたん','Dragon Fang':'りゅうのキバ',
+      'Silk Scarf':'シルクのスカーフ','Shell Bell':'かいがらのすず','Light Ball':'でんきだま',
+      'Zoom Lens':'フォーカスレンズ','Metronome':'メトロノーム','Iron Ball':'くろいてっきゅう',
+      'Charizardite X':'リザードナイトX','Charizardite Y':'リザードナイトY','Blastoisinite':'カメックスナイト',
+      'Venusaurite':'フシギバナイト','Alakazite':'フーディナイト','Gengarite':'ゲンガナイト',
+      'Kangaskhanite':'ガルーラナイト','Pinsirite':'カイロスナイト','Gyaradosite':'ギャラドスナイト',
+      'Aerodactylite':'プテラナイト','Mewtwonite X':'ミュウツナイトX','Mewtwonite Y':'ミュウツナイトY',
+      'Ampharosite':'デンリュウナイト','Scizorite':'ハッサムナイト','Heracronite':'ヘラクロスナイト',
+      'Houndoominite':'ヘルガナイト','Tyranitarite':'バンギラスナイト','Blazikenite':'バシャーモナイト',
+      'Gardevoirite':'サーナイトナイト','Mawilite':'クチートナイト','Aggronite':'ボスゴドラナイト',
+      'Medichamite':'チャーレムナイト','Manectricite':'ライボルトナイト','Banettite':'ジュペッタナイト',
+      'Absolite':'アブソルナイト','Latiasite':'ラティアスナイト','Latiosite':'ラティオスナイト',
+      'Lopunnite':'ミミロップナイト','Lucarionite':'ルカリオナイト',
+      'Salamencite':'ボーマンダナイト','Metagrossite':'メタグロスナイト','Glalite':'オニゴーリナイト',
+      'Diancite':'ディアンシナイト','Audinite':'タブンネナイト',
+      'Normal Gem':'ノーマルジュエル','Fire Gem':'ほのおのジュエル','Water Gem':'みずのジュエル',
+      'Electric Gem':'でんきのジュエル','Grass Gem':'くさのジュエル','Ice Gem':'こおりのジュエル',
+      'Fighting Gem':'かくとうジュエル','Poison Gem':'どくのジュエル','Ground Gem':'じめんのジュエル',
+      'Flying Gem':'ひこうのジュエル','Psychic Gem':'エスパージュエル','Bug Gem':'むしのジュエル',
+      'Rock Gem':'いわのジュエル','Ghost Gem':'ゴーストジュエル','Dragon Gem':'ドラゴンジュエル',
+      'Dark Gem':'あくのジュエル','Steel Gem':'はがねのジュエル','Fairy Gem':'フェアリージュエル',
+      'Flame Orb':'かえんだま','Toxic Orb':'どくどくだま','Sticky Barb':'ねばりのかぎづめ',
+      'Thick Club':'ふといホネ','Lucky Punch':'ラッキーパンチ','Stick':'ながねぎ',
+      'Berry Juice':'きのみジュース','Black Belt':'くろおび'
     };
 
     const MOVE_EN_TO_JA = {
-      'Surf':'ウォッサー','Hydro Pump':'メガドロン','Ice Beam':'アイスビーム','Flamethrower':'フラメスロー',
-      'Thunderbolt':'サンダーボルト','Solar Beam':'ソーラビーン','Solar Blade':'ソーラブレード',
-      'Psychic':'サイコロック','Earthquake':'ダイナル','Brick Break':'ブリックブレーク','Shadow Ball':'シャドーボール',
-      'Thunder Wave':'サンダーボルト','Toxic':'トーラス','Bulk Up':'バルクアップ','Dragon Claw':'ドラゴンクロー',
-      'Close Combat':'クローズコマ','Stone Edge':'ストーンエッジ','Fire Punch':'ファイアパンチ',
-      'Thunder Punch':'サンダーパンチ','Ice Punch':'アイスパンチ','Drain Punch':'ドレインパンチ',
-      'Focus Blast':'フォーカスブラスト','U-turn':'Uターン','Sucker Punch':'サッカーパンチ',
-      'Poison Jab':'ポイズンジャブ','X-Scissor':'Xシザー','Aerial Ace':'エリアルエース','Return':'リターン',
-      'Frustration':'フラストレーション','Hidden Power':'ヒードンパワー','Taunt':'タウト','Protect':'プロテクト',
-      'Substitute':'サブスタンス','Swords Dance':'ソードダンス','Dragon Dance':'ドラゴンダンス','Agility':'アクイラシ',
-      'Calm Mind':'カルムマインド','Nasty Plot':'ナストプロッと','Synthesis':'シンセシス','Leech Seed':'リーチシード',
-      'Giga Drain':'ギガドレイン','Energy Ball':'エナジーボール','Leaf Blade':'リーフブレード',
-      'Razor Leaf':'レイザーリーフ','Giga Impact':'ギガインパクト','Ancient Power':'エンシェントパワー',
-      'Rock Slide':'ロックスライド','Rock Throw':'ロックスロー','Magnitude':'マグニチュード',
-      'Iron Head':'アイアングヘッド','Iron Tail':'アイアントレイル','Headbutt':'ヘッズマッシュ',
-      'Zen Headbutt':'ゼンヘッドバット','Shadow Sneak':'シャドーミー','Shadow Claw':'シャドークロー',
-      'Night Slash':'ナイトスラッシュ','Foul Play':'ファウルプレー','Moonblast':'ムーンブラスト',
-      'Dazzling Gleam':'ダズリングリーム','Drain Kiss':'ドレインキス','Play Rough':'プレイラフ',
-      'Sweet Kiss':'スウィートキス','Attract':'アトラクト','Encore':'アンコーン','Follow Me':'フォローミー',
-      'Healing Wish':'ヒーリングウィッシュ','Memento':'メメント','Present':'プレゼント',
-      'Psych Up':'サイコアップ','Rage':'レイジ','Safeguard':'サファーガード','Sleep Talk':'スリープターク',
-      'Snuggle':'スナグル','Substitute':'サブスタンス','Work Up':'ワークアップ','Yawn':'ヨーン',
-      'Flame Charge':'フレイムチャージ','Psyshock':'サイコショック','Confusion':'コンフュージョン',
-      'Hypnosis':'ヒプノーシス','Dream Eater':'ドリームイーター','Future Sight':'フューチャーシティ',
-      'Skill Swap':'スキルスワップ','Amnesia':'アムネシア','Light Screen':'ライトスクリーン',
-      'Reflect':'リフレクト','Mist':'ミスト','Wish':'ウィッシュ','Spikes':'スパイクス',
-      'Toxic Spikes':'トーラススパイクス','Stealth Rock':'ステルスロック','Sticky Web':'スティッキーウエブ',
-      'Rapid Spin':'ラピッドスピン','Knock Off':'ノックオフ','Circle Throw':'サークルスロー',
-      'Storm Throw':'ストーンスロー','Low Sweep':'ロースイープ','Hammer Arm':'ハンマーアーム',
-      'Sky Drop':'スカイドロップ','Sky Attack':'スカイアタック','Air Slash':'エアスラッシュ',
-      'Razor Wind':'レイザーライド','Air Cutter':'エアカッター','Wing Attack':'ウイングアタック',
-      'Water Pulse':'ウォータパルス','Aqua Ring':'アクアリング','Aqua Jet':'アクアジェット',
-      'Liquidation':'リキュージョン','Octazooka':'オクタジュー','Rain Dance':'レインダンス',
-      'Scald':'スカルド','Whirlpool':'スイロン','Bubble Beam':'バブルビーン','Water Gun':'ウォーターガン',
-      'Clamp':'クランプ','Razor Shell':'レイザーシェル','Muddy Water':'マッダイ','Bubble':'バブル',
-      'Water Pledge':'ウォータプリジェスト','Electro Ball':'エレクトロボール','Thunder Shock':'サンダーショック',
-      'Shock Wave':'ショックウェーブ','Thunder':'サンダー','Thunder Bolt':'サンダーボルト',
-      'Zap Cannon':'ザップコーン','Charge Beam':'チャージビーム','Electric Terrain':'エレキックティ',
-      'Spark':'スパーク','Volt Switch':'ボルトスイッチ','Volt Tackle':'ボルトタックル',
-      'Discharge':'ディスチャージ','Wild Charge':'ワイルドチャージ','Bolt Strike':'ボルトストライク',
-      'Thunder Strike':'サンダーストライク','Magnet Rise':'マグネットライズ','Magnet Bomb':'マグネットボム',
-      'Flash Cannon':'フラッシュキャノン','Steel Beam':'スチールビーム','Metal Claw':'メタルクロー',
-      'Metal Sound':'メタルサウンド','Steel Wing':'スチールウィング','Metal Burst':'メタルバースト',
-      'Heavy Slam':'ヘビースラム','Body Press':'ボディプレス','Body Slam':'ボディスラム','Facade':'フェイサー',
-      'Draining Kiss':'ドレインキス','Fairy Wind':'フェアリーウインド','Captivate':'カプチブート',
-      'Present':'プレゼント','Sleep Powder':'スリープポッダー','Stun Spore':'スタンポッダー',
-      'Poison Powder':'ポイズンポッダー','Rage Powder':'レイジパウダー','Seed Bomb':'シードボム',
-      'Petal Blizzard':'ペタルブリザード','Petal Dance':'ペタルダンス','Leaf Storm':'リーフストーン',
-      'Grassy Glide':'グラシーグライド','Bug Buzz':'バグバズ','Spike Cannon':'スパイクキャノン',
-      'Arm Thrust':'アームスラム','Dynamic Punch':'ダイナミックパンチ','Dizzy Punch':'ディゼィパンチ',
-      'Lava Plume':'ラヴァプラム','Fire Blast':'ファイアブラスト','Overheat':'オーバヒート',
-      'Soft-Boiled':'ソフトボイル','Recover':'リカバー','Slack Off':'スラックオフ','Roost':'ルースト',
-      'Growth':'グロース','Shell Smash':'シェルスマッシュ','Dragon Pulse':'ドラゴンパルス',
-      'Dragon Rush':'ドラゴンラッシュ','Dragon Breath':'ドラゴンブレス','Outrage':'アウトレイジ',
-      'Rollout':'ロールアウト','Smack Down':'スマックダウン','Stomping Tantrum':'スタンピングタントル',
-      'Paralysis':'まひ','Sleep':'ねむり','Freeze':'こおり','Burn':'やけ','Poison':'どく',
-      'Disable':'ディゼィブル','Cursed Body':'カースド','Perish Body':'パーイッシュ',
-      'Flame Mane':'フレイム','Swift Swim':'スイフトスイム','Rain Dish':'レインディッシュ',
-      'Drizzle':'ドリズル','Drought':'ドライ','Sand Stream':'サンドストリーム','Static':'スタチック',
-      'Volt Absorb':'ボルテージ','Water Absorb':'ウォーターゼミ'
+      'Protect':'まもる','Substitute':'みがわり','Stealth Rock':'ステルスロック','Spikes':'まきびし',
+      'Toxic Spikes':'どくびし','Sticky Web':'ねばねばネット','Reflect':'リフレクター','Light Screen':'ひかりのかべ',
+      'Aurora Veil':'オーロラベール','Tailwind':'おいかぜ','Rain Dance':'あまごい','Sunny Day':'にほんばれ',
+      'Sandstorm':'すなあらし','Hail':'あられ','Snowscape':'ゆきげしき','Trick Room':'トリックルーム',
+      'Blizzard':'ふぶき','Ice Shard':'こおりのつぶて','Ice Beam':'れいとうビーム','Icicle Crash':'つららおとし',
+      'Sheer Cold':'ぜったいれいど','Earthquake':'じしん','Earth Power':'だいちのちから','Drill Run':'ドリルライナー',
+      'Giga Drain':'ギガドレイン','Energy Ball':'エナジーボール','Leaf Storm':'リーフストーム','Solar Beam':'ソーラービーム',
+      'Leaf Blade':'リーフブレード','Solar Blade':'ソーラーブレード','Leech Seed':'やどりぎのタネ','Synthesis':'こうごうせい',
+      'Spore':'キノコのほうし','Sleep Powder':'ねむりごな','Stun Spore':'しびれごな','Poison Powder':'どくのこな',
+      'Rage Powder':'いかりのこな','Flamethrower':'かえんほうしゃ','Heat Wave':'ねっぷう','Fire Blast':'だいもんじ',
+      'Overheat':'オーバーヒート','Flare Blitz':'フレアドライブ','Weather Ball':'ウェザーボール','Flame Charge':'ニトロチャージ',
+      'Thunderbolt':'10まんボルト','Thunder':'かみなり','Thunder Wave':'でんじは','Volt Switch':'ボルトチェンジ',
+      'Wild Charge':'ワイルドボルト','Discharge':'ほうでん','Thunder Punch':'かみなりパンチ','Surf':'なみのり',
+      'Hydro Pump':'ハイドロポンプ','Scald':'ねっとう','Aqua Jet':'アクアジェット','Liquidation':'アクアブレイク',
+      'Waterfall':'たきのぼり','Psychic':'サイコキネシス','Psyshock':'サイコショック','Future Sight':'みらいよち',
+      'Calm Mind':'めいそう','Trick':'トリック','Draco Meteor':'りゅうせいぐん','Outrage':'げきりん',
+      'Dragon Claw':'ドラゴンクロー','Dragon Tail':'ドラゴンテール','Dragon Pulse':'りゅうのはどう','Scale Shot':'スケイルショット',
+      'Stone Edge':'ストーンエッジ','Rock Slide':'いわなだれ','Rock Tomb':'がんせきふうじ','Power Gem':'パワージェム',
+      'Ancient Power':'げんしのちから','Smack Down':'うちおとす','Dark Pulse':'あくのはどう','Knock Off':'はたきおとす',
+      'Sucker Punch':'ふいうち','Foul Play':'イカサマ','Close Combat':'インファイト','Focus Blast':'きあいだま',
+      'Brick Break':'かわらわり','Drain Punch':'ドレインパンチ','Bulk Up':'ビルドアップ','Iron Head':'アイアンヘッド',
+      'Flash Cannon':'ラスターカノン','Heavy Slam':'ヘビーボンバー','Shadow Ball':'シャドーボール','Shadow Claw':'シャドークロー',
+      'Hex':'たたりめ','Moonblast':'ムーンフォース','Play Rough':'じゃれつく','Dazzling Gleam':'マジカルシャイン',
+      'Brave Bird':'ブレイブバード','Air Slash':'エアスラッシュ','Hurricane':'ぼうふう','U-turn':'とんぼがえり',
+      'Bug Buzz':'むしのさざめき','X-Scissor':'シザークロス','Swords Dance':'つるぎのまい','Nasty Plot':'わるだくみ',
+      'Taunt':'ちょうはつ','Encore':'アンコール','Will-O-Wisp':'おにび','Toxic':'どくどく',
+      'Yawn':'あくび','Recover':'じこさいせい','Roost':'はねやすめ','Wish':'ねがいごと',
+      'Rapid Spin':'こうそくスピン','Defog':'きりばらい','Haze':'くろいきり','Dragon Dance':'りゅうのまい',
+      'Agility':'こうそくいどう'
     };
 
     const ABILITY_EN_TO_JA = {
-      'Intimidate':'インテグライド','Guts':'ガッツ','Hustle':'はちゅう','Moxie':'マキシー',
-      'Sheer Force':'シアーフォース','Tough Claws':'タフオー','Fur Coat':'ファーコート','Fluffy':'ふわふわ',
-      'Poison Touch':'ポイズント','Poison Point':'ポイズンポイント','Flame Body':'フレイムボディ',
-      'Static':'スタチック','Volt Absorb':'ボルテージ','Water Absorb':'ウォーターゼミ',
-      'Lightning Rod':'ライトニングロッド','Motor Drive':'モータードライブ','Storm Drain':'ストームドレン',
-      'Flame Mane':'フレイム','Swarm':'むんげき','Torrent':'げきこう','Blaze':'ブレイズ',
-      'Overgrow':'こうどう','Unaware':'アンエア','Sturdy':'かたいこころ','Shell Armor':'シェルアーマー',
-      'Thick Fat':'あついね','Heatproof':'ウララ','Water Bubble':'ウォーターバブル',
-      'Solid Rock':'ソリッドロック','Filter':'フィルター','Levitate':'フリーシン',
-      'Prankster':'プランクスター','Shadow Tag':'シャドータグ','Arena Trap':'アリーナトラップ',
-      'Magnet Pull':'ネジプル','Competitive':'コンペティティブ','Defiant':'デファイアント',
-      'Sniper':'スナイパー','Reckless':'レクレス','Swift Swim':'スイフトスイム',
-      'Iron Fist':'アイアンフィスト','Skill Link':'スキルリンク','Technician':'テクニシャン',
-      'Adaptability':'アダプタビリティ','Huge Power':'ヒューズパワー','Pure Power':'ピュアパワー',
-      'Flash Fire':'フラッシュファイア','Shed Skin':'シェドスキン','Gacha':'ガチャ',
-      'Wonder Guard':'ワンダーガード','Color Change':'カラーチェンジ','Immunity':'インモービリティ',
-      'Insomnia':'インソムニア','Run Away':'ランアウェイ','Keen Eye':'キーンアイ',
-      'Illuminate':'イルミネイト','Trace':'トレース','Synchronize':'シンクロ','Effect Spore':'エフェクトスポア',
-      'Natural Cure':'ネイチャルキュア','Cute Charm':'キュートチャーム','Friend Guard':'フレンドガード',
-      'Steadfast':'ステディファスト','Mold Breaker':'モールドブレーカー','Sheer Force':'シアーフォース',
-      'Rock Head':'ロックヘッド','Strong Jaw':'ストロングジョー','Flame Body':'フレイムボディ'
+      'Intimidate':'いかく','Guts':'こんじょう','Snow Warning':'ゆきふらし','Soundproof':'ぼうおん',
+      'Rough Skin':'さめはだ','Sand Veil':'すながくれ','Blaze':'もうか','Solar Power':'サンパワー',
+      'Torrent':'げきりゅう','Overgrow':'しんりょく','Swarm':'むしのしらせ','Shield Dust':'りんぷん',
+      'Sturdy':'がんじょう','Levitate':'ふゆう','Prankster':'いたずらごころ','Flash Fire':'もらいび',
+      'Water Absorb':'ちょすい','Volt Absorb':'ちくでん','Static':'せいでんき','Flame Body':'ほのおのからだ',
+      'Poison Point':'どくのトゲ','Effect Spore':'ほうし','Synchronize':'シンクロ','Trace':'トレース',
+      'Natural Cure':'ぜんかい','Swift Swim':'すいすい','Chlorophyll':'ようりょくそ','Sand Stream':'すなおこし',
+      'Thick Fat':'あついしぼう','Huge Power':'ちからもち','Technician':'テクニシャン','Adaptability':'てきおうりょく',
+      'Mold Breaker':'かたやぶり','Unaware':'てんねん','Sniper':'スナイパー','No Guard':'ノーガード',
+      'Sheer Force':'ちからずく','Regenerator':'さいせいりょく','Magic Guard':'マジックガード','Multiscale':'マルチスケイル'
     };
 
     async function fetchCbdIndex() {
@@ -1936,14 +1939,20 @@ function getMegaForms(baseName) {
     async function setupAnalyticsPokemonInput() {
       const input = $('analyticsPokemonInput');
       const datalist = $('analyticsPokemonDatalist');
-      if (!input || !datalist) return;
+      const box = $('analyticsSuggest');
+      if (!input) return;
       const savedId = localStorage.getItem('analytics-pokemon') || '';
-      datalist.innerHTML = '';
+      if (datalist) datalist.innerHTML = '';
       try {
         const data = await fetchCbdIndex();
         cbdFullList = (data.pokemon || []).sort((a, b) => a.name.localeCompare(b.name));
         renderAnalyticsDatalist('');
-        input.addEventListener('input', () => renderAnalyticsDatalist(input.value.trim()));
+        if (!input.dataset.bound) {
+          input.dataset.bound = '1';
+          input.addEventListener('input', () => renderAnalyticsDatalist(input.value.trim()));
+          input.addEventListener('focus', () => renderAnalyticsDatalist(input.value.trim()));
+          input.addEventListener('blur', () => { setTimeout(() => { if (box) box.style.display = 'none'; }, 150); });
+        }
         if (savedId && cbdFullList.some(p => p.showdownId === savedId)) {
           const savedPk = cbdFullList.find(p => p.showdownId === savedId);
           input.value = window.SHOWDOWN_TO_JA?.[savedPk.showdownId] || savedPk.name;
@@ -1951,14 +1960,28 @@ function getMegaForms(baseName) {
         }
       } catch(e) {
         console.error('CBD index fetch failed:', e);
-        datalist.innerHTML = '<option>データを読み込めませんでした</option>';
+        if (datalist) datalist.innerHTML = '<option>データを読み込めませんでした</option>';
       }
     }
 
     function getAnalyticsShowdownId() {
       const input = $('analyticsPokemonInput');
       if (!input) return '';
-      const val = input.value.trim();
+      const rawVal = input.value.trim();
+      // datalist option value may contain "ja hira sid name" tokens; extract sid token if present
+      let val = rawVal;
+      const tokens = rawVal.split(/\s+/);
+      const cached2 = cbdPokemonCache?.pokemon;
+      if (tokens.length > 1) {
+        for (const t of tokens) {
+          const tl = t.toLowerCase();
+          if (cached2 && cached2.some(p => (p.showdownId || '').toLowerCase() === tl || (p.name || '').toLowerCase() === tl)) { val = t; break; }
+          if (window.SHOWDOWN_TO_JA && (window.SHOWDOWN_TO_JA[t] || Object.keys(window.SHOWDOWN_TO_JA).some(k => k.toLowerCase() === tl))) {
+            const hit = Object.keys(window.SHOWDOWN_TO_JA).find(k => k.toLowerCase() === tl);
+            if (hit) { val = hit; break; }
+          }
+        }
+      }
       const cached = cbdPokemonCache?.pokemon;
       if (cached) {
         const byId = cached.find(p => p.showdownId === val);
@@ -1982,9 +2005,13 @@ function getMegaForms(baseName) {
           return jaLower.startsWith(inputLower) ||
                  jaHira.startsWith(inputLower) ||
                  jaHira.startsWith(inputHira) ||
-                 (inputKata && (jaLower.startsWith(inputKata) || (kataNoCho && jaNoCho.startsWith(kataNoCho)))) ||
+                 (inputKata && (jaLower.startsWith(inputKata) || jaLower.includes(inputKata) || (kataNoCho && (jaNoCho.startsWith(kataNoCho) || jaNoCho.includes(kataNoCho))))) ||
                  p.name.toLowerCase().startsWith(inputLower) ||
-                 (p.showdownId || '').toLowerCase().startsWith(inputLower);
+                 p.name.toLowerCase().includes(inputLower) ||
+                 (p.showdownId || '').toLowerCase().startsWith(inputLower) ||
+                 (p.showdownId || '').toLowerCase().includes(inputLower) ||
+                 jaLower.includes(inputLower) ||
+                 jaHira.includes(inputHira);
         });
         if (jaMatch) return jaMatch.showdownId;
       }
@@ -2001,7 +2028,8 @@ function getMegaForms(baseName) {
         if (jaLower.startsWith(inputLower) ||
             jaHira.startsWith(inputLower) ||
             jaHira.startsWith(inputHira) ||
-            (inputKata && (jaLower.startsWith(inputKata) || (stripCho(inputKata) && stripCho(jaLower).startsWith(stripCho(inputKata)))))) return sid;
+            (inputKata && (jaLower.startsWith(inputKata) || jaLower.includes(inputKata) || (stripCho(inputKata) && (stripCho(jaLower).startsWith(stripCho(inputKata)) || stripCho(jaLower).includes(stripCho(inputKata)))))) ||
+            jaLower.includes(inputLower) || jaHira.includes(inputHira)) return sid;
       }
       return val;
     }

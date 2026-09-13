@@ -25,7 +25,9 @@ describe('Analytics Search: romajiToKata', () => {
   const code = fs.readFileSync(path.join(PROJECT_ROOT, 'index.html'), 'utf8');
   const funcMatch = code.match(/function romajiToKata\(rom\) \{[\s\S]*?\n    \}/);
   if (!funcMatch) throw new Error('Could not find romajiToKata in index.html');
-  eval(funcMatch[0]);
+  const normMatch = code.match(/function normalizeRomaji\(s\) \{[\s\S]*?\n    \}/);
+  if (!normMatch) throw new Error('Could not find normalizeRomaji in index.html');
+  eval(normMatch[0] + '\n' + funcMatch[0]);
 
   test('converts basic hiragana', () => {
     expect(romajiToKata('a')).toBe('ア');
