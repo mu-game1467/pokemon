@@ -46,9 +46,9 @@ then falls back to Yakkun.
 - Item numbers follow Yakkun SV / GameWith numbering (not Yakkun CH numbers)
 
 ## Team Builds Screen
-The index.html has a "チームビルド" button in the topbar that opens a modal showing
-season-specific top-ranked team builds from pokedb.tokyo. The data is stored in
-`data/pokedb-teams.js` as `window.POKEDB_TEAMS_DATA`.
+The index.html has a tab bar below the hero section with "パーティ構築" and "上位構築" tabs.
+The "上位構築" tab shows season-specific top-ranked team builds from pokedb.tokyo.
+The data is stored in `data/pokedb-teams.js` as `window.POKEDB_TEAMS_DATA`.
 
 To regenerate:
 1. Run `node scripts/scrape-pokedb-teams.js` (requires Node.js)
