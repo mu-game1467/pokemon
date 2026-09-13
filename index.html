@@ -199,7 +199,12 @@
     @media (max-width: 560px) { .chat-card { width:100%; max-height:80vh; } }
     /* ---- damage calculator ---- */
     .damage-calc-modal { position:fixed; inset:0; z-index:15; display:grid; place-items:center; padding:16px; background:rgba(21,35,43,.45); }
-    .damage-calc-modal.hidden { display:none; }
+     .damage-calc-modal.hidden { display:none; }
+     .team-builds-modal { position:fixed; inset:0; z-index:15; display:grid; place-items:center; padding:16px; background:rgba(21,35,43,.45); }
+     .team-builds-modal.hidden { display:none; }
+     .team-build-card { border:1px solid var(--line); background:white; border-radius:8px; padding:10px; margin-bottom:10px; }
+     .team-build-header { display:flex; gap:8px; align-items:center; font-size:11px; color:var(--muted); margin-bottom:8px; }
+     .team-build-rank { font-family:'DM Mono',monospace; font-weight:700; color:var(--coral); font-size:13px; }
     .damage-result { font-family:'DM Mono',monospace; font-size:13px; }
     .damage-bar { height:8px; background:#dce2d5; border-radius:4px; margin:6px 0; overflow:hidden; }
     .damage-bar i { display:block; height:100%; background:var(--coral); border-radius:4px; transition:width .3s; }
@@ -260,6 +265,7 @@
       <div class="top-actions">
         <span id="userStatus" style="color:var(--muted);font-size:13px;min-width:100px;font-weight:500">オフライン</span>
         <button class="text-btn" id="openDamageCalc" style="font-size:12px;padding:6px 12px">ダメージ計算</button>
+        <button class="text-btn" id="openTeamBuilds" style="font-size:12px;padding:6px 12px">チームビルド</button>
         <button class="text-btn" id="logoutUser" style="font-size:12px;padding:6px 12px;display:none">ログアウト</button>
       </div>
     </header>
@@ -298,12 +304,32 @@
      <div class="battle-log-modal hidden" id="battleLogModal"><div class="editor-card"><div class="editor-head"><div><h2 id="battleLogTitle">戦績を記録</h2><div class="editor-subtitle" id="battleLogSubtitle"></div></div><button class="remove" id="closeBattleLog" aria-label="閉じる">×</button></div><div class="editor-body"><div class="field">結果<select id="battleResult"><option value="win">勝ち</option><option value="loss">負け</option><option value="draw">引き分け</option></select></div><div class="field">自分の選出（3匹）<select id="battleUserPick0"></select><select id="battleUserPick1"></select><select id="battleUserPick2"></select></div><div class="field">相手のパーティ（6匹）<input id="battleOpponent0" list="battlePokemonDatalist"><input id="battleOpponent1" list="battlePokemonDatalist"><input id="battleOpponent2" list="battlePokemonDatalist"><input id="battleOpponent3" list="battlePokemonDatalist"><input id="battleOpponent4" list="battlePokemonDatalist"><input id="battleOpponent5" list="battlePokemonDatalist"></div><div class="field">相手の選出（3匹）<select id="battleOpponentPick0"><option value="">—</option></select><select id="battleOpponentPick1"><option value="">—</option></select><select id="battleOpponentPick2"><option value="">—</option></select></div><div class="field">メモ<textarea id="battleNote" rows="3" placeholder="選出理由、相手の特徴など"></textarea></div><div class="editor-actions"><button class="ghost-btn" id="cancelBattleLog">キャンセル</button><button class="ghost-btn" id="saveBattleLog">記録する</button></div></div></div></div>
     <datalist id="battlePokemonDatalist"></datalist>
    <div class="battle-log-panel hidden" id="battleLogPanel"><div class="editor-card"><div class="editor-head"><div><h2>戦績ログ</h2><div class="editor-subtitle" id="battleLogPanelSubtitle"></div></div><button class="remove" id="closeBattleLogPanel" aria-label="閉じる">×</button></div><div class="editor-body"><div class="battle-log-stats" id="battleLogStats"></div><div class="battle-log-list" id="battleLogList"></div><div class="editor-actions"><button class="ghost-btn" id="addBattleLog">戦績を追加</button><button class="ghost-btn" id="closeBattleLogPanelBtn">閉じる</button></div></div></div></div>
+
+    <div class="team-builds-modal hidden" id="teamBuildsModal">
+      <div class="editor-card" style="max-width:760px;max-height:92vh">
+        <div class="editor-head">
+          <div>
+            <h2 id="teamBuildsTitle">チームビルド</h2>
+            <div class="editor-subtitle" id="teamBuildsSubtitle">pokedb.tokyoのシーズン別人気チームビルド</div>
+          </div>
+          <button class="remove" id="closeTeamBuilds" aria-label="閉じる">×</button>
+        </div>
+        <div class="editor-body" id="teamBuildsBody">
+          <div id="teamBuildsControls" style="margin-bottom:12px;display:flex;gap:8px;align-items:end">
+            <select id="seasonSelect" style="flex:1;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white"></select>
+            <button class="primary-btn" id="loadTeamsBtn" style="font-size:11px;padding:8px 12px">表示</button>
+          </div>
+          <div id="teamBuildsContent"></div>
+        </div>
+      </div>
+    </div>
   <div class="editor hidden" id="editor"><div class="editor-card"><div class="editor-head"><div><h2 id="editorTitle">ポケモンを編集</h2><div class="editor-subtitle" id="editorSubtitle"></div></div><button class="remove" id="closeEditor" aria-label="編集を閉じる">×</button></div><div class="editor-body"><label class="field">特性<select id="editAbility"></select></label><label class="field">性格<select id="editNature"></select></label><div class="field">持ち物<select id="editItem"></select><div class="item-preview"><span class="item-icon" id="itemIcon">・</span><span id="itemDescription">持ち物を選択してください</span></div></div><div class="field">採用する技 <span class="hint">このポケモンが覚える技のみ選択できます（最大4つ）</span><div class="move-grid"><div class="move-cell"><select class="move-select" data-move="0"></select><div class="move-info" data-move-info="0"></div></div><div class="move-cell"><select class="move-select" data-move="1"></select><div class="move-info" data-move-info="1"></div></div><div class="move-cell"><select class="move-select" data-move="2"></select><div class="move-info" data-move-info="2"></div></div><div class="move-cell"><select class="move-select" data-move="3"></select><div class="move-info" data-move-info="3"></div></div></div></div><div class="field">努力値（H / A / B / C / D / S）<div class="ev-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div class="ev-cell"><label>HP</label><input data-ev="hp" type="number" min="0" max="32" placeholder="H"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="hp" data-value="0">0</button><button class="ev-quick-btn" data-ev="hp" data-value="2">2</button><button class="ev-quick-btn" data-ev="hp" data-value="32">32</button></div></div><div class="ev-cell"><label>攻撃</label><input data-ev="attack" type="number" min="0" max="32" placeholder="A"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="attack" data-value="0">0</button><button class="ev-quick-btn" data-ev="attack" data-value="2">2</button><button class="ev-quick-btn" data-ev="attack" data-value="32">32</button></div></div><div class="ev-cell"><label>防御</label><input data-ev="defense" type="number" min="0" max="32" placeholder="B"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="defense" data-value="0">0</button><button class="ev-quick-btn" data-ev="defense" data-value="2">2</button><button class="ev-quick-btn" data-ev="defense" data-value="32">32</button></div></div><div class="ev-cell"><label>特攻</label><input data-ev="specialAttack" type="number" min="0" max="32" placeholder="C"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialAttack" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialAttack" data-value="32">32</button></div></div><div class="ev-cell"><label>特防</label><input data-ev="specialDefense" type="number" min="0" max="32" placeholder="D"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="specialDefense" data-value="0">0</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="2">2</button><button class="ev-quick-btn" data-ev="specialDefense" data-value="32">32</button></div></div><div class="ev-cell"><label>素早</label><input data-ev="speed" type="number" min="0" max="32" placeholder="S"><div class="ev-quick-btns"><button class="ev-quick-btn" data-ev="speed" data-value="0">0</button><button class="ev-quick-btn" data-ev="speed" data-value="2">2</button><button class="ev-quick-btn" data-ev="speed" data-value="32">32</button></div></div></div></div><div class="field">実数値（Lv.50）<div id="actualStatsPreview" style="font-size:11px;color:var(--muted);padding:6px 0;font-weight:400">努力値と性格を設定すると計算されます</div><div id="partyStatsPreview" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"></div></div><label class="field">ポケモンのメモ<textarea id="editMemo" rows="3" placeholder="選出、立ち回りなど"></textarea></label></div><div class="editor-actions"><button class="ghost-btn" id="cancelEditor">キャンセル</button><button class="primary-btn" id="saveEditor">保存する</button></div></div></div>
    <div class="damage-calc-modal hidden" id="damageCalcModal"><div class="editor-card"><div class="editor-head"><div><h2>ダメージ計算機</h2><div class="editor-subtitle" id="damageCalcSubtitle">攻撃側と防御側、技を選択してください</div></div><button class="remove" id="closeDamageCalc" aria-label="閉じる">×</button></div><div class="editor-body"><div class="damage-calc-grid"><div class="dc-attacker"><div class="dc-section-title">攻撃側</div><div class="dc-field"><label>ポケモン</label><select id="dcAttacker"><option value="">—</option></select></div><div class="dc-field"><label>技</label><select id="dcMove"><option value="">—</option></select></div><div class="dc-field"><label>性格</label><select id="dcAttackerNature"><option value="">性格なし</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻↑ / 防↓)</option><option value="いじっぱり">いじっぱり (攻↑ / 特↓)</option><option value="やんちゃ">やんちゃ (攻↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻↑ / 素↓)</option><option value="ずぶとい">ずぶとい (防↑ / 攻↓)</option><option value="わんぱく">わんぱく (防↑ / 特↓)</option><option value="のうてんき">のうてんき (防↑ / 特防↓)</option><option value="のんき">のんき (防↑ / 素↓)</option><option value="ひかえめ">ひかえめ (特↑ / 攻↓)</option><option value="おっとり">おっとり (特↑ / 防↓)</option><option value="うっかりや">うっかりや (特↑ / 特防↓)</option><option value="れいせい">れいせい (特↑ / 素↓)</option><option value="おだやか">おだやか (特防↑ / 攻↓)</option><option value="おとなしい">おとなしい (特防↑ / 防↓)</option><option value="しんちょう">しんちょう (特防↑ / 特↑)</option><option value="なまいき">なまいき (特防↑ / 素↓)</option><option value="おくびょう">おくびょう (素↑ / 攻↓)</option><option value="せっかち">せっかち (素↑ / 防↓)</option><option value="ようき">ようき (素↑ / 特↓)</option><option value="むじゃき">むじゃき (素↑ / 特防↓)</option></select></div><div class="dc-ev-grid-label">努力値</div><div class="dc-ev-grid"><div class="dc-ev-cell"><label>H</label><input id="dcAttackerEvHp" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>A</label><input id="dcAttackerEvAtk" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>B</label><input id="dcAttackerEvDef" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>C</label><input id="dcAttackerEvSpa" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>D</label><input id="dcAttackerEvSpd" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>S</label><input id="dcAttackerEvSpe" type="number" min="0" max="32" value="0"></div></div></div><div class="dc-defender"><div class="dc-section-title">防御側</div><div class="dc-field"><label>ポケモン</label><select id="dcDefender"><option value="">—</option></select></div><div class="dc-field"><label>性格</label><select id="dcDefenderNature"><option value="">性格なし</option><option value="まじめ">まじめ</option><option value="さみしがり">さみしがり (攻↑ / 防↓)</option><option value="いじっぱり">いじっぱり (攻↑ / 特↓)</option><option value="やんちゃ">やんちゃ (攻↑ / 特防↓)</option><option value="ゆうかん">ゆうかん (攻↑ / 素↓)</option><option value="ずぶとい">ずぶとい (防↑ / 攻↓)</option><option value="わんぱく">わんぱく (防↑ / 特↓)</option><option value="のうてんき">のうてんき (防↑ / 特防↓)</option><option value="のんき">のんき (防↑ / 素↓)</option><option value="ひかえめ">ひかえめ (特↑ / 攻↓)</option><option value="おっとり">おっとり (特↑ / 防↓)</option><option value="うっかりや">うっかりや (特↑ / 特防↓)</option><option value="れいせい">れいせい (特↑ / 素↓)</option><option value="おだやか">おだやか (特防↑ / 攻↓)</option><option value="おとなしい">おとなしい (特防↑ / 防↓)</option><option value="しんちょう">しんちょう (特防↑ / 特↑)</option><option value="なまいき">なまいき (特防↑ / 素↓)</option><option value="おくびょう">おくびょう (素↑ / 攻↓)</option><option value="せっかち">せっかち (素↑ / 防↓)</option><option value="ようき">ようき (素↑ / 特↓)</option><option value="むじゃき">むじゃき (素↑ / 特防↓)</option></select></div><div class="dc-ev-grid-label">努力値</div><div class="dc-ev-grid"><div class="dc-ev-cell"><label>H</label><input id="dcDefenderEvHp" type="number" min="0" max="252" value="0"></div><div class="dc-ev-cell"><label>A</label><input id="dcDefenderEvAtk" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>B</label><input id="dcDefenderEvDef" type="number" min="0" max="252" value="0"></div><div class="dc-ev-cell"><label>C</label><input id="dcDefenderEvSpa" type="number" min="0" max="32" value="0"></div><div class="dc-ev-cell"><label>D</label><input id="dcDefenderEvSpd" type="number" min="0" max="252" value="0"></div><div class="dc-ev-cell"><label>S</label><input id="dcDefenderEvSpe" type="number" min="0" max="32" value="0"></div></div></div></div><div class="dc-middle"><div class="dc-field"><label>天候</label><select id="dcWeather"><option value="">なし</option><option value="sun">あめ（ほのお↑ / みず↓）</option><option value="rain">あめ（みず↑ / ほのお↓）</option></select></div></div><div class="dc-result-box"><div class="damage-result" id="damageResult"><span style="color:var(--muted)">計算結果がここに表示されます</span></div><div class="dc-toggle"><label><input type="checkbox" id="dcLifeOrb"> いのちのたま</label><label><input type="checkbox" id="dcChoiceBand"> こだわりハチマキ</label><label><input type="checkbox" id="dcChoiceSpecs"> こだわりメガネ</label><label><input type="checkbox" id="dcCritical"> 急所</label><label><input type="checkbox" id="dcBurn"> やけど</label></div></div></div><div class="editor-actions"><button class="ghost-btn" id="cancelDamageCalc">キャンセル</button></div></div></div>
 
-  <script src="data/moves-champions.js"></script>
-  <script src="data/pokemon-champions.js"></script>
-  <script src="data/items-champions.js"></script>
+   <script src="data/moves-champions.js"></script>
+   <script src="data/pokemon-champions.js"></script>
+   <script src="data/items-champions.js"></script>
+   <script src="data/pokedb-teams.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       console.log('DOMContentLoaded fired');
@@ -1410,7 +1436,65 @@ function getMegaForms(baseName) {
     if (dcDefenderEl) dcDefenderEl.addEventListener('change', runDamageCalc);
     if ($('damageCalcModal')) $('damageCalcModal').addEventListener('click', e => { if (e.target === $('damageCalcModal')) closeDamageCalc(); });
      const dcToggles = document.querySelectorAll('#dcLifeOrb, #dcChoiceBand, #dcChoiceSpecs, #dcCritical, #dcBurn, #dcWeather, #dcAttackerNature, #dcDefenderNature, #dcAttackerEvHp, #dcAttackerEvAtk, #dcAttackerEvDef, #dcAttackerEvSpa, #dcAttackerEvSpd, #dcAttackerEvSpe, #dcDefenderEvHp, #dcDefenderEvAtk, #dcDefenderEvDef, #dcDefenderEvSpa, #dcDefenderEvSpd, #dcDefenderEvSpe');
-    dcToggles.forEach(t => t.addEventListener('change', runDamageCalc));
+     dcToggles.forEach(t => t.addEventListener('change', runDamageCalc));
+
+    /* ---- Team Builds (pokedb.tokyo) ---- */
+    const POKEDB_TEAMS = window.POKEDB_TEAMS_DATA || { seasons: [] };
+
+    function openTeamBuilds() {
+      const modal = $('teamBuildsModal');
+      if (!modal) return;
+      const seasonSelect = $('seasonSelect');
+      if (seasonSelect) {
+        seasonSelect.innerHTML = POKEDB_TEAMS.seasons.map(s => {
+          const label = `${s.season} [${s.rule}]`;
+          return `<option value="${s.season}|${s.rule}">${label}</option>`;
+        }).join('');
+      }
+      modal.classList.remove('hidden');
+      loadTeams();
+    }
+    function closeTeamBuilds() {
+      const modal = $('teamBuildsModal');
+      if (modal) modal.classList.add('hidden');
+    }
+    function loadTeams() {
+      const seasonSelect = $('seasonSelect');
+      if (!seasonSelect || !POKEDB_TEAMS.seasons.length) {
+        $('teamBuildsContent').innerHTML = '<span style="color:var(--muted);font-size:11px">データが読み込めませんでした。</span>';
+        return;
+      }
+      const val = seasonSelect.value;
+      const [season, rule] = val.split('|');
+      const seasonData = POKEDB_TEAMS.seasons.find(s => s.season === season && s.rule === rule);
+      if (!seasonData) return;
+
+      const updatedAt = seasonData.updatedAt || '';
+      $('teamBuildsSubtitle').textContent = `更新日: ${updatedAt}`;
+
+      const teams = seasonData.teams.slice(0, 20);
+      $('teamBuildsContent').innerHTML = teams.map(t => renderTeamCard(t)).join('');
+    }
+    function teamMemberHtml(member) {
+      const icon = member.iconUrl ? `<img src="${member.iconUrl}" alt="" style="width:34px;height:34px;object-fit:contain">` : '<span style="font-size:28px;opacity:.3">★</span>';
+      const type1 = member.type1 ? `<span class="type-chip" style="--tc:${typeColor(member.type1)};--tx:${chipTextColor(typeColor(member.type1))}">${member.type1}</span>` : '';
+      const tera = member.terastal ? ` <span style="color:${typeColor(member.terastal)}" title="テラ">${member.terastal}テラ</span>` : '';
+      const itemHtml = member.item ? `<span style="display:inline-flex;align-items:center;gap:3px">${member.itemIconUrl ? '<img src="' + member.itemIconUrl + '" alt="" style="width:20px;height:20px;object-fit:contain">' : '<span style="font-size:16px">・</span>'}<span style="font-size:8px">${member.item}</span></span>` : '<span style="color:var(--muted)">なし</span>';
+      return `<div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">${icon}<div style="flex:1"><div style="font-size:13px;font-weight:700">${member.name}${member.form ? ' (' + member.form + ')' : ''}${tera}</div><div style="display:flex;gap:2px;margin-top:2px">${type1}</div></div><div style="font-size:9px;color:var(--muted);text-align:right;min-width:80px">${itemHtml}</div>`;
+    }
+
+    function renderTeamCard(t) {
+      const ratingText = t.rating ? t.rating.toFixed(0) : '-';
+      return `<div class="team-build-card"><div class="team-build-header"><span class="team-build-rank">#${t.rank}</span><span>レーティング ${ratingText}</span></div>${t.team.map(member => teamMemberHtml(member)).join('')}</div>`;
+    }
+
+    const openTeamBuildsBtn = $('openTeamBuilds');
+    const closeTeamBuildsBtn = $('closeTeamBuilds');
+    if (openTeamBuildsBtn) openTeamBuildsBtn.addEventListener('click', openTeamBuilds);
+    if (closeTeamBuildsBtn) closeTeamBuildsBtn.addEventListener('click', closeTeamBuilds);
+    if ($('teamBuildsModal')) $('teamBuildsModal').addEventListener('click', e => { if (e.target === $('teamBuildsModal')) closeTeamBuilds(); });
+    if ($('seasonSelect')) $('seasonSelect').addEventListener('change', loadTeams);
+    if ($('loadTeamsBtn')) $('loadTeamsBtn').addEventListener('click', loadTeams);
 
     try { render(); } catch(e) { console.error('Render error:', e); const el = document.getElementById('errorDisplay'); if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); } }
 

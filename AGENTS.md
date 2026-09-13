@@ -21,6 +21,7 @@ with user sync capabilities.
 - `npm run fetch-icons` - Find and download missing item sprites into `images/items/`
 - `node scripts/scrape-yakkun-champions.js` - Scrape Pokemon data from Yakkun into `data/pokemon-champions.json`
 - `node scripts/scrape-pokedb-champions.ps1` - Scrape Pokemon usage data from pokedb.tokyo
+- `node scripts/scrape-pokedb-teams.js` - Scrape top-ranked team builds from pokedb.tokyo into `data/pokedb-teams.js`
 - `node scripts/merge-gamewith-moves.js` - Merge GameWith move data into Pokemon data
 
 ### Icon Fetching Workflow
@@ -33,12 +34,22 @@ If an item is not in `ITEM_URLS`, the script attempts to find it via the GameWit
 then falls back to Yakkun.
 
 ## File Structure
-- `data/` - JSON/JS data files (pokemon, items, moves)
+- `data/` - JSON/JS data files (pokemon, items, moves, pokedb teams)
 - `scripts/` - Scraping and data processing scripts
 - `images/items/` - Item sprite files (PNG)
+- `images/pokemon/` - Pokemon sprite files (GIF)
 - `tests/unit/` - Jest unit tests
 
 ## Sprite Conventions
 - Regular items: `images/items/i_item{number}.png` (from GameWith, same numbering as Yakkun SV)
 - Mega stones: `images/items/i_item_m{number}.png`
 - Item numbers follow Yakkun SV / GameWith numbering (not Yakkun CH numbers)
+
+## Team Builds Screen
+The index.html has a "チームビルド" button in the topbar that opens a modal showing
+season-specific top-ranked team builds from pokedb.tokyo. The data is stored in
+`data/pokedb-teams.js` as `window.POKEDB_TEAMS_DATA`.
+
+To regenerate:
+1. Run `node scripts/scrape-pokedb-teams.js` (requires Node.js)
+2. If Node.js is unavailable, use the C# program in `C:\Users\admin\AppData\Local\Temp\kilo\temp_project`
