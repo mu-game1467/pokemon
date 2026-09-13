@@ -34,6 +34,10 @@ module.exports = async function handler(req, res) {
 
   const filePath = getUserFilePath(userId);
 
+  if (!fs.existsSync(DATA_DIR)) {
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch(e) {}
+  }
+
   if (req.method === 'GET') {
     if (!fs.existsSync(filePath)) {
       if (res.status) res.status(200);
