@@ -53,7 +53,7 @@ function buildLookups() {
   const pokemonBaseMap = new Map();
   for (const p of pokemonData.pokemon) {
     if (p.name && p.iconUrl) {
-      const baseName = p.name.split(' (')[0];
+       const baseName = p.name.split(' (')[0].replace(/[♂♀]$/, '');
       if (!pokemonBaseMap.has(baseName)) {
         pokemonBaseMap.set(baseName, p.iconUrl);
       }

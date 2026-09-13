@@ -1512,7 +1512,7 @@ function getMegaForms(baseName) {
 
     function renderTeamCard(t) {
       const ratingText = t.rating ? t.rating.toFixed(0) : '-';
-      const membersHtml = t.team.map(member => teamMemberHtml(member)).join('');
+      const membersHtml = t.team.filter(m => m.name).map(member => teamMemberHtml(member)).join('');
       return `<div class="team-build-card"><div class="team-build-header"><span class="team-build-rank">#${t.rank}</span><span>レーティング ${ratingText}</span></div><div class="team-build-pokemon">${membersHtml}</div></div>`;
     }
 
