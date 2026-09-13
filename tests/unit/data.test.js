@@ -238,4 +238,13 @@ describe('items-champions.js data integrity', () => {
       expect(item.iconUrl.length).toBeGreaterThan(0);
     });
   });
+
+  test('all iconUrl paths reference existing files', () => {
+    const jsData = loadJs(path.join(DATA_DIR, 'items-champions.js'));
+    const itemsDir = path.join(PROJECT_ROOT, 'images', 'items');
+    jsData.items.forEach(item => {
+      const filepath = path.join(itemsDir, path.basename(item.iconUrl));
+      expect(fs.existsSync(filepath)).toBe(true);
+    });
+  });
 });
