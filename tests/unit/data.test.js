@@ -226,13 +226,16 @@ describe('items-champions.js data integrity', () => {
     expect(itemNames).toContain('ながねぎ');
   });
 
-  test('every item has name and description', () => {
+  test('every item has name, description, and iconUrl', () => {
     const jsData = loadJs(path.join(DATA_DIR, 'items-champions.js'));
     jsData.items.forEach(item => {
       expect(item).toHaveProperty('name');
       expect(typeof item.name).toBe('string');
       expect(item.name.length).toBeGreaterThan(0);
       expect(item).toHaveProperty('description');
+      expect(item).toHaveProperty('iconUrl');
+      expect(typeof item.iconUrl).toBe('string');
+      expect(item.iconUrl.length).toBeGreaterThan(0);
     });
   });
 });

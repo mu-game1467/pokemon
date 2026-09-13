@@ -1,0 +1,44 @@
+# AGENTS.md - Pokemon Champions Project
+
+## Project Overview
+Pokemon Champions Party Lab - a team builder for Pokemon Champions (ポケモンチャンピオンズ)
+with user sync capabilities.
+
+## Data Sources
+- **Yakkun** (https://yakkun.com): Pokemon stats, abilities, moves, sprites
+- **GameWith** (https://gamewith.jp): Item descriptions, recommended builds, sprite URLs
+
+## Commands
+
+### Development
+- `npm start` / `npm run dev` - Start static file server
+- `npm test` - Run unit tests (jest)
+- `npm run test:ui` - Run UI tests (playwright)
+- `npm run test:ci` - Run all tests
+
+### Data Scraping
+- `npm run scrape:mc` - Scrape Pokemon/item data from GameWith into `data/gamewith-mc.json`
+- `npm run fetch-icons` - Find and download missing item sprites into `images/items/`
+- `node scripts/scrape-yakkun-champions.js` - Scrape Pokemon data from Yakkun into `data/pokemon-champions.json`
+- `node scripts/scrape-pokedb-champions.ps1` - Scrape Pokemon usage data from pokedb.tokyo
+- `node scripts/merge-gamewith-moves.js` - Merge GameWith move data into Pokemon data
+
+### Icon Fetching Workflow
+When new items are added to `data/items-champions.js` with an empty `iconUrl`:
+1. Ensure the item's GameWith article URL is in `ITEM_URLS` in `scripts/scrape-gamewith-mc.js`
+2. Run `npm run fetch-icons` to automatically find and download sprites
+3. The script updates `items-champions.js` with the `iconUrl` value
+
+If an item is not in `ITEM_URLS`, the script attempts to find it via the GameWith item list page,
+then falls back to Yakkun.
+
+## File Structure
+- `data/` - JSON/JS data files (pokemon, items, moves)
+- `scripts/` - Scraping and data processing scripts
+- `images/items/` - Item sprite files (PNG)
+- `tests/unit/` - Jest unit tests
+
+## Sprite Conventions
+- Regular items: `images/items/i_item{number}.png` (from GameWith, same numbering as Yakkun SV)
+- Mega stones: `images/items/i_item_m{number}.png`
+- Item numbers follow Yakkun SV / GameWith numbering (not Yakkun CH numbers)
