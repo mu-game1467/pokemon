@@ -1,6 +1,6 @@
 window.POKEDB_TEAMS_DATA = {
   "source": "https://champs.pokedb.tokyo/guide/opendata",
-  "fetchedAt": "2026-09-13T04:29:14.891Z",
+  "fetchedAt": "2026-09-13T04:50:41.438Z",
   "seasons": [
     {
       "season": "M-1",
@@ -244,7 +244,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 5,
+          "rank": 4,
           "rating": 2779.502,
           "team": [
             {
@@ -322,7 +322,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 6,
+          "rank": 5,
           "rating": 2779.179,
           "team": [
             {
@@ -400,7 +400,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 7,
+          "rank": 6,
           "rating": 2776.556,
           "team": [
             {
@@ -478,7 +478,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 8,
+          "rank": 7,
           "rating": 2776.205,
           "team": [
             {
@@ -556,7 +556,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 9,
+          "rank": 8,
           "rating": 2769.021,
           "team": [
             {
@@ -634,7 +634,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 10,
+          "rank": 9,
           "rating": 2762.889,
           "team": [
             {
@@ -712,7 +712,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 11,
+          "rank": 10,
           "rating": 2748.323,
           "team": [
             {
@@ -790,7 +790,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 12,
+          "rank": 11,
           "rating": 2745.426,
           "team": [
             {
@@ -868,7 +868,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 13,
+          "rank": 12,
           "rating": 2741.632,
           "team": [
             {
@@ -946,7 +946,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 14,
+          "rank": 13,
           "rating": 2740.46,
           "team": [
             {
@@ -1024,7 +1024,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 16,
+          "rank": 14,
           "rating": 2732.426,
           "team": [
             {
@@ -1102,7 +1102,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 17,
+          "rank": 15,
           "rating": 2731.427,
           "team": [
             {
@@ -1180,7 +1180,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 18,
+          "rank": 16,
           "rating": 2728.222,
           "team": [
             {
@@ -1258,7 +1258,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 19,
+          "rank": 17,
           "rating": 2726.806,
           "team": [
             {
@@ -1336,7 +1336,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 20,
+          "rank": 18,
           "rating": 2726.246,
           "team": [
             {
@@ -1414,7 +1414,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 21,
+          "rank": 19,
           "rating": 2719.194,
           "team": [
             {
@@ -1492,7 +1492,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 22,
+          "rank": 20,
           "rating": 2718.223,
           "team": [
             {
@@ -1570,7 +1570,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 23,
+          "rank": 21,
           "rating": 2717.286,
           "team": [
             {
@@ -1648,7 +1648,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 24,
+          "rank": 22,
           "rating": 2715.044,
           "team": [
             {
@@ -1726,7 +1726,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 25,
+          "rank": 23,
           "rating": 2714.236,
           "team": [
             {
@@ -1804,7 +1804,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 26,
+          "rank": 24,
           "rating": 2709.716,
           "team": [
             {
@@ -1882,7 +1882,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 28,
+          "rank": 25,
           "rating": 2709.451,
           "team": [
             {
@@ -1960,7 +1960,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 29,
+          "rank": 26,
           "rating": 2708.065,
           "team": [
             {
@@ -2038,7 +2038,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 30,
+          "rank": 27,
           "rating": 2707.749,
           "team": [
             {
@@ -2116,7 +2116,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 31,
+          "rank": 28,
           "rating": 2706.309,
           "team": [
             {
@@ -2194,7 +2194,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 32,
+          "rank": 29,
           "rating": 2706.273,
           "team": [
             {
@@ -2272,7 +2272,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 33,
+          "rank": 30,
           "rating": 2706.058,
           "team": [
             {
@@ -2350,7 +2350,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 34,
+          "rank": 31,
           "rating": 2705.633,
           "team": [
             {
@@ -2428,7 +2428,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 35,
+          "rank": 32,
           "rating": 2704.547,
           "team": [
             {
@@ -2506,7 +2506,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 36,
+          "rank": 33,
           "rating": 2704.303,
           "team": [
             {
@@ -2584,7 +2584,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 37,
+          "rank": 34,
           "rating": 2704.286,
           "team": [
             {
@@ -2662,7 +2662,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 38,
+          "rank": 35,
           "rating": 2703.634,
           "team": [
             {
@@ -2740,7 +2740,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 39,
+          "rank": 36,
           "rating": 2703.485,
           "team": [
             {
@@ -2818,7 +2818,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 41,
+          "rank": 37,
           "rating": 2702.152,
           "team": [
             {
@@ -2896,7 +2896,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 42,
+          "rank": 38,
           "rating": 2701.74,
           "team": [
             {
@@ -2974,7 +2974,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 43,
+          "rank": 39,
           "rating": 2701.489,
           "team": [
             {
@@ -3052,7 +3052,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 45,
+          "rank": 40,
           "rating": 2700.777,
           "team": [
             {
@@ -3130,7 +3130,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 46,
+          "rank": 41,
           "rating": 2700.258,
           "team": [
             {
@@ -3208,7 +3208,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 47,
+          "rank": 42,
           "rating": 2698.181,
           "team": [
             {
@@ -3286,7 +3286,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 48,
+          "rank": 43,
           "rating": 2694.135,
           "team": [
             {
@@ -3364,7 +3364,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 49,
+          "rank": 44,
           "rating": 2692.186,
           "team": [
             {
@@ -3442,7 +3442,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 50,
+          "rank": 45,
           "rating": 2691.602,
           "team": [
             {
@@ -3520,7 +3520,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 51,
+          "rank": 46,
           "rating": 2691.124,
           "team": [
             {
@@ -3598,7 +3598,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 54,
+          "rank": 47,
           "rating": 2686.398,
           "team": [
             {
@@ -3676,7 +3676,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 55,
+          "rank": 48,
           "rating": 2686.322,
           "team": [
             {
@@ -3754,7 +3754,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 56,
+          "rank": 49,
           "rating": 2685.939,
           "team": [
             {
@@ -3832,7 +3832,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 58,
+          "rank": 50,
           "rating": 2685.007,
           "team": [
             {
@@ -3910,7 +3910,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 59,
+          "rank": 51,
           "rating": 2683.549,
           "team": [
             {
@@ -3988,7 +3988,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 62,
+          "rank": 52,
           "rating": 2682.08,
           "team": [
             {
@@ -4066,7 +4066,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 63,
+          "rank": 53,
           "rating": 2681.471,
           "team": [
             {
@@ -4144,7 +4144,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 64,
+          "rank": 54,
           "rating": 2680.852,
           "team": [
             {
@@ -4222,7 +4222,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 55,
           "rating": 2680.488,
           "team": [
             {
@@ -4300,7 +4300,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 66,
+          "rank": 56,
           "rating": 2679.691,
           "team": [
             {
@@ -4378,7 +4378,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 67,
+          "rank": 57,
           "rating": 2679.358,
           "team": [
             {
@@ -4456,7 +4456,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 70,
+          "rank": 58,
           "rating": 2674.328,
           "team": [
             {
@@ -4534,7 +4534,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 71,
+          "rank": 59,
           "rating": 2672.831,
           "team": [
             {
@@ -4612,7 +4612,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 72,
+          "rank": 60,
           "rating": 2672.249,
           "team": [
             {
@@ -4690,7 +4690,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 73,
+          "rank": 61,
           "rating": 2672.161,
           "team": [
             {
@@ -4768,7 +4768,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 75,
+          "rank": 62,
           "rating": 2670.851,
           "team": [
             {
@@ -4846,7 +4846,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 76,
+          "rank": 63,
           "rating": 2670.631,
           "team": [
             {
@@ -4924,7 +4924,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 77,
+          "rank": 64,
           "rating": 2670.437,
           "team": [
             {
@@ -5002,7 +5002,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 78,
+          "rank": 65,
           "rating": 2670.296,
           "team": [
             {
@@ -5080,7 +5080,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 79,
+          "rank": 66,
           "rating": 2670.052,
           "team": [
             {
@@ -5158,7 +5158,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 80,
+          "rank": 67,
           "rating": 2670.025,
           "team": [
             {
@@ -5236,7 +5236,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 82,
+          "rank": 68,
           "rating": 2668.814,
           "team": [
             {
@@ -5314,7 +5314,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 83,
+          "rank": 69,
           "rating": 2667.899,
           "team": [
             {
@@ -5392,7 +5392,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 84,
+          "rank": 70,
           "rating": 2667.448,
           "team": [
             {
@@ -5470,7 +5470,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 85,
+          "rank": 71,
           "rating": 2667.088,
           "team": [
             {
@@ -5548,7 +5548,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 86,
+          "rank": 72,
           "rating": 2666.822,
           "team": [
             {
@@ -5626,7 +5626,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 87,
+          "rank": 73,
           "rating": 2666.335,
           "team": [
             {
@@ -5704,7 +5704,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 90,
+          "rank": 74,
           "rating": 2666.04,
           "team": [
             {
@@ -5782,7 +5782,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 91,
+          "rank": 75,
           "rating": 2664.884,
           "team": [
             {
@@ -5860,7 +5860,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 92,
+          "rank": 76,
           "rating": 2664.362,
           "team": [
             {
@@ -5938,7 +5938,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 94,
+          "rank": 77,
           "rating": 2663.326,
           "team": [
             {
@@ -6016,7 +6016,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 95,
+          "rank": 78,
           "rating": 2662.458,
           "team": [
             {
@@ -6094,7 +6094,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 96,
+          "rank": 79,
           "rating": 2661.644,
           "team": [
             {
@@ -6172,7 +6172,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 97,
+          "rank": 80,
           "rating": 2661.054,
           "team": [
             {
@@ -6250,7 +6250,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 98,
+          "rank": 81,
           "rating": 2660.752,
           "team": [
             {
@@ -6328,7 +6328,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 99,
+          "rank": 82,
           "rating": 2660.402,
           "team": [
             {
@@ -6406,7 +6406,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 100,
+          "rank": 83,
           "rating": 2659.874,
           "team": [
             {
@@ -6484,7 +6484,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 102,
+          "rank": 84,
           "rating": 2658.354,
           "team": [
             {
@@ -6562,7 +6562,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 106,
+          "rank": 85,
           "rating": 2654.281,
           "team": [
             {
@@ -6640,7 +6640,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 107,
+          "rank": 86,
           "rating": 2654.098,
           "team": [
             {
@@ -6718,7 +6718,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 109,
+          "rank": 87,
           "rating": 2649.92,
           "team": [
             {
@@ -6796,7 +6796,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 110,
+          "rank": 88,
           "rating": 2649.319,
           "team": [
             {
@@ -6874,7 +6874,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 111,
+          "rank": 89,
           "rating": 2647.344,
           "team": [
             {
@@ -6952,7 +6952,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 112,
+          "rank": 90,
           "rating": 2646.335,
           "team": [
             {
@@ -7030,7 +7030,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 113,
+          "rank": 91,
           "rating": 2645.598,
           "team": [
             {
@@ -7108,7 +7108,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 115,
+          "rank": 92,
           "rating": 2644.808,
           "team": [
             {
@@ -7186,7 +7186,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 118,
+          "rank": 93,
           "rating": 2642.365,
           "team": [
             {
@@ -7264,7 +7264,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 121,
+          "rank": 94,
           "rating": 2639.236,
           "team": [
             {
@@ -7342,7 +7342,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 122,
+          "rank": 95,
           "rating": 2639.185,
           "team": [
             {
@@ -7420,7 +7420,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 125,
+          "rank": 96,
           "rating": 2636.588,
           "team": [
             {
@@ -7498,7 +7498,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 128,
+          "rank": 97,
           "rating": 2634.942,
           "team": [
             {
@@ -7576,7 +7576,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 129,
+          "rank": 98,
           "rating": 2634.64,
           "team": [
             {
@@ -7654,7 +7654,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 132,
+          "rank": 99,
           "rating": 2628.855,
           "team": [
             {
@@ -7732,7 +7732,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 137,
+          "rank": 100,
           "rating": 2625.827,
           "team": [
             {
@@ -8131,7 +8131,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 11,
+          "rank": 5,
           "rating": 2644.009,
           "team": [
             {
@@ -8209,7 +8209,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 16,
+          "rank": 6,
           "rating": 2636.921,
           "team": [
             {
@@ -8287,7 +8287,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 20,
+          "rank": 7,
           "rating": 2620.432,
           "team": [
             {
@@ -8365,7 +8365,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 22,
+          "rank": 8,
           "rating": 2618.806,
           "team": [
             {
@@ -8443,7 +8443,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 25,
+          "rank": 9,
           "rating": 2613.603,
           "team": [
             {
@@ -8521,7 +8521,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 27,
+          "rank": 10,
           "rating": 2611.744,
           "team": [
             {
@@ -8599,7 +8599,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 29,
+          "rank": 11,
           "rating": 2608.612,
           "team": [
             {
@@ -8677,7 +8677,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 32,
+          "rank": 12,
           "rating": 2603.969,
           "team": [
             {
@@ -8755,7 +8755,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 46,
+          "rank": 13,
           "rating": 2568.931,
           "team": [
             {
@@ -8833,7 +8833,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 52,
+          "rank": 14,
           "rating": 2560.405,
           "team": [
             {
@@ -8911,7 +8911,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 54,
+          "rank": 15,
           "rating": 2557.675,
           "team": [
             {
@@ -8989,7 +8989,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 61,
+          "rank": 16,
           "rating": 2550.95,
           "team": [
             {
@@ -9067,7 +9067,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 76,
+          "rank": 17,
           "rating": 2534.986,
           "team": [
             {
@@ -9145,7 +9145,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 81,
+          "rank": 18,
           "rating": 2528.466,
           "team": [
             {
@@ -9223,7 +9223,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 84,
+          "rank": 19,
           "rating": 2526.355,
           "team": [
             {
@@ -9301,7 +9301,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 87,
+          "rank": 20,
           "rating": 2523.709,
           "team": [
             {
@@ -9379,7 +9379,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 103,
+          "rank": 21,
           "rating": 2513.421,
           "team": [
             {
@@ -9457,7 +9457,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 106,
+          "rank": 22,
           "rating": 2512.264,
           "team": [
             {
@@ -9535,7 +9535,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 109,
+          "rank": 23,
           "rating": 2511.193,
           "team": [
             {
@@ -9613,7 +9613,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 120,
+          "rank": 24,
           "rating": 2507.077,
           "team": [
             {
@@ -9691,7 +9691,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 136,
+          "rank": 25,
           "rating": 2504.335,
           "team": [
             {
@@ -9769,7 +9769,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 143,
+          "rank": 26,
           "rating": 2502.105,
           "team": [
             {
@@ -9847,7 +9847,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 144,
+          "rank": 27,
           "rating": 2502.005,
           "team": [
             {
@@ -9925,7 +9925,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 148,
+          "rank": 28,
           "rating": 2501.138,
           "team": [
             {
@@ -10003,7 +10003,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 149,
+          "rank": 29,
           "rating": 2501.113,
           "team": [
             {
@@ -10081,7 +10081,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 155,
+          "rank": 30,
           "rating": 2500.147,
           "team": [
             {
@@ -10159,7 +10159,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 172,
+          "rank": 31,
           "rating": 2490.276,
           "team": [
             {
@@ -10237,7 +10237,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 212,
+          "rank": 32,
           "rating": 2481.17,
           "team": [
             {
@@ -10315,7 +10315,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 213,
+          "rank": 33,
           "rating": 2481.161,
           "team": [
             {
@@ -10393,7 +10393,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 230,
+          "rank": 34,
           "rating": 2479.434,
           "team": [
             {
@@ -10471,7 +10471,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 235,
+          "rank": 35,
           "rating": 2478.595,
           "team": [
             {
@@ -10549,7 +10549,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 236,
+          "rank": 36,
           "rating": 2478.281,
           "team": [
             {
@@ -10627,7 +10627,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 247,
+          "rank": 37,
           "rating": 2477.377,
           "team": [
             {
@@ -10705,7 +10705,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 252,
+          "rank": 38,
           "rating": 2476.776,
           "team": [
             {
@@ -10783,7 +10783,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 261,
+          "rank": 39,
           "rating": 2475.678,
           "team": [
             {
@@ -10861,7 +10861,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 265,
+          "rank": 40,
           "rating": 2474.847,
           "team": [
             {
@@ -10939,7 +10939,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 280,
+          "rank": 41,
           "rating": 2473.678,
           "team": [
             {
@@ -11017,7 +11017,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 281,
+          "rank": 42,
           "rating": 2473.624,
           "team": [
             {
@@ -11095,7 +11095,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 293,
+          "rank": 43,
           "rating": 2472.388,
           "team": [
             {
@@ -11173,7 +11173,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 298,
+          "rank": 44,
           "rating": 2472.102,
           "team": [
             {
@@ -11251,7 +11251,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 300,
+          "rank": 45,
           "rating": 2471.999,
           "team": [
             {
@@ -11329,7 +11329,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 353,
+          "rank": 46,
           "rating": 2435.159,
           "team": [
             {
@@ -11407,7 +11407,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 394,
+          "rank": 47,
           "rating": 2414.159,
           "team": [
             {
@@ -11485,7 +11485,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 416,
+          "rank": 48,
           "rating": 2408.406,
           "team": [
             {
@@ -11563,7 +11563,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 432,
+          "rank": 49,
           "rating": 2406.38,
           "team": [
             {
@@ -11641,7 +11641,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 449,
+          "rank": 50,
           "rating": 2402,
           "team": [
             {
@@ -11719,7 +11719,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 523,
+          "rank": 51,
           "rating": 2474,
           "team": [
             {
@@ -11797,7 +11797,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 554,
+          "rank": 52,
           "rating": 2366.334,
           "team": [
             {
@@ -11875,7 +11875,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 590,
+          "rank": 53,
           "rating": 0,
           "team": [
             {
@@ -11953,7 +11953,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 591,
+          "rank": 54,
           "rating": 2360.313,
           "team": [
             {
@@ -12031,7 +12031,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 607,
+          "rank": 55,
           "rating": 2357.39,
           "team": [
             {
@@ -12109,7 +12109,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 613,
+          "rank": 56,
           "rating": 2355.595,
           "team": [
             {
@@ -12187,7 +12187,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 690,
+          "rank": 57,
           "rating": 2337.58,
           "team": [
             {
@@ -12265,7 +12265,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 731,
+          "rank": 58,
           "rating": 2331.474,
           "team": [
             {
@@ -12343,7 +12343,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 775,
+          "rank": 59,
           "rating": 2326.214,
           "team": [
             {
@@ -12421,7 +12421,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 778,
+          "rank": 60,
           "rating": 2325.738,
           "team": [
             {
@@ -12499,7 +12499,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 830,
+          "rank": 61,
           "rating": 2320.11,
           "team": [
             {
@@ -12577,7 +12577,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 846,
+          "rank": 62,
           "rating": 2318.294,
           "team": [
             {
@@ -12655,7 +12655,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 856,
+          "rank": 63,
           "rating": 2316.946,
           "team": [
             {
@@ -12733,7 +12733,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 908,
+          "rank": 64,
           "rating": 2311.781,
           "team": [
             {
@@ -12811,7 +12811,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 928,
+          "rank": 65,
           "rating": 2309.783,
           "team": [
             {
@@ -12889,7 +12889,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 997,
+          "rank": 66,
           "rating": 2303.828,
           "team": [
             {
@@ -12967,7 +12967,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1386,
+          "rank": 67,
           "rating": 2252.094,
           "team": [
             {
@@ -13045,7 +13045,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1630,
+          "rank": 68,
           "rating": 2229.297,
           "team": [
             {
@@ -13123,7 +13123,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1998,
+          "rank": 69,
           "rating": 2209.929,
           "team": [
             {
@@ -13201,7 +13201,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 3282,
+          "rank": 70,
           "rating": 0,
           "team": [
             {
@@ -13279,7 +13279,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 4860,
+          "rank": 71,
           "rating": 2081.889,
           "team": [
             {
@@ -13357,7 +13357,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 6879,
+          "rank": 72,
           "rating": 2061.55,
           "team": [
             {
@@ -13834,7 +13834,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 7,
+          "rank": 6,
           "rating": 2515.462,
           "team": [
             {
@@ -13912,7 +13912,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 8,
+          "rank": 7,
           "rating": 2514.789,
           "team": [
             {
@@ -13990,7 +13990,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 9,
+          "rank": 8,
           "rating": 2512.524,
           "team": [
             {
@@ -14068,7 +14068,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 10,
+          "rank": 9,
           "rating": 2509.121,
           "team": [
             {
@@ -14146,7 +14146,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 11,
+          "rank": 10,
           "rating": 2505.246,
           "team": [
             {
@@ -14224,7 +14224,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 12,
+          "rank": 11,
           "rating": 2504.353,
           "team": [
             {
@@ -14302,7 +14302,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 15,
+          "rank": 12,
           "rating": 2483.405,
           "team": [
             {
@@ -14380,7 +14380,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 17,
+          "rank": 13,
           "rating": 2478.701,
           "team": [
             {
@@ -14458,7 +14458,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 18,
+          "rank": 14,
           "rating": 2476.241,
           "team": [
             {
@@ -14536,7 +14536,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 20,
+          "rank": 15,
           "rating": 2463.66,
           "team": [
             {
@@ -14614,7 +14614,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 24,
+          "rank": 16,
           "rating": 2457.253,
           "team": [
             {
@@ -14692,7 +14692,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 28,
+          "rank": 17,
           "rating": 2446.578,
           "team": [
             {
@@ -14770,7 +14770,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 32,
+          "rank": 18,
           "rating": 2436.712,
           "team": [
             {
@@ -14848,7 +14848,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 33,
+          "rank": 19,
           "rating": 2428.057,
           "team": [
             {
@@ -14926,7 +14926,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 34,
+          "rank": 20,
           "rating": 2427.632,
           "team": [
             {
@@ -15004,7 +15004,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 35,
+          "rank": 21,
           "rating": 2422.626,
           "team": [
             {
@@ -15082,7 +15082,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 37,
+          "rank": 22,
           "rating": 2420.576,
           "team": [
             {
@@ -15160,7 +15160,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 41,
+          "rank": 23,
           "rating": 2416.846,
           "team": [
             {
@@ -15238,7 +15238,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 43,
+          "rank": 24,
           "rating": 2414.338,
           "team": [
             {
@@ -15316,7 +15316,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 45,
+          "rank": 25,
           "rating": 2413.692,
           "team": [
             {
@@ -15394,7 +15394,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 46,
+          "rank": 26,
           "rating": 2412.503,
           "team": [
             {
@@ -15472,7 +15472,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 47,
+          "rank": 27,
           "rating": 2411.755,
           "team": [
             {
@@ -15550,7 +15550,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 48,
+          "rank": 28,
           "rating": 2411.191,
           "team": [
             {
@@ -15628,7 +15628,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 50,
+          "rank": 29,
           "rating": 2409.597,
           "team": [
             {
@@ -15706,7 +15706,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 52,
+          "rank": 30,
           "rating": 2408.863,
           "team": [
             {
@@ -15784,7 +15784,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 53,
+          "rank": 31,
           "rating": 2408.738,
           "team": [
             {
@@ -15862,7 +15862,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 54,
+          "rank": 32,
           "rating": 2407.491,
           "team": [
             {
@@ -15940,7 +15940,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 58,
+          "rank": 33,
           "rating": 2406.844,
           "team": [
             {
@@ -16018,7 +16018,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 62,
+          "rank": 34,
           "rating": 2406.216,
           "team": [
             {
@@ -16096,7 +16096,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 64,
+          "rank": 35,
           "rating": 2405.926,
           "team": [
             {
@@ -16174,7 +16174,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 36,
           "rating": 2404.577,
           "team": [
             {
@@ -16252,7 +16252,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 66,
+          "rank": 37,
           "rating": 2404.568,
           "team": [
             {
@@ -16330,7 +16330,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 67,
+          "rank": 38,
           "rating": 2404.463,
           "team": [
             {
@@ -16408,7 +16408,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 68,
+          "rank": 39,
           "rating": 2404.203,
           "team": [
             {
@@ -16486,7 +16486,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 71,
+          "rank": 40,
           "rating": 2402.876,
           "team": [
             {
@@ -16564,7 +16564,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 72,
+          "rank": 41,
           "rating": 2402.823,
           "team": [
             {
@@ -16642,7 +16642,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 75,
+          "rank": 42,
           "rating": 2402.101,
           "team": [
             {
@@ -16720,7 +16720,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 77,
+          "rank": 43,
           "rating": 2400.9,
           "team": [
             {
@@ -16798,7 +16798,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 81,
+          "rank": 44,
           "rating": 2400.506,
           "team": [
             {
@@ -16876,7 +16876,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 82,
+          "rank": 45,
           "rating": 2400.026,
           "team": [
             {
@@ -16954,7 +16954,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 83,
+          "rank": 46,
           "rating": 2399.949,
           "team": [
             {
@@ -17032,7 +17032,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 84,
+          "rank": 47,
           "rating": 2399.679,
           "team": [
             {
@@ -17110,7 +17110,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 85,
+          "rank": 48,
           "rating": 2397.706,
           "team": [
             {
@@ -17188,7 +17188,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 86,
+          "rank": 49,
           "rating": 2397.402,
           "team": [
             {
@@ -17266,7 +17266,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 91,
+          "rank": 50,
           "rating": 2393.713,
           "team": [
             {
@@ -17344,7 +17344,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 93,
+          "rank": 51,
           "rating": 2391.086,
           "team": [
             {
@@ -17422,7 +17422,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 96,
+          "rank": 52,
           "rating": 2388.024,
           "team": [
             {
@@ -17500,7 +17500,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 107,
+          "rank": 53,
           "rating": 2373.005,
           "team": [
             {
@@ -17578,7 +17578,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 111,
+          "rank": 54,
           "rating": 2367.249,
           "team": [
             {
@@ -17656,7 +17656,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 116,
+          "rank": 55,
           "rating": 2364.9,
           "team": [
             {
@@ -17734,7 +17734,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 117,
+          "rank": 56,
           "rating": 2364.226,
           "team": [
             {
@@ -17812,7 +17812,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 121,
+          "rank": 57,
           "rating": 2361.021,
           "team": [
             {
@@ -17890,7 +17890,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 123,
+          "rank": 58,
           "rating": 2358.025,
           "team": [
             {
@@ -17968,7 +17968,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 131,
+          "rank": 59,
           "rating": 2351.522,
           "team": [
             {
@@ -18046,7 +18046,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 143,
+          "rank": 60,
           "rating": 2346.455,
           "team": [
             {
@@ -18124,7 +18124,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 144,
+          "rank": 61,
           "rating": 2346.443,
           "team": [
             {
@@ -18202,7 +18202,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 147,
+          "rank": 62,
           "rating": 2344.811,
           "team": [
             {
@@ -18280,7 +18280,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 151,
+          "rank": 63,
           "rating": 2343.475,
           "team": [
             {
@@ -18358,7 +18358,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 166,
+          "rank": 64,
           "rating": 2340.079,
           "team": [
             {
@@ -18436,7 +18436,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 168,
+          "rank": 65,
           "rating": 2339.676,
           "team": [
             {
@@ -18514,7 +18514,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 169,
+          "rank": 66,
           "rating": 2339.668,
           "team": [
             {
@@ -18592,7 +18592,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 175,
+          "rank": 67,
           "rating": 2338.697,
           "team": [
             {
@@ -18670,7 +18670,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 176,
+          "rank": 68,
           "rating": 2338.469,
           "team": [
             {
@@ -18748,7 +18748,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 179,
+          "rank": 69,
           "rating": 2337.456,
           "team": [
             {
@@ -18826,7 +18826,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 180,
+          "rank": 70,
           "rating": 2337.417,
           "team": [
             {
@@ -18904,7 +18904,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 182,
+          "rank": 71,
           "rating": 2337.297,
           "team": [
             {
@@ -18982,7 +18982,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 184,
+          "rank": 72,
           "rating": 2337.277,
           "team": [
             {
@@ -19060,7 +19060,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 186,
+          "rank": 73,
           "rating": 2337.143,
           "team": [
             {
@@ -19138,7 +19138,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 187,
+          "rank": 74,
           "rating": 2337.106,
           "team": [
             {
@@ -19216,7 +19216,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 190,
+          "rank": 75,
           "rating": 2336.853,
           "team": [
             {
@@ -19294,7 +19294,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 198,
+          "rank": 76,
           "rating": 2335.636,
           "team": [
             {
@@ -19372,7 +19372,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 201,
+          "rank": 77,
           "rating": 2335.368,
           "team": [
             {
@@ -19450,7 +19450,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 205,
+          "rank": 78,
           "rating": 2335.216,
           "team": [
             {
@@ -19528,7 +19528,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 206,
+          "rank": 79,
           "rating": 2335.109,
           "team": [
             {
@@ -19606,7 +19606,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 208,
+          "rank": 80,
           "rating": 2334.858,
           "team": [
             {
@@ -19684,7 +19684,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 210,
+          "rank": 81,
           "rating": 2334.785,
           "team": [
             {
@@ -19762,7 +19762,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 211,
+          "rank": 82,
           "rating": 2334.294,
           "team": [
             {
@@ -19840,7 +19840,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 212,
+          "rank": 83,
           "rating": 2334.243,
           "team": [
             {
@@ -19918,7 +19918,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 216,
+          "rank": 84,
           "rating": 2333.411,
           "team": [
             {
@@ -19996,7 +19996,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 218,
+          "rank": 85,
           "rating": 2332.801,
           "team": [
             {
@@ -20074,7 +20074,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 219,
+          "rank": 86,
           "rating": 2332.754,
           "team": [
             {
@@ -20152,7 +20152,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 221,
+          "rank": 87,
           "rating": 2332.654,
           "team": [
             {
@@ -20230,7 +20230,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 224,
+          "rank": 88,
           "rating": 2332.338,
           "team": [
             {
@@ -20308,7 +20308,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 227,
+          "rank": 89,
           "rating": 2332.164,
           "team": [
             {
@@ -20386,7 +20386,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 234,
+          "rank": 90,
           "rating": 2331.684,
           "team": [
             {
@@ -20464,7 +20464,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 235,
+          "rank": 91,
           "rating": 2331.658,
           "team": [
             {
@@ -20542,7 +20542,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 241,
+          "rank": 92,
           "rating": 2331.266,
           "team": [
             {
@@ -20620,7 +20620,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 244,
+          "rank": 93,
           "rating": 2331.005,
           "team": [
             {
@@ -20698,7 +20698,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 251,
+          "rank": 94,
           "rating": 2330.373,
           "team": [
             {
@@ -20776,7 +20776,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 258,
+          "rank": 95,
           "rating": 2329.917,
           "team": [
             {
@@ -20854,7 +20854,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 261,
+          "rank": 96,
           "rating": 2329.723,
           "team": [
             {
@@ -20932,7 +20932,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 268,
+          "rank": 97,
           "rating": 2328.826,
           "team": [
             {
@@ -21010,7 +21010,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 269,
+          "rank": 98,
           "rating": 2328.641,
           "team": [
             {
@@ -21088,7 +21088,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 271,
+          "rank": 99,
           "rating": 2328.482,
           "team": [
             {
@@ -21166,7 +21166,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 272,
+          "rank": 100,
           "rating": 2328.462,
           "team": [
             {
@@ -21253,7 +21253,7 @@ window.POKEDB_TEAMS_DATA = {
       "updatedAt": "2026-08-10 11:36:36",
       "teams": [
         {
-          "rank": 2,
+          "rank": 1,
           "rating": 2424.086,
           "team": [
             {
@@ -21331,7 +21331,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 9,
+          "rank": 2,
           "rating": 2401.847,
           "team": [
             {
@@ -21409,7 +21409,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 16,
+          "rank": 3,
           "rating": 2352.447,
           "team": [
             {
@@ -21487,7 +21487,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 18,
+          "rank": 4,
           "rating": 2346.399,
           "team": [
             {
@@ -21565,7 +21565,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 22,
+          "rank": 5,
           "rating": 2335.119,
           "team": [
             {
@@ -21643,7 +21643,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 28,
+          "rank": 6,
           "rating": 2318.944,
           "team": [
             {
@@ -21721,7 +21721,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 51,
+          "rank": 7,
           "rating": 2292.379,
           "team": [
             {
@@ -21799,7 +21799,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 80,
+          "rank": 8,
           "rating": 2268.183,
           "team": [
             {
@@ -21877,7 +21877,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 81,
+          "rank": 9,
           "rating": 2267.985,
           "team": [
             {
@@ -21955,7 +21955,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 132,
+          "rank": 10,
           "rating": 2255.777,
           "team": [
             {
@@ -22033,7 +22033,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 149,
+          "rank": 11,
           "rating": 2254.268,
           "team": [
             {
@@ -22111,7 +22111,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 155,
+          "rank": 12,
           "rating": 2253.89,
           "team": [
             {
@@ -22189,7 +22189,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 164,
+          "rank": 13,
           "rating": 2253.252,
           "team": [
             {
@@ -22267,7 +22267,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 183,
+          "rank": 14,
           "rating": 2251.679,
           "team": [
             {
@@ -22345,7 +22345,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 230,
+          "rank": 15,
           "rating": 2247.678,
           "team": [
             {
@@ -22423,7 +22423,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 240,
+          "rank": 16,
           "rating": 2246.962,
           "team": [
             {
@@ -22501,7 +22501,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 274,
+          "rank": 17,
           "rating": 2244.311,
           "team": [
             {
@@ -22579,7 +22579,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 280,
+          "rank": 18,
           "rating": 2243.308,
           "team": [
             {
@@ -22657,7 +22657,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 290,
+          "rank": 19,
           "rating": 2242.841,
           "team": [
             {
@@ -22735,7 +22735,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 305,
+          "rank": 20,
           "rating": 2240.306,
           "team": [
             {
@@ -22813,7 +22813,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 345,
+          "rank": 21,
           "rating": 2210.132,
           "team": [
             {
@@ -22891,7 +22891,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 381,
+          "rank": 22,
           "rating": 2190.338,
           "team": [
             {
@@ -22969,7 +22969,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 493,
+          "rank": 23,
           "rating": 2150.689,
           "team": [
             {
@@ -23047,7 +23047,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 494,
+          "rank": 24,
           "rating": 2150.662,
           "team": [
             {
@@ -23125,7 +23125,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 522,
+          "rank": 25,
           "rating": 2143.616,
           "team": [
             {
@@ -23203,7 +23203,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 583,
+          "rank": 26,
           "rating": 2129.679,
           "team": [
             {
@@ -23281,7 +23281,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 736,
+          "rank": 27,
           "rating": 2104.897,
           "team": [
             {
@@ -23359,7 +23359,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 991,
+          "rank": 28,
           "rating": 2072,
           "team": [
             {
@@ -23437,7 +23437,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1195,
+          "rank": 29,
           "rating": 2041.178,
           "team": [
             {
@@ -23515,7 +23515,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1446,
+          "rank": 30,
           "rating": 2023.276,
           "team": [
             {
@@ -23593,7 +23593,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1484,
+          "rank": 31,
           "rating": 2019.884,
           "team": [
             {
@@ -23671,7 +23671,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1531,
+          "rank": 32,
           "rating": 2017.004,
           "team": [
             {
@@ -23749,7 +23749,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1861,
+          "rank": 33,
           "rating": 2006.149,
           "team": [
             {
@@ -24070,7 +24070,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 6,
+          "rank": 4,
           "rating": 2589.529,
           "team": [
             {
@@ -24148,7 +24148,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 8,
+          "rank": 5,
           "rating": 2584.556,
           "team": [
             {
@@ -24226,7 +24226,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 9,
+          "rank": 6,
           "rating": 2579.308,
           "team": [
             {
@@ -24304,7 +24304,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 10,
+          "rank": 7,
           "rating": 2577.209,
           "team": [
             {
@@ -24382,7 +24382,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 11,
+          "rank": 8,
           "rating": 2568.884,
           "team": [
             {
@@ -24460,7 +24460,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 12,
+          "rank": 9,
           "rating": 2568.656,
           "team": [
             {
@@ -24538,7 +24538,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 13,
+          "rank": 10,
           "rating": 2566.75,
           "team": [
             {
@@ -24616,7 +24616,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 14,
+          "rank": 11,
           "rating": 2561.797,
           "team": [
             {
@@ -24694,7 +24694,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 16,
+          "rank": 12,
           "rating": 2546.075,
           "team": [
             {
@@ -24772,7 +24772,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 23,
+          "rank": 13,
           "rating": 2529.746,
           "team": [
             {
@@ -24850,7 +24850,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 26,
+          "rank": 14,
           "rating": 2522.351,
           "team": [
             {
@@ -24928,7 +24928,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 27,
+          "rank": 15,
           "rating": 2522.149,
           "team": [
             {
@@ -25006,7 +25006,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 28,
+          "rank": 16,
           "rating": 2521.765,
           "team": [
             {
@@ -25084,7 +25084,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 29,
+          "rank": 17,
           "rating": 2520.073,
           "team": [
             {
@@ -25162,7 +25162,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 30,
+          "rank": 18,
           "rating": 2516.458,
           "team": [
             {
@@ -25240,7 +25240,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 31,
+          "rank": 19,
           "rating": 2516.063,
           "team": [
             {
@@ -25318,7 +25318,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 33,
+          "rank": 20,
           "rating": 2514.08,
           "team": [
             {
@@ -25396,7 +25396,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 34,
+          "rank": 21,
           "rating": 2512.605,
           "team": [
             {
@@ -25474,7 +25474,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 35,
+          "rank": 22,
           "rating": 2510.587,
           "team": [
             {
@@ -25552,7 +25552,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 36,
+          "rank": 23,
           "rating": 2510.422,
           "team": [
             {
@@ -25630,7 +25630,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 37,
+          "rank": 24,
           "rating": 2510.369,
           "team": [
             {
@@ -25708,7 +25708,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 40,
+          "rank": 25,
           "rating": 2507.398,
           "team": [
             {
@@ -25786,7 +25786,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 42,
+          "rank": 26,
           "rating": 2505.772,
           "team": [
             {
@@ -25864,7 +25864,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 43,
+          "rank": 27,
           "rating": 2505.654,
           "team": [
             {
@@ -25942,7 +25942,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 44,
+          "rank": 28,
           "rating": 2505.059,
           "team": [
             {
@@ -26020,7 +26020,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 50,
+          "rank": 29,
           "rating": 2499.554,
           "team": [
             {
@@ -26098,7 +26098,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 54,
+          "rank": 30,
           "rating": 2492.112,
           "team": [
             {
@@ -26176,7 +26176,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 55,
+          "rank": 31,
           "rating": 2490.931,
           "team": [
             {
@@ -26254,7 +26254,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 56,
+          "rank": 32,
           "rating": 2490.376,
           "team": [
             {
@@ -26332,7 +26332,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 58,
+          "rank": 33,
           "rating": 2489.529,
           "team": [
             {
@@ -26410,7 +26410,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 59,
+          "rank": 34,
           "rating": 2488.998,
           "team": [
             {
@@ -26488,7 +26488,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 60,
+          "rank": 35,
           "rating": 2488.193,
           "team": [
             {
@@ -26566,7 +26566,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 61,
+          "rank": 36,
           "rating": 2487.266,
           "team": [
             {
@@ -26644,7 +26644,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 62,
+          "rank": 37,
           "rating": 2486.928,
           "team": [
             {
@@ -26722,7 +26722,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 64,
+          "rank": 38,
           "rating": 2486.109,
           "team": [
             {
@@ -26800,7 +26800,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 66,
+          "rank": 39,
           "rating": 2485.823,
           "team": [
             {
@@ -26878,7 +26878,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 67,
+          "rank": 40,
           "rating": 2485.471,
           "team": [
             {
@@ -26956,7 +26956,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 68,
+          "rank": 41,
           "rating": 2484.123,
           "team": [
             {
@@ -27034,7 +27034,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 70,
+          "rank": 42,
           "rating": 2483.645,
           "team": [
             {
@@ -27112,7 +27112,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 71,
+          "rank": 43,
           "rating": 2483.604,
           "team": [
             {
@@ -27190,7 +27190,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 75,
+          "rank": 44,
           "rating": 2482.25,
           "team": [
             {
@@ -27268,7 +27268,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 76,
+          "rank": 45,
           "rating": 2481.167,
           "team": [
             {
@@ -27346,7 +27346,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 77,
+          "rank": 46,
           "rating": 2481.155,
           "team": [
             {
@@ -27424,7 +27424,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 79,
+          "rank": 47,
           "rating": 2480.99,
           "team": [
             {
@@ -27502,7 +27502,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 81,
+          "rank": 48,
           "rating": 2480.051,
           "team": [
             {
@@ -27580,7 +27580,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 84,
+          "rank": 49,
           "rating": 2478.932,
           "team": [
             {
@@ -27658,7 +27658,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 85,
+          "rank": 50,
           "rating": 2478.629,
           "team": [
             {
@@ -27736,7 +27736,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 87,
+          "rank": 51,
           "rating": 2477.755,
           "team": [
             {
@@ -27814,7 +27814,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 89,
+          "rank": 52,
           "rating": 2477.388,
           "team": [
             {
@@ -27892,7 +27892,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 91,
+          "rank": 53,
           "rating": 2477.164,
           "team": [
             {
@@ -27970,7 +27970,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 92,
+          "rank": 54,
           "rating": 2477.094,
           "team": [
             {
@@ -28048,7 +28048,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 93,
+          "rank": 55,
           "rating": 2476.962,
           "team": [
             {
@@ -28126,7 +28126,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 96,
+          "rank": 56,
           "rating": 2476.274,
           "team": [
             {
@@ -28204,7 +28204,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 105,
+          "rank": 57,
           "rating": 2470.112,
           "team": [
             {
@@ -28282,7 +28282,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 107,
+          "rank": 58,
           "rating": 2466.565,
           "team": [
             {
@@ -28360,7 +28360,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 112,
+          "rank": 59,
           "rating": 2464.163,
           "team": [
             {
@@ -28438,7 +28438,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 114,
+          "rank": 60,
           "rating": 2462.537,
           "team": [
             {
@@ -28516,7 +28516,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 115,
+          "rank": 61,
           "rating": 2462.53,
           "team": [
             {
@@ -28594,7 +28594,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 118,
+          "rank": 62,
           "rating": 2454.934,
           "team": [
             {
@@ -28672,7 +28672,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 120,
+          "rank": 63,
           "rating": 2454.257,
           "team": [
             {
@@ -28750,7 +28750,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 121,
+          "rank": 64,
           "rating": 2452.829,
           "team": [
             {
@@ -28828,7 +28828,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 131,
+          "rank": 65,
           "rating": 2446.029,
           "team": [
             {
@@ -28906,7 +28906,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 133,
+          "rank": 66,
           "rating": 2441.933,
           "team": [
             {
@@ -28984,7 +28984,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 136,
+          "rank": 67,
           "rating": 2439.063,
           "team": [
             {
@@ -29062,7 +29062,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 141,
+          "rank": 68,
           "rating": 2437.079,
           "team": [
             {
@@ -29140,7 +29140,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 145,
+          "rank": 69,
           "rating": 2436.768,
           "team": [
             {
@@ -29218,7 +29218,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 147,
+          "rank": 70,
           "rating": 2435.913,
           "team": [
             {
@@ -29296,7 +29296,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 148,
+          "rank": 71,
           "rating": 2435.706,
           "team": [
             {
@@ -29374,7 +29374,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 150,
+          "rank": 72,
           "rating": 2435.008,
           "team": [
             {
@@ -29452,7 +29452,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 151,
+          "rank": 73,
           "rating": 2434.36,
           "team": [
             {
@@ -29530,7 +29530,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 152,
+          "rank": 74,
           "rating": 2434.305,
           "team": [
             {
@@ -29608,7 +29608,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 153,
+          "rank": 75,
           "rating": 2434.141,
           "team": [
             {
@@ -29686,7 +29686,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 155,
+          "rank": 76,
           "rating": 2433.239,
           "team": [
             {
@@ -29764,7 +29764,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 157,
+          "rank": 77,
           "rating": 2432.975,
           "team": [
             {
@@ -29842,7 +29842,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 158,
+          "rank": 78,
           "rating": 2432.92,
           "team": [
             {
@@ -29920,7 +29920,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 161,
+          "rank": 79,
           "rating": 2432.22,
           "team": [
             {
@@ -29998,7 +29998,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 163,
+          "rank": 80,
           "rating": 2431.855,
           "team": [
             {
@@ -30076,7 +30076,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 164,
+          "rank": 81,
           "rating": 2431.65,
           "team": [
             {
@@ -30154,7 +30154,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 171,
+          "rank": 82,
           "rating": 2431.1,
           "team": [
             {
@@ -30232,7 +30232,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 173,
+          "rank": 83,
           "rating": 2430.97,
           "team": [
             {
@@ -30310,7 +30310,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 176,
+          "rank": 84,
           "rating": 2430.491,
           "team": [
             {
@@ -30388,7 +30388,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 177,
+          "rank": 85,
           "rating": 2430.312,
           "team": [
             {
@@ -30466,7 +30466,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 178,
+          "rank": 86,
           "rating": 2430.31,
           "team": [
             {
@@ -30544,7 +30544,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 180,
+          "rank": 87,
           "rating": 2429.991,
           "team": [
             {
@@ -30622,7 +30622,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 181,
+          "rank": 88,
           "rating": 2429.832,
           "team": [
             {
@@ -30700,7 +30700,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 182,
+          "rank": 89,
           "rating": 2429.464,
           "team": [
             {
@@ -30778,7 +30778,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 184,
+          "rank": 90,
           "rating": 2429.06,
           "team": [
             {
@@ -30856,7 +30856,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 190,
+          "rank": 91,
           "rating": 2428.837,
           "team": [
             {
@@ -30934,7 +30934,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 193,
+          "rank": 92,
           "rating": 2428.308,
           "team": [
             {
@@ -31012,7 +31012,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 195,
+          "rank": 93,
           "rating": 2428.032,
           "team": [
             {
@@ -31090,7 +31090,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 207,
+          "rank": 94,
           "rating": 2426.49,
           "team": [
             {
@@ -31168,7 +31168,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 209,
+          "rank": 95,
           "rating": 2426.212,
           "team": [
             {
@@ -31246,7 +31246,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 210,
+          "rank": 96,
           "rating": 2426.132,
           "team": [
             {
@@ -31324,7 +31324,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 218,
+          "rank": 97,
           "rating": 2425.574,
           "team": [
             {
@@ -31402,7 +31402,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 219,
+          "rank": 98,
           "rating": 2425.454,
           "team": [
             {
@@ -31480,7 +31480,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 221,
+          "rank": 99,
           "rating": 2425.253,
           "team": [
             {
@@ -31558,7 +31558,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 223,
+          "rank": 100,
           "rating": 2425.033,
           "team": [
             {
@@ -31645,7 +31645,7 @@ window.POKEDB_TEAMS_DATA = {
       "updatedAt": "2026-08-25 09:40:42",
       "teams": [
         {
-          "rank": 6,
+          "rank": 1,
           "rating": 2541.464,
           "team": [
             {
@@ -31723,7 +31723,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 7,
+          "rank": 2,
           "rating": 2540.206,
           "team": [
             {
@@ -31801,7 +31801,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 33,
+          "rank": 3,
           "rating": 2420.654,
           "team": [
             {
@@ -31879,7 +31879,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 38,
+          "rank": 4,
           "rating": 2415.904,
           "team": [
             {
@@ -31957,7 +31957,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 48,
+          "rank": 5,
           "rating": 2407.95,
           "team": [
             {
@@ -32035,7 +32035,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 52,
+          "rank": 6,
           "rating": 2406.769,
           "team": [
             {
@@ -32113,7 +32113,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 57,
+          "rank": 7,
           "rating": 2405.198,
           "team": [
             {
@@ -32191,7 +32191,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 8,
           "rating": 2400.191,
           "team": [
             {
@@ -32269,7 +32269,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 85,
+          "rank": 9,
           "rating": 2377.139,
           "team": [
             {
@@ -32347,7 +32347,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 87,
+          "rank": 10,
           "rating": 2376.551,
           "team": [
             {
@@ -32425,7 +32425,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 95,
+          "rank": 11,
           "rating": 2373.615,
           "team": [
             {
@@ -32503,7 +32503,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 104,
+          "rank": 12,
           "rating": 2372.565,
           "team": [
             {
@@ -32581,7 +32581,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 116,
+          "rank": 13,
           "rating": 2371.282,
           "team": [
             {
@@ -32659,7 +32659,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 129,
+          "rank": 14,
           "rating": 2369.852,
           "team": [
             {
@@ -32737,7 +32737,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 143,
+          "rank": 15,
           "rating": 2368.827,
           "team": [
             {
@@ -32815,7 +32815,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 156,
+          "rank": 16,
           "rating": 2368.115,
           "team": [
             {
@@ -32893,7 +32893,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 163,
+          "rank": 17,
           "rating": 2367.488,
           "team": [
             {
@@ -32971,7 +32971,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 190,
+          "rank": 18,
           "rating": 2364.555,
           "team": [
             {
@@ -33049,7 +33049,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 192,
+          "rank": 19,
           "rating": 2364.453,
           "team": [
             {
@@ -33127,7 +33127,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 197,
+          "rank": 20,
           "rating": 2364.195,
           "team": [
             {
@@ -33205,7 +33205,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 200,
+          "rank": 21,
           "rating": 2364.04,
           "team": [
             {
@@ -33283,7 +33283,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 221,
+          "rank": 22,
           "rating": 2362.558,
           "team": [
             {
@@ -33361,7 +33361,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 236,
+          "rank": 23,
           "rating": 2361.686,
           "team": [
             {
@@ -33439,7 +33439,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 248,
+          "rank": 24,
           "rating": 2360.504,
           "team": [
             {
@@ -33517,7 +33517,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 260,
+          "rank": 25,
           "rating": 2360.048,
           "team": [
             {
@@ -33595,7 +33595,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 312,
+          "rank": 26,
           "rating": 2353.505,
           "team": [
             {
@@ -33673,7 +33673,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 351,
+          "rank": 27,
           "rating": 2311.571,
           "team": [
             {
@@ -33751,7 +33751,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 359,
+          "rank": 28,
           "rating": 2310.449,
           "team": [
             {
@@ -33829,7 +33829,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 386,
+          "rank": 29,
           "rating": 2300.137,
           "team": [
             {
@@ -33907,7 +33907,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 409,
+          "rank": 30,
           "rating": 2292.724,
           "team": [
             {
@@ -33985,7 +33985,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 468,
+          "rank": 31,
           "rating": 2269.655,
           "team": [
             {
@@ -34063,7 +34063,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 549,
+          "rank": 32,
           "rating": 2245.559,
           "team": [
             {
@@ -34141,7 +34141,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 562,
+          "rank": 33,
           "rating": 2242.665,
           "team": [
             {
@@ -34219,7 +34219,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 624,
+          "rank": 34,
           "rating": 2226.598,
           "team": [
             {
@@ -34297,7 +34297,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 725,
+          "rank": 35,
           "rating": 2215.168,
           "team": [
             {
@@ -34375,7 +34375,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 774,
+          "rank": 36,
           "rating": 2212.063,
           "team": [
             {
@@ -34453,7 +34453,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 785,
+          "rank": 37,
           "rating": 2211.012,
           "team": [
             {
@@ -34531,7 +34531,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 816,
+          "rank": 38,
           "rating": 2208.761,
           "team": [
             {
@@ -34609,7 +34609,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 850,
+          "rank": 39,
           "rating": 2206.94,
           "team": [
             {
@@ -34687,7 +34687,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 926,
+          "rank": 40,
           "rating": 2202.58,
           "team": [
             {
@@ -34765,7 +34765,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1006,
+          "rank": 41,
           "rating": 2300.93,
           "team": [
             {
@@ -34843,7 +34843,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1503,
+          "rank": 42,
           "rating": 2140.082,
           "team": [
             {
@@ -34921,7 +34921,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1656,
+          "rank": 43,
           "rating": 2129.959,
           "team": [
             {
@@ -34999,7 +34999,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 1961,
+          "rank": 44,
           "rating": 2113.54,
           "team": [
             {
@@ -35077,7 +35077,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 2201,
+          "rank": 45,
           "rating": 2106.173,
           "team": [
             {
@@ -35554,7 +35554,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 7,
+          "rank": 6,
           "rating": 2551.614,
           "team": [
             {
@@ -35632,7 +35632,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 8,
+          "rank": 7,
           "rating": 2550.78,
           "team": [
             {
@@ -35710,7 +35710,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 9,
+          "rank": 8,
           "rating": 2550.382,
           "team": [
             {
@@ -35788,7 +35788,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 10,
+          "rank": 9,
           "rating": 2547.722,
           "team": [
             {
@@ -35866,7 +35866,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 12,
+          "rank": 10,
           "rating": 2542.435,
           "team": [
             {
@@ -35944,7 +35944,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 16,
+          "rank": 11,
           "rating": 2532.112,
           "team": [
             {
@@ -36022,7 +36022,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 17,
+          "rank": 12,
           "rating": 2522.171,
           "team": [
             {
@@ -36100,7 +36100,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 18,
+          "rank": 13,
           "rating": 2515.586,
           "team": [
             {
@@ -36178,7 +36178,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 19,
+          "rank": 14,
           "rating": 2515.407,
           "team": [
             {
@@ -36256,7 +36256,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 22,
+          "rank": 15,
           "rating": 2510.79,
           "team": [
             {
@@ -36334,7 +36334,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 24,
+          "rank": 16,
           "rating": 2508.828,
           "team": [
             {
@@ -36412,7 +36412,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 25,
+          "rank": 17,
           "rating": 2507.131,
           "team": [
             {
@@ -36490,7 +36490,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 27,
+          "rank": 18,
           "rating": 2503.622,
           "team": [
             {
@@ -36568,7 +36568,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 31,
+          "rank": 19,
           "rating": 2490.611,
           "team": [
             {
@@ -36646,7 +36646,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 32,
+          "rank": 20,
           "rating": 2487.334,
           "team": [
             {
@@ -36724,7 +36724,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 33,
+          "rank": 21,
           "rating": 2485.825,
           "team": [
             {
@@ -36802,7 +36802,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 34,
+          "rank": 22,
           "rating": 2485.136,
           "team": [
             {
@@ -36880,7 +36880,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 36,
+          "rank": 23,
           "rating": 2480.948,
           "team": [
             {
@@ -36958,7 +36958,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 38,
+          "rank": 24,
           "rating": 2479.139,
           "team": [
             {
@@ -37036,7 +37036,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 41,
+          "rank": 25,
           "rating": 2477.909,
           "team": [
             {
@@ -37114,7 +37114,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 42,
+          "rank": 26,
           "rating": 2475.922,
           "team": [
             {
@@ -37192,7 +37192,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 44,
+          "rank": 27,
           "rating": 2475.144,
           "team": [
             {
@@ -37270,7 +37270,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 45,
+          "rank": 28,
           "rating": 2474.195,
           "team": [
             {
@@ -37348,7 +37348,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 46,
+          "rank": 29,
           "rating": 2472.618,
           "team": [
             {
@@ -37426,7 +37426,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 47,
+          "rank": 30,
           "rating": 2472.287,
           "team": [
             {
@@ -37504,7 +37504,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 51,
+          "rank": 31,
           "rating": 2468.341,
           "team": [
             {
@@ -37582,7 +37582,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 53,
+          "rank": 32,
           "rating": 2467.399,
           "team": [
             {
@@ -37660,7 +37660,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 54,
+          "rank": 33,
           "rating": 2465.31,
           "team": [
             {
@@ -37738,7 +37738,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 55,
+          "rank": 34,
           "rating": 2464.917,
           "team": [
             {
@@ -37816,7 +37816,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 59,
+          "rank": 35,
           "rating": 2463.84,
           "team": [
             {
@@ -37894,7 +37894,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 60,
+          "rank": 36,
           "rating": 2463.795,
           "team": [
             {
@@ -37972,7 +37972,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 61,
+          "rank": 37,
           "rating": 2461.921,
           "team": [
             {
@@ -38050,7 +38050,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 63,
+          "rank": 38,
           "rating": 2460.086,
           "team": [
             {
@@ -38128,7 +38128,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 64,
+          "rank": 39,
           "rating": 2459.517,
           "team": [
             {
@@ -38206,7 +38206,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 40,
           "rating": 2457.853,
           "team": [
             {
@@ -38284,7 +38284,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 68,
+          "rank": 41,
           "rating": 2453.878,
           "team": [
             {
@@ -38362,7 +38362,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 69,
+          "rank": 42,
           "rating": 2453.413,
           "team": [
             {
@@ -38440,7 +38440,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 70,
+          "rank": 43,
           "rating": 2453.188,
           "team": [
             {
@@ -38518,7 +38518,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 74,
+          "rank": 44,
           "rating": 2451.983,
           "team": [
             {
@@ -38596,7 +38596,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 75,
+          "rank": 45,
           "rating": 2451.767,
           "team": [
             {
@@ -38674,7 +38674,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 76,
+          "rank": 46,
           "rating": 2451.587,
           "team": [
             {
@@ -38752,7 +38752,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 77,
+          "rank": 47,
           "rating": 2451.243,
           "team": [
             {
@@ -38830,7 +38830,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 78,
+          "rank": 48,
           "rating": 2449.854,
           "team": [
             {
@@ -38908,7 +38908,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 79,
+          "rank": 49,
           "rating": 2449.851,
           "team": [
             {
@@ -38986,7 +38986,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 83,
+          "rank": 50,
           "rating": 2448.409,
           "team": [
             {
@@ -39064,7 +39064,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 86,
+          "rank": 51,
           "rating": 2447.224,
           "team": [
             {
@@ -39142,7 +39142,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 87,
+          "rank": 52,
           "rating": 2445.464,
           "team": [
             {
@@ -39220,7 +39220,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 88,
+          "rank": 53,
           "rating": 2445.027,
           "team": [
             {
@@ -39298,7 +39298,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 90,
+          "rank": 54,
           "rating": 2444.07,
           "team": [
             {
@@ -39376,7 +39376,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 93,
+          "rank": 55,
           "rating": 2442.578,
           "team": [
             {
@@ -39454,7 +39454,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 94,
+          "rank": 56,
           "rating": 2439.207,
           "team": [
             {
@@ -39532,7 +39532,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 97,
+          "rank": 57,
           "rating": 2438.313,
           "team": [
             {
@@ -39610,7 +39610,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 101,
+          "rank": 58,
           "rating": 2434.798,
           "team": [
             {
@@ -39688,7 +39688,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 105,
+          "rank": 59,
           "rating": 2430.285,
           "team": [
             {
@@ -39766,7 +39766,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 107,
+          "rank": 60,
           "rating": 2429.512,
           "team": [
             {
@@ -39844,7 +39844,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 121,
+          "rank": 61,
           "rating": 2414.955,
           "team": [
             {
@@ -39922,7 +39922,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 126,
+          "rank": 62,
           "rating": 2412.72,
           "team": [
             {
@@ -40000,7 +40000,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 129,
+          "rank": 63,
           "rating": 2411.74,
           "team": [
             {
@@ -40078,7 +40078,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 132,
+          "rank": 64,
           "rating": 2411.525,
           "team": [
             {
@@ -40156,7 +40156,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 134,
+          "rank": 65,
           "rating": 2410.72,
           "team": [
             {
@@ -40234,7 +40234,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 135,
+          "rank": 66,
           "rating": 2410.649,
           "team": [
             {
@@ -40312,7 +40312,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 137,
+          "rank": 67,
           "rating": 2409.972,
           "team": [
             {
@@ -40390,7 +40390,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 138,
+          "rank": 68,
           "rating": 2409.747,
           "team": [
             {
@@ -40468,7 +40468,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 141,
+          "rank": 69,
           "rating": 2409.587,
           "team": [
             {
@@ -40546,7 +40546,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 142,
+          "rank": 70,
           "rating": 2409.558,
           "team": [
             {
@@ -40624,7 +40624,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 143,
+          "rank": 71,
           "rating": 2409.555,
           "team": [
             {
@@ -40702,7 +40702,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 147,
+          "rank": 72,
           "rating": 2408.983,
           "team": [
             {
@@ -40780,7 +40780,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 151,
+          "rank": 73,
           "rating": 2408.169,
           "team": [
             {
@@ -40858,7 +40858,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 153,
+          "rank": 74,
           "rating": 2407.98,
           "team": [
             {
@@ -40936,7 +40936,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 159,
+          "rank": 75,
           "rating": 2406.369,
           "team": [
             {
@@ -41014,7 +41014,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 162,
+          "rank": 76,
           "rating": 2405.816,
           "team": [
             {
@@ -41092,7 +41092,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 163,
+          "rank": 77,
           "rating": 2405.772,
           "team": [
             {
@@ -41170,7 +41170,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 167,
+          "rank": 78,
           "rating": 2405.477,
           "team": [
             {
@@ -41248,7 +41248,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 171,
+          "rank": 79,
           "rating": 2404.863,
           "team": [
             {
@@ -41326,7 +41326,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 172,
+          "rank": 80,
           "rating": 2404.835,
           "team": [
             {
@@ -41404,7 +41404,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 173,
+          "rank": 81,
           "rating": 2404.35,
           "team": [
             {
@@ -41482,7 +41482,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 175,
+          "rank": 82,
           "rating": 2404.047,
           "team": [
             {
@@ -41560,7 +41560,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 181,
+          "rank": 83,
           "rating": 2403.43,
           "team": [
             {
@@ -41638,7 +41638,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 186,
+          "rank": 84,
           "rating": 2401.663,
           "team": [
             {
@@ -41716,7 +41716,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 187,
+          "rank": 85,
           "rating": 2401.527,
           "team": [
             {
@@ -41794,7 +41794,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 190,
+          "rank": 86,
           "rating": 2400.885,
           "team": [
             {
@@ -41872,7 +41872,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 194,
+          "rank": 87,
           "rating": 2400.661,
           "team": [
             {
@@ -41950,7 +41950,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 195,
+          "rank": 88,
           "rating": 2400.299,
           "team": [
             {
@@ -42028,7 +42028,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 197,
+          "rank": 89,
           "rating": 2399.428,
           "team": [
             {
@@ -42106,7 +42106,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 198,
+          "rank": 90,
           "rating": 2399.332,
           "team": [
             {
@@ -42184,7 +42184,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 201,
+          "rank": 91,
           "rating": 2399.003,
           "team": [
             {
@@ -42262,7 +42262,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 207,
+          "rank": 92,
           "rating": 2398.058,
           "team": [
             {
@@ -42340,7 +42340,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 212,
+          "rank": 93,
           "rating": 2396.639,
           "team": [
             {
@@ -42418,7 +42418,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 214,
+          "rank": 94,
           "rating": 2396.548,
           "team": [
             {
@@ -42496,7 +42496,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 215,
+          "rank": 95,
           "rating": 2395.897,
           "team": [
             {
@@ -42574,7 +42574,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 216,
+          "rank": 96,
           "rating": 2395.889,
           "team": [
             {
@@ -42652,7 +42652,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 220,
+          "rank": 97,
           "rating": 2395.508,
           "team": [
             {
@@ -42730,7 +42730,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 221,
+          "rank": 98,
           "rating": 2395.478,
           "team": [
             {
@@ -42808,7 +42808,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 227,
+          "rank": 99,
           "rating": 2394.368,
           "team": [
             {
@@ -42886,7 +42886,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 229,
+          "rank": 100,
           "rating": 2394.226,
           "team": [
             {
@@ -42973,7 +42973,7 @@ window.POKEDB_TEAMS_DATA = {
       "updatedAt": "2026-08-19 16:39:49",
       "teams": [
         {
-          "rank": 2,
+          "rank": 1,
           "rating": 2509.112,
           "team": [
             {
@@ -43051,7 +43051,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 3,
+          "rank": 2,
           "rating": 2506.138,
           "team": [
             {
@@ -43129,7 +43129,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 5,
+          "rank": 3,
           "rating": 2502.753,
           "team": [
             {
@@ -43207,7 +43207,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 7,
+          "rank": 4,
           "rating": 2493.299,
           "team": [
             {
@@ -43285,7 +43285,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 19,
+          "rank": 5,
           "rating": 2426.957,
           "team": [
             {
@@ -43363,7 +43363,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 6,
           "rating": 2356.622,
           "team": [
             {
@@ -43441,7 +43441,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 67,
+          "rank": 7,
           "rating": 2356.162,
           "team": [
             {
@@ -43519,7 +43519,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 73,
+          "rank": 8,
           "rating": 2352.996,
           "team": [
             {
@@ -43597,7 +43597,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 77,
+          "rank": 9,
           "rating": 2350.696,
           "team": [
             {
@@ -43675,7 +43675,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 83,
+          "rank": 10,
           "rating": 2343.738,
           "team": [
             {
@@ -43753,7 +43753,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 101,
+          "rank": 11,
           "rating": 2330.246,
           "team": [
             {
@@ -43831,7 +43831,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 112,
+          "rank": 12,
           "rating": 2324.693,
           "team": [
             {
@@ -43909,7 +43909,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 124,
+          "rank": 13,
           "rating": 2320.363,
           "team": [
             {
@@ -43987,7 +43987,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 137,
+          "rank": 14,
           "rating": 2318.525,
           "team": [
             {
@@ -44065,7 +44065,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 174,
+          "rank": 15,
           "rating": 2313.329,
           "team": [
             {
@@ -44143,7 +44143,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 175,
+          "rank": 16,
           "rating": 2313.326,
           "team": [
             {
@@ -44221,7 +44221,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 196,
+          "rank": 17,
           "rating": 2311.199,
           "team": [
             {
@@ -44299,7 +44299,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 232,
+          "rank": 18,
           "rating": 2308.622,
           "team": [
             {
@@ -44377,7 +44377,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 233,
+          "rank": 19,
           "rating": 2308.521,
           "team": [
             {
@@ -44455,7 +44455,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 237,
+          "rank": 20,
           "rating": 2308.244,
           "team": [
             {
@@ -44533,7 +44533,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 276,
+          "rank": 21,
           "rating": 2304.569,
           "team": [
             {
@@ -44611,7 +44611,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 277,
+          "rank": 22,
           "rating": 2304.412,
           "team": [
             {
@@ -44689,7 +44689,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 303,
+          "rank": 23,
           "rating": 2302.349,
           "team": [
             {
@@ -44767,7 +44767,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 318,
+          "rank": 24,
           "rating": 2294.622,
           "team": [
             {
@@ -44845,7 +44845,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 333,
+          "rank": 25,
           "rating": 2273.701,
           "team": [
             {
@@ -44923,7 +44923,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 364,
+          "rank": 26,
           "rating": 2254.684,
           "team": [
             {
@@ -45001,7 +45001,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 547,
+          "rank": 27,
           "rating": 2202.112,
           "team": [
             {
@@ -45079,7 +45079,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 582,
+          "rank": 28,
           "rating": 2195.092,
           "team": [
             {
@@ -45157,7 +45157,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 616,
+          "rank": 29,
           "rating": 2185.37,
           "team": [
             {
@@ -45235,7 +45235,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 732,
+          "rank": 30,
           "rating": 2162.995,
           "team": [
             {
@@ -45313,7 +45313,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 822,
+          "rank": 31,
           "rating": 2153.616,
           "team": [
             {
@@ -45556,7 +45556,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 5,
+          "rank": 3,
           "rating": 2587.713,
           "team": [
             {
@@ -45634,7 +45634,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 10,
+          "rank": 4,
           "rating": 2579.19,
           "team": [
             {
@@ -45712,7 +45712,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 13,
+          "rank": 5,
           "rating": 2570.911,
           "team": [
             {
@@ -45790,7 +45790,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 17,
+          "rank": 6,
           "rating": 2549.712,
           "team": [
             {
@@ -45868,7 +45868,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 19,
+          "rank": 7,
           "rating": 2540.921,
           "team": [
             {
@@ -45946,7 +45946,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 32,
+          "rank": 8,
           "rating": 2515.789,
           "team": [
             {
@@ -46024,7 +46024,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 36,
+          "rank": 9,
           "rating": 2512.469,
           "team": [
             {
@@ -46102,7 +46102,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 39,
+          "rank": 10,
           "rating": 2508.631,
           "team": [
             {
@@ -46180,7 +46180,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 40,
+          "rank": 11,
           "rating": 2507.67,
           "team": [
             {
@@ -46258,7 +46258,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 41,
+          "rank": 12,
           "rating": 2507.432,
           "team": [
             {
@@ -46336,7 +46336,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 42,
+          "rank": 13,
           "rating": 2506.523,
           "team": [
             {
@@ -46414,7 +46414,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 47,
+          "rank": 14,
           "rating": 2501.141,
           "team": [
             {
@@ -46492,7 +46492,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 48,
+          "rank": 15,
           "rating": 2501.088,
           "team": [
             {
@@ -46570,7 +46570,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 49,
+          "rank": 16,
           "rating": 2500.577,
           "team": [
             {
@@ -46648,7 +46648,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 53,
+          "rank": 17,
           "rating": 2484.654,
           "team": [
             {
@@ -46726,7 +46726,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 58,
+          "rank": 18,
           "rating": 2481.211,
           "team": [
             {
@@ -46804,7 +46804,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 61,
+          "rank": 19,
           "rating": 2479.159,
           "team": [
             {
@@ -46882,7 +46882,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 63,
+          "rank": 20,
           "rating": 2478.262,
           "team": [
             {
@@ -46960,7 +46960,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 64,
+          "rank": 21,
           "rating": 2478.235,
           "team": [
             {
@@ -47038,7 +47038,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 65,
+          "rank": 22,
           "rating": 2478.231,
           "team": [
             {
@@ -47116,7 +47116,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 71,
+          "rank": 23,
           "rating": 2476.265,
           "team": [
             {
@@ -47194,7 +47194,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 74,
+          "rank": 24,
           "rating": 2474.715,
           "team": [
             {
@@ -47272,7 +47272,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 76,
+          "rank": 25,
           "rating": 2473.923,
           "team": [
             {
@@ -47350,7 +47350,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 79,
+          "rank": 26,
           "rating": 2473.658,
           "team": [
             {
@@ -47428,7 +47428,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 80,
+          "rank": 27,
           "rating": 2473.469,
           "team": [
             {
@@ -47506,7 +47506,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 84,
+          "rank": 28,
           "rating": 2471.397,
           "team": [
             {
@@ -47584,7 +47584,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 88,
+          "rank": 29,
           "rating": 2470.538,
           "team": [
             {
@@ -47662,7 +47662,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 90,
+          "rank": 30,
           "rating": 2469.484,
           "team": [
             {
@@ -47740,7 +47740,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 91,
+          "rank": 31,
           "rating": 2469.084,
           "team": [
             {
@@ -47818,7 +47818,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 92,
+          "rank": 32,
           "rating": 2469.001,
           "team": [
             {
@@ -47896,7 +47896,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 95,
+          "rank": 33,
           "rating": 2468.474,
           "team": [
             {
@@ -47974,7 +47974,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 108,
+          "rank": 34,
           "rating": 2454.857,
           "team": [
             {
@@ -48052,7 +48052,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 129,
+          "rank": 35,
           "rating": 2431.945,
           "team": [
             {
@@ -48130,7 +48130,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 136,
+          "rank": 36,
           "rating": 2426.064,
           "team": [
             {
@@ -48208,7 +48208,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 140,
+          "rank": 37,
           "rating": 2424.479,
           "team": [
             {
@@ -48286,7 +48286,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 142,
+          "rank": 38,
           "rating": 2423.966,
           "team": [
             {
@@ -48364,7 +48364,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 160,
+          "rank": 39,
           "rating": 2420.374,
           "team": [
             {
@@ -48442,7 +48442,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 163,
+          "rank": 40,
           "rating": 2419.922,
           "team": [
             {
@@ -48520,7 +48520,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 166,
+          "rank": 41,
           "rating": 2419.825,
           "team": [
             {
@@ -48598,7 +48598,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 170,
+          "rank": 42,
           "rating": 2419.361,
           "team": [
             {
@@ -48676,7 +48676,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 177,
+          "rank": 43,
           "rating": 2418.363,
           "team": [
             {
@@ -48754,7 +48754,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 181,
+          "rank": 44,
           "rating": 2417.825,
           "team": [
             {
@@ -48832,7 +48832,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 186,
+          "rank": 45,
           "rating": 2417.626,
           "team": [
             {
@@ -48910,7 +48910,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 187,
+          "rank": 46,
           "rating": 2417.419,
           "team": [
             {
@@ -48988,7 +48988,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 190,
+          "rank": 47,
           "rating": 2417.292,
           "team": [
             {
@@ -49066,7 +49066,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 192,
+          "rank": 48,
           "rating": 2417.209,
           "team": [
             {
@@ -49144,7 +49144,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 198,
+          "rank": 49,
           "rating": 2416.759,
           "team": [
             {
@@ -49222,7 +49222,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 203,
+          "rank": 50,
           "rating": 2416.52,
           "team": [
             {
@@ -49300,7 +49300,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 204,
+          "rank": 51,
           "rating": 2416.49,
           "team": [
             {
@@ -49378,7 +49378,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 207,
+          "rank": 52,
           "rating": 2416.18,
           "team": [
             {
@@ -49456,7 +49456,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 215,
+          "rank": 53,
           "rating": 2415.105,
           "team": [
             {
@@ -49534,7 +49534,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 218,
+          "rank": 54,
           "rating": 2414.621,
           "team": [
             {
@@ -49612,7 +49612,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 219,
+          "rank": 55,
           "rating": 2414.605,
           "team": [
             {
@@ -49690,7 +49690,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 223,
+          "rank": 56,
           "rating": 2414.116,
           "team": [
             {
@@ -49768,7 +49768,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 227,
+          "rank": 57,
           "rating": 2413.94,
           "team": [
             {
@@ -49846,7 +49846,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 228,
+          "rank": 58,
           "rating": 2413.662,
           "team": [
             {
@@ -49924,7 +49924,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 238,
+          "rank": 59,
           "rating": 2412.796,
           "team": [
             {
@@ -50002,7 +50002,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 240,
+          "rank": 60,
           "rating": 2412.72,
           "team": [
             {
@@ -50080,7 +50080,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 243,
+          "rank": 61,
           "rating": 2412.504,
           "team": [
             {
@@ -50158,7 +50158,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 245,
+          "rank": 62,
           "rating": 2412.436,
           "team": [
             {
@@ -50236,7 +50236,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 248,
+          "rank": 63,
           "rating": 2411.809,
           "team": [
             {
@@ -50314,7 +50314,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 250,
+          "rank": 64,
           "rating": 2411.761,
           "team": [
             {
@@ -50392,7 +50392,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 254,
+          "rank": 65,
           "rating": 2411.03,
           "team": [
             {
@@ -50470,7 +50470,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 261,
+          "rank": 66,
           "rating": 2410.131,
           "team": [
             {
@@ -50548,7 +50548,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 266,
+          "rank": 67,
           "rating": 2409.646,
           "team": [
             {
@@ -50626,7 +50626,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 275,
+          "rank": 68,
           "rating": 2409.362,
           "team": [
             {
@@ -50704,7 +50704,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 280,
+          "rank": 69,
           "rating": 2408.508,
           "team": [
             {
@@ -50782,7 +50782,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 282,
+          "rank": 70,
           "rating": 2408.327,
           "team": [
             {
@@ -50860,7 +50860,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 285,
+          "rank": 71,
           "rating": 2408.261,
           "team": [
             {
@@ -50938,7 +50938,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 290,
+          "rank": 72,
           "rating": 2407.624,
           "team": [
             {
@@ -51016,7 +51016,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 291,
+          "rank": 73,
           "rating": 2407.511,
           "team": [
             {
@@ -51094,7 +51094,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 293,
+          "rank": 74,
           "rating": 2407.063,
           "team": [
             {
@@ -51172,7 +51172,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 295,
+          "rank": 75,
           "rating": 2406.978,
           "team": [
             {
@@ -51250,7 +51250,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 300,
+          "rank": 76,
           "rating": 2406.251,
           "team": [
             {
@@ -51328,7 +51328,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 301,
+          "rank": 77,
           "rating": 2406.021,
           "team": [
             {
@@ -51406,7 +51406,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 337,
+          "rank": 78,
           "rating": 2380.451,
           "team": [
             {
@@ -51484,7 +51484,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 344,
+          "rank": 79,
           "rating": 2374.628,
           "team": [
             {
@@ -51562,7 +51562,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 349,
+          "rank": 80,
           "rating": 2371.539,
           "team": [
             {
@@ -51640,7 +51640,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 351,
+          "rank": 81,
           "rating": 2371.154,
           "team": [
             {
@@ -51718,7 +51718,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 376,
+          "rank": 82,
           "rating": 2355.409,
           "team": [
             {
@@ -51796,7 +51796,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 390,
+          "rank": 83,
           "rating": 2348.089,
           "team": [
             {
@@ -51874,7 +51874,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 400,
+          "rank": 84,
           "rating": 2344.265,
           "team": [
             {
@@ -51952,7 +51952,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 401,
+          "rank": 85,
           "rating": 2344.239,
           "team": [
             {
@@ -52030,7 +52030,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 402,
+          "rank": 86,
           "rating": 2343.918,
           "team": [
             {
@@ -52108,7 +52108,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 411,
+          "rank": 87,
           "rating": 2338.197,
           "team": [
             {
@@ -52186,7 +52186,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 413,
+          "rank": 88,
           "rating": 2337.399,
           "team": [
             {
@@ -52264,7 +52264,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 415,
+          "rank": 89,
           "rating": 2336.965,
           "team": [
             {
@@ -52342,7 +52342,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 442,
+          "rank": 90,
           "rating": 2327.572,
           "team": [
             {
@@ -52420,7 +52420,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 451,
+          "rank": 91,
           "rating": 2324.679,
           "team": [
             {
@@ -52498,7 +52498,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 457,
+          "rank": 92,
           "rating": 2323.228,
           "team": [
             {
@@ -52576,7 +52576,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 459,
+          "rank": 93,
           "rating": 2322.514,
           "team": [
             {
@@ -52654,7 +52654,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 481,
+          "rank": 94,
           "rating": 2315.662,
           "team": [
             {
@@ -52732,7 +52732,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 488,
+          "rank": 95,
           "rating": 2314.262,
           "team": [
             {
@@ -52810,7 +52810,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 489,
+          "rank": 96,
           "rating": 2314.188,
           "team": [
             {
@@ -52888,7 +52888,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 490,
+          "rank": 97,
           "rating": 2314.124,
           "team": [
             {
@@ -52966,7 +52966,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 516,
+          "rank": 98,
           "rating": 2311.741,
           "team": [
             {
@@ -53044,7 +53044,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 522,
+          "rank": 99,
           "rating": 2311.469,
           "team": [
             {
@@ -53122,7 +53122,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 527,
+          "rank": 100,
           "rating": 2310.837,
           "team": [
             {
@@ -53209,7 +53209,7 @@ window.POKEDB_TEAMS_DATA = {
       "updatedAt": "2026-09-12 09:24:48",
       "teams": [
         {
-          "rank": 14,
+          "rank": 1,
           "rating": 2444.66,
           "team": [
             {
@@ -53287,7 +53287,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 42,
+          "rank": 2,
           "rating": 2370.429,
           "team": [
             {
@@ -53365,7 +53365,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 70,
+          "rank": 3,
           "rating": 2340.741,
           "team": [
             {
@@ -53443,7 +53443,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 122,
+          "rank": 4,
           "rating": 2323.905,
           "team": [
             {
@@ -53521,7 +53521,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 126,
+          "rank": 5,
           "rating": 2323.726,
           "team": [
             {
@@ -53599,7 +53599,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 165,
+          "rank": 6,
           "rating": 2319.147,
           "team": [
             {
@@ -53677,7 +53677,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 201,
+          "rank": 7,
           "rating": 2316.406,
           "team": [
             {
@@ -53755,7 +53755,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 270,
+          "rank": 8,
           "rating": 2312.018,
           "team": [
             {
@@ -53833,7 +53833,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 274,
+          "rank": 9,
           "rating": 2311.726,
           "team": [
             {
@@ -53911,7 +53911,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 279,
+          "rank": 10,
           "rating": 2311.004,
           "team": [
             {
@@ -53989,7 +53989,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 281,
+          "rank": 11,
           "rating": 2310.906,
           "team": [
             {
@@ -54067,7 +54067,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 287,
+          "rank": 12,
           "rating": 2310.294,
           "team": [
             {
@@ -54145,7 +54145,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 288,
+          "rank": 13,
           "rating": 2310.12,
           "team": [
             {
@@ -54223,7 +54223,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 313,
+          "rank": 14,
           "rating": 2302.375,
           "team": [
             {
@@ -54301,7 +54301,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 383,
+          "rank": 15,
           "rating": 2243.913,
           "team": [
             {
@@ -54379,7 +54379,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 420,
+          "rank": 16,
           "rating": 2223.884,
           "team": [
             {
@@ -54457,7 +54457,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 452,
+          "rank": 17,
           "rating": 2213.305,
           "team": [
             {
@@ -54535,7 +54535,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 459,
+          "rank": 18,
           "rating": 2212.487,
           "team": [
             {
@@ -54613,7 +54613,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 651,
+          "rank": 19,
           "rating": 2170.569,
           "team": [
             {
@@ -54691,7 +54691,7 @@ window.POKEDB_TEAMS_DATA = {
           ]
         },
         {
-          "rank": 859,
+          "rank": 20,
           "rating": 2149.983,
           "team": [
             {

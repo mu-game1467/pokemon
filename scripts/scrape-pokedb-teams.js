@@ -109,9 +109,9 @@ async function fetchSeason(seasonNumber, rule, seasonMeta) {
   }
 }
 
-function enrichTeam(team, pokemonMap, pokemonBaseMap, itemMap) {
+function enrichTeam(team, pokemonMap, pokemonBaseMap, itemMap, rank) {
   return {
-    rank: team.rank,
+     rank: rank || team.rank,
     rating: team.rating_value,
     team: team.team.map(p => ({
       id: p.id,
@@ -156,7 +156,7 @@ async function main() {
         seasonNumber: season.number,
         rule: raw.rule,
         updatedAt: raw.updatedAt,
-        teams: raw.teams.map(t => enrichTeam(t, pokemonMap, pokemonBaseMap, itemMap)),
+        teams: raw.teams.map((t, index) => enrichTeam(t, pokemonMap, pokemonBaseMap, itemMap, index + 1)),
       };
       results.push(enriched);
 

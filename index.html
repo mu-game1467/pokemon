@@ -209,7 +209,7 @@
        .team-member-compact { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:4px; padding:4px 6px; background:#faf9f2; flex:0 1 calc(33.333% - 8px); width:calc(33.333% - 8px); max-width:none; min-width:0; box-sizing:border-box; }
        .team-builds-section { margin-top: 12px; max-width: 1000px; margin-left: auto; margin-right: auto; }
        .team-builds-section .panel { max-width: 1000px; width: 100%; }
-     .tab-bar { display:flex; gap:4px; border-bottom:2px solid var(--line); margin-bottom: 0; background:white; }
+      .tab-bar { display:flex; gap:4px; border-bottom:2px solid var(--line); margin-bottom: 0; background:white; position:sticky; top:0; z-index:5; }
      .tab-btn { flex:1; padding:10px 14px; border:0; border-bottom:2px solid transparent; background:transparent; font-weight:600; font-size:12px; color:var(--muted); cursor:pointer; transition:.15s; }
      .tab-btn:hover { color:var(--ink); }
      .tab-btn.active { border-bottom-color:var(--coral); color:var(--coral); }
@@ -277,10 +277,7 @@
         <button class="text-btn" id="logoutUser" style="font-size:12px;padding:6px 12px;display:none">ログアウト</button>
       </div>
     </header>
-    <section class="hero">
-      <div><div class="eyebrow">PARTY BUILDER</div><h1>パーティを<em>組み立てる。</em></h1><p>ポケモンを選び、特性・持ち物・覚える技を設定できます。技はそのポケモンが覚える技から選択式で、タイプや効果を確認しながら組めます。</p></div>
-      <div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div>
-     </section>
+      <section class="hero"><div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div></section>
      <div class="tab-bar" id="tabBar">
        <button class="tab-btn active" data-tab="party">パーティ構築</button>
        <button class="tab-btn" data-tab="builds">上位構築</button>
