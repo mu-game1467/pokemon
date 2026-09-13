@@ -1656,7 +1656,7 @@ function getMegaForms(baseName) {
       while (i < r.length) {
         let matched = false;
         for (let len = 4; len >= 1; len--) {
-          const seg = r.substr(i, len);
+          const seg = r.slice(i, i + len);
           if (table[seg]) { result += table[seg]; i += len; matched = true; break; }
         }
         if (!matched) i++;
