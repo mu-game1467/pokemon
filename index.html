@@ -1614,7 +1614,7 @@ function getMegaForms(baseName) {
     const CBD_API_BASE = 'https://championsbattledata.com';
     const CBD_API_URL = CBD_API_BASE + '/api';
     let cbdPokemonCache = null;
-    let megaToggled = false;
+    let megaFormIndex = 0;
     let lastBattleData = null;
 
     const UNKNOWN_ITEM_MAP = {
@@ -1830,18 +1830,22 @@ function getMegaForms(baseName) {
         grouped[r.category].push(r);
       });
       const pk = cbdPokemonCache?.pokemon?.find(p => p.showdownId === showdownId);
-      const megaForm = pk?.summary?.forms?.find(f => f.form_kind === 'Mega');
-      const useMega = megaToggled && megaForm;
+      const allForms = pk?.summary?.forms || [];
+      const megaForms = allForms.filter(f => f.form_kind === 'Mega' || f.form_kind === 'Mega Z');
+      const formCount = megaForms.length + 1;
+      const currentFormIdx = megaFormIndex % formCount;
+      const useMega = currentFormIdx > 0 && megaForms[currentFormIdx - 1];
+      const currentForm = useMega ? megaForms[currentFormIdx - 1] : null;
       const jaName = window.SHOWDOWN_TO_JA?.[showdownId] || pkName;
       let displayJaName = jaName;
       let displaySpriteUrl = pk?.summary?.sprite ? `${CBD_API_BASE}/${pk.summary.sprite}` : null;
       let displayTypes = pk?.summary?.types || [];
       let displayBaseStats = pk?.summary?.baseStats || pk?.summary?.primary || {};
-      if (useMega) {
-        displayJaName = (window.SHOWDOWN_TO_JA?.[megaForm.slug] || pkName || megaForm.form_name) + 'メガ';
-        displaySpriteUrl = megaForm?.image_path ? `${CBD_API_BASE}/${megaForm.image_path}` : null;
-        displayTypes = megaForm?.types || [];
-        displayBaseStats = { hp: megaForm?.hp || 0, attack: megaForm?.attack || 0, defense: megaForm?.defense || 0, sp_attack: megaForm?.sp_attack || 0, sp_defense: megaForm?.sp_defense || 0, speed: megaForm?.speed || 0 };
+      if (useMega && currentForm) {
+        displayJaName = 'メガ' + jaName + (currentForm.form_kind === 'Mega Z' ? 'Z' : '');
+        displaySpriteUrl = currentForm?.image_path ? `${CBD_API_BASE}/${currentForm.image_path}` : null;
+        displayTypes = currentForm?.types || [];
+        displayBaseStats = { hp: currentForm?.hp || 0, attack: currentForm?.attack || 0, defense: currentForm?.defense || 0, sp_attack: currentForm?.sp_attack || 0, sp_defense: currentForm?.sp_defense || 0, speed: currentForm?.speed || 0 };
       }
       const spriteUrl = displaySpriteUrl;
       const types = displayTypes;
@@ -1893,7 +1897,7 @@ function getMegaForms(baseName) {
         <div class="static-hero-info">
           <div style="display:flex;align-items:center;gap:6px">
             <div class="static-hero-name">${displayJaName}</div>
-            ${megaForm ? `<button type="button" id="megaToggleBtn" style="padding:2px 8px;border-radius:6px;border:1px solid var(--line);background:${useMega?'var(--coral)':'white'};color:${useMega?'white':'var(--text)'};font-size:11px;cursor:pointer">メガシンカ${useMega?'（ON）':''}</button>` : ''}
+             ${megaForms.length > 0 ? `<button type="button" id="megaToggleBtn" style="padding:2px 8px;border-radius:6px;border:1px solid var(--line);background:${useMega?'var(--coral)':'white'};color:${useMega?'white':'var(--text)'};font-size:11px;cursor:pointer">メガシンカ${useMega?(currentForm?.form_kind === 'Mega Z' ? 'Z（ON）' : '（ON）'):''}</button>` : ''}
           </div>
           <div class="static-hero-subtitle">${pkName || ''}</div>
           <div class="static-hero-types">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
@@ -2000,7 +2004,7 @@ function getMegaForms(baseName) {
       content.innerHTML = html;
       if ($('megaToggleBtn')) {
         $('megaToggleBtn').addEventListener('click', () => {
-          megaToggled = !megaToggled;
+          megaFormIndex = (megaFormIndex + 1) % formCount;
           if (lastBattleData) { renderBattleData(lastBattleData); }
         });
       }
