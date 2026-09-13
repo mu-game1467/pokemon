@@ -211,12 +211,26 @@
        .analytics-stat-table { width:100%; border-collapse:collapse; font-size:11px; }
        .analytics-stat-table th, .analytics-stat-table td { padding:4px 6px; text-align:left; border-bottom:1px solid var(--line); font:9px 'DM Mono',monospace; }
        .analytics-stat-table th { color:var(--muted); font-weight:600; }
-       .analytics-field-table th { font-size:10px; color:var(--muted); font-weight:600; width:35%; font-family:inherit; text-align:right; padding-right:8px; }
+         .analytics-field-table th { font-size:10px; color:var(--muted); font-weight:600; width:35%; font-family:inherit; text-align:left; padding-right:8px; }
+         .analytics-field-table thead th { width:auto; text-align:left; padding:4px 6px; font-size:9px; color:var(--muted); }
       .analytics-stat-table td strong { color:var(--ink); }
       .analytics-poke-usage { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
       .analytics-poke-usage img { width:24px; height:24px; object-fit:contain; }
       .analytics-bar { height:12px; background:#dce2d5; border-radius:2px; margin-top:2px; }
       .analytics-bar i { display:block; height:100%; background:var(--coral); border-radius:2px; }
+      .static-hero { display:flex; align-items:flex-start; gap:16px; margin-bottom:16px; }
+      .static-hero-sprite { width:96px; height:96px; object-fit:contain; flex-shrink:0; }
+      .static-hero-sprite-placeholder { width:96px; height:96px; display:grid; place-items:center; font-size:40px; opacity:0.3; }
+      .static-hero-info { flex:1; }
+      .static-hero-name { font-size:16px; font-weight:700; margin-bottom:4px; }
+      .static-hero-subtitle { font-size:11px; color:var(--muted); margin-bottom:8px; }
+      .static-hero-types { display:flex; gap:4px; margin-bottom:12px; }
+      .static-seo-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+      .static-name-cell { display:flex; align-items:center; gap:6px; }
+      .static-item-icon { width:24px; height:24px; object-fit:contain; }
+      .field-stat-bar { display:inline-flex; align-items:center; gap:4px; }
+      .field-stat-bar .bar { width:60px; height:8px; background:var(--line); border-radius:2px; overflow:hidden; }
+      .field-stat-bar .bar i { width:100%; height:100%; display:block; background:var(--coral); border-radius:2px; }
       .tab-bar { display:flex; gap:4px; border-bottom:2px solid var(--line); margin-bottom: 0; background:white; position:sticky; top:0; z-index:5; }
      .tab-btn { flex:1; padding:10px 14px; border:0; border-bottom:2px solid transparent; background:transparent; font-weight:600; font-size:12px; color:var(--muted); cursor:pointer; transition:.15s; }
      .tab-btn:hover { color:var(--ink); }
@@ -1679,7 +1693,6 @@ function getMegaForms(baseName) {
         content.innerHTML = '<div style="padding:20px;color:var(--coral)">データの取得に失敗しました。しばらくしてから再度お試しください。</div>';
       }
     }
-
     function renderBattleData(data) {
       const content = $('analyticsContent');
       if (!content) return;
@@ -1701,14 +1714,7 @@ function getMegaForms(baseName) {
       const totalStat = statOrder.reduce((s, k) => s + (baseStats[k] || 0), 0);
       const fmtJp = format === 'Singles' ? 'シングル' : format === 'Doubles' ? 'ダブル' : format;
       const seasonJp = season === 'Current' ? '現在' : season || 'Current';
-      let html = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        ${spriteUrl ? `<img src="${spriteUrl}" alt="${pkName}" style="width:64px;height:64px;object-fit:contain">` : '<span style="font-size:40px">★</span>'}
-        <div>
-          <div style="font-size:16px;font-weight:700">${jaName}</div>
-          <div style="font-size:12px;color:var(--muted)">${pkName}</div>
-          <div style="display:flex;gap:2px;margin-top:4px">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
-        </div>
-      </div>`;
+
       const typeStr = types.map(t => TYPE_EN_TO_JA[t] || t).join(' / ');
       const topMove = grouped['move']?.[0];
       const topItem = grouped['held_item']?.[0];
@@ -1728,31 +1734,88 @@ function getMegaForms(baseName) {
           }
         }
       }
-      html += `<table class="analytics-stat-table analytics-field-table" style="margin-bottom:16px;font-size:11px">
-        <tbody>
-          <tr><th>タイプ</th><td>${typeStr || '—'}</td></tr>
-          <tr><th>フォーマット</th><td>${fmtJp} / ${seasonJp}</td></tr>
-          <tr><th>ランク</th><td>${rankVal || '—'}</td></tr>
-          <tr><th>トップ移動</th><td>${topMove ? topMove.name + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>
-          <tr><th>トップアイテム</th><td>${topItem ? (UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>
-          <tr><th>トップ能力</th><td>${topAbility ? (UNKNOWN_ITEM_MAP[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>
-          <tr><th>トップ相棋者</th><td>${topMateJa}</td></tr>
-        </tbody>
-      </table>`;
-      if (Object.keys(baseStats).length > 0) {
-        const statJa = {'hp':'HP','attack':'攻','defense':'防','sp_attack':'特攻','sp_defense':'特防','speed':'速'};
-        html += `<table class="analytics-stat-table analytics-field-table" style="margin-bottom:16px;font-size:11px">
-          <tbody>`;
-        statOrder.forEach(k => {
-          const val = baseStats[k] || 0;
-          const pct = Math.min(100, (val / 255) * 100);
-          html += `<tr><th>${statJa[k] || k}</th><td><div style="display:flex;align-items:center;gap:4px;width:100px"><span style="font-family:'DM Mono',monospace;font-size:10px">${val}</span><div class="analytics-bar" style="flex:1"><i style="width:${pct}%"></i></div></div></td></tr>`;
+
+      const statJa = {'hp':'HP','attack':'攻','defense':'防','sp_attack':'特攻','sp_defense':'特防','speed':'速'};
+
+      let fieldBody = '';
+      fieldBody += `<tr><th>タイプ</th><td>${typeStr || '—'}</td></tr>`;
+      fieldBody += `<tr><th>ベースポケモン</th><td>${pkName || '—'}</td></tr>`;
+      fieldBody += `<tr><th>フォーマット</th><td>${fmtJp} / ${seasonJp}</td></tr>`;
+      fieldBody += `<tr><th>ランク</th><td>${rankVal || '—'}</td></tr>`;
+      fieldBody += `<tr><th>トップ技</th><td>${topMove ? topMove.name + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
+      fieldBody += `<tr><th>トップアイテム</th><td>${topItem ? (UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>トップ能力</th><td>${topAbility ? (UNKNOWN_ITEM_MAP[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>トップ相棋者</th><td>${topMateJa}</td></tr>`;
+      statOrder.forEach(k => {
+        const val = baseStats[k] || 0;
+        const pct = Math.min(100, (val / 255) * 100);
+        fieldBody += `<tr><th>${statJa[k] || k}</th><td><div class="field-stat-bar"><span style="font-family:'DM Mono',monospace;font-size:10px;min-width:24px">${val}</span><div class="bar"><i style="width:${pct}%"></i></div></div></td></tr>`;
+      });
+      fieldBody += `<tr><th>合計</th><td style="font-weight:700">${totalStat}</td></tr>`;
+
+      let html = `<div class="static-hero">
+        ${spriteUrl ? `<img class="static-hero-sprite" src="${spriteUrl}" alt="${jaName}" loading="lazy">` : '<span class="static-hero-sprite-placeholder">★</span>'}
+        <div class="static-hero-info">
+          <div class="static-hero-name">${jaName}</div>
+          <div class="static-hero-subtitle">${pkName || ''}</div>
+          <div class="static-hero-types">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
+          <div class="data-table-wrap">
+            <table class="analytics-stat-table analytics-field-table">
+              <thead><tr><th>Field</th><th>Value</th></tr></thead>
+              <tbody>
+                ${fieldBody}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>`;
+
+      html += `<div class="static-seo-grid">`;
+
+      if (grouped['move']) {
+        const entries = grouped['move'].sort((a, b) => {
+          const pa = b.percentage_value ?? 0;
+          const pb = a.percentage_value ?? 0;
+          if (pa !== pb) return pa - pb;
+          return (a.rank || 0) - (b.rank || 0);
         });
-        html += `<tr><th>合計</th><td style="font-weight:700">${totalStat}</td></tr>`;
-        html += `</tbody></table>`;
+        html += `<div class="data-table-wrap">
+          <table class="analytics-stat-table">
+            <thead><tr><th>技</th><th>使用率</th></tr></thead>
+            <tbody>
+              ${entries.slice(0, 10).map(row => `<tr><td>${row.name || '—'}</td><td><div style="display:flex;align-items:center;gap:6px"><div class="analytics-bar" style="flex:1;max-width:100px"><i style="width:${Math.min(100, row.percentage_value || 0)}%"></i></div><span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span></div></td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>`;
       }
-      $('analyticsSubtitle').textContent = fmtJp + ' / ' + seasonJp + ' の使用率';
-      catOrder.forEach(cat => {
+
+      if (grouped['held_item']) {
+        const entries = grouped['held_item'].sort((a, b) => {
+          const pa = b.percentage_value ?? 0;
+          const pb = a.percentage_value ?? 0;
+          if (pa !== pb) return pa - pb;
+          return (a.rank || 0) - (b.rank || 0);
+        });
+        html += `<div class="data-table-wrap">
+          <table class="analytics-stat-table">
+            <thead><tr><th>持ち物</th><th>使用率</th></tr></thead>
+            <tbody>
+              ${entries.slice(0, 10).map(row => {
+                const pct = row.percentage_value || 0;
+                const rawName = row.name || '';
+                const itemName = UNKNOWN_ITEM_MAP[rawName] || rawName;
+                const itemIconUrl = `${CBD_API_BASE}/pokemon_champions_assets/items/${encodeURIComponent(rawName)}.png`;
+                return `<tr><td>${rawName ? `<span class="static-name-cell"><img class="static-item-icon" src="${itemIconUrl}" alt="${itemName}" loading="lazy">${itemName}</span>` : 'ー'}</td><td><div style="display:flex;align-items:center;gap:6px"><div class="analytics-bar" style="flex:1;max-width:100px"><i style="width:${Math.min(100, pct)}%"></i></div><span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span></div></td></tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>`;
+      }
+
+      html += `</div>`;
+
+      const remainingCats = ['ability', 'stat_alignment', 'stat_points', 'teammate'];
+      remainingCats.forEach(cat => {
         if (!grouped[cat]) return;
         const entries = grouped[cat].sort((a, b) => {
           const pa = b.percentage_value ?? 0;
@@ -1761,52 +1824,20 @@ function getMegaForms(baseName) {
           return (a.rank || 0) - (b.rank || 0);
         });
         const label = catLabels[cat] || cat;
-        html += `<div class="section-label" style="${cat === 'move' ? '' : 'margin-top:16px'}"> ${label} <span>上位${Math.min(entries.length, 10)}</span></div>`;
+        html += `<div class="section-label" style="margin-top:16px">${label} <span>上位${Math.min(entries.length, 10)}</span></div>`;
         if (cat === 'stat_points') {
           html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>HP</th><th>攻</th><th>防</th><th>特攻</th><th>特防</th><th>速</th><th>使用率</th></tr></thead><tbody>`;
           entries.slice(0, 10).forEach((row, i) => {
-            html += `<tr>
-              <td>${i + 1}</td>
-              <td>${row.hp_points || 0}</td>
-              <td>${row.attack_points || 0}</td>
-              <td>${row.defense_points || 0}</td>
-              <td>${row.sp_atk_points || 0}</td>
-              <td>${row.sp_def_points || 0}</td>
-              <td>${row.speed_points || 0}</td>
-              <td>${row.percentage || ''}</td>
-            </tr>`;
-          });
-          html += `</tbody></table>`;
-        } else if (cat === 'held_item') {
-          html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>名前</th><th>使用率</th></tr></thead><tbody>`;
-          entries.slice(0, 10).forEach((row, i) => {
-            const pct = row.percentage_value || 0;
-            const rawName = row.name || '';
-            const itemName = UNKNOWN_ITEM_MAP[rawName] || rawName;
-            const itemIconUrl = `${CBD_API_BASE}/pokemon_champions_assets/items/${encodeURIComponent(rawName)}.png`;
-            html += `<tr>
-              <td>${i + 1}</td>
-              <td>${rawName ? `<img src="${itemIconUrl}" alt="${itemName}" style="width:18px;height:18px;object-fit:contain;vertical-align:middle;margin-right:4px">${itemName}` : 'ー'}</td>
-              <td>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div class="analytics-bar" style="flex:1;max-width:120px"><i style="width:${Math.min(100, pct)}%"></i></div>
-                  <span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span>
-                </div>
-              </td>
-            </tr>`;
+            html += `<tr><td>${i + 1}</td><td>${row.hp_points || 0}</td><td>${row.attack_points || 0}</td><td>${row.defense_points || 0}</td><td>${row.sp_atk_points || 0}</td><td>${row.sp_def_points || 0}</td><td>${row.speed_points || 0}</td><td>${row.percentage || ''}</td></tr>`;
           });
           html += `</tbody></table>`;
         } else if (cat === 'teammate') {
-          html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>ポケモン</th></tr></thead><tbody>`;
+          html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>ポケモン</th><th>使用率</th></tr></thead><tbody>`;
           entries.slice(0, 10).forEach((row, i) => {
             const mate = cbdPokemonCache?.pokemon?.find(p => p.name === row.name);
-            const mateShowdownId = mate?.showdownId;
-            const jaMate = window.SHOWDOWN_TO_JA?.[mateShowdownId] || row.name;
+            const jaMate = window.SHOWDOWN_TO_JA?.[mate?.showdownId] || row.name;
             const mateSprite = mate?.summary?.sprite;
-            html += `<tr>
-              <td>${i + 1}</td>
-              <td>${mateSprite ? `<img src="${CBD_API_BASE}/${mateSprite}" alt="${jaMate}" style="width:24px;height:24px;object-fit:contain;vertical-align:middle">` : '★'} ${jaMate}</td>
-            </tr>`;
+            html += `<tr><td>${i + 1}</td><td>${mateSprite ? `<img src="${CBD_API_BASE}/${mateSprite}" alt="${jaMate}" style="width:24px;height:24px;object-fit:contain;vertical-align:middle;margin-right:4px">` : '★'} ${jaMate}</td><td>${row.percentage || ''}</td></tr>`;
           });
           html += `</tbody></table>`;
         } else {
@@ -1818,23 +1849,16 @@ function getMegaForms(baseName) {
               nameCell += row.stat_up ? ` (${row.stat_up}↑)` : '';
               nameCell += row.stat_down ? ` / ${row.stat_down}↓` : '';
             }
-            html += `<tr>
-              <td>${i + 1}</td>
-              <td>${nameCell}</td>
-              <td>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div class="analytics-bar" style="flex:1;max-width:120px"><i style="width:${Math.min(100, pct)}%"></i></div>
-                  <span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span>
-                </div>
-              </td>
-            </tr>`;
+            html += `<tr><td>${i + 1}</td><td>${nameCell}</td><td><div style="display:flex;align-items:center;gap:6px"><div class="analytics-bar" style="flex:1;max-width:100px"><i style="width:${Math.min(100, pct)}%"></i></div><span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span></div></td></tr>`;
           });
           html += `</tbody></table>`;
         }
       });
+
       html += `<div style="margin-top:16px;padding:8px 10px;background:#f3f4ea;border-radius:6px;font-size:10px;color:var(--muted)">
         データソース: <a href="${CBD_API_BASE}/api/battle/${format}/${showdownId}" target="_blank" rel="noopener" style="color:var(--coral)">championsbattledata.com API ↗</a>
       </div>`;
+      $('analyticsSubtitle').textContent = fmtJp + ' / ' + seasonJp + ' の使用率';
       content.innerHTML = html;
     }
 
