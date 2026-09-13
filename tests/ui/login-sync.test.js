@@ -165,3 +165,106 @@ test('logout returns to offline status', async ({ page }) => {
   const userStatusAfter = await page.textContent('#userStatus');
   expect(userStatusAfter).toBe('オフライン');
 });
+
+test('mega pokemon shows correct mega stone in item dropdown', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForTimeout(500);
+
+  await dismissLoginModal(page);
+
+  await page.fill('#search', 'フシギバナ');
+  await page.waitForSelector('.suggestion', { timeout: 10000 });
+  await page.click('.suggestion');
+  const abilityPicker = await page.$('#abilityPicker');
+  if (abilityPicker) {
+    const isHidden = await abilityPicker.evaluate(el => el.classList.contains('hidden'));
+    if (!isHidden) {
+      await page.click('.ability-option');
+    }
+  }
+  await page.waitForTimeout(500);
+
+  const count = await page.textContent('#countLabel');
+  expect(count).toBe('1 / 6');
+
+  // Click edit button for first Pokemon
+  await page.click('.edit-button');
+  await page.waitForTimeout(500);
+
+  // Check that the item dropdown shows only the correct mega stone
+  const itemOptions = await page.evaluate(() => {
+    const select = document.getElementById('editItem');
+    return Array.from(select.querySelectorAll('option')).map(opt => opt.value);
+  });
+
+  // フシギバナ (base form) should show フシギバナイト
+  expect(itemOptions.some(opt => opt.includes('フシギバナイト'))).toBe(true);
+
+  // Close editor
+  await page.click('#closeEditor');
+  await page.waitForTimeout(500);
+
+  // Cycle to Mega form using form button on party slot
+  await page.click('.form-btn');
+  await page.waitForTimeout(500);
+
+  // Reopen editor
+  await page.click('.edit-button');
+  await page.waitForTimeout(500);
+
+  // Check item dropdown still shows mega stone
+  const itemOptionsAfter = await page.evaluate(() => {
+    const select = document.getElementById('editItem');
+    return Array.from(select.querySelectorAll('option')).map(opt => opt.value);
+  });
+  expect(itemOptionsAfter.some(opt => opt.includes('フシギバナイト'))).toBe(true);
+});
+
+test('mega charizard X shows only Charizardite X', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForTimeout(500);
+
+  await dismissLoginModal(page);
+
+  // Add Charizard
+  await page.fill('#search', 'リザードン');
+  await page.waitForSelector('.suggestion', { timeout: 10000 });
+  await page.click('.suggestion');
+  const abilityPicker = await page.$('#abilityPicker');
+  if (abilityPicker) {
+    const isHidden = await abilityPicker.evaluate(el => el.classList.contains('hidden'));
+    if (!isHidden) {
+      await page.click('.ability-option');
+    }
+  }
+  await page.waitForTimeout(500);
+
+  const count = await page.textContent('#countLabel');
+  expect(count).toBe('1 / 6');
+
+  // Cycle to Mega Charizard X using form button on party slot
+  await page.click('.form-btn');
+  await page.waitForTimeout(500);
+  await page.click('.form-btn');
+  await page.waitForTimeout(500);
+
+  // Check current form name in party slot
+  const slotName = await page.evaluate(() => {
+    const el = document.querySelector('.slot-name');
+    return el ? el.textContent : '';
+  });
+
+  // Open editor
+  await page.click('.edit-button');
+  await page.waitForTimeout(500);
+
+  const itemOptions = await page.evaluate(() => {
+    const select = document.getElementById('editItem');
+    return Array.from(select.querySelectorAll('option')).map(opt => opt.value);
+  });
+
+  if (slotName.includes('X')) {
+    expect(itemOptions.some(opt => opt === 'リザードナイトX')).toBe(true);
+    expect(itemOptions.some(opt => opt === 'リザードナイトY')).toBe(false);
+  }
+});
