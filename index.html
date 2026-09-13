@@ -1622,6 +1622,48 @@ function getMegaForms(baseName) {
       'Unknown Item 542': 'ロゼルのみ',
     };
 
+    function kataToHira(str) {
+      return str.replace(/[\u30A1-\u30FA\u30FE\u30FF]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+    }
+
+    function romajiToKata(rom) {
+      const r = rom.toLowerCase();
+      const table = {
+        'a':'ア','i':'イ','u':'ウ','e':'エ','o':'オ',
+        'ka':'カ','ki':'キ','ku':'ク','ke':'ケ','ko':'コ',
+        'sa':'サ','shi':'シ','su':'ス','se':'セ','so':'ソ',
+        'ta':'タ','chi':'チ','tsu':'ツ','te':'テ','to':'ト',
+        'na':'ナ','ni':'ニ','nu':'ヌ','ne':'ネ','no':'ノ',
+        'ha':'ハ','hi':'ヒ','fu':'フ','he':'ヘ','ho':'ホ',
+        'ma':'マ','mi':'ミ','mu':'ム','me':'メ','mo':'モ',
+        'ya':'ヤ','yu':'ユ','yo':'ヨ','yo':'ヨ',
+        'ra':'ラ','ri':'リ','ru':'ル','re':'レ','ro':'ロ',
+        'wa':'ワ','wo':'ヲ','n':'ン',
+        'ga':'ガ','gi':'ギ','gu':'グ','ge':'ゲ','go':'ゴ',
+        'za':'ザ','ji':'ジ','zu':'ズ','ze':'ゼ','zo':'ゾ',
+        'da':'ダ','de':'デ','do':'ド',
+        'ba':'バ','bi':'ビ','bu':'ブ','be':'ベ','bo':'ボ',
+        'pa':'パ','pi':'ピ','pu':'プ','pe':'ペ','po':'ポ',
+        'kyo':'キョ','shu':'シュ','sho':'ショ','cho':'チョ','chu':'チュ','cha':'チャ',
+        'nyo':'ニョ','nyu':'ニュ','nya':'ニャ','ryo':'リョ','ryu':'リュ','rya':'リャ',
+        'gyo':'ギョ','gyu':'ギュ','gya':'ギャ','byo':'ビョ','byu':'ビュ','bya':'ビャ',
+        'pyo':'ピョ','pyu':'ピュ','pya':'ピャ','kyu':'キュ','kya':'キャ',
+        'fa':'ファ','fi':'フィ','fe':'フェ','fo':'フォ',
+        'va':'ヴァ','vi':'ヴィ','ve':'ヴェ','vo':'ヴォ',
+      };
+      let result = '';
+      let i = 0;
+      while (i < r.length) {
+        let matched = false;
+        for (let len = 4; len >= 1; len--) {
+          const seg = r.substr(i, len);
+          if (table[seg]) { result += table[seg]; i += len; matched = true; break; }
+        }
+        if (!matched) i++;
+      }
+      return result;
+    }
+
     const TYPE_EN_TO_JA = {
       'Normal':'ノーマル','Fire':'ほのお','Water':'みず','Electric':'でんき',
       'Grass':'くさ','Ice':'こおり','Fighting':'かくとう','Poison':'どく',
@@ -1790,8 +1832,17 @@ function getMegaForms(baseName) {
         if (byId) return val;
         const byName = cached.find(p => p.name.toLowerCase() === val.toLowerCase());
         if (byName) return byName.showdownId;
-        const jaMatch = Object.entries(window.SHOWDOWN_TO_JA || {}).find(([,ja]) => ja.toLowerCase() === val.toLowerCase());
-        if (jaMatch) return jaMatch[0];
+        const jaMatch = cached.find(p => {
+          const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name;
+          const jaLower = ja.toLowerCase();
+          const jaHira = kataToHira(ja).toLowerCase();
+          const inputLower = val.toLowerCase();
+          const inputKata = romajiToKata(inputLower);
+          return jaLower.startsWith(inputLower) ||
+                 jaHira.startsWith(inputLower) ||
+                 jaLower.startsWith(inputKata);
+        });
+        if (jaMatch) return jaMatch.showdownId;
       }
       return val;
     }
