@@ -40,6 +40,7 @@ then falls back to Yakkun.
 - `images/items/` - Item sprite files (PNG)
 - `images/pokemon/` - Pokemon sprite files (GIF)
 - `tests/unit/` - Jest unit tests
+- `tests/ui/` - Playwright UI tests
 
 ## Sprite Conventions
 - Regular items: `images/items/i_item{number}.png` (from GameWith, same numbering as Yakkun SV)
@@ -68,3 +69,26 @@ Data is fetched live from:
 To regenerate:
 1. Run `node scripts/scrape-pokedb-teams.js` (requires Node.js)
 2. If Node.js is unavailable, use the C# program in `C:\Users\admin\AppData\Local\Temp\kilo\temp_project`
+
+## Coding Rules
+
+### Login and Data Persistence
+- The static server runs on port **3001** by default (set in `static-server.js`)
+- API endpoints: `GET/POST /api/user/:userId` for user data persistence
+- User data is stored in `os.homedir()/.pokemon-champions-data/users/` (local) or `os.tmpdir()/.pokemon-champions-data/users/` (Vercel)
+- The `account` field contains the user's credentials hash
+- Frontend helpers: `safeUserId()`, `userApiUrl()`, `fetchFromApi()`, `saveAllToServer()`, `loadAllFromServer()`
+- Login status uses `#loginScreen` (not `#loginModalOverlay`) and `#logoutUser` button
+- After successful login, user status shows as `ユーザー名：<username>`
+
+### Analytics Search
+- `#userStatus` shows `ユーザー名：<username>` when logged in, `オフライン` when offline
+- Search uses `toHiragana()` to convert katakana to hiragana for matching
+- The `pokemon` array comes from `window.POKEMON_DATA` (loaded from `data/pokemon-champions.js`)
+- `.suggestion` elements are inside `#suggestions` container
+
+### Testing
+- Unit tests: `npm test` (Jest)
+- UI tests: `npm run test:ui` (Playwright, requires server running on port 3001)
+- UI test files should use `#loginScreen` (not `#loginModalOverlay`) for modal checks
+- Use `Date.now()` in test usernames to avoid conflicts

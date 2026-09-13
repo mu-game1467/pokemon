@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 async function dismissLoginModal(page) {
   const skipBtn = await page.$('#skipLogin');
   if (skipBtn) {
-    const isHidden = await skipBtn.evaluate(el => el.closest('#loginModalOverlay')?.classList.contains('hidden'));
+    const isHidden = await skipBtn.evaluate(el => el.closest('#loginScreen')?.classList.contains('hidden'));
     if (!isHidden) {
       await skipBtn.click();
     }
@@ -30,7 +30,7 @@ test('guest login allows party building after refresh', async ({ page }) => {
 
   // Verify login modal is visible
   const modalVisible = await page.evaluate(() => {
-    const modal = document.getElementById('loginModalOverlay');
+    const modal = document.getElementById('loginScreen');
     return !modal?.classList.contains('hidden');
   });
   expect(modalVisible).toBe(true);
@@ -41,7 +41,7 @@ test('guest login allows party building after refresh', async ({ page }) => {
 
   // Verify login modal is hidden
   const modalHidden = await page.evaluate(() => {
-    const modal = document.getElementById('loginModalOverlay');
+    const modal = document.getElementById('loginScreen');
     return modal?.classList.contains('hidden');
   });
   expect(modalHidden).toBe(true);
@@ -73,7 +73,7 @@ test('guest login allows party building after refresh', async ({ page }) => {
 
   // After refresh, login modal should show (guest has no saved session)
   const modalVisibleAfter = await page.evaluate(() => {
-    const modal = document.getElementById('loginModalOverlay');
+    const modal = document.getElementById('loginScreen');
     return !modal?.classList.contains('hidden');
   });
   expect(modalVisibleAfter).toBe(true);
