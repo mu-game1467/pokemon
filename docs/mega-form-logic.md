@@ -23,8 +23,8 @@ const megaMap = {
 ```
 
 ### megaStoneMap (index.html)
-Built from items data. Maps base form name → first matching mega stone name.
-This is a FALLBACK only — prefer `p.megaStone` from data.
+Built from items data. Maps base form name → array of matching mega stone names.
+Used by `resolveMegaStone()` as a fallback when `p.megaStone` is not available.
 
 ```javascript
 const megaStoneMap = {};
@@ -53,7 +53,9 @@ When the user clicks the form button (⇄) on a Pokemon slot:
 
 1. Get all forms for the base: `getMegaForms(baseForm)` returns all mega forms from `megaMap`
 2. Cycle to the next form
-3. Auto-assign item: Use `newP.megaStone` from the data file (NOT `megaStoneMap[baseName]`)
+3. Auto-assign item: `resolveMegaStone(nextForm, newP)` (data `megaStone` → explicit
+   X/Y map → suffix match → first stone). When leaving mega, a lingering ナイト stone
+   is cleared.
 
 ```javascript
 const nextItem = nextIsMega ? (newP.megaStone || megaStoneMap[nextBase] || p.item) : p.item;
@@ -62,9 +64,9 @@ const nextItem = nextIsMega ? (newP.megaStone || megaStoneMap[nextBase] || p.ite
 ## Editor Item Filtering Logic (openEditor)
 When opening the editor for a mega Pokemon:
 
-1. Check `p.megaStone` (form-specific stone from data) FIRST
-2. Fall back to `megaStoneMap[baseName]` (single stone per base)
-3. Filter item dropdown to show ONLY the matching mega stone
+1. Resolve via `resolveMegaStone(p.name, p)` (form-specific `megaStone` FIRST,
+   then X/Y map and suffix match)
+2. Filter item dropdown to show ONLY the matching mega stone and auto-select it
 
 ```javascript
 const megaStone = isMega ? p.megaStone || megaStoneMap[baseName] : null;
