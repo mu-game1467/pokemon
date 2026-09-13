@@ -421,8 +421,6 @@
   'メガカメックス': 'カメックス',
   'メガスピアー': 'スピアー',
   'メガピジョット': 'ピジョット',
-  'メガライチュウX': 'ライチュウ',
-  'メガライチュウY': 'ライチュウ',
   'メガピクシー': 'ピクシー',
   'メガフーディン': 'フーディン',
   'メガウツボット': 'ウツボット',
@@ -1942,7 +1940,8 @@ function getMegaForms(baseName) {
       });
       const pk = cbdPokemonCache?.pokemon?.find(p => p.showdownId === showdownId);
       const allForms = pk?.summary?.forms || [];
-      const megaForms = allForms.filter(f => f.form_kind.startsWith('Mega'));
+      const jaNameForMegaCheck = window.SHOWDOWN_TO_JA?.[showdownId];
+      const megaForms = allForms.filter(f => f.form_kind.startsWith('Mega') && getMegaForms(jaNameForMegaCheck || '').length > 0);
       const formCount = megaForms.length + 1;
       const currentFormIdx = megaFormIndex % formCount;
       const useMega = currentFormIdx > 0 && megaForms[currentFormIdx - 1];
