@@ -207,9 +207,10 @@
         .team-member-compact { display:inline-flex; align-items:flex-start; gap:6px; border:1px solid var(--line); border-radius:4px; padding:4px 6px; background:#faf9f2; flex:0 1 calc(33.333% - 8px); width:calc(33.333% - 8px); max-width:none; min-width:0; box-sizing:border-box; min-height:44px; }
        .team-builds-section { margin-top: 12px; max-width: 1000px; margin-left: auto; margin-right: auto; }
        .team-builds-section .panel { max-width: 1000px; width: 100%; }
-      .analytics-stat-table { width:100%; border-collapse:collapse; font-size:11px; }
-      .analytics-stat-table th, .analytics-stat-table td { padding:4px 6px; text-align:left; border-bottom:1px solid var(--line); font:9px 'DM Mono',monospace; }
-      .analytics-stat-table th { color:var(--muted); font-weight:600; }
+       .analytics-stat-table { width:100%; border-collapse:collapse; font-size:11px; }
+       .analytics-stat-table th, .analytics-stat-table td { padding:4px 6px; text-align:left; border-bottom:1px solid var(--line); font:9px 'DM Mono',monospace; }
+       .analytics-stat-table th { color:var(--muted); font-weight:600; }
+       .analytics-field-table th { font-size:10px; color:var(--muted); font-weight:600; width:35%; font-family:inherit; text-align:right; padding-right:8px; }
       .analytics-stat-table td strong { color:var(--ink); }
       .analytics-poke-usage { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
       .analytics-poke-usage img { width:24px; height:24px; object-fit:contain; }
@@ -1690,10 +1691,12 @@ function getMegaForms(baseName) {
       const sprite = pk?.summary?.sprite;
       const spriteUrl = sprite ? `${CBD_API_BASE}/${sprite}` : null;
       const types = pk?.summary?.types || [];
-      const stats = pk?.summary?.stats || {};
-      const statNames = {'hp':'HP','attack':'攻','defense':'防','special-attack':'特攻','special-defense':'特防','speed':'速'};
-      const statOrder = ['hp','attack','defense','special-attack','special-defense','speed'];
-      const totalStat = statOrder.reduce((s, k) => s + (stats[k] || 0), 0);
+      const baseStats = pk?.summary?.baseStats || pk?.summary?.primary || {};
+      const statNames = {'hp':'HP','attack':'攻','defense':'防','sp_attack':'特攻','sp_defense':'特防','speed':'速'};
+      const statOrder = ['hp','attack','defense','sp_attack','sp_defense','speed'];
+      const totalStat = statOrder.reduce((s, k) => s + (baseStats[k] || 0), 0);
+      const fmtJp = format === 'Singles' ? 'シングル' : format === 'Doubles' ? 'ダブル' : format;
+      const seasonJp = season === 'Current' ? '現在' : season || 'Current';
       let html = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
         ${spriteUrl ? `<img src="${spriteUrl}" alt="${pkName}" style="width:64px;height:64px;object-fit:contain">` : '<span style="font-size:40px">★</span>'}
         <div>
@@ -1702,13 +1705,43 @@ function getMegaForms(baseName) {
           <div style="display:flex;gap:2px;margin-top:4px">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
         </div>
       </div>`;
-      if (stats && Object.keys(stats).length > 0) {
-        html += `<table class="analytics-stat-table" style="margin-bottom:12px">
+      const typeStr = types.map(t => TYPE_EN_TO_JA[t] || t).join(' / ');
+      const topMove = grouped['move']?.[0];
+      const topItem = grouped['held_item']?.[0];
+      const topAbility = grouped['ability']?.[0];
+      const topMate = grouped['teammate']?.[0];
+      const mateObj = topMate ? cbdPokemonCache?.pokemon?.find(p => p.name === topMate.name) : null;
+      const topMateJa = window.SHOWDOWN_TO_JA?.[mateObj?.showdownId] || topMate?.name || '—';
+      let rankVal = '';
+      const battleSummary = pk?.summary?.battleSummary;
+      if (battleSummary) {
+        const bs = battleSummary[season || 'Current'];
+        if (bs) {
+          const bsStr = bs[format];
+          if (bsStr && typeof bsStr === 'string') {
+            const m = bsStr.match(/position=(\d+)/);
+            if (m) rankVal = '#' + m[1];
+          }
+        }
+      }
+      html += `<table class="analytics-stat-table analytics-field-table" style="margin-bottom:16px;font-size:11px">
+        <tbody>
+          <tr><th>タイプ</th><td>${typeStr || '—'}</td></tr>
+          <tr><th>フォーマット</th><td>${fmtJp} / ${seasonJp}</td></tr>
+          <tr><th>ランク</th><td>${rankVal || '—'}</td></tr>
+          <tr><th>トップ移動</th><td>${topMove ? topMove.name + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>
+          <tr><th>トップアイテム</th><td>${topItem ? topItem.name + ' (' + (topItem.percentage || '') + ')' : '—'}</td></tr>
+          <tr><th>トップ技分</th><td>${topAbility ? topAbility.name + ' (' + (topAbility.percentage || '') + ')' : '—'}</td></tr>
+          <tr><th>トップ相棋者</th><td>${topMateJa}</td></tr>
+        </tbody>
+      </table>`;
+      if (Object.keys(baseStats).length > 0) {
+        html += `<table class="analytics-stat-table" style="margin-bottom:16px;font-size:11px">
           <thead><tr>${statOrder.map(k => `<th>${statNames[k] || k}</th>`).join('')}<th>合計</th></tr></thead>
-          <tbody><tr>${statOrder.map(k => `<td style="font-weight:600">${stats[k] || 0}</td>`).join('')}<td style="font-weight:600">${totalStat}</td></tr></tbody>
+          <tbody><tr>${statOrder.map(k => `<td style="font-weight:600">${baseStats[k] || 0}</td>`).join('')}<td style="font-weight:600">${totalStat}</td></tr></tbody>
         </table>`;
       }
-      $('analyticsSubtitle').textContent = format + ' / ' + (season || 'Current') + ' の使用率';
+      $('analyticsSubtitle').textContent = fmtJp + ' / ' + seasonJp + ' の使用率';
       catOrder.forEach(cat => {
         if (!grouped[cat]) return;
         const entries = grouped[cat].sort((a, b) => {
