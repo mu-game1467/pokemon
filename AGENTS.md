@@ -7,6 +7,7 @@ with user sync capabilities.
 ## Data Sources
 - **Yakkun** (https://yakkun.com): Pokemon stats, abilities, moves, sprites
 - **GameWith** (https://gamewith.jp): Item descriptions, recommended builds, sprite URLs
+- **championsbattledata.com** (https://championsbattledata.com): Pokemon Champions battle data API (moves, items, abilities, natures, EVs, teammates)
 
 ## Commands
 
@@ -49,6 +50,20 @@ then falls back to Yakkun.
 The index.html has a tab bar below the hero section with "パーティ構築" and "上位構築" tabs.
 The "上位構築" tab shows season-specific top-ranked team builds from pokedb.tokyo.
 The data is stored in `data/pokedb-teams.js` as `window.POKEDB_TEAMS_DATA`.
+
+## Analytics Screen
+The "データ分析" tab fetches live Pokemon battle data from championsbattledata.com API.
+Users select a Pokemon and battle format (Singles/Doubles) to view:
+- **技 (Moves)**: Top moves by usage %
+- **持ち物 (Items)**: Top held items by usage %
+- **特性 (Abilities)**: Ability usage %
+- **性格 (Natures)**: Nature usage % with stat up/down effects
+- **EV配分 (EV Spreads)**: Top EV distributions with individual stat values
+- **相棋者 (Teammates)**: Pokemon that commonly appear on the same team
+
+Data is fetched live from:
+- Index: `https://championsbattledata.com/api` (Pokemon list with sprites/types)
+- Battle: `https://championsbattledata.com/api/battle/{Singles|Doubles}/{showdownId}` (usage statistics)
 
 To regenerate:
 1. Run `node scripts/scrape-pokedb-teams.js` (requires Node.js)
