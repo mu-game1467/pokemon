@@ -1931,7 +1931,7 @@ function getMegaForms(baseName) {
       const content = $('analyticsContent');
       if (!content) return;
       const { pokemon: pkName, showdownId, format, season, rows } = data;
-      const catLabels = {'move':'技','held_item':'持ち物','ability':'能力','stat_alignment':'性格','stat_points':'能力ポイント','teammate':'同じチームのポケモン'};
+      const catLabels = {'move':'技','held_item':'持ち物','ability':'特性','stat_alignment':'性格','stat_points':'能力ポイント','teammate':'同じチームのポケモン'};
       const catOrder = ['move','held_item','ability','stat_alignment','stat_points','teammate'];
       const grouped = {};
       (rows || []).forEach(r => {
@@ -1991,10 +1991,10 @@ function getMegaForms(baseName) {
       fieldBody += `<tr><th>ベースポケモン</th><td>${pkName || '—'}</td></tr>`;
       fieldBody += `<tr><th>フォーマット</th><td>${fmtJp} / ${seasonJp}</td></tr>`;
       fieldBody += `<tr><th>ランク</th><td>${rankVal || '—'}</td></tr>`;
-      fieldBody += `<tr><th>トップ技</th><td>${topMove ? (MOVE_EN_TO_JA[topMove.name] || topMove.name) + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
-      fieldBody += `<tr><th>トップアイテム</th><td>${topItem ? (ITEM_EN_TO_JA[topItem.name] || UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
-      fieldBody += `<tr><th>トップ特性</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
-      fieldBody += `<tr><th>トップ相棋者</th><td>${topMateJa}</td></tr>`;
+      fieldBody += `<tr><th>採用率の高い技</th><td>${topMove ? (MOVE_EN_TO_JA[topMove.name] || topMove.name) + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
+      fieldBody += `<tr><th>採用率の高い持ち物</th><td>${topItem ? (ITEM_EN_TO_JA[topItem.name] || UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>採用率の高い特性</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>採用率の高い同じチームのポケモン</th><td>${topMateJa}</td></tr>`;
       fieldBody += `<tr><td colspan="2"><div style="font-weight:700;font-size:11px;color:var(--muted);padding:4px 0 2px 0">基礎ステータス</div></td></tr>`;
       statOrder.forEach(k => {
         const val = baseStats[k] || 0;
