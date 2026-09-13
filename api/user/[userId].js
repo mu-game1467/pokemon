@@ -38,22 +38,24 @@ module.exports = async function handler(req, res) {
       return;
     }
     try {
-      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       if (res.status) res.status(200);
-      if (res.json) res.json(data);
-      else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(data)); }
+      if (res.json) res.json(existing);
+      else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(existing)); }
     } catch (e) {
       if (res.status) res.status(500);
       if (res.json) res.json({ error: 'Failed to read user data' });
       else { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: 'Failed to read user data' })); }
     }
   } else if (req.method === 'POST') {
+    const existing = fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf8')) : {};
     const data = {
-      party: req.body.party || [],
-      savedParties: req.body.savedParties || [],
-      battleLogs: req.body.battleLogs || [],
-      memo: req.body.memo || '',
-      partyName: req.body.partyName || '',
+      party: req.body.party !== undefined ? req.body.party : (existing.party || []),
+      savedParties: req.body.savedParties !== undefined ? req.body.savedParties : (existing.savedParties || []),
+      battleLogs: req.body.battleLogs !== undefined ? req.body.battleLogs : (existing.battleLogs || []),
+      memo: req.body.memo !== undefined ? req.body.memo : (existing.memo || ''),
+      partyName: req.body.partyName !== undefined ? req.body.partyName : (existing.partyName || ''),
+      account: req.body.account !== undefined ? req.body.account : (existing.account || null),
       updatedAt: new Date().toISOString()
     };
     try {

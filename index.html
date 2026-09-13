@@ -1108,31 +1108,61 @@ function getMegaForms(baseName) {
       for (let i = 0; i < password.length; i++) hash = ((hash << 5) + hash + password.charCodeAt(i)) & 0xffffffff;
       return Promise.resolve(hash.toString(36));
     }
+    function safeUserId(id) { return id.replace(/[^a-zA-Z0-9_-]/g, '').substring(0, 32); }
+    function userApiUrl() { return '/api/user/' + safeUserId(authUserId); }
+    function userApiUrlForLogin(username) { return '/api/user/' + safeUserId(username); }
+    async function fetchFromApi(path, options) {
+      try {
+        const resp = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json', ...(options?.headers || {}) } });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        return await resp.json();
+      } catch(e) { console.error('API error:', e); return null; }
+    }
     function storageKey(key) { return authUserId ? key + '-' + authUserId : key; }
     function showLoginError(msg) { const el = $('loginError'); if (el) el.textContent = msg; }
     function saveAllToServer() {
       if (!authUserId) return;
+      const memo = $('partyMemo')?.value || '';
       try {
-        const memo = $('partyMemo')?.value || '';
         localStorage.setItem(storageKey('party-lab'), JSON.stringify(party));
         localStorage.setItem(storageKey('party-lab-saved'), JSON.stringify(savedParties));
         localStorage.setItem(storageKey('party-lab-battle-logs'), JSON.stringify(battleLogs));
         localStorage.setItem(storageKey('party-lab-party-name'), currentPartyName);
         localStorage.setItem(storageKey('party-lab-memo'), memo);
       } catch(e) { console.error('save failed:', e); }
+      fetchFromApi(userApiUrl(), {
+        method: 'POST',
+        body: JSON.stringify({ party, savedParties, battleLogs, partyName: currentPartyName, memo })
+      });
     }
     async function loadAllFromServer() {
       if (!authUserId) return false;
+      let fromApi = false;
       try {
-        party = JSON.parse(localStorage.getItem(storageKey('party-lab')) || '[]').map(normalizeMember);
-        savedParties = JSON.parse(localStorage.getItem(storageKey('party-lab-saved')) || '[]');
-        battleLogs.splice(0, battleLogs.length, ...(JSON.parse(localStorage.getItem(storageKey('party-lab-battle-logs')) || '[]')));
-        currentPartyName = localStorage.getItem(storageKey('party-lab-party-name')) || '';
-        if ($('partyName')) $('partyName').value = currentPartyName;
-        const memo = localStorage.getItem(storageKey('party-lab-memo')) || '';
-        if ($('partyMemo')) $('partyMemo').value = memo;
-        return true;
-      } catch(e) { console.error('load error:', e); return false; }
+        const apiData = await fetchFromApi(userApiUrl());
+        if (apiData && apiData.party !== undefined) {
+          party = (apiData.party || []).map(normalizeMember);
+          savedParties = apiData.savedParties || [];
+          battleLogs.splice(0, battleLogs.length, ...(apiData.battleLogs || []));
+          currentPartyName = apiData.partyName || '';
+          if ($('partyName')) $('partyName').value = currentPartyName;
+          const memo = apiData.memo || '';
+          if ($('partyMemo')) $('partyMemo').value = memo;
+          fromApi = true;
+        }
+      } catch(e) { console.error('API load error:', e); }
+      if (!fromApi) {
+        try {
+          party = JSON.parse(localStorage.getItem(storageKey('party-lab')) || '[]').map(normalizeMember);
+          savedParties = JSON.parse(localStorage.getItem(storageKey('party-lab-saved')) || '[]');
+          battleLogs.splice(0, battleLogs.length, ...(JSON.parse(localStorage.getItem(storageKey('party-lab-battle-logs')) || '[]')));
+          currentPartyName = localStorage.getItem(storageKey('party-lab-party-name')) || '';
+          if ($('partyName')) $('partyName').value = currentPartyName;
+          const memo = localStorage.getItem(storageKey('party-lab-memo')) || '';
+          if ($('partyMemo')) $('partyMemo').value = memo;
+        } catch(e) { console.error('load error:', e); return false; }
+      }
+      return true;
     }
     async function loginUser() {
       const username = $('loginUsername')?.value.trim();
@@ -1141,12 +1171,21 @@ function getMegaForms(baseName) {
       try {
         const accounts = JSON.parse(localStorage.getItem('party-accounts') || '{}');
         const account = accounts[username];
-        if (!account) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
-        const hash = await hashPassword(password);
-        if (hash !== account.hash) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+        let hash = await hashPassword(password);
+        if (!account) {
+          const apiData = await fetchFromApi(userApiUrlForLogin(username));
+          if (apiData && apiData.account) {
+            if (apiData.account.hash === hash) {
+              accounts[username] = apiData.account;
+              localStorage.setItem('party-accounts', JSON.stringify(accounts));
+            } else { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+          } else { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+        } else {
+          if (hash !== account.hash) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+        }
         authUserId = username;
         localStorage.setItem('party-current-user', username);
-         $('userStatus').textContent = 'ユーザー名：' + username;
+        $('userStatus').textContent = 'ユーザー名：' + username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
         $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden');
@@ -1165,8 +1204,13 @@ function getMegaForms(baseName) {
         const accounts = JSON.parse(localStorage.getItem('party-accounts') || '{}');
         if (accounts[username]) { showLoginError('このユーザー名は既に使用されています。'); return; }
         const hash = await hashPassword(password);
-        accounts[username] = { hash: hash, createdAt: new Date().toISOString() };
+        const account = { hash: hash, createdAt: new Date().toISOString() };
+        accounts[username] = account;
         localStorage.setItem('party-accounts', JSON.stringify(accounts));
+        fetchFromApi(userApiUrlForLogin(username), {
+          method: 'POST',
+          body: JSON.stringify({ account: account })
+        });
         showLoginError('登録成功！ログインしてください。');
         if ($('registerTab')) $('registerTab').click();
       } catch(e) { showLoginError('登録に失敗しました。' + e.message); }
@@ -1949,7 +1993,7 @@ function getMegaForms(baseName) {
       fieldBody += `<tr><th>ランク</th><td>${rankVal || '—'}</td></tr>`;
       fieldBody += `<tr><th>トップ技は採用率の高い技</th><td>${topMove ? (MOVE_EN_TO_JA[topMove.name] || topMove.name) + ' (' + (topMove.percentage || '') + ')' : '—'}</td></tr>`;
       fieldBody += `<tr><th>トップアイテムは採用率の高い持ち物</th><td>${topItem ? (ITEM_EN_TO_JA[topItem.name] || UNKNOWN_ITEM_MAP[topItem.name] || topItem.name) + ' (' + (topItem.percentage || '') + ')' : '―'}</td></tr>`;
-      fieldBody += `<tr><th>トップ能力は採用率の高い特性</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
+      fieldBody += `<tr><th>トップ特性は採用率の高い特性</th><td>${topAbility ? (ABILITY_EN_TO_JA[topAbility.name] || topAbility.name) + ' (' + (topAbility.percentage || '') + ')' : '―'}</td></tr>`;
       fieldBody += `<tr><th>トップ相棋者は採用率の高い同じチームのポケモン</th><td>${topMateJa}</td></tr>`;
       fieldBody += `<tr><td colspan="2"><div style="font-weight:700;font-size:11px;color:var(--muted);padding:4px 0 2px 0">基礎ステータス</div></td></tr>`;
       statOrder.forEach(k => {
