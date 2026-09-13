@@ -209,6 +209,14 @@
        .team-member-compact { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:4px; padding:4px 6px; background:#faf9f2; flex:0 1 calc(33.333% - 8px); width:calc(33.333% - 8px); max-width:none; min-width:0; box-sizing:border-box; }
        .team-builds-section { margin-top: 12px; max-width: 1000px; margin-left: auto; margin-right: auto; }
        .team-builds-section .panel { max-width: 1000px; width: 100%; }
+      .analytics-stat-table { width:100%; border-collapse:collapse; font-size:11px; }
+      .analytics-stat-table th, .analytics-stat-table td { padding:4px 6px; text-align:left; border-bottom:1px solid var(--line); font:9px 'DM Mono',monospace; }
+      .analytics-stat-table th { color:var(--muted); font-weight:600; }
+      .analytics-stat-table td strong { color:var(--ink); }
+      .analytics-poke-usage { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+      .analytics-poke-usage img { width:24px; height:24px; object-fit:contain; }
+      .analytics-bar { height:12px; background:#dce2d5; border-radius:2px; margin-top:2px; }
+      .analytics-bar i { display:block; height:100%; background:var(--coral); border-radius:2px; }
       .tab-bar { display:flex; gap:4px; border-bottom:2px solid var(--line); margin-bottom: 0; background:white; position:sticky; top:0; z-index:5; }
      .tab-btn { flex:1; padding:10px 14px; border:0; border-bottom:2px solid transparent; background:transparent; font-weight:600; font-size:12px; color:var(--muted); cursor:pointer; transition:.15s; }
      .tab-btn:hover { color:var(--ink); }
@@ -277,10 +285,10 @@
         <button class="text-btn" id="logoutUser" style="font-size:12px;padding:6px 12px;display:none">ログアウト</button>
       </div>
     </header>
-      <section class="hero"><div class="hero-stamp"><div><strong>6</strong>体を選択<br>技を設定<br>診断する</div></div></section>
      <div class="tab-bar" id="tabBar">
        <button class="tab-btn active" data-tab="party">パーティ構築</button>
-       <button class="tab-btn" data-tab="builds">上位構築</button>
+        <button class="tab-btn" data-tab="builds">上位構築</button>
+        <button class="tab-btn" data-tab="analytics">データ分析</button>
      </div>
      <section class="workspace" id="partyWorkspace">
        <div class="panel">
@@ -325,7 +333,26 @@
           <div id="teamBuildsContent"></div>
         </div>
       </div>
-    </section>
+     </section>
+     <section class="team-builds-section hidden" id="analyticsSection">
+       <div class="panel">
+         <div class="panel-head">
+           <div>
+             <div class="eyebrow">ANALYTICS</div>
+             <h2>データ分析</h2>
+             <p id="analyticsSubtitle">pokedb.tokyoのシーズン別ポケモン使用率・持ち物・タイプ・コア出現率</p>
+           </div>
+         </div>
+         <div class="content">
+           <div id="analyticsControls" style="margin-bottom:12px;display:flex;gap:8px;align-items:end">
+             <select id="analyticsSeasonSelect" style="flex:1;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white"></select>
+             <button class="primary-btn" id="loadAnalyticsBtn" style="font-size:11px;padding:8px 12px">分析</button>
+           </div>
+           <p style="font-size:10px;color:var(--muted);margin:0 0 8px">技・能力ポイント・特性・能力補正はpokedb APIで公開されていません。構築記事から確認できます。</p>
+           <div id="analyticsContent"></div>
+         </div>
+       </div>
+     </section>
     </div>
   </main>
   <button class="chat-fab" id="chatFab" title="チャット">💬</button>
@@ -1518,10 +1545,12 @@ function getMegaForms(baseName) {
     function switchTab(tab) {
       const partyWorkspace = $('partyWorkspace');
       const teamBuildsSection = $('teamBuildsSection');
+      const analyticsSection = $('analyticsSection');
       const tabButtons = document.querySelectorAll('.tab-btn');
       tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
-      if (partyWorkspace) partyWorkspace.classList.toggle('hidden', tab === 'builds');
-      if (teamBuildsSection) teamBuildsSection.classList.toggle('hidden', tab === 'party');
+      if (partyWorkspace) partyWorkspace.classList.toggle('hidden', tab !== 'party');
+      if (teamBuildsSection) teamBuildsSection.classList.toggle('hidden', tab !== 'builds');
+      if (analyticsSection) analyticsSection.classList.toggle('hidden', tab !== 'analytics');
       if (tab === 'builds') {
         const savedSeason = localStorage.getItem('team-builds-season');
         const savedScroll = parseInt(localStorage.getItem('team-builds-scroll') || '0', 10);
@@ -1543,11 +1572,159 @@ function getMegaForms(baseName) {
         const seasonSelect = $('seasonSelect');
         if (seasonSelect) localStorage.setItem('team-builds-season', seasonSelect.value);
       }
+      if (tab === 'analytics') {
+        setupAnalyticsSeasonSelect();
+        loadAnalytics();
+      }
     }
     const tabButtons = document.querySelectorAll('.tab-btn');
     tabButtons.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
     if ($('seasonSelect')) $('seasonSelect').addEventListener('change', loadTeams);
     if ($('loadTeamsBtn')) $('loadTeamsBtn').addEventListener('click', loadTeams);
+
+    /* ---- Analytics ---- */
+    function setupAnalyticsSeasonSelect() {
+      const seasonSelect = $('analyticsSeasonSelect');
+      if (!seasonSelect || !POKEDB_TEAMS.seasons.length) return;
+      const saved = localStorage.getItem('analytics-season');
+      seasonSelect.innerHTML = POKEDB_TEAMS.seasons.map(s => `<option value="${s.season}|${s.rule}">${s.season} [${s.rule}]</option>`).join('');
+      if (saved) {
+        const opt = Array.from(seasonSelect.options).find(o => o.value === saved);
+        if (opt) seasonSelect.value = saved;
+      }
+    }
+    function loadAnalytics() {
+      const seasonSelect = $('analyticsSeasonSelect');
+      const content = $('analyticsContent');
+      if (!seasonSelect || !POKEDB_TEAMS.seasons.length || !content) return;
+      const val = seasonSelect.value;
+      const [season, rule] = val.split('|');
+      const seasonData = POKEDB_TEAMS.seasons.find(s => s.season === season && s.rule === rule);
+      if (!seasonData) return;
+      const teams = seasonData.teams;
+      const teamCount = teams.length;
+      const updatedAt = seasonData.updatedAt || '';
+      $('analyticsSubtitle').textContent = `更新日: ${updatedAt}`;
+      const ruleEn = seasonData.ruleEn || (seasonData.rule === 'シングル' ? 'single' : 'double');
+      const seasonNum = seasonData.seasonNumber || parseInt(season.replace('M-', ''));
+      const pokedbUrl = `${POKEDB_BASE_URL}/opendata/s${seasonNum}_${ruleEn}_ranked_teams.json`;
+      const articleUrl = `${POKEDB_BASE_URL}/article/search?rule=${ruleEn === 'single' ? '0' : '1'}&season=${seasonData.season}`;
+
+      const pokemonCounts = new Map();
+      const itemCounts = new Map();
+      const typeCounts = new Map();
+      const formCounts = new Map();
+      const teraCounts = new Map();
+      const cooccurrence = new Map();
+      teams.forEach(t => {
+        const names = [];
+        t.team.forEach(m => {
+          if (!m.name) return;
+          names.push(m.name);
+          pokemonCounts.set(m.name, (pokemonCounts.get(m.name) || 0) + 1);
+          if (m.item) itemCounts.set(m.item, (itemCounts.get(m.item) || 0) + 1);
+          if (m.type1) typeCounts.set(m.type1, (typeCounts.get(m.type1) || 0) + 1);
+          if (m.type2) typeCounts.set(m.type2, (typeCounts.get(m.type2) || 0) + 1);
+          if (m.form) formCounts.set(m.form, (formCounts.get(m.form) || 0) + 1);
+          if (m.terastal) teraCounts.set(m.terastal, (teraCounts.get(m.terastal) || 0) + 1);
+        });
+        for (let i = 0; i < names.length; i++) {
+          for (let j = i + 1; j < names.length; j++) {
+            const pair = [names[i], names[j]].sort().join(' / ');
+            cooccurrence.set(pair, (cooccurrence.get(pair) || 0) + 1);
+          }
+        }
+      });
+
+      const sortByCount = (m) => [...m.entries()].sort((a, b) => b[1] - a[1]);
+      const pokemonSorted = sortByCount(pokemonCounts);
+      const itemSorted = sortByCount(itemCounts);
+      const typeSorted = sortByCount(typeCounts);
+      const formSorted = sortByCount(formCounts);
+      const teraSorted = sortByCount(teraCounts);
+      const cooccSorted = sortByCount(cooccurrence);
+
+      const pct = (count) => ((count / teamCount * 100).toFixed(1)) + '%';
+
+      let html = `<div style="margin-bottom:8px;display:flex;gap:12px;align-items:center;font-size:10px;color:var(--muted)">
+        <a href="${pokedbUrl}" target="_blank" rel="noopener" style="color:var(--coral)">データソース (pokedb.tokyo) ↗</a>
+        <a href="${articleUrl}" target="_blank" rel="noopener" style="color:var(--coral)">構築記事検索 ↗</a>
+      </div>`;
+
+      html += `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:12px">
+        <div><div style="font-size:11px;color:var(--muted)">チーム数</div><div style="font-size:18px;font-weight:700">${teamCount}編</div></div>
+        <div><div style="font-size:11px;color:var(--muted)">種類数（ポケモン）</div><div style="font-size:18px;font-weight:700">${pokemonSorted.length}種</div></div>
+        <div><div style="font-size:11px;color:var(--muted)">種類数（アイテム）</div><div style="font-size:18px;font-weight:700">${itemSorted.length}種</div></div>
+      </div>`;
+
+      html += `<div class="section-label">ポケモン使用率 <span>上位10</span></div>`;
+      html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>ポケモン</th><th>出現数</th><th>出現率</th></tr></thead><tbody>`;
+      pokemonSorted.slice(0, 10).forEach(([name, count], i) => {
+        const local = findPokemonLocal(name);
+        const icon = local?.icon ? `<img src="${local.icon}" alt="" style="width:24px;height:24px;object-fit:contain">` : '<span style="opacity:.3">★</span>';
+        html += `<tr><td>${i + 1}</td><td>${icon} ${name}</td><td>${count}</td><td>${pct(count)}</td></tr>`;
+      });
+      html += `</tbody></table>`;
+
+      html += `<div class="section-label" style="margin-top:14px">アイテム使用率 <span>上位10</span></div>`;
+      html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>アイテム</th><th>使用数</th><th>使用率</th></tr></thead><tbody>`;
+      itemSorted.slice(0, 10).forEach(([name, count], i) => {
+        const itemIcon = itemMapGet(name);
+        html += `<tr><td>${i + 1}</td><td>${itemIcon} ${name}</td><td>${count}</td><td>${pct(count)}</td></tr>`;
+      });
+      html += `</tbody></table>`;
+
+      html += `<div class="section-label" style="margin-top:14px">タイプ出現率 <span>全種類</span></div>`;
+      html += `<table class="analytics-stat-table"><thead><tr><th>タイプ</th><th>出現数</th><th>出現率</th></tr></thead><tbody>`;
+      typeSorted.forEach(([name, count]) => {
+        html += `<tr><td><span class="type-chip" style="--tc:${typeColor(name)};--tx:${chipTextColor(typeColor(name))}">${name}</span></td><td>${count}</td><td>${pct(count)}</td></tr>`;
+      });
+      html += `</tbody></table>`;
+
+      if (formSorted.length > 1) {
+        html += `<div class="section-label" style="margin-top:14px">フォルム出現率 <span>全種類</span></div>`;
+        html += `<table class="analytics-stat-table"><thead><tr><th>フォルム</th><th>出現数</th><th>出現率</th></tr></thead><tbody>`;
+        formSorted.forEach(([name, count]) => {
+          html += `<tr><td>${name}</td><td>${count}</td><td>${pct(count)}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+
+      if (teraSorted.length > 0) {
+        html += `<div class="section-label" style="margin-top:14px">テラスタイプ <span>上位10</span></div>`;
+        html += `<table class="analytics-stat-table"><thead><tr><th>タイプ</th><th>出現数</th><th>出現率</th></tr></thead><tbody>`;
+        teraSorted.slice(0, 10).forEach(([name, count]) => {
+          html += `<tr><td><span class="type-chip" style="--tc:${typeColor(name)};--tx:${chipTextColor(typeColor(name))}">${name}</span></td><td>${count}</td><td>${pct(count)}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+
+      if (cooccSorted.length > 0) {
+        html += `<div class="section-label" style="margin-top:14px">同チーム出現率 <span>上位10</span></div>`;
+        html += `<table class="analytics-stat-table"><thead><tr><th>ポケモンペア</th><th>出現数</th><th>出現率</th></tr></thead><tbody>`;
+        cooccSorted.slice(0, 10).forEach(([pair, count]) => {
+          html += `<tr><td>${pair}</td><td>${count}</td><td>${pct(count)}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+
+      content.innerHTML = html;
+    }
+
+    function itemMapGet(name) {
+      const found = items.find(entry => entry.name === name);
+      if (found && found.iconUrl) {
+        const url = found.iconUrl.replace('images/items/', '/images/items/');
+        return `<img src="${url}" alt="" style="width:14px;height:14px;object-fit:contain;vertical-align:middle">`;
+      }
+      return '';
+    }
+
+    if ($('analyticsSeasonSelect')) $('analyticsSeasonSelect').addEventListener('change', () => {
+        localStorage.setItem('analytics-season', $('analyticsSeasonSelect').value);
+        loadAnalytics();
+      });
+    if ($('loadAnalyticsBtn')) $('loadAnalyticsBtn').addEventListener('click', loadAnalytics);
 
     try { render(); } catch(e) { console.error('Render error:', e); const el = document.getElementById('errorDisplay'); if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); } }
 
