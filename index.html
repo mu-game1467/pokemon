@@ -1207,10 +1207,11 @@ function getMegaForms(baseName) {
         const account = { hash: hash, createdAt: new Date().toISOString() };
         accounts[username] = account;
         localStorage.setItem('party-accounts', JSON.stringify(accounts));
-        fetchFromApi(userApiUrlForLogin(username), {
+        const apiResult = await fetchFromApi(userApiUrlForLogin(username), {
           method: 'POST',
           body: JSON.stringify({ account: account })
         });
+        if (!apiResult) console.error('Failed to sync account to server');
         showLoginError('登録成功！ログインしてください。');
         if ($('registerTab')) $('registerTab').click();
       } catch(e) { showLoginError('登録に失敗しました。' + e.message); }
