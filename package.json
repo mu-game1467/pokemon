@@ -9,7 +9,9 @@
     "test:unit": "jest",
     "test:ui": "playwright test",
     "test:ui:headed": "playwright test --headed",
-    "test:ci": "jest && playwright test --reporter=dot"
+    "test:ci": "jest && playwright test --reporter=dot",
+    "scrape:mc": "node scripts/scrape-gamewith-mc.js",
+    "fetch-icons": "node scripts/fetch-item-icons.js"
   },
   "dependencies": {
     "express": "^4.21.2"

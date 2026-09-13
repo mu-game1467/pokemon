@@ -285,4 +285,8 @@ async function scrapeAll() {
   console.log(`Pokemon: ${pokemon.length}, Items: ${items.length}`);
 }
 
-scrapeAll().catch(err => { console.error(err); process.exitCode = 1; });
+module.exports = { ITEM_URLS, POKEMON_URLS };
+
+if (require.main === module) {
+  scrapeAll().catch(err => { console.error(err); process.exitCode = 1; });
+}

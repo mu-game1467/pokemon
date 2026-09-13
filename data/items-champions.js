@@ -892,61 +892,61 @@ window.ITEM_DATA = {
     },
     {
       "name": "ながねぎ",
-      "iconUrl": "images/items/i_item259_2.png",
+      "iconUrl": "images/items/i_item241.png",
       "category": "どうぐ",
       "description": "カモネギ ネギガナイトが きゅうしょアップ ×2になる。"
     },
     {
       "name": "ゴツゴツメット",
-      "iconUrl": "images/items/i_item540.png",
+      "iconUrl": "images/items/i_item283.png",
       "category": "どうぐ",
       "description": "接触技を受けると 相手の最大HPの 1/8のダメージを与える。"
     },
     {
       "name": "ふうせん",
-      "iconUrl": "images/items/i_item541.png",
+      "iconUrl": "images/items/i_item284.png",
       "category": "どうぐ",
       "description": "地面にいないことになり じめんタイプの技 まきびし どくびし ねばねばネット状態が効かない。 技のダメージを受けると その対戦中は 無くなる。"
     },
     {
       "name": "レッドカード",
-      "iconUrl": "images/items/i_item542.png",
+      "iconUrl": "images/items/i_item286.png",
       "category": "どうぐ",
       "description": "技でダメージを与えてきた相手を交代させる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "ノーマルジュエル",
-      "iconUrl": "images/items/i_item564.png",
+      "iconUrl": "images/items/i_item291.png",
       "category": "どうぐ",
       "description": "ノーマルタイプの技の威力が 1.3倍になる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "グランドコート",
-      "iconUrl": "images/items/i_item879.png",
+      "iconUrl": "images/items/i_item299.png",
       "category": "どうぐ",
       "description": "技や特性でフィールドを張った時 継続ターンが3ターン長くなる。 (合計8ターン)"
     },
     {
       "name": "エレキシード",
-      "iconUrl": "images/items/i_item881.png",
+      "iconUrl": "images/items/i_item301.png",
       "category": "どうぐ",
       "description": "エレキフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "サイコシード",
-      "iconUrl": "images/items/i_item882.png",
+      "iconUrl": "images/items/i_item302.png",
       "category": "どうぐ",
       "description": "ミストフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "ミストシード",
-      "iconUrl": "images/items/i_item883.png",
+      "iconUrl": "images/items/i_item303.png",
       "category": "どうぐ",
       "description": "サイコフィールド状態の時に 特防が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
     {
       "name": "グラスシード",
-      "iconUrl": "images/items/i_item884.png",
+      "iconUrl": "images/items/i_item304.png",
       "category": "どうぐ",
       "description": "グラスフィールド状態の時に 防御が1段階上がる。 1度使うと その対戦中は 無くなる。"
     },
