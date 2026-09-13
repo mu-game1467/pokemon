@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const DATA_DIR = process.env.VERCEL ? path.join(os.tmpdir(), 'pokemon-champions-users') : path.join(os.homedir(), '.pokemon-champions-data', 'users');
+const DATA_DIR = path.join(os.tmpdir(), 'pokemon-champions-users');
 
 if (!fs.existsSync(DATA_DIR)) {
   try {
@@ -22,7 +22,7 @@ function getUserFilePath(userId) {
 
 module.exports = async function handler(req, res) {
   try {
-  const userId = safeUserId((req.query.userId || req.params?.userId || '') + '');
+  const userId = safeUserId((req.query?.userId || req.params?.userId || '') + '');
 
   if (!userId) {
     if (res.status) res.status(400);
@@ -55,13 +55,14 @@ module.exports = async function handler(req, res) {
   } else if (req.method === 'POST') {
     let existing = {};
     try { existing = fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf8')) : {}; } catch(e) {}
+    const body = req.body || {};
     const data = {
-      party: req.body.party !== undefined ? req.body.party : (existing.party || []),
-      savedParties: req.body.savedParties !== undefined ? req.body.savedParties : (existing.savedParties || []),
-      battleLogs: req.body.battleLogs !== undefined ? req.body.battleLogs : (existing.battleLogs || []),
-      memo: req.body.memo !== undefined ? req.body.memo : (existing.memo || ''),
-      partyName: req.body.partyName !== undefined ? req.body.partyName : (existing.partyName || ''),
-      account: req.body.account !== undefined ? req.body.account : (existing.account || null),
+      party: body.party !== undefined ? body.party : (existing.party || []),
+      savedParties: body.savedParties !== undefined ? body.savedParties : (existing.savedParties || []),
+      battleLogs: body.battleLogs !== undefined ? body.battleLogs : (existing.battleLogs || []),
+      memo: body.memo !== undefined ? body.memo : (existing.memo || ''),
+      partyName: body.partyName !== undefined ? body.partyName : (existing.partyName || ''),
+      account: body.account !== undefined ? body.account : (existing.account || null),
       updatedAt: new Date().toISOString()
     };
     try {
