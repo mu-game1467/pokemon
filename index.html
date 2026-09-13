@@ -369,8 +369,9 @@
    <script src="data/moves-champions.js"></script>
    <script src="data/pokemon-champions.js"></script>
    <script src="data/items-champions.js"></script>
-   <script src="data/pokedb-teams.js"></script>
-  <script>
+    <script src="data/pokedb-teams.js"></script>
+    <script src="data/showdown-name-map.js"></script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
       console.log('DOMContentLoaded fired');
       console.log('search element:', document.getElementById('search'));
@@ -1664,15 +1665,17 @@ function getMegaForms(baseName) {
         grouped[r.category].push(r);
       });
       const pk = cbdPokemonCache?.pokemon?.find(p => p.showdownId === showdownId);
+      const jaName = window.SHOWDOWN_TO_JA?.[showdownId] || pkName;
       const sprite = pk?.summary?.sprite;
       const spriteUrl = sprite ? `${CBD_API_BASE}/${sprite}` : null;
       const types = pk?.summary?.types || [];
       let html = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
         ${spriteUrl ? `<img src="${spriteUrl}" alt="${pkName}" style="width:64px;height:64px;object-fit:contain">` : '<span style="font-size:40px">★</span>'}
         <div>
-          <div style="font-size:16px;font-weight:700">${pkName}</div>
+          <div style="font-size:16px;font-weight:700">${jaName}</div>
           <div style="font-size:11px;color:var(--muted)">${format} / ${season || 'Current'}</div>
           <div style="display:flex;gap:2px;margin-top:4px">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
+          <div style="font-size:10px;color:var(--muted)">${pkName}</div>
         </div>
       </div>`;
       $('analyticsSubtitle').textContent = format + ' / ' + (season || 'Current') + ' の使用率';
@@ -1705,10 +1708,12 @@ function getMegaForms(baseName) {
           html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>ポケモン</th></tr></thead><tbody>`;
           entries.slice(0, 10).forEach((row, i) => {
             const mate = cbdPokemonCache?.pokemon?.find(p => p.name === row.name);
+            const mateShowdownId = mate?.showdownId;
+            const jaMate = window.SHOWDOWN_TO_JA?.[mateShowdownId] || row.name;
             const mateSprite = mate?.summary?.sprite;
             html += `<tr>
               <td>${i + 1}</td>
-              <td>${mateSprite ? `<img src="${CBD_API_BASE}/${mateSprite}" alt="${row.name}" style="width:24px;height:24px;object-fit:contain;vertical-align:middle">` : '★'} ${row.name}</td>
+              <td>${mateSprite ? `<img src="${CBD_API_BASE}/${mateSprite}" alt="${jaMate}" style="width:24px;height:24px;object-fit:contain;vertical-align:middle">` : '★'} ${jaMate}</td>
             </tr>`;
           });
           html += `</tbody></table>`;
