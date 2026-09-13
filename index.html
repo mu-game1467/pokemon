@@ -342,18 +342,20 @@
               <p id="analyticsSubtitle">championsbattledata.comのポケモン別使用率</p>
             </div>
           </div>
-          <div class="content">
+           <div class="content">
             <div id="analyticsControls" style="margin-bottom:12px;display:flex;gap:8px;align-items:end">
-              <select id="analyticsPokemonSelect" style="flex:2;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white"></select>
+              <div style="flex:2;position:relative">
+                <input type="text" id="analyticsPokemonInput" list="analyticsPokemonDatalist" placeholder="ポケモン検索…" style="width:100%;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white">
+                <datalist id="analyticsPokemonDatalist"></datalist>
+              </div>
               <select id="analyticsFormatSelect" style="flex:1;padding:7px 9px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:white">
                 <option value="Singles">シングル</option>
                 <option value="Doubles">ダブル</option>
               </select>
-              <button class="primary-btn" id="loadAnalyticsBtn" style="font-size:11px;padding:8px 12px">分析</button>
             </div>
-            <p style="font-size:10px;color:var(--muted);margin:0 0 8px">技・持ち物・特性・性格・EV配分・相棋者の使用率を表示。データはchampionsbattledata.comから取得。</p>
+            <p style="font-size:10px;color:var(--muted);margin:0 0 8px">技・持ち物・能力・性格・能力ポイント・同じチームのポケモンの使用率を表示。データはchampionsbattledata.comから取得。</p>
             <div id="analyticsContent"></div>
-          </div>
+           </div>
         </div>
       </section>
     </div>
@@ -1578,7 +1580,7 @@ function getMegaForms(baseName) {
         if (seasonSelect) localStorage.setItem('team-builds-season', seasonSelect.value);
       }
       if (tab === 'analytics') {
-        setupAnalyticsPokemonSelect();
+        setupAnalyticsPokemonInput();
       }
       if (tab === 'damage') {
         fillDamageCalcSelects();
@@ -1613,34 +1615,53 @@ function getMegaForms(baseName) {
       return data;
     }
 
-    async function setupAnalyticsPokemonSelect() {
-      const select = $('analyticsPokemonSelect');
-      if (!select) return;
+    async function setupAnalyticsPokemonInput() {
+      const input = $('analyticsPokemonInput');
+      const datalist = $('analyticsPokemonDatalist');
+      if (!input || !datalist) return;
       const savedId = localStorage.getItem('analytics-pokemon') || '';
-      select.innerHTML = '<option value="">— ポケモンを選択 —</option>';
+      datalist.innerHTML = '';
       try {
         const data = await fetchCbdIndex();
         const list = (data.pokemon || []).sort((a, b) => a.name.localeCompare(b.name));
-        select.innerHTML += list.map(p => `<option value="${p.showdownId}">${p.name}</option>`).join('');
-        if (savedId && list.some(p => p.showdownId === savedId)) { select.value = savedId; loadAnalyticsData(); }
+        datalist.innerHTML = list.map(p => `<option value="${p.showdownId}" label="${p.name}">${p.name}</option>`).join('');
+        if (savedId && list.some(p => p.showdownId === savedId)) {
+          input.value = list.find(p => p.showdownId === savedId)?.name || '';
+          loadAnalyticsData();
+        }
       } catch(e) {
         console.error('CBD index fetch failed:', e);
-        select.innerHTML = '<option value="">データを読み込めませんでした — 再度お試しください</option>';
+        datalist.innerHTML = '<option>データを読み込めませんでした</option>';
       }
     }
 
+    function getAnalyticsShowdownId() {
+      const input = $('analyticsPokemonInput');
+      if (!input) return '';
+      const val = input.value.trim();
+      const cached = cbdPokemonCache?.pokemon;
+      if (cached) {
+        const byId = cached.find(p => p.showdownId === val);
+        if (byId) return val;
+        const byName = cached.find(p => p.name.toLowerCase() === val.toLowerCase());
+        if (byName) return byName.showdownId;
+      }
+      return val;
+    }
+
     async function loadAnalyticsData() {
-      const select = $('analyticsPokemonSelect');
+      const input = $('analyticsPokemonInput');
       const formatSelect = $('analyticsFormatSelect');
       const content = $('analyticsContent');
-      if (!select || !formatSelect || !content) return;
-      const showdownId = select.value;
+      if (!input || !formatSelect || !content) return;
+      const showdownId = getAnalyticsShowdownId();
       const format = formatSelect.value;
       if (!showdownId) {
-        content.innerHTML = '<div style="padding:20px;color:var(--muted)">ポケモンを選択して「分析」をクリックしてください。</div>';
+        content.innerHTML = '<div style="padding:20px;color:var(--muted)">ポケモンを選択または入力してください。</div>';
         return;
       }
       localStorage.setItem('analytics-pokemon', showdownId);
+      localStorage.setItem('analytics-format', format);
       content.innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted)">読み込み中…</div>';
       try {
         const response = await fetch(`${CBD_API_BASE}/api/battle/${format}/${showdownId}`);
@@ -1657,7 +1678,7 @@ function getMegaForms(baseName) {
       const content = $('analyticsContent');
       if (!content) return;
       const { pokemon: pkName, showdownId, format, season, rows } = data;
-      const catLabels = {'move':'技','held_item':'持ち物','ability':'特性','stat_alignment':'性格','stat_points':'EV配分','teammate':'相棋者'};
+      const catLabels = {'move':'技','held_item':'持ち物','ability':'能力','stat_alignment':'性格','stat_points':'能力ポイント','teammate':'同じチームのポケモン'};
       const catOrder = ['move','held_item','ability','stat_alignment','stat_points','teammate'];
       const grouped = {};
       (rows || []).forEach(r => {
@@ -1669,15 +1690,24 @@ function getMegaForms(baseName) {
       const sprite = pk?.summary?.sprite;
       const spriteUrl = sprite ? `${CBD_API_BASE}/${sprite}` : null;
       const types = pk?.summary?.types || [];
+      const stats = pk?.summary?.stats || {};
+      const statNames = {'hp':'HP','attack':'攻','defense':'防','special-attack':'特攻','special-defense':'特防','speed':'速'};
+      const statOrder = ['hp','attack','defense','special-attack','special-defense','speed'];
+      const totalStat = statOrder.reduce((s, k) => s + (stats[k] || 0), 0);
       let html = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
         ${spriteUrl ? `<img src="${spriteUrl}" alt="${pkName}" style="width:64px;height:64px;object-fit:contain">` : '<span style="font-size:40px">★</span>'}
         <div>
           <div style="font-size:16px;font-weight:700">${jaName}</div>
-          <div style="font-size:11px;color:var(--muted)">${format} / ${season || 'Current'}</div>
+          <div style="font-size:12px;color:var(--muted)">${pkName}</div>
           <div style="display:flex;gap:2px;margin-top:4px">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
-          <div style="font-size:10px;color:var(--muted)">${pkName}</div>
         </div>
       </div>`;
+      if (stats && Object.keys(stats).length > 0) {
+        html += `<table class="analytics-stat-table" style="margin-bottom:12px">
+          <thead><tr>${statOrder.map(k => `<th>${statNames[k] || k}</th>`).join('')}<th>合計</th></tr></thead>
+          <tbody><tr>${statOrder.map(k => `<td style="font-weight:600">${stats[k] || 0}</td>`).join('')}<td style="font-weight:600">${totalStat}</td></tr></tbody>
+        </table>`;
+      }
       $('analyticsSubtitle').textContent = format + ' / ' + (season || 'Current') + ' の使用率';
       catOrder.forEach(cat => {
         if (!grouped[cat]) return;
@@ -1701,6 +1731,24 @@ function getMegaForms(baseName) {
               <td>${row.sp_def_points || 0}</td>
               <td>${row.speed_points || 0}</td>
               <td>${row.percentage || ''}</td>
+            </tr>`;
+          });
+          html += `</tbody></table>`;
+        } else if (cat === 'held_item') {
+          html += `<table class="analytics-stat-table"><thead><tr><th>#</th><th>名前</th><th>使用率</th></tr></thead><tbody>`;
+          entries.slice(0, 10).forEach((row, i) => {
+            const pct = row.percentage_value || 0;
+            const itemName = row.name || '';
+            const itemIconUrl = `${CBD_API_BASE}/pokemon_champions_assets/items/${encodeURIComponent(itemName)}.png`;
+            html += `<tr>
+              <td>${i + 1}</td>
+              <td>${itemName ? `<img src="${itemIconUrl}" alt="${itemName}" style="width:18px;height:18px;object-fit:contain;vertical-align:middle;margin-right:4px">${itemName}` : 'ー'}</td>
+              <td>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="analytics-bar" style="flex:1;max-width:120px"><i style="width:${Math.min(100, pct)}%"></i></div>
+                  <span style="font-family:'DM Mono',monospace;font-size:10px">${row.percentage || ''}</span>
+                </div>
+              </td>
             </tr>`;
           });
           html += `</tbody></table>`;
@@ -1746,20 +1794,25 @@ function getMegaForms(baseName) {
       content.innerHTML = html;
     }
 
-     if ($('loadAnalyticsBtn')) $('loadAnalyticsBtn').addEventListener('click', loadAnalyticsData);
-     if ($('analyticsPokemonSelect')) {
-       $('analyticsPokemonSelect').addEventListener('change', () => {
-         const val = $('analyticsPokemonSelect').value;
-         if (val) { loadAnalyticsData(); }
-         else { $('analyticsContent').innerHTML = '<div style="padding:20px;color:var(--muted)">ポケモンを選択してください。</div>'; }
-       });
-     }
+      if ($('analyticsPokemonInput')) {
+        $('analyticsPokemonInput').addEventListener('change', () => {
+          const val = getAnalyticsShowdownId();
+          if (val) { loadAnalyticsData(); }
+          else { $('analyticsContent').innerHTML = '<div style="padding:20px;color:var(--muted)">ポケモンを選択してください。</div>'; }
+        });
+        $('analyticsPokemonInput').addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const val = getAnalyticsShowdownId();
+            if (val) { loadAnalyticsData(); }
+          }
+        });
+      }
       if ($('analyticsFormatSelect')) {
         const savedFormat = localStorage.getItem('analytics-format');
         if (savedFormat) $('analyticsFormatSelect').value = savedFormat;
         $('analyticsFormatSelect').addEventListener('change', () => {
           localStorage.setItem('analytics-format', $('analyticsFormatSelect').value);
-          const val = $('analyticsPokemonSelect') ? $('analyticsPokemonSelect').value : '';
+          const val = getAnalyticsShowdownId();
           if (val) { loadAnalyticsData(); }
         });
       }
