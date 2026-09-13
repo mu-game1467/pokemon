@@ -1891,9 +1891,11 @@ function getMegaForms(baseName) {
       let html = `<div class="static-hero">
         ${spriteUrl ? `<img class="static-hero-sprite" src="${spriteUrl}" alt="${displayJaName}" loading="lazy">` : '<span class="static-hero-sprite-placeholder">★</span>'}
         <div class="static-hero-info">
-          <div class="static-hero-name">${displayJaName}</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div class="static-hero-name">${displayJaName}</div>
+            ${megaForm ? `<button type="button" id="megaToggleBtn" style="padding:2px 8px;border-radius:6px;border:1px solid var(--line);background:${useMega?'var(--coral)':'white'};color:${useMega?'white':'var(--text)'};font-size:11px;cursor:pointer">メガシンカ${useMega?'（ON）':''}</button>` : ''}
+          </div>
           <div class="static-hero-subtitle">${pkName || ''}</div>
-          ${megaForm ? `<button type="button" id="megaToggleBtn" style="margin-top:4px;padding:2px 8px;border-radius:6px;border:1px solid var(--line);background:${useMega?'var(--coral)':'white'};color:${useMega?'white':'var(--text)'};font-size:11px;cursor:pointer">メガシンカ${useMega?'（ON）':''}</button>` : ''}
           <div class="static-hero-types">${types.map(t => `<span class="type-chip" style="--tc:${typeColor(TYPE_EN_TO_JA[t]||t)};--tx:${chipTextColor(typeColor(TYPE_EN_TO_JA[t]||t))}">${TYPE_EN_TO_JA[t]||t}</span>`).join('')}</div>
           <div class="data-table-wrap">
             <table class="analytics-stat-table analytics-field-table">
@@ -1996,6 +1998,12 @@ function getMegaForms(baseName) {
       </div>`;
       $('analyticsSubtitle').textContent = fmtJp + ' / ' + seasonJp + ' の使用率';
       content.innerHTML = html;
+      if ($('megaToggleBtn')) {
+        $('megaToggleBtn').addEventListener('click', () => {
+          megaToggled = !megaToggled;
+          if (lastBattleData) { renderBattleData(lastBattleData); }
+        });
+      }
     }
 
       if ($('analyticsPokemonInput')) {
@@ -2018,12 +2026,6 @@ function getMegaForms(baseName) {
           localStorage.setItem('analytics-format', $('analyticsFormatSelect').value);
           const val = getAnalyticsShowdownId();
           if (val) { loadAnalyticsData(); }
-        });
-      }
-      if ($('megaToggleBtn')) {
-        $('megaToggleBtn').addEventListener('click', () => {
-          megaToggled = !megaToggled;
-          if (lastBattleData) { renderBattleData(lastBattleData); }
         });
       }
 
