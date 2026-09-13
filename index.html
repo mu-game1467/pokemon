@@ -1840,7 +1840,7 @@ function getMegaForms(baseName) {
           const inputKata = romajiToKata(inputLower);
           return jaLower.startsWith(inputLower) ||
                  jaHira.startsWith(inputLower) ||
-                 jaLower.startsWith(inputKata);
+                 (inputKata && jaLower.startsWith(inputKata));
         });
         if (jaMatch) return jaMatch.showdownId;
       }
