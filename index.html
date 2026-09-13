@@ -202,9 +202,11 @@
      .damage-calc-modal.hidden { display:none; }
      .team-builds-modal { position:fixed; inset:0; z-index:15; display:grid; place-items:center; padding:16px; background:rgba(21,35,43,.45); }
      .team-builds-modal.hidden { display:none; }
-     .team-build-card { border:1px solid var(--line); background:white; border-radius:8px; padding:10px; margin-bottom:10px; }
-     .team-build-header { display:flex; gap:8px; align-items:center; font-size:11px; color:var(--muted); margin-bottom:8px; }
-     .team-build-rank { font-family:'DM Mono',monospace; font-weight:700; color:var(--coral); font-size:13px; }
+      .team-build-card { border:1px solid var(--line); background:white; border-radius:8px; padding:10px; margin-bottom:10px; }
+      .team-build-header { display:flex; gap:8px; align-items:center; font-size:11px; color:var(--muted); margin-bottom:8px; }
+      .team-build-rank { font-family:'DM Mono',monospace; font-weight:700; color:var(--coral); font-size:13px; }
+      .team-build-pokemon { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
+      .team-member-compact { display:inline-flex; align-items:center; gap:2px; border:1px solid var(--line); border-radius:4px; padding:2px 6px; background:#faf9f2; min-width:50px; }
      .team-builds-section { margin-top: 12px; }
      .tab-bar { display:flex; gap:4px; border-bottom:2px solid var(--line); margin-bottom: 0; background:white; }
      .tab-btn { flex:1; padding:10px 14px; border:0; border-bottom:2px solid transparent; background:transparent; font-weight:600; font-size:12px; color:var(--muted); cursor:pointer; transition:.15s; }
@@ -1475,16 +1477,17 @@ function getMegaForms(baseName) {
       $('teamBuildsContent').innerHTML = teams.map(t => renderTeamCard(t)).join('');
     }
     function teamMemberHtml(member) {
-      const icon = member.iconUrl ? `<img src="${member.iconUrl}" alt="" style="width:34px;height:34px;object-fit:contain">` : '<span style="font-size:28px;opacity:.3">★</span>';
-      const type1 = member.type1 ? `<span class="type-chip" style="--tc:${typeColor(member.type1)};--tx:${chipTextColor(typeColor(member.type1))}">${member.type1}</span>` : '';
-      const tera = member.terastal ? ` <span style="color:${typeColor(member.terastal)}" title="テラ">${member.terastal}テラ</span>` : '';
-      const itemHtml = member.item ? `<span style="display:inline-flex;align-items:center;gap:3px">${member.itemIconUrl ? '<img src="' + member.itemIconUrl + '" alt="" style="width:20px;height:20px;object-fit:contain">' : '<span style="font-size:16px">・</span>'}<span style="font-size:8px">${member.item}</span></span>` : '<span style="color:var(--muted)">なし</span>';
-      return `<div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">${icon}<div style="flex:1"><div style="font-size:13px;font-weight:700">${member.name}${member.form ? ' (' + member.form + ')' : ''}${tera}</div><div style="display:flex;gap:2px;margin-top:2px">${type1}</div></div><div style="font-size:9px;color:var(--muted);text-align:right;min-width:80px">${itemHtml}</div>`;
+      const icon = member.iconUrl ? `<img src="${member.iconUrl}" alt="" style="width:28px;height:28px;object-fit:contain">` : '<span style="font-size:22px;opacity:.3">★</span>';
+      const itemIcon = member.itemIconUrl ? `<img src="${member.itemIconUrl}" alt="" style="width:16px;height:16px;object-fit:contain;vertical-align:middle;margin-top:-1px">` : '';
+      const memberTitle = `${member.name}${member.form ? ' (' + member.form + ')' : ''}`;
+      const itemTitle = member.item || 'なし';
+      return `<div class="team-member-compact" title="${memberTitle} / ${member.item || ''}">${icon}<span title="${itemTitle}">${itemIcon}<span style="font-size:6px;color:var(--muted)">${member.item ? member.item.substring(0,4) : 'ー'}</span></span></div>`;
     }
 
     function renderTeamCard(t) {
       const ratingText = t.rating ? t.rating.toFixed(0) : '-';
-      return `<div class="team-build-card"><div class="team-build-header"><span class="team-build-rank">#${t.rank}</span><span>レーティング ${ratingText}</span></div>${t.team.map(member => teamMemberHtml(member)).join('')}</div>`;
+      const membersHtml = t.team.map(member => teamMemberHtml(member)).join('');
+      return `<div class="team-build-card"><div class="team-build-header"><span class="team-build-rank">#${t.rank}</span><span>レーティング ${ratingText}</span></div><div class="team-build-pokemon">${membersHtml}</div></div>`;
     }
 
     /* ---- Tab switching ---- */
