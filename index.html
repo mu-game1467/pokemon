@@ -1834,7 +1834,7 @@ function getMegaForms(baseName) {
       const useMega = megaToggled && megaForm;
       const jaName = window.SHOWDOWN_TO_JA?.[showdownId] || pkName;
       let displayJaName = jaName;
-      let displaySpriteUrl = pk?.summary?.sprite;
+      let displaySpriteUrl = pk?.summary?.sprite ? `${CBD_API_BASE}/${pk.summary.sprite}` : null;
       let displayTypes = pk?.summary?.types || [];
       let displayBaseStats = pk?.summary?.baseStats || pk?.summary?.primary || {};
       if (useMega) {
