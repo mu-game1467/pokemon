@@ -1768,9 +1768,10 @@ function getMegaForms(baseName) {
       try {
         const data = await fetchCbdIndex();
         const list = (data.pokemon || []).sort((a, b) => a.name.localeCompare(b.name));
-        datalist.innerHTML = list.map(p => `<option value="${p.showdownId}" label="${p.name}">${p.name}</option>`).join('');
+        datalist.innerHTML = list.map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; return `<option value="${p.showdownId}" label="${ja}">${ja}</option>`; }).join('');
         if (savedId && list.some(p => p.showdownId === savedId)) {
-          input.value = list.find(p => p.showdownId === savedId)?.name || '';
+          const savedPk = list.find(p => p.showdownId === savedId);
+          input.value = window.SHOWDOWN_TO_JA?.[savedPk.showdownId] || savedPk.name;
           loadAnalyticsData();
         }
       } catch(e) {
@@ -1789,6 +1790,8 @@ function getMegaForms(baseName) {
         if (byId) return val;
         const byName = cached.find(p => p.name.toLowerCase() === val.toLowerCase());
         if (byName) return byName.showdownId;
+        const jaMatch = Object.entries(window.SHOWDOWN_TO_JA || {}).find(([,ja]) => ja.toLowerCase() === val.toLowerCase());
+        if (jaMatch) return jaMatch[0];
       }
       return val;
     }
