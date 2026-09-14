@@ -1742,7 +1742,7 @@ function getMegaForms(baseName) {
       const list = (cbdFullList.length ? cbdFullList : (cbdPokemonCache?.pokemon || [])).filter(p => analyticsEntryMatches(p, filterText || ''));
       const top = list.slice(0, 30);
       if (datalist) {
-        datalist.innerHTML = top.map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; const hira = (typeof kataToHira === 'function' ? kataToHira(ja) : ja); return `<option value="${ja} ${hira} ${p.showdownId} ${p.name}">${ja} (${p.showdownId})</option>`; }).join('');
+        datalist.innerHTML = top.map(p => { const ja = window.SHOWDOWN_TO_JA?.[p.showdownId] || p.name; const hira = (typeof kataToHira === 'function' ? kataToHira(ja) : ja); const label = `${ja} ${hira} ${p.showdownId} ${p.name}`; return `<option value="${ja}" data-label="${label}">${label} (${p.showdownId})</option>`; }).join('');
       }
       if (!box) return;
       const q = (filterText || '').trim();
