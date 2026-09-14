@@ -77,6 +77,53 @@ Multi-character entries (longest match first):
 - 2-char: ka, ki, ku, ke, ko, sa, shi, su, se, so, ta, chi, tsu, te, to, na, ni, nu, ne, no, ha, hi, fu, he, ho, ma, mi, mu, me, mo, ya, yu, yo, ra, ri, ru, re, ro, wa, wo, n, ga, gi, gu, ge, go, za, ji, zu, ze, zo, da, de, do, ba, bi, bu, be, bo, pa, pi, pu, pe, po, fa, fi, fe, fo, va, vi, ve, vo
 - 1-char: a, i, u, e, o
 
+## Item / Move / Ability Japanese Names (analytics tab)
+
+- Translation maps in `index.html`: `ITEM_EN_TO_JA`, `MOVE_EN_TO_JA`, `ABILITY_EN_TO_JA`,
+  `NATURE_EN_TO_JA`, `TYPE_EN_TO_JA`, `UNKNOWN_ITEM_MAP` (ja label) / `UNKNOWN_ITEM_EN` (EN for sprite URL).
+- Official JP names sourced from PokeAPI (`/api/v2/item`, `/move`, `/ability` `names.ja`),
+  Yakkun (`data/pokemon-champions.js`), and Bulbapedia (Z-A stones).
+
+## "Unknown Item NNN" Number Mapping (resolved 2026-09-14)
+
+CBD labels unresolvable items as `Unknown Item NNN` where **NNN = Showdown internal item index**
+(`showdown items.ts` `num`). Evidence: Gen4 berry order 184–200 matches canonical numbering,
+seeds 879–882, gems 563–580, and holder behavior matches (564=Normal Gem → Explosion users;
+881=Electric Seed → Electric-type mons; 542=Red Card → bulky mons).
+
+Resolved mapping (index.html `UNKNOWN_ITEM_MAP` / `UNKNOWN_ITEM_EN`):
+
+| NNN | JP | EN |
+|-----|----|----|
+| 185 | イトケのみ | Passho Berry |
+| 188 | ヤチェのみ | Yache Berry |
+| 190 | ビアーのみ | Kebia Berry |
+| 192 | バコウのみ | Coba Berry |
+| 193 | ウタンのみ | Payapa Berry |
+| 194 | タンガのみ | Tanga Berry |
+| 197 | ハバンのみ | Haban Berry |
+| 230 | きあいのハチマキ | Focus Band |
+| 245 | どくバリ | Poison Barb |
+| 253 | かいがらのすず | Shell Bell |
+| 267 | ものしりメガネ | Wise Glasses |
+| 276 | フォーカスレンズ | Zoom Lens |
+| 277 | メトロノーム | Metronome |
+| 278 | くろいてっきゅう | Iron Ball |
+| 542 | レッドカード | Red Card |
+| 544 | しめつけバンド | Binding Band |
+| 564 | ノーマルジュエル | Normal Gem |
+| 881 | エレキシード | Electric Seed |
+
+- Item sprite URL: `${CBD_API_BASE}/pokemon_champions_assets/items/${encodeURIComponent(EN)}.png`
+  (official EN names return 200; `Unknown Item NNN.png` is 404, hence the EN resolution).
+- Official Gen4 berry JP names differ from common misconceptions (PokeAPI authoritative):
+  Kebia=ビアー, Coba=バコウ, Payapa=ウタン, Tanga=タンガ, Haban=ハバン, Wacan=ソクノ, Chilan=ホズ.
+- Z-A / Mega Dimension mega stones follow `<SpeciesJaName>ナイト`
+  (e.g., Froslassite=ユキメノコナイト, Clefablite=ピクシーナイト, Falinksite=タイレーツナイト,
+  Glimmoranite=キラフロルナイト). `Drampanite` remains unresolved (species JP name unverified).
+- Caution: `data/pokemon-champions.js` `id` numbering does NOT always match National Dex
+  numbers (e.g., `n689` = ガメノデス). Prefer name-based lookups over dex-number based ones.
+
 ## kataToHira() Regex
 
 Covers: U+30A1–U+30FA, U+30FE, U+30FF
