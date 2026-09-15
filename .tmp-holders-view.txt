@@ -1,0 +1,16 @@
+﻿start 2026-09-14T11:24:13.2671266+09:00
+pokemon count: 261
+progress 50/261
+ERR https://championsbattledata.com/api/battle/Singles/floette : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Doubles/floette : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Singles/gourgeistsmall : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Doubles/gourgeistsmall : リモート サーバーがエラーを返しました: (404) 見つかりません
+progress 100/261
+ERR https://championsbattledata.com/api/battle/Singles/maushold : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Doubles/maushold : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Singles/gallademega : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Doubles/gallademega : リモート サーバーがエラーを返しました: (404) 見つかりません
+progress 150/261
+ERR https://championsbattledata.com/api/battle/Singles/taurospaldeacombat : リモート サーバーがエラーを返しました: (404) 見つかりません
+ERR https://championsbattledata.com/api/battle/Doubles/taurospaldeacombat : リモート サーバーがエラーを返しました: (404) 見つかりません
+progress 200/261

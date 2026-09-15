@@ -1,0 +1,217 @@
+﻿Acid Armor
+Acid Spray
+Acrobatics
+Aerial Ace
+After You
+Air Cutter
+Alluring Voice
+Ally Switch
+Amnesia
+Apple Acid
+Aqua Cutter
+Armor Cannon
+Aura Sphere
+Avalanche
+Baby-Doll Eyes
+Baneful Bunker
+Barb Barrage
+Baton Pass
+Bite
+Blaze Kick
+Body Press
+Body Slam
+Boomburst
+Breaking Swipe
+Brutal Swing
+Bug Bite
+Bullet Punch
+Burn Up
+Burning Jealousy
+Ceaseless Edge
+Charm
+Chilling Water
+Chilly Reception
+Coaching
+Coil
+Comeuppance
+Cosmic Power
+Cotton Guard
+Counter
+Covet
+Cross Chop
+Crunch
+Curse
+Darkest Lariat
+Destiny Bond
+Detect
+Dire Claw
+Double Team
+Double-Edge
+Dragon Cheer
+Dragon Rush
+Draining Kiss
+Dual Wingbeat
+Eerie Impulse
+Electroweb
+Endeavor
+Endure
+Eruption
+Expanding Force
+Explosion
+Extrasensory
+Extreme Speed
+Fake Out
+Fake Tears
+Feint
+Fickle Beam
+Fiery Dance
+Final Gambit
+Fire Fang
+Fire Punch
+Fire Spin
+First Impression
+Fissure
+Flail
+Flip Turn
+Flower Trick
+Follow Me
+Freeze-Dry
+Frost Breath
+Giga Impact
+Glare
+Grass Knot
+Grassy Glide
+Grav Apple
+Gunk Shot
+Gyro Ball
+Hammer Arm
+Head Smash
+Headlong Rush
+Heal Pulse
+Healing Wish
+Heat Crash
+Helping Hand
+High Horsepower
+High Jump Kick
+Horn Drill
+Howl
+Hydro Cannon
+Hyper Beam
+Hyper Voice
+Hypnosis
+Ice Fang
+Ice Punch
+Ice Spinner
+Icy Wind
+Imprison
+Infestation
+Iron Defense
+Iron Tail
+King's Shield
+Last Resort
+Lava Plume
+Leech Life
+Life Dew
+Light of Ruin
+Low Kick
+Lunge
+Mach Punch
+Memento
+Metal Burst
+Meteor Assault
+Minimize
+Mirror Coat
+Misty Explosion
+Misty Terrain
+Moonlight
+Morning Sun
+Mountain Gale
+Mud Shot
+Muddy Water
+Mystical Fire
+Night Slash
+Nuzzle
+Octolock
+Overdrive
+Pain Split
+Parting Shot
+Payback
+Perish Song
+Phantom Force
+Poison Jab
+Pollen Puff
+Poltergeist
+Power Whip
+Psych Up
+Psychic Fangs
+Psychic Noise
+Psychic Terrain
+Psycho Cut
+Psyshield Bash
+Quick Attack
+Quick Guard
+Quiver Dance
+Raging Bull
+Razor Shell
+Recycle
+Rest
+Reversal
+Rising Voltage
+Roar
+Rock Blast
+Rock Wrecker
+Role Play
+Sacred Sword
+Salt Cure
+Scorching Sands
+Screech
+Seed Bomb
+Self-Destruct
+Shadow Sneak
+Shed Tail
+Shell Smash
+Shelter
+Skill Swap
+Slack Off
+Slash
+Sludge Bomb
+Sludge Wave
+Snarl
+Soak
+Sparkling Aria
+Speed Swap
+Spicy Extract
+Spirit Shackle
+Steel Beam
+Steel Roller
+Stockpile
+Stomping Tantrum
+Stone Axe
+Stored Power
+Storm Throw
+Strength Sap
+Struggle Bug
+Stuff Cheeks
+Super Fang
+Supercell Slam
+Superpower
+Swallow
+Switcheroo
+Temper Flare
+Terrain Pulse
+Throat Chop
+Topsy-Turvy
+Trailblaze
+Transform
+Triple Axel
+Upper Hand
+Vacuum Wave
+Volt Tackle
+Water Pulse
+Water Spout
+Wave Crash
+Whirlpool
+Whirlwind
+Wide Guard
+Wood Hammer
+Zen Headbutt

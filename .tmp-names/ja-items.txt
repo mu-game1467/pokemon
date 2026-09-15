@@ -1,0 +1,41 @@
+﻿Altarianite	チルタリスナイト
+Barbaracite	UNTRANSLATED
+Big Root	おおきなねっこ
+Black Glasses	くろいメガネ
+Chandelurite	UNTRANSLATED
+Charti Berry	ヨロギのみ
+Chimechite	UNTRANSLATED
+Chople Berry	ヨプのみ
+Clefablite	UNTRANSLATED
+Colbur Berry	ナモのみ
+Delphoxite	UNTRANSLATED
+Dragoninite	UNTRANSLATED
+Eelektrossite	UNTRANSLATED
+Excadrite	UNTRANSLATED
+Fairy Feather	ようせいのハネ
+Floettite	UNTRANSLATED
+Galladite	エルレイドナイト
+Golisopite	UNTRANSLATED
+Grassy Seed	グラスシード
+Kasib Berry	カシブのみ
+King's Rock	おうじゃのしるし
+Leek	UNTRANSLATED
+Leppa Berry	ヒメリのみ
+Malamarite	UNTRANSLATED
+Manectite	ライボルトナイト
+Meowsticite	UNTRANSLATED
+Mystic Water	しんぴのしずく
+Passho Berry	イトケのみ
+Pidgeotite	ピジョットナイト
+Psychic Seed	サイコシード
+Raichunite X	UNTRANSLATED
+Rindo Berry	リンドのみ
+Sceptilite	ジュカインナイト
+Scovillainite	UNTRANSLATED
+Sharpedonite	サメハダナイト
+Shuca Berry	シュカのみ
+Silver Powder	ぎんのこな
+Slowbronite	ヤドランナイト
+Staraptite	UNTRANSLATED
+Terrain Extender	グランドコート
+Victreebelite	UNTRANSLATED

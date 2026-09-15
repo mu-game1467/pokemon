@@ -1,0 +1,85 @@
+﻿Anger Point	いかりのつぼ
+Clear Body	クリアボディ
+Cloud Nine	ノーてんき
+Competitive	かちき
+Contrary	あまのじゃく
+Cud Chew	はんすう
+Cute Charm	メロメロボディ
+Damp	しめりけ
+Defiant	まけんき
+Disguise	ばけのかわ
+Drizzle	あめふらし
+Drought	ひでり
+Dry Skin	かんそうはだ
+Early Bird	はやおき
+Emergency Exit	ききかいひ
+Flower Veil	フラワーベール
+Forecast	てんきや
+Forewarn	よちむ
+Frisk	おみとおし
+Gale Wings	はやてのつばさ
+Gluttony	くいしんぼう
+Gooey	ぬめぬめ
+Harvest	しゅうかく
+Hustle	はりきり
+Hyper Cutter	かいりきバサミ
+Ice Body	アイスボディ
+Imposter	かわりもの
+Infiltrator	すりぬけ
+Inner Focus	せいしんりょく
+Insomnia	ふみん
+Iron Fist	てつのこぶし
+Justified	せいぎのこころ
+Keen Eye	するどいめ
+Klutz	ぶきよう
+Lightning Rod	ひらいしん
+Limber	じゅうなん
+Liquid Ooze	ヘドロえき
+Liquid Voice	うるおいボイス
+Long Reach	えんかく
+Magician	マジシャン
+Merciless	ひとでなし
+Minus	マイナス
+Moody	ムラっけ
+Moxie	じしんかじょう
+Oblivious	どんかん
+Overcoat	ぼうじん
+Own Tempo	マイペース
+Pickpocket	わるいてぐせ
+Poison Heal	ポイズンヒール
+Poison Touch	どくしゅ
+Pressure	プレッシャー
+Protean	へんげんじざい
+Punk Rock	パンクロック
+Purifying Salt	きよめのしお
+Rain Dish	あめうけざら
+Reckless	すてみ
+Refrigerate	フリーズスキン
+Ripen	じゅくせい
+Rivalry	とうそうしん
+Rock Head	いしあたま
+Sand Force	すなのちから
+Sand Rush	すなかき
+Sap Sipper	そうしょく
+Scrappy	きもったま
+Screen Cleaner	バリアフリー
+Seed Sower	こぼれダネ
+Sharpness	きれあじ
+Shell Armor	シェルアーマー
+Slush Rush	ゆきかき
+Solid Rock	ハードロック
+Speed Boost	かそく
+Stance Change	バトルスイッチ
+Steadfast	ふくつのこころ
+Sticky Hold	ねんちゃく
+Strong Jaw	がんじょうあご
+Suction Cups	きゅうばん
+Supersweet Syrup	かんろなミツ
+Symbiosis	きょうせい
+Tangled Feet	ちどりあし
+Telepathy	テレパシー
+Tough Claws	かたいツメ
+Unburden	かるわざ
+Vital Spirit	やるき
+Weak Armor	くだけるよろい
+White Smoke	しろいけむり

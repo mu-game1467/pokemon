@@ -1,0 +1,6 @@
+﻿Unknown Item 230	images/items/i_item230.png
+Unknown Item 245	images/items/i_item245.png
+Unknown Item 253	images/items/i_item253.png
+Unknown Item 542	images/items/i_item_m542.png
+Unknown Item 544	images/items/i_item_m544.png
+Unknown Item 564	images/items/i_item_m564.png

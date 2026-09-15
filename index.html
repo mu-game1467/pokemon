@@ -895,7 +895,9 @@ function getMegaForms(baseName) {
             if (!party.length) {
               recEl.innerHTML = '<div class="mono" style="color:var(--muted)">パーティを追加するとおすすめを表示します。</div>';
             } else if (scoredCandidates.length) {
-              recEl.innerHTML = scoredCandidates.slice(0, 5).map(p => {
+              const topBuilds = getTopBuildTeams();
+              const topWeakness = scoredCandidates.length ? scoredCandidates[0].coversTopWeakness ? weaknesses[0] : null : null;
+              let html = scoredCandidates.slice(0, 5).map(p => {
                 const badges = [];
                 if (p.coversTopWeakness) badges.push('💥 最大弱点をカバー');
                 if (p.coversWeakness > p.coversTopWeakness) badges.push('🛡️ 弱点' + p.coversWeakness + '件補完');
@@ -903,6 +905,15 @@ function getMegaForms(baseName) {
                 if (p.sharedWeakness > 0) badges.push('⚠️ 共通弱点' + p.sharedWeakness + '件');
                 return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);cursor:pointer" onclick="addPokemon('${p.name}')"><div>${iconMarkup(p)}</div><div style="flex:1"><div style="font-weight:600">${p.name} <span style="color:var(--muted)">(${p.types.join('/')})</span></div><div style="font-size:10px;color:var(--muted)">${p.role}</div><div style="font-size:10px">${badges.map(b => `<span style="background:${b.startsWith('⚠️')?'#ffebee':b.startsWith('🌈')?'#e8f5e9':'#fff3e0'};padding:2px 6px;border-radius:3px;margin-right:4px">${b}</span>`).join('')}</div></div><div style="text-align:right"><b>+${Math.max(0,p.score)}</b><small>pts</small></div></div>`;
               }).join('');
+              const recWeakType = topWeakness ? topWeakness[0] : null;
+              if (recWeakType && topBuilds.length) {
+                const matchingBuilds = topBuilds.filter(t => t.types.some(type => type === recWeakType || typeResist[type]?.includes(recWeakType)));
+                if (matchingBuilds.length > 0) {
+                  html += '<div style="font-size:10px;color:var(--muted);padding:4px 0 2px">【実戦人気の' + recWeakType + '対策】</div>';
+                  html += matchingBuilds.slice(0, 3).map(t => `<div style="display:flex;align-items:center;gap:4px;padding:2px 0;cursor:pointer" onclick="addPokemon('${t.name}')"><img src="images/pokemon/${findPokemonLocal(t.name)?.iconUrl || ''}" style="width:24px;height:24px;object-fit:contain" onerror="this.style.display='none'"><div>${t.name} / ${t.item}</div><div style="color:var(--muted)">S${t.season}</div></div>`).join('');
+                }
+              }
+              recEl.innerHTML = html;
             } else {
               recEl.innerHTML = '<div class="mono" style="color:var(--muted)">パーティの弱点を補完するポケモンが見つかりません。</div>';
             }

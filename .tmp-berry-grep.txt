@@ -1,0 +1,118 @@
+﻿
+data\items-champions.js:264:      "name": "
+クラボのみ",
+data\items-champions.js:266:      "category
+": "きのみ",
+data\items-champions.js:270:      "name": "
+カゴのみ",
+data\items-champions.js:272:      "category
+": "きのみ",
+data\items-champions.js:276:      "name": "
+モモンのみ",
+data\items-champions.js:278:      "category
+": "きのみ",
+data\items-champions.js:282:      "name": "
+チーゴのみ",
+data\items-champions.js:284:      "category
+": "きのみ",
+data\items-champions.js:288:      "name": "
+ナナシのみ",
+data\items-champions.js:290:      "category
+": "きのみ",
+data\items-champions.js:294:      "name": "
+ヒメリのみ",
+data\items-champions.js:296:      "category
+": "きのみ",
+data\items-champions.js:300:      "name": "
+オレンのみ",
+data\items-champions.js:302:      "category
+": "きのみ",
+data\items-champions.js:306:      "name": "
+キーのみ",
+data\items-champions.js:308:      "category
+": "きのみ",
+data\items-champions.js:312:      "name": "
+ラムのみ",
+data\items-champions.js:314:      "category
+": "きのみ",
+data\items-champions.js:318:      "name": "
+オボンのみ",
+data\items-champions.js:320:      "category
+": "きのみ",
+data\items-champions.js:324:      "name": "
+オッカのみ",
+data\items-champions.js:326:      "category
+": "きのみ",
+data\items-champions.js:330:      "name": "
+イトケのみ",
+data\items-champions.js:332:      "category
+": "きのみ",
+data\items-champions.js:333:      "descript
+ion": "効果バツグンのみずタイプの技を受けた時ダメージが半減する。1度使うとその
+対戦中は無くなる。"
+data\items-champions.js:336:      "name": "
+ソクノのみ",
+data\items-champions.js:338:      "category
+": "きのみ",
+data\items-champions.js:342:      "name": "
+リンドのみ",
+data\items-champions.js:344:      "category
+": "きのみ",
+data\items-champions.js:348:      "name": "
+ヤチェのみ",
+data\items-champions.js:350:      "category
+": "きのみ",
+data\items-champions.js:354:      "name": "
+ヨプのみ",
+data\items-champions.js:356:      "category
+": "きのみ",
+data\items-champions.js:360:      "name": "
+ビアーのみ",
+data\items-champions.js:362:      "category
+": "きのみ",
+data\items-champions.js:366:      "name": "
+シュカのみ",
+data\items-champions.js:368:      "category
+": "きのみ",
+data\items-champions.js:372:      "name": "
+バコウのみ",
+data\items-champions.js:374:      "category
+": "きのみ",
+data\items-champions.js:378:      "name": "
+ウタンのみ",
+data\items-champions.js:380:      "category
+": "きのみ",
+data\items-champions.js:384:      "name": "
+タンガのみ",
+data\items-champions.js:386:      "category
+": "きのみ",
+data\items-champions.js:390:      "name": "
+ヨロギのみ",
+data\items-champions.js:392:      "category
+": "きのみ",
+data\items-champions.js:396:      "name": "
+カシブのみ",
+data\items-champions.js:398:      "category
+": "きのみ",
+data\items-champions.js:402:      "name": "
+ハバンのみ",
+data\items-champions.js:404:      "category
+": "きのみ",
+data\items-champions.js:408:      "name": "
+ナモのみ",
+data\items-champions.js:410:      "category
+": "きのみ",
+data\items-champions.js:414:      "name": "
+リリバのみ",
+data\items-champions.js:416:      "category
+": "きのみ",
+data\items-champions.js:420:      "name": "
+ロゼルのみ",
+data\items-champions.js:422:      "category
+": "きのみ",
+data\items-champions.js:426:      "name": "
+ホズのみ",
+data\items-champions.js:428:      "category
+": "きのみ",
+
+

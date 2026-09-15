@@ -1,0 +1,18 @@
+node:fs:2352
+    return binding.writeFileUtf8(
+                   ^
+
+Error: EBUSY: resource busy or locked, open 'C:\Users\admin\Desktop\pokemon\jest-out.txt'
+    at Object.writeFileSync (node:fs:2352:20)
+    at finish (C:\Users\admin\Desktop\pokemon\run-jest.js:49:6)
+    at ChildProcess.<anonymous> (C:\Users\admin\Desktop\pokemon\run-jest.js:42:3)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1105:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'open',
+  path: 'C:\\Users\\admin\\Desktop\\pokemon\\jest-out.txt'
+}
+
+Node.js v20.11.1
