@@ -258,10 +258,15 @@
     .dc-toggle { display:flex; gap:4px; flex-wrap:wrap; margin-top:4px; }
     .dc-toggle label { display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:400; cursor:pointer; }
      .dc-toggle input { width:auto; }
-      .login-screen { position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
-      .login-screen.hidden { display:none; }
-      .login-card { background:white; border-radius:10px; padding:24px; width:90%; max-width:320px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
-      .login-card h2 { margin:0 0 12px; font-size:18px; }
+      /* ---- login screen (レイヤーではなく画面として表示する) ---- */
+      .login-screen { position:fixed; inset:0; width:100%; height:100%; background:var(--paper); overflow-y:auto; padding:18px 14px 48px; z-index:9999; }
+      .login-screen.hidden { display:none !important; }
+      .login-brand { max-width:420px; margin:0 auto 16px; padding:14px 0 10px; display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:.07em; border-bottom:1px solid var(--line); }
+      .login-brand small { display:block; font-family:'DM Mono',monospace; font-size:8px; color:var(--muted); letter-spacing:.13em; margin-top:1px; font-weight:400; }
+      .login-shell { max-width:420px; margin:0 auto; }
+      .login-card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:20px 18px 18px; box-shadow:var(--shadow); }
+      .login-card h2 { margin:6px 0 14px; font-size:18px; letter-spacing:-.03em; }
+      .login-note { max-width:420px; margin:12px auto 0; color:var(--muted); font-size:10px; line-height:1.7; font-family:'DM Mono',monospace; }
      .login-card .field { margin-bottom:8px; }
       .login-card .field input { width:100%; box-sizing:border-box; font-size:14px; padding:8px 10px; }
      .login-tabs button { border-bottom:2px solid transparent; }
@@ -269,10 +274,11 @@
    </style>
 </head>
 <body>
-  <main class="app">
-    <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
-  <div class="login-screen hidden" id="loginScreen">
+  <div class="login-screen" id="loginScreen">
+    <div class="login-brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / TEAM BUILDER</small></div></div>
+    <div class="login-shell">
       <div class="login-card">
+        <div class="eyebrow">ACCOUNT</div>
         <h2>ログイン / 新規登録</h2>
         <div class="login-tabs" style="display:flex;gap:4px;margin-bottom:12px">
           <button class="text-btn" id="loginTab" style="flex:1">ログイン</button>
@@ -293,7 +299,11 @@
         <button class="text-btn" id="skipLogin" style="width:100%;margin-top:8px;font-size:12px">Continue without login</button>
       </div>
     </div>
-    <div id="appContent">
+    <div class="login-note">ログインすると、パーティや戦績をサーバーに保存して別のブラウザからも復元できます。</div>
+  </div>
+  <main class="app">
+    <div id="errorDisplay" class="hidden" style="background:#fff0e9;border-left:4px solid var(--coral);padding:10px 12px;margin-bottom:12px;border-radius:0 6px 6px 0;font-size:11px;"></div>
+  <div id="appContent" class="hidden">
     <header class="topbar">
       <div class="brand"><span class="brand-mark">✦</span><div>PARTY LAB<small>POKÉMON CHAMPIONS / TEAM BUILDER</small></div></div>
       <div class="top-actions">
@@ -380,7 +390,7 @@
       </section>
     </div>
   </main>
-  <button class="chat-fab" id="chatFab" title="チャット">💬</button>
+  <button class="chat-fab hidden" id="chatFab" title="チャット">💬</button>
     <div class="chat-modal hidden" id="chatModal"><div class="chat-card"><div class="chat-head"><h3>パーティチャット</h3><button class="remove" id="closeChat" aria-label="閉じる">×</button></div><div class="chat-messages" id="chatMessages"></div><div class="chat-suggestions" id="chatSuggestions"><button type="button" class="chat-suggestion-btn" data-q="このパーティの弱点は？">このパーティの弱点は？</button><button type="button" class="chat-suggestion-btn" data-q="実数値を計算して">実数値を計算して</button><button type="button" class="chat-suggestion-btn" data-q="パーティのおすすめ診断をして">パーティのおすすめ診断をして</button><button type="button" class="chat-suggestion-btn" data-q="このパーティのタイプカバレッジは？">このパーティのタイプカバレッジは？</button></div><div class="chat-input-row"><input id="chatInput" placeholder="質問を入力..." autocomplete="off"><button id="sendChat">送信</button></div></div></div>
      <div class="battle-log-modal hidden" id="battleLogModal"><div class="editor-card"><div class="editor-head"><div><h2 id="battleLogTitle">戦績を記録</h2><div class="editor-subtitle" id="battleLogSubtitle"></div></div><button class="remove" id="closeBattleLog" aria-label="閉じる">×</button></div><div class="editor-body"><div class="field">結果<select id="battleResult"><option value="win">勝ち</option><option value="loss">負け</option><option value="draw">引き分け</option></select></div><div class="field">自分の選出（3匹）<select id="battleUserPick0"></select><select id="battleUserPick1"></select><select id="battleUserPick2"></select></div><div class="field">相手のパーティ（6匹）<input id="battleOpponent0" list="battlePokemonDatalist"><input id="battleOpponent1" list="battlePokemonDatalist"><input id="battleOpponent2" list="battlePokemonDatalist"><input id="battleOpponent3" list="battlePokemonDatalist"><input id="battleOpponent4" list="battlePokemonDatalist"><input id="battleOpponent5" list="battlePokemonDatalist"></div><div class="field">相手の選出（3匹）<select id="battleOpponentPick0"><option value="">—</option></select><select id="battleOpponentPick1"><option value="">—</option></select><select id="battleOpponentPick2"><option value="">—</option></select></div><div class="field">メモ<textarea id="battleNote" rows="3" placeholder="選出理由、相手の特徴など"></textarea></div><div class="editor-actions"><button class="ghost-btn" id="cancelBattleLog">キャンセル</button><button class="ghost-btn" id="saveBattleLog">記録する</button></div></div></div></div>
     <datalist id="battlePokemonDatalist"></datalist>
@@ -696,7 +706,7 @@ function getMegaForms(baseName) {
     function typeColor(type) { return TYPE_COLORS[type] || '#9aa39b'; }
     function chipTextColor(hex) { const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16); return (r*299+g*587+b*114)/1000 > 155 ? '#20303a' : '#ffffff'; }
     function moveChip(name) { const data=MOVE_DB[name]; const bg=data?typeColor(data.t):'#c9cfc4'; return `<span class="move-chip" style="--tc:${bg};--tx:${chipTextColor(bg)}">${name}</span>`; }
-    function moveStatText(data) { if(!data || data.c === '変化') return '変化技'; return `威力 ${data.p ?? '—'} ／ 命中 ${data.a == null ? '必中' : data.a}`; }
+    function moveStatText(data) { if(!data || data.c === '変化') return '変化技'; return `威力 ${data.p || '—'} ／ 命中 ${data.a == null ? '必中' : data.a}`; }
     function moveInfoHtml(name) {
       if(!name) return '<span style="color:var(--muted)">未選択</span>';
       const data = MOVE_DB[name];
@@ -1051,8 +1061,7 @@ function getMegaForms(baseName) {
     if ($('loginUsername')) $('loginUsername').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
     if ($('loginPassword')) $('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') loginUser(); });
     if ($('registerSubmit')) $('registerSubmit').addEventListener('click', registerUser);
-    if ($('skipLogin')) $('skipLogin').addEventListener('click', () => { authUserId = ''; $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden'); render(); renderSaved(); updateBattleLogButtonState(); });
-    if ($('loginScreen')) $('loginScreen').addEventListener('click', e => { if (e.target === $('loginScreen')) { authUserId = ''; $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden'); render(); renderSaved(); updateBattleLogButtonState(); } });
+    if ($('skipLogin')) $('skipLogin').addEventListener('click', () => { authUserId = ''; localStorage.removeItem('party-current-user'); enterApp('party'); });
     if ($('registerUsername')) $('registerUsername').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
     if ($('registerPassword2')) $('registerPassword2').addEventListener('keydown', e => { if (e.key === 'Enter') registerUser(); });
     if ($('loginTab')) $('loginTab').addEventListener('click', function() { $('loginTab').classList.add('active'); $('registerTab').classList.remove('active'); $('loginForm').classList.remove('hidden'); $('registerForm').classList.add('hidden'); });
@@ -1202,6 +1211,37 @@ function getMegaForms(baseName) {
     }
     function storageKey(key) { return authUserId ? key + '-' + authUserId : key; }
     function showLoginError(msg) { const el = $('loginError'); if (el) el.textContent = msg; }
+    /* ---- ログイン画面  アプリ画面 ---- */
+    function showLoginScreen() {
+      const loginScreen = $('loginScreen');
+      if (loginScreen) loginScreen.classList.remove('hidden');
+      const appContent = $('appContent');
+      if (appContent) appContent.classList.add('hidden');
+      const fab = $('chatFab');
+      if (fab) fab.classList.add('hidden');
+      const chat = $('chatModal');
+      if (chat) { chat.classList.add('hidden'); chat.classList.remove('visible'); }
+    }
+    function showAppContent() {
+      const loginScreen = $('loginScreen');
+      if (loginScreen) loginScreen.classList.add('hidden');
+      const appContent = $('appContent');
+      if (appContent) appContent.classList.remove('hidden');
+      const fab = $('chatFab');
+      if (fab) fab.classList.remove('hidden');
+    }
+    // ログイン完了後は パーティ構築（パーティタブ）画面を表示する
+    function enterApp(tab) {
+      showAppContent();
+      try { switchTab(typeof tab === 'string' ? tab : 'party'); } catch(e) { console.error('switchTab failed:', e); }
+      try {
+        render(); renderSaved(); updateBattleLogButtonState();
+      } catch(e) {
+        console.error('Render error:', e);
+        const el = document.getElementById('errorDisplay');
+        if (el) { el.textContent = '表示エラー: ' + e.message; el.classList.remove('hidden'); }
+      }
+    }
      async function saveAllToServer() {
       if (!authUserId) return;
       const memo = $('partyMemo')?.value || '';
@@ -1300,10 +1340,10 @@ function getMegaForms(baseName) {
         $('userStatus').textContent = 'ユーザー名：' + username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
-        $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden');
+        showAppContent();
 
         await loadAllFromServer();
-        render(); renderSaved(); updateBattleLogButtonState();
+        enterApp('party');
       } catch(e) { showLoginError('ログインに失敗しました。' + e.message); }
     }
     async function registerUser() {
@@ -1325,7 +1365,7 @@ function getMegaForms(baseName) {
         });
         if (!apiResult) console.error('Failed to sync account to server');
         showLoginError('登録成功！ログインしてください。');
-        if ($('registerTab')) $('registerTab').click();
+        if ($('loginTab')) $('loginTab').click();
       } catch(e) { showLoginError('登録に失敗しました。' + e.message); }
     }
     function logoutUser() {
@@ -1338,7 +1378,7 @@ function getMegaForms(baseName) {
       savedParties = [];
       currentPartyName = '';
       editingEntryId = null;
-      $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
+      showLoginScreen();
       if ($('loginTab')) $('loginTab').classList.add('active');
       if ($('registerTab')) $('registerTab').classList.remove('active');
       if ($('loginForm')) $('loginForm').classList.remove('hidden');
@@ -1464,23 +1504,15 @@ function getMegaForms(baseName) {
     const storedUser = localStorage.getItem('party-current-user');
     if (storedUser) {
       authUserId = storedUser;
-      $('loginScreen').classList.add('hidden'); $('appContent').classList.remove('hidden');
-        if ($('userStatus')) { $('userStatus').textContent = 'ユーザー名：' + storedUser; $('userStatus').style.color = 'var(--coral)'; }
+      if ($('userStatus')) { $('userStatus').textContent = 'ユーザー名：' + storedUser; $('userStatus').style.color = 'var(--coral)'; }
       if ($('logoutUser')) $('logoutUser').style.display = 'inline-block';
+      enterApp('party');
       loadAllFromServer().then((success) => {
-        if (success) {
-          render(); renderSaved(); updateBattleLogButtonState();
-        } else {
-          localStorage.removeItem('party-current-user');
-          authUserId = '';
-          $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
-          if ($('userStatus')) { $('userStatus').textContent = 'オフライン'; $('userStatus').style.color = 'var(--muted)'; }
-          if ($('logoutUser')) $('logoutUser').style.display = 'none';
-          render();
-        }
+        if (!success) console.warn('保存データの読み込みに失敗したため、ローカルの内容で表示します。');
+        enterApp('party');
       });
     } else {
-      $('loginScreen').classList.remove('hidden'); $('appContent').classList.add('hidden');
+      showLoginScreen();
     }
     const openBattleLogBtn = $('openBattleLog');
     console.log('openBattleLogBtn', openBattleLogBtn);

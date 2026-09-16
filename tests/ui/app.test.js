@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 async function dismissLoginModal(page) {
   const skipBtn = await page.$('#skipLogin');
   if (skipBtn) {
-    const isHidden = await skipBtn.evaluate(el => el.closest('#loginModalOverlay')?.classList.contains('hidden'));
+    const isHidden = await skipBtn.evaluate(el => el.closest('#loginScreen')?.classList.contains('hidden'));
     if (!isHidden) {
       await skipBtn.click();
     }
@@ -70,6 +70,7 @@ test.describe('Frontend: Page Load', () => {
 test.describe('Frontend: Search & Filter', () => {
   test('search input filters Pokemon', async ({ page }) => {
     await page.goto('/');
+    await dismissLoginModal(page);
     await page.fill('#search', 'プクリン');
     const suggestions = await page.$$('.suggestion');
     expect(suggestions.length).toBeGreaterThan(0);
@@ -79,6 +80,7 @@ test.describe('Frontend: Search & Filter', () => {
 
   test('search returns no results for non-matching query', async ({ page }) => {
     await page.goto('/');
+    await dismissLoginModal(page);
     await page.fill('#search', 'xyznonexistent12345');
     const suggestions = await page.$$('.suggestion');
     expect(suggestions.length).toBe(0);
@@ -153,6 +155,7 @@ test.describe('Frontend: Mega Form Cycling', () => {
     await expect(page.locator('#editor')).not.toHaveClass(/hidden/);
     const slotName = await page.textContent('.slot.filled .slot-name');
     expect(slotName).toContain('アブソル');
+    await page.click('#closeEditor');
     await page.click('[data-form-index="0"]');
     const nextSlotName = await page.textContent('.slot.filled .slot-name');
     expect(['メガアブソル', 'メガアブソルZ'].some(name => nextSlotName.includes(name))).toBe(true);
@@ -162,6 +165,7 @@ test.describe('Frontend: Mega Form Cycling', () => {
     await page.goto('/');
     await addPokemonBySearch(page, 'アブソル');
     await page.click('.edit-button');
+    await page.click('#closeEditor');
     await page.click('[data-form-index="0"]');
     await page.click('[data-form-index="0"]');
     await page.click('.edit-button');
@@ -178,11 +182,12 @@ test.describe('Frontend: Mega Form Cycling', () => {
 });
 
 test.describe('Frontend: Damage Calculator', () => {
-  test('damage calculator modal opens', async ({ page }) => {
+  test('damage calculator opens as a tab', async ({ page }) => {
     await page.goto('/');
     await dismissLoginModal(page);
     await page.click('#openDamageCalc');
-    await expect(page.locator('#damageCalcModal')).not.toHaveClass(/hidden/);
+    await expect(page.locator('#damageSection')).not.toHaveClass(/hidden/);
+    await expect(page.locator('.tab-btn[data-tab="damage"]')).toHaveClass(/active/);
   });
 
   test('damage calculator has attacker and defender selects', async ({ page }) => {

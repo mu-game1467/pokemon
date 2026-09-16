@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const PROJECT_ROOT = path.resolve(__dirname, '..');
+const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const DATA_DIR = path.join(PROJECT_ROOT, 'data');
 
 function loadJs(filePath) {
@@ -37,14 +37,17 @@ describe('moves-champions.js integrity', () => {
       expect(move).toHaveProperty('t');
       expect(VALID_TYPES).toContain(move.t);
       expect(VALID_CATEGORIES).toContain(move.c);
+      // p（威力）/ a（命中）は「可変威力」「必中」を null で表現するため null を許容する
       if ('p' in move) {
-        expect(typeof move.p).toBe('number');
-        expect(move.p).toBeGreaterThan(0);
+        expect(move.p === null || typeof move.p === 'number').toBe(true);
+        if (move.p !== null) expect(move.p).toBeGreaterThan(0);
       }
       if ('a' in move) {
-        expect(typeof move.a).toBe('number');
-        expect(move.a).toBeGreaterThan(0);
-        expect(move.a).toBeLessThanOrEqual(100);
+        expect(move.a === null || typeof move.a === 'number').toBe(true);
+        if (move.a !== null) {
+          expect(move.a).toBeGreaterThan(0);
+          expect(move.a).toBeLessThanOrEqual(100);
+        }
       }
       expect(move).toHaveProperty('e');
     });

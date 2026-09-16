@@ -156,8 +156,9 @@ describe('pokemon-champions.json data integrity', () => {
   });
 
   test('M-C items are present', () => {
-    // pokemon-champions.json 内の items はM-C対応の6種のメガストーンを含む
-    const mcItems = ['アブソルナイト', 'ガブリアスナイト', 'ルカリオナイト',
+    // pokemon-champions.json（YakkunのM-C名鑑）内の items はM-C対応の6種のメガストーンを含む
+    // ※アブソル/ガブリアス/ルカリオは名鑑上「Z」表記のストーンで登録されている
+    const mcItems = ['アブソルナイトZ', 'ガブリアスナイトZ', 'ルカリオナイトZ',
       'ボーマンダナイト', 'グソクムシャナイト', 'セグレイブナイト'];
     const itemNames = champions.items.map(i => i.name);
     mcItems.forEach(name => {

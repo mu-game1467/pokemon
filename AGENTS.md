@@ -79,6 +79,12 @@ To regenerate:
 - The `account` field contains the user's credentials hash
 - Frontend helpers: `safeUserId()`, `userApiUrl()`, `fetchFromApi()`, `saveAllToServer()`, `loadAllFromServer()`
 - Login status uses `#loginScreen` (not `#loginModalOverlay`) and `#logoutUser` button
+- `#loginScreen` is a full-page screen placed OUTSIDE `main.app` (fixed overlay with an opaque
+  `background:var(--paper)`; `--bg` does NOT exist in `:root`, so do not use it)
+- `#appContent` and `#chatFab` are `hidden` in the static HTML and are revealed by
+  `enterApp(tab)` / hidden again by `showLoginScreen()` (`enterApp('party')` = パーティ構築画面を表示)
+- After login / session restore the app always shows the party builder tab (`enterApp('party')`);
+  a failed data load falls back to local data instead of returning to the login screen
 - After successful login, user status shows as `ユーザー名：<username>`
 
 ### Analytics Search
