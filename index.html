@@ -1324,24 +1324,30 @@ function getMegaForms(baseName) {
         const accounts = JSON.parse(localStorage.getItem('party-accounts') || '{}');
         const account = accounts[username];
         let hash = await hashPassword(password);
-        if (!account) {
+        const verifyHash = async (h) => {
+          const storedHash = typeof h === 'string' ? h : (h && h.hash) || '';
+          return storedHash === hash;
+        };
+        let authenticated = false;
+        if (account) {
+          if (await verifyHash(account)) { authenticated = true; }
+        } else {
           const apiData = await fetchFromApi(userApiUrlForLogin(username));
           if (apiData && apiData.account) {
-            if (apiData.account.hash === hash) {
+            if (await verifyHash(apiData.account)) {
               accounts[username] = apiData.account;
               localStorage.setItem('party-accounts', JSON.stringify(accounts));
-            } else { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
-          } else { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
-        } else {
-          if (hash !== account.hash) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
+              authenticated = true;
+            }
+          }
         }
+        if (!authenticated) { showLoginError('ユーザー名またはパスワードが間違っています。'); return; }
         authUserId = username;
         localStorage.setItem('party-current-user', username);
         $('userStatus').textContent = 'ユーザー名：' + username;
         $('userStatus').style.color = 'var(--coral)';
         $('logoutUser').style.display = 'inline-block';
         showAppContent();
-
         await loadAllFromServer();
         enterApp('party');
       } catch(e) { showLoginError('ログインに失敗しました。' + e.message); }
@@ -1363,7 +1369,7 @@ function getMegaForms(baseName) {
           method: 'POST',
           body: JSON.stringify({ account: account })
         });
-        if (!apiResult) console.error('Failed to sync account to server');
+        if (!apiResult) { showLoginError('サーバーへの保存に失敗しました。再試行してください。'); return; }
         showLoginError('登録成功！ログインしてください。');
         if ($('loginTab')) $('loginTab').click();
       } catch(e) { showLoginError('登録に失敗しました。' + e.message); }
